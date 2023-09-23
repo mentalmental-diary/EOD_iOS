@@ -38,7 +38,7 @@ struct EODApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {
