@@ -74,6 +74,8 @@
 		CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */; };
 		CEB7F0A22AAC6424001C99EA /* Alamofire+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */; };
 		CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A32AAC661D001C99EA /* RegexParser.swift */; };
+		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
+		CEF7E40C2AAC6F7900E133F6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7E40B2AAC6F7900E133F6 /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +164,8 @@
 		CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODLogRecorder.swift; sourceTree = "<group>"; };
 		CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Extension.swift"; sourceTree = "<group>"; };
 		CEB7F0A32AAC661D001C99EA /* RegexParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
+		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		CEF7E40B2AAC6F7900E133F6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +218,7 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CEF7E40A2AAC6F6900E133F6 /* Splash */,
 				CEB7F0982AAC6272001C99EA /* Module */,
 				CEB7F0382AAC6198001C99EA /* Logger */,
 				CEB7F02E2AAC5585001C99EA /* Utility */,
@@ -361,6 +366,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		CEF7E40A2AAC6F6900E133F6 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */,
+				CEF7E40B2AAC6F7900E133F6 /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,6 +490,7 @@
 				CEB7F07E2AAC61D5001C99EA /* README.md in Resources */,
 				CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */,
 				CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */,
+				CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */,
 				CEB7F0802AAC61D5001C99EA /* README-CleanroomLogger.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +522,7 @@
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
+				CEF7E40C2AAC6F7900E133F6 /* SplashViewController.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
 				CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */,
@@ -723,6 +739,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -752,6 +769,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
