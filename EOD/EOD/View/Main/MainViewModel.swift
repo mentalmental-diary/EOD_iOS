@@ -15,4 +15,9 @@ enum Tab: String {
 
 class MainViewModel: ObservableObject {
     @Published var currentTab: Tab = .home
+    @Published var isLogin: Bool = false
+    
+    init() {
+        isLogin = LoginManager.shared.isLogin ?? false
+    }
 }

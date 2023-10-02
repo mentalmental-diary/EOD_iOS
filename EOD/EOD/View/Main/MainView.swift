@@ -11,7 +11,11 @@ struct MainView: View {
     @ObservedObject private var viewModel: MainViewModel = MainViewModel()
     
     var body: some View {
-        Text("메인화면 -> 로그인 유무 판단 에정 ")
+        if viewModel.isLogin { // 로그인 상태일경우
+            HomeView()
+        } else { // 로그인 상태가 아닐경우
+            IntroView(viewModel: viewModel)
+        }
     }
 }
 

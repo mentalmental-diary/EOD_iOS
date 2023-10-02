@@ -11,7 +11,13 @@
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
 		CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */; };
 		CE77A9A02AC954AE00D9C58B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */; };
-		CE77A9A42ACA8C9A00D9C58B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* UserManager.swift */; };
+		CE77A9A42ACA8C9A00D9C58B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */; };
+		CE77A9A62ACA929D00D9C58B /* LoginBootModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */; };
+		CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A82ACA950500D9C58B /* TokenManager.swift */; };
+		CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AD2ACA99E700D9C58B /* LoginView.swift */; };
+		CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */; };
+		CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B12ACAD42D00D9C58B /* IntroView.swift */; };
+		CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B52ACAD50D00D9C58B /* HomeView.swift */; };
 		CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
 		CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
 		CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
@@ -103,7 +109,13 @@
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		CE77A9A32ACA8C9A00D9C58B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBootModule.swift; sourceTree = "<group>"; };
+		CE77A9A82ACA950500D9C58B /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		CE77A9AD2ACA99E700D9C58B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		CE77A9B12ACAD42D00D9C58B /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		CE77A9B52ACAD50D00D9C58B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CEB7EFF52AAC5025001C99EA /* EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB7EFF82AAC5025001C99EA /* EODApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODApp.swift; sourceTree = "<group>"; };
 		CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,6 +218,7 @@
 			children = (
 				CE13E45D2ABE952D00C64EA1 /* MainView.swift */,
 				CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */,
+				CE77A9B12ACAD42D00D9C58B /* IntroView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -213,17 +226,53 @@
 		CE77A9A12ACA8C8400D9C58B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CE77A9A22ACA8C9200D9C58B /* User */,
+				CE77A9A72ACA94F900D9C58B /* Token */,
+				CE77A9A22ACA8C9200D9C58B /* Login */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		CE77A9A22ACA8C9200D9C58B /* User */ = {
+		CE77A9A22ACA8C9200D9C58B /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				CE77A9A32ACA8C9A00D9C58B /* UserManager.swift */,
+				CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		CE77A9A72ACA94F900D9C58B /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				CE77A9A82ACA950500D9C58B /* TokenManager.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		CE77A9AA2ACA99C800D9C58B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
+				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		CE77A9B32ACAD4F600D9C58B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE77A9AA2ACA99C800D9C58B /* User */,
+				CE77A9B42ACAD50200D9C58B /* Home */,
+				CE13E45C2ABE952200C64EA1 /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE77A9B42ACAD50200D9C58B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				CE77A9B52ACAD50D00D9C58B /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		CEB7EFEC2AAC5025001C99EA = {
@@ -249,8 +298,8 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CE77A9B32ACAD4F600D9C58B /* View */,
 				CE77A9A12ACA8C8400D9C58B /* Common */,
-				CE13E45C2ABE952200C64EA1 /* Main */,
 				CEF7E40A2AAC6F6900E133F6 /* Splash */,
 				CEB7F0982AAC6272001C99EA /* Module */,
 				CEB7F0382AAC6198001C99EA /* Logger */,
@@ -384,6 +433,7 @@
 			children = (
 				CEB7F09A2AAC6289001C99EA /* BootLoader.swift */,
 				CEB7F09C2AAC62C1001C99EA /* LoggerBootModule.swift */,
+				CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */,
 			);
 			path = Boot;
 			sourceTree = "<group>";
@@ -554,6 +604,7 @@
 				CEB7F06E2AAC61D4001C99EA /* XcodeLogConfiguration.swift in Sources */,
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
+				CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
@@ -564,15 +615,19 @@
 				CEB7F0732AAC61D4001C99EA /* LogRecorder.swift in Sources */,
 				CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */,
 				CEB7F0852AAC61D5001C99EA /* ProcessNameLogFormatter.swift in Sources */,
+				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
+				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
 				CEB7F09B2AAC6289001C99EA /* BootLoader.swift in Sources */,
 				CEB7F08F2AAC61D5001C99EA /* PayloadMessageLogFormatter.swift in Sources */,
 				CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */,
 				CEB7F0742AAC61D4001C99EA /* ReadableLogFormatter.swift in Sources */,
-				CE77A9A42ACA8C9A00D9C58B /* UserManager.swift in Sources */,
+				CE77A9A42ACA8C9A00D9C58B /* LoginManager.swift in Sources */,
 				CEB7F08D2AAC61D5001C99EA /* LiteralLogFormatter.swift in Sources */,
+				CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */,
 				CEB7F0722AAC61D4001C99EA /* OSLogMimicFormatter.swift in Sources */,
 				CEB7F08C2AAC61D5001C99EA /* ProcessIDLogFormatter.swift in Sources */,
+				CE77A9A62ACA929D00D9C58B /* LoginBootModule.swift in Sources */,
 				CEB7F0322AAC5FBB001C99EA /* String+Extension.swift in Sources */,
 				CEB7F06F2AAC61D4001C99EA /* ConsoleLogConfiguration.swift in Sources */,
 				CEB7F06C2AAC61D4001C99EA /* StandardStreamsLogRecorder.swift in Sources */,
@@ -601,6 +656,7 @@
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
 				CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */,
+				CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */,
 				CEB7F0712AAC61D4001C99EA /* PayloadTraceLogFormatter.swift in Sources */,
 				CEB7F08B2AAC61D5001C99EA /* BufferedLogRecorder.swift in Sources */,
 				CEB7F0A22AAC6424001C99EA /* Alamofire+Extension.swift in Sources */,
