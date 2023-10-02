@@ -17,7 +17,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Thread.sleep(forTimeInterval: 0.1)
+//        Thread.sleep(forTimeInterval: 0.1) // TODO: 여기서 최대 3초 핸들링 진행 -> 근데 굳이 그건 필요 없을 것 같고 적당한 시간 런치로 보여준다 느낌으로 진행 -> 짧아도 괜찮을듯
+        
         return true
     }
 }
@@ -30,6 +31,8 @@ struct EODApp: App {
     // sceneDelegate 적용
     @Environment(\.scenePhase) private var scenePhase
     
+    @StateObject var userManager: UserManager = UserManager()
+    
     /// 앱에서 처음에 기본 세팅해야하는 부분에 대해서 이곳에서 처리 , UIKit에서 Appdelegate 가 이부분이라고 생각하면됨
     /// 기본 configuration들을 여기서 관리하자 -> 모듈화 좋은 생각
     init() {
@@ -39,6 +42,7 @@ struct EODApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(userManager)
         }
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {
