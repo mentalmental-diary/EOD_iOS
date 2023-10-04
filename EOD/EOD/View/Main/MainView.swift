@@ -11,10 +11,12 @@ struct MainView: View {
     @ObservedObject private var viewModel: MainViewModel = MainViewModel()
     
     var body: some View {
-        if viewModel.isLogin { // 로그인 상태일경우
-            HomeView()
-        } else { // 로그인 상태가 아닐경우
-            IntroView(viewModel: viewModel)
+        GeometryReader { proxy in
+            if viewModel.isLogin { // 로그인 상태일경우
+                HomeView()
+            } else { // 로그인 상태가 아닐경우
+                IntroView(viewModel: viewModel)
+            }
         }
     }
 }
