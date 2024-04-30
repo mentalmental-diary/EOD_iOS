@@ -19,7 +19,8 @@ class BootLoader {
     private init() {
         // 부트로더 모듈 목록
         uiThreadBootLoaderModules = [
-            LoggerBootModule.self
+            LoggerBootModule.self,
+            LoginBootModule.self
         ]
     }
     class func runBootLoaderModules() {
