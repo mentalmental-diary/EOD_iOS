@@ -21,6 +21,7 @@ struct PageControlView: View {
                         .background(page == currentPage ? Color.black : Color.clear) // 현재 페이지인 경우 채우기
                         .frame(width: 10, height: 10)
                         .cornerRadius(5)
+                        .animation(.easeInOut(duration: 0.2), value: currentPage)
                 }
             }
             Spacer()

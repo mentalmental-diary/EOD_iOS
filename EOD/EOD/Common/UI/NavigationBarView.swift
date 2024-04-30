@@ -24,9 +24,10 @@ struct NavigationBarView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }, label: {
-                Image("arrow.left")
+                Image(systemName: "arrow.left")
                     .frame(maxHeight: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 0.0, leading: 13.0, bottom: 2.0, trailing: 16.0))
+                    .foregroundColor(Color.black)
             })
             HStack(spacing: 0) {
                 Spacer()

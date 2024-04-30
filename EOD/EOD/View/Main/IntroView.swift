@@ -31,7 +31,7 @@ struct IntroView: View {
                         .frame(width: geometry.size.width, height: geometry.size.height)
                     
                     // 페이지 4
-                    LoginView()
+                    LoginView(viewModel: viewModel)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                 
