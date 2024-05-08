@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
+		CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4318132BEBBF5500880898 /* omyu pretty.ttf */; };
+		CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
 		CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */; };
 		CE77A9A02AC954AE00D9C58B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */; };
 		CE77A9A42ACA8C9A00D9C58B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */; };
@@ -26,6 +28,9 @@
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
 		CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
 		CEA422FB2BE5052300725E6B /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEA422FA2BE5052300725E6B /* SwifterSwift */; };
+		CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FD2BE50B3900725E6B /* CalendarView.swift */; };
+		CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */; };
+		CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA423012BE50D4800725E6B /* CalendarViewModel.swift */; };
 		CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
 		CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
 		CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
@@ -114,6 +119,9 @@
 /* Begin PBXFileReference section */
 		CE13E45D2ABE952D00C64EA1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CE4318132BEBBF5500880898 /* omyu pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu pretty.ttf"; sourceTree = "<group>"; };
+		CE4318152BEBBFAD00880898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE4318162BEBC2CC00880898 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
 		CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CEA422F72BE5022F00725E6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CEA422FD2BE50B3900725E6B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
+		CEA423012BE50D4800725E6B /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		CEB7EFF52AAC5025001C99EA /* EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB7EFF82AAC5025001C99EA /* EODApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODApp.swift; sourceTree = "<group>"; };
 		CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -238,6 +249,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		CE4318122BEBBF3800880898 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CE4318132BEBBF5500880898 /* omyu pretty.ttf */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		CE77A9A12ACA8C8400D9C58B /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +295,7 @@
 		CE77A9B32ACAD4F600D9C58B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEA422FC2BE50B1E00725E6B /* Calendar */,
 				CE77A9AA2ACA99C800D9C58B /* User */,
 				CE77A9B42ACAD50200D9C58B /* Home */,
 				CE13E45C2ABE952200C64EA1 /* Main */,
@@ -311,6 +331,16 @@
 			path = ColorSet;
 			sourceTree = "<group>";
 		};
+		CEA422FC2BE50B1E00725E6B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				CEA422FD2BE50B3900725E6B /* CalendarView.swift */,
+				CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */,
+				CEA423012BE50D4800725E6B /* CalendarViewModel.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		CEB7EFEC2AAC5025001C99EA = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +364,8 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CE4318152BEBBFAD00880898 /* Info.plist */,
+				CE4318122BEBBF3800880898 /* Resource */,
 				CE77A9B32ACAD4F600D9C58B /* View */,
 				CE77A9A12ACA8C8400D9C58B /* Common */,
 				CEF7E40A2AAC6F6900E133F6 /* Splash */,
@@ -483,6 +515,7 @@
 				CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */,
 				CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */,
 				CE77A9C02AD29F1800D9C58B /* View+Extension.swift */,
+				CE4318162BEBC2CC00880898 /* Text+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -610,6 +643,7 @@
 				CEB7F07E2AAC61D5001C99EA /* README.md in Resources */,
 				CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */,
 				CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */,
+				CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */,
 				CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */,
 				CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */,
 				CEB7F0802AAC61D5001C99EA /* README-CleanroomLogger.md in Resources */,
@@ -642,6 +676,7 @@
 				CEB7F06E2AAC61D4001C99EA /* XcodeLogConfiguration.swift in Sources */,
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
+				CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */,
 				CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
@@ -656,6 +691,7 @@
 				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
 				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
+				CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */,
 				CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */,
 				CEB7F09B2AAC6289001C99EA /* BootLoader.swift in Sources */,
 				CEB7F08F2AAC61D5001C99EA /* PayloadMessageLogFormatter.swift in Sources */,
@@ -698,6 +734,8 @@
 				CEB7F0682AAC61D4001C99EA /* StandardOutputLogRecorder.swift in Sources */,
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
+				CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */,
+				CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */,
 				CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */,
 				CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */,
 				CEB7F0712AAC61D4001C99EA /* PayloadTraceLogFormatter.swift in Sources */,
@@ -872,6 +910,7 @@
 				DEVELOPMENT_TEAM = 37V7VV782Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EOD/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -903,6 +942,7 @@
 				DEVELOPMENT_TEAM = 37V7VV782Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EOD/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
