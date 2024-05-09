@@ -252,6 +252,7 @@
 		CE4318122BEBBF3800880898 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */,
 				CE4318132BEBBF5500880898 /* omyu pretty.ttf */,
 			);
 			path = Resource;
@@ -374,7 +375,6 @@
 				CEB7F02E2AAC5585001C99EA /* Utility */,
 				CEB7F0242AAC5122001C99EA /* Networking */,
 				CEB7EFF82AAC5025001C99EA /* EODApp.swift */,
-				CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */,
 				CEB7EFFE2AAC5026001C99EA /* Preview Content */,
 			);
 			path = EOD;
