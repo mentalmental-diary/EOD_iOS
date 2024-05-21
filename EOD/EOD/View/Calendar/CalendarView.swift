@@ -10,40 +10,48 @@ import SwiftUI
 struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel = CalendarViewModel()
     
+    @State var showMonthSelectModalView: Bool = false
+    
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    HStack(spacing: 4) {
-                        Text(monthYearString(from: viewModel.date))
-                            .font(size: 26)
-                            .foregroundColor(Color.black)
-                        Image("polygon")
-                    }
-                })
-                Spacer()
-            }
-            .padding()
-            
-            let daysInMonth = days(for: viewModel.date)
-            let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
-            
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
-                ForEach(daysOfWeek, id: \.self) { day in
-                    Text(day)
-                        .font(size: 16)
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        showMonthSelectModalView = true
+                    }, label: {
+                        HStack(spacing: 4) {
+                            Text(monthYearString(from: viewModel.date))
+                                .font(size: 26)
+                                .foregroundColor(Color.black)
+                            Image("polygon")
+                        }
+                    })
+                    Spacer()
                 }
+                .padding()
                 
-                // 날짜 그리드
-                ForEach(daysInMonth, id: \.self) { day in
-                    CalendarCellView(day: day)
+                let daysInMonth = days(for: viewModel.date)
+                let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+                
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                    ForEach(daysOfWeek, id: \.self) { day in
+                        Text(day)
+                            .font(size: 16)
+                    }
+                    
+                    // 날짜 그리드
+                    ForEach(daysInMonth, id: \.self) { day in
+                        CalendarCellView(day: day)
+                    }
                 }
+            }
+            .padding(.horizontal, 20)
+            
+            if showMonthSelectModalView {
+                MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
             }
         }
-        .padding(.horizontal, 20)
     }
 }
 

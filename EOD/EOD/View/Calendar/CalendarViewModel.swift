@@ -14,7 +14,7 @@ class CalendarViewModel: ObservableObject {
 }
 
 extension CalendarViewModel {
-    private func setCalendarDate(year: Int, month: Int) {
+    func setCalendarDate(year: Int, month: Int) {
         var components = self.calendar.dateComponents([.year, .month], from: self.date)
         components.year = year
         components.month = month
