@@ -1,11 +1,3 @@
-//
-//  APIRequest.swift
-//  SelectiveOpenSourceKit
-//
-//  Created by Nakyung Lim on 2020/03/18.
-//  Copyright © 2020 NAVER Corp. All rights reserved.
-//
-
 import UIKit
 import Alamofire
 
