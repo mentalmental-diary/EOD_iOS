@@ -152,7 +152,7 @@ extension MonthSelectModalView {
             
             VStack(spacing: 16) {
                 ForEach(0..<3) { row in
-                    HStack(spacing: 38) {
+                    HStack {
                         ForEach(0..<4) { col in
                             let month = row * 4 + col + 1
                             Button(action: {
@@ -167,7 +167,10 @@ extension MonthSelectModalView {
                                     .background(checkSelectMonth(month: month) ? UIColor.Yellow.yellow100.color : Color.clear)
                                     .clipShape(Circle())
                             }
-                            .frame(maxWidth: .infinity)
+                            
+                            if col < 3 {
+                                Spacer()
+                            }
                         }
                     }
                 }
