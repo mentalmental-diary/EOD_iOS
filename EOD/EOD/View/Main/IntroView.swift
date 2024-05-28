@@ -38,6 +38,7 @@ struct IntroView: View {
                 PageControlView(currentPage: $currentPage, pages: 4)
                     .padding(.bottom, geometry.safeAreaInsets.bottom)
             }
+            .background(Color.white)
             .edgesIgnoringSafeArea([.top, .bottom])
         }
     }

@@ -138,6 +138,7 @@ extension MonthSelectModalView {
                 
                 Text("\(self.selectYear.string)년")
                     .font(size: 22.0)
+                    .foregroundColor(Color.black)
                 
                 Spacer()
                 

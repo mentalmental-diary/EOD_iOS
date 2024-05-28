@@ -10,6 +10,8 @@ import SwiftUI
 class CalendarViewModel: ObservableObject {
     @Published var date: Date = Date() // 우선 오늘 날짜로 세팅
     
+    @Published var selectDate: Date = Date() // 현재 선택된 날짜 -> 초기값은 오늘날짜
+    
     let calendar = Calendar.current
 }
 

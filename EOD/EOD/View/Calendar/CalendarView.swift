@@ -12,9 +12,13 @@ struct CalendarView: View {
     
     @State var showMonthSelectModalView: Bool = false
     
+    @Binding var isShow: Bool
+    
     var body: some View {
-        ZStack {
-            VStack {
+        ZStack(alignment: .top) {
+            NavigationBarView(isShow: $isShow) // TODO: 닫기 누를경우 어디로 이동되야하는진 추후 확인
+            
+            VStack(spacing: 0) {
                 HStack {
                     Spacer()
                     Button(action: {
@@ -35,23 +39,64 @@ struct CalendarView: View {
                 let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
                 
                 LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                    // 요일 헤더
                     ForEach(daysOfWeek, id: \.self) { day in
                         Text(day)
                             .font(size: 16)
+                            .foregroundColor(Color.black)
                     }
+                }
+                
+                Spacer().frame(height: 12)
+                
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
                     
                     // 날짜 그리드
                     ForEach(daysInMonth, id: \.self) { day in
                         CalendarCellView(day: day)
                     }
                 }
+                
+                Spacer().frame(height: 24)
+                
+                diaryView()
             }
             .padding(.horizontal, 20)
+            .padding(.top, 44)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             
             if showMonthSelectModalView {
                 MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
             }
         }
+    }
+}
+
+// MARK: - ViewBuilder
+extension CalendarView {
+    @ViewBuilder func diaryView() -> some View {
+        VStack {
+            Text(currentDiaryDay)
+                .font(size: 16)
+                .foregroundColor(Color.black)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Rectangle()
+                .foregroundColor(UIColor.Gray.gray50.color)
+        }
+    }
+}
+
+// MARK: - Variable
+extension CalendarView {
+    private var currentDiaryDay: String {
+        let dateFormmater = DateFormatter()
+        dateFormmater.dateFormat = "M.dd EEEE"
+        dateFormmater.locale = Locale(identifier: "ko_KR")
+        
+        let dateString = dateFormmater.string(from: viewModel.date)
+        
+        return dateString
     }
 }
 
@@ -73,13 +118,6 @@ extension CalendarView {
             days.append(contentsOf: range)
         }
         
-        // 마지막으로 남은 공간을 빈 칸으로 채워 6주 레이아웃 확보
-        let totalDays = days.count
-        let totalSlots = 7 * 6
-        if totalDays < totalSlots {
-            days.append(contentsOf: Array(repeating: 0, count: totalSlots - totalDays))
-        }
-        
         return days
     }
     
@@ -91,5 +129,5 @@ extension CalendarView {
 }
 
 #Preview {
-    CalendarView()
+    CalendarView(isShow: .constant(false))
 }

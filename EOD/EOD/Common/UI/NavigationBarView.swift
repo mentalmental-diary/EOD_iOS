@@ -14,7 +14,7 @@ struct NavigationBarView: View {
     @Binding var isShow: Bool
     
     /// 헤더 타이틀
-    var title: String
+    var title: String = ""
     
     var body: some View {
         ZStack(alignment: .leading) {
