@@ -63,6 +63,7 @@ struct CalendarView: View {
             }
             .padding(.horizontal, 20)
             .padding(.top, 44)
+            .padding(.bottom, 68)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             
             if showMonthSelectModalView {
@@ -81,8 +82,43 @@ extension CalendarView {
                 .foregroundColor(Color.black)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
+            VStack {
+                Spacer()
+                
+                Image("default")
+                
+                EmptyDiaryText(text: viewModel.emptyDiaryText)
+                
+                if viewModel.selectDate != nil {
+                    Button(action: {
+                        // TODO: 일기 작성 화면 진입
+                    }, label: {
+                        Text("일기쓰기")
+                            .font(size: 14)
+                            .foregroundColor(Color.white)
+                            .padding(.horizontal, 28.5)
+                            .padding(.vertical, 12.0)
+                            .background(Color.black)
+                            .cornerRadius(6.0)
+                    })
+                }
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(UIColor.Gray.gray50.color)
+            .cornerRadius(17.0)
+            
+        }
+    }
+    
+    @ViewBuilder func EmptyDiaryText(text: String) -> some View {
+        ZStack(alignment: .bottom) {
             Rectangle()
-                .foregroundColor(UIColor.Gray.gray50.color)
+                .frame(width: 119, height: 5)
+                .foregroundColor(UIColor.Yellow.yellow200.color)
+            
+            Text(text)
+                .font(size: 16)
         }
     }
 }
@@ -94,9 +130,13 @@ extension CalendarView {
         dateFormmater.dateFormat = "M.dd EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
-        let dateString = dateFormmater.string(from: viewModel.date)
-        
-        return dateString
+        if viewModel.selectDate != nil {
+            let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
+            
+            return dateString
+        } else {
+            return ""
+        }
     }
 }
 

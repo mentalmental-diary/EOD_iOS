@@ -98,6 +98,8 @@ extension MonthSelectModalView {
                 
                 Button(action: {
                     viewModel.date = Date()
+                    viewModel.selectDate = Date()
+                    
                     dismissWithAnimation()
                 }, label: {
                     Text("오늘로 이동")
