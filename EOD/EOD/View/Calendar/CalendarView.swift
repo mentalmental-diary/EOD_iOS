@@ -16,8 +16,6 @@ struct CalendarView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            NavigationBarView(isShow: $isShow) // TODO: 닫기 누를경우 어디로 이동되야하는진 추후 확인
-            
             VStack(spacing: 0) {
                 HStack {
                     Spacer()
@@ -54,6 +52,11 @@ struct CalendarView: View {
                     // 날짜 그리드
                     ForEach(daysInMonth, id: \.self) { day in
                         CalendarCellView(day: day)
+                            .onTapGesture {
+                                if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                    viewModel.selectDate = date
+                                }
+                            }
                     }
                 }
                 
@@ -88,6 +91,7 @@ extension CalendarView {
                 Image("default")
                 
                 EmptyDiaryText(text: viewModel.emptyDiaryText)
+                    .foregroundColor(Color.black)
                 
                 if viewModel.selectDate != nil {
                     Button(action: {
@@ -166,8 +170,18 @@ extension CalendarView {
         formatter.dateFormat = "yyyy.MM"
         return formatter.string(from: date)
     }
+    
+    func getDateForCell(day: Int, month: Int, year: Int) -> Date? {
+        if day == 0 { return nil }
+        
+        var components = DateComponents()
+        components.year = year
+        components.month = month
+        components.day = day
+        return viewModel.calendar.date(from: components)
+    }
 }
 
 #Preview {
-    CalendarView(isShow: .constant(false))
+    CalendarView()
 }

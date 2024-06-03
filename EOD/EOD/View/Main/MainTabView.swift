@@ -61,7 +61,7 @@ extension MainTabView {
         case .Home:
             HomeView()
         case .Calender: // TODO: 임시로 뷰 지정 -> 차후 개발될때마다 변경
-            HomeView()
+            CalendarView()
         case .Report:
             HomeView()
         case .Setting:
