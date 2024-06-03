@@ -22,6 +22,10 @@ public extension UIColor {
     enum Gray: String, AssetColor {
         case gray50, gray100, gray200, gray300, gray400, gray500, gray600, gray700, gray800, gray900
     }
+    
+    enum CommonBackground: String, AssetColor {
+        case background
+    }
 }
 
 // MARK: - 실제 Color값을 구해주는 protocol

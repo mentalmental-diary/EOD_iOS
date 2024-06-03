@@ -66,13 +66,14 @@ struct CalendarView: View {
             }
             .padding(.horizontal, 20)
             .padding(.top, 44)
-            .padding(.bottom, 68)
+            .padding(.bottom, 12)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             
             if showMonthSelectModalView {
                 MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
             }
         }
+        .background(UIColor.CommonBackground.background.color)
     }
 }
 
@@ -88,7 +89,7 @@ extension CalendarView {
             VStack {
                 Spacer()
                 
-                Image("default")
+                Image("basic")
                 
                 EmptyDiaryText(text: viewModel.emptyDiaryText)
                     .foregroundColor(Color.black)
@@ -109,7 +110,7 @@ extension CalendarView {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(UIColor.Gray.gray50.color)
+            .background(Color.white)
             .cornerRadius(17.0)
             
         }
