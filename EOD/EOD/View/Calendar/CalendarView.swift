@@ -12,68 +12,79 @@ struct CalendarView: View {
     
     @State var showMonthSelectModalView: Bool = false
     
-    @Binding var isShow: Bool
+    @State var showDiaryView: Bool = false
     
     var body: some View {
-        ZStack(alignment: .top) {
-            VStack(spacing: 0) {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        showMonthSelectModalView = true
-                    }, label: {
-                        HStack(spacing: 4) {
-                            Text(monthYearString(from: viewModel.date))
-                                .font(size: 26)
-                                .foregroundColor(Color.black)
-                            Image("polygon")
-                        }
-                    })
-                    Spacer()
-                }
-                .padding()
-                
-                let daysInMonth = days(for: viewModel.date)
-                let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
-                
-                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
-                    // 요일 헤더
-                    ForEach(daysOfWeek, id: \.self) { day in
-                        Text(day)
-                            .font(size: 16)
-                            .foregroundColor(Color.black)
-                    }
-                }
-                
-                Spacer().frame(height: 12)
-                
-                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
-                    
-                    // 날짜 그리드
-                    ForEach(daysInMonth, id: \.self) { day in
-                        CalendarCellView(day: day)
-                            .onTapGesture {
-                                if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
-                                    viewModel.selectDate = date
-                                }
+        NavigationView {
+            ZStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            showMonthSelectModalView = true
+                        }, label: {
+                            HStack(spacing: 4) {
+                                Text(monthYearString(from: viewModel.date))
+                                    .font(size: 26)
+                                    .foregroundColor(Color.black)
+                                Image("polygon")
                             }
+                        })
+                        Spacer()
                     }
+                    .padding()
+                    
+                    let daysInMonth = days(for: viewModel.date)
+                    let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+                    
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                        // 요일 헤더
+                        ForEach(daysOfWeek, id: \.self) { day in
+                            Text(day)
+                                .font(size: 16)
+                                .foregroundColor(Color.black)
+                        }
+                    }
+                    
+                    Spacer().frame(height: 12)
+                    
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
+                        
+                        // 날짜 그리드
+                        ForEach(daysInMonth, id: \.self) { day in
+                            CalendarCellView(day: day)
+                                .onTapGesture {
+                                    if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                        viewModel.selectDate = date
+                                    }
+                                }
+                        }
+                    }
+                    
+                    Spacer().frame(height: 24)
+                    
+                    diaryView()
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 44)
+                .padding(.bottom, 12)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                
+                if showMonthSelectModalView {
+                    MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
                 }
                 
-                Spacer().frame(height: 24)
-                
-                diaryView()
+                /// DiaryView로 이동
+                NavigationLink("", isActive: $showDiaryView) {
+                    LazyView(
+                        DiaryView(isShow: $showDiaryView, viewModel: viewModel)
+                            .background(Color.white)
+                            .navigationBarHidden(true)
+                    )
+                }
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 44)
-            .padding(.bottom, 12)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            
-            if showMonthSelectModalView {
-                MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
-            }
+            .background(UIColor.CommonBackground.background.color)
         }
-        .background(UIColor.CommonBackground.background.color)
     }
 }
 
@@ -96,6 +107,7 @@ extension CalendarView {
                 
                 if viewModel.selectDate != nil {
                     Button(action: {
+                        showDiaryView = true
                         // TODO: 일기 작성 화면 진입
                     }, label: {
                         Text("일기쓰기")

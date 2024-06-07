@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarCellView: View {
     var day: Int
+    var emotionType: EmotionType? = nil
     
     var body: some View {
         if day == 0 {
@@ -16,11 +17,9 @@ struct CalendarCellView: View {
                 .foregroundColor(.clear)
         } else {
             VStack(spacing: 2) {
-                if day == 16 { // TODO: 임시 설정 -> 입력된 날짜 기록에 따라 변경될예정
-                    Image("angry")
-                } else {
-                    Image("default")
-                }
+                Image(emotionType?.imageName ?? "icon_default")
+                    .frame(width: 36, height: 34)
+                
                 Text("\(day)")
                     .font(size: 12)
                     .foregroundColor(UIColor.Gray.gray300.color)

@@ -12,6 +12,8 @@ class CalendarViewModel: ObservableObject {
     
     @Published var selectDate: Date? = Date() // 현재 선택된 날짜 -> 초기값은 오늘날짜
     
+    @Published var selectEmotionType: EmotionType?
+    
     let calendar = Calendar.current
 }
 
