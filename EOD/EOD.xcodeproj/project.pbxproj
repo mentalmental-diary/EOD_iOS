@@ -13,6 +13,8 @@
 		CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
 		CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318192BECC82500880898 /* MonthSelectModalView.swift */; };
 		CE43181C2BECD2DC00880898 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43181B2BECD2DC00880898 /* CornerRadius.swift */; };
+		CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */; };
+		CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B62C12B77500E03B5A /* LazyView.swift */; };
 		CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */; };
 		CE77A9A02AC954AE00D9C58B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */; };
 		CE77A9A42ACA8C9A00D9C58B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */; };
@@ -126,6 +128,8 @@
 		CE4318162BEBC2CC00880898 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
 		CE4318192BECC82500880898 /* MonthSelectModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectModalView.swift; sourceTree = "<group>"; };
 		CE43181B2BECD2DC00880898 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
+		CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEnums.swift; sourceTree = "<group>"; };
+		CE6466B62C12B77500E03B5A /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -262,6 +266,14 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		CE6466B32C0F048B00E03B5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CE77A9A12ACA8C8400D9C58B /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +336,7 @@
 				CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */,
 				CE77A9C22AD29F3600D9C58B /* ToastView.swift */,
 				CE43181B2BECD2DC00880898 /* CornerRadius.swift */,
+				CE6466B62C12B77500E03B5A /* LazyView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -374,6 +387,7 @@
 				CE4318152BEBBFAD00880898 /* Info.plist */,
 				CE4318122BEBBF3800880898 /* Resource */,
 				CE77A9B32ACAD4F600D9C58B /* View */,
+				CE6466B32C0F048B00E03B5A /* Model */,
 				CE77A9A12ACA8C8400D9C58B /* Common */,
 				CEF7E40A2AAC6F6900E133F6 /* Splash */,
 				CEB7F0982AAC6272001C99EA /* Module */,
@@ -726,6 +740,7 @@
 				CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */,
 				CEB7F0762AAC61D5001C99EA /* ParsableLogFormatter.swift in Sources */,
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
+				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
 				CEB7F09D2AAC62C1001C99EA /* LoggerBootModule.swift in Sources */,
 				CEB7F0902AAC61D5001C99EA /* RotatingLogFileRecorder.swift in Sources */,
@@ -744,6 +759,7 @@
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
 				CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */,
 				CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */,
+				CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */,
 				CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */,
 				CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */,
 				CEB7F0712AAC61D4001C99EA /* PayloadTraceLogFormatter.swift in Sources */,
