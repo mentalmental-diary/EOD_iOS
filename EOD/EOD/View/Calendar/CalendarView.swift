@@ -77,7 +77,7 @@ struct CalendarView: View {
                 /// DiaryView로 이동
                 NavigationLink("", isActive: $showDiaryView) {
                     LazyView(
-                        DiaryView(isShow: $showDiaryView, viewModel: viewModel)
+                        DiaryView(isShow: $showDiaryView, viewModel: DiaryViewModel())
                             .background(Color.white)
                             .navigationBarHidden(true)
                     )

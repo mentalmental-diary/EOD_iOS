@@ -16,6 +16,8 @@
 		CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */; };
 		CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B62C12B77500E03B5A /* LazyView.swift */; };
 		CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B82C12B86300E03B5A /* DiaryView.swift */; };
+		CE6466BB2C16765B00E03B5A /* DiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466BA2C16765B00E03B5A /* DiaryViewModel.swift */; };
+		CE6466BD2C167FBA00E03B5A /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466BC2C167FBA00E03B5A /* Diary.swift */; };
 		CE648B872C05FD7500EBC335 /* EmotionSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */; };
 		CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */; };
 		CE77A9A02AC954AE00D9C58B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */; };
@@ -133,6 +135,8 @@
 		CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEnums.swift; sourceTree = "<group>"; };
 		CE6466B62C12B77500E03B5A /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		CE6466B82C12B86300E03B5A /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
+		CE6466BA2C16765B00E03B5A /* DiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewModel.swift; sourceTree = "<group>"; };
+		CE6466BC2C167FBA00E03B5A /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSelectView.swift; sourceTree = "<group>"; };
 		CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */,
+				CE6466BC2C167FBA00E03B5A /* Diary.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			children = (
 				CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */,
 				CE6466B82C12B86300E03B5A /* DiaryView.swift */,
+				CE6466BA2C16765B00E03B5A /* DiaryViewModel.swift */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -744,6 +750,7 @@
 				CEB7F06F2AAC61D4001C99EA /* ConsoleLogConfiguration.swift in Sources */,
 				CEB7F06C2AAC61D4001C99EA /* StandardStreamsLogRecorder.swift in Sources */,
 				CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */,
+				CE6466BD2C167FBA00E03B5A /* Diary.swift in Sources */,
 				CEB7F0952AAC61D5001C99EA /* StackFrameLogFormatter.swift in Sources */,
 				CE77A9C12AD29F1800D9C58B /* View+Extension.swift in Sources */,
 				CEB7F08E2AAC61D5001C99EA /* LogRecorderBase.swift in Sources */,
@@ -758,6 +765,7 @@
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
 				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
+				CE6466BB2C16765B00E03B5A /* DiaryViewModel.swift in Sources */,
 				CEB7F09D2AAC62C1001C99EA /* LoggerBootModule.swift in Sources */,
 				CEB7F0902AAC61D5001C99EA /* RotatingLogFileRecorder.swift in Sources */,
 				CEB7F0292AAC5122001C99EA /* URLBuilder.swift in Sources */,

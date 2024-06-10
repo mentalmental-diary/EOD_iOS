@@ -8,13 +8,13 @@
 import Foundation
 
 public enum EmotionType: String, CaseIterable, CustomStringConvertible, Decodable {
-    case angry
-    case excited
     case happy
-    case nomoral
-    case proud
+    case angry
     case relax
+    case nomoral
     case sad
+    case excited
+    case proud
     case worry
     
     public var description: String {
@@ -40,6 +40,19 @@ public enum EmotionType: String, CaseIterable, CustomStringConvertible, Decodabl
         case .relax: return "icon_relax"
         case .sad: return "icon_sad"
         case .worry: return "icon_worry"
+        }
+    }
+    
+    public var selectImageName: String {
+        switch self {
+        case .angry: return "select_angry"
+        case .excited: return "select_excited"
+        case .happy: return "select_happy"
+        case .nomoral: return "select_nomoral"
+        case .proud: return "select_proud"
+        case .relax: return "select_relax"
+        case .sad: return "select_sad"
+        case .worry: return "select_worry"
         }
     }
 }

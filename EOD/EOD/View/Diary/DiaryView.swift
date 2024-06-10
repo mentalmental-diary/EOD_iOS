@@ -10,48 +10,57 @@ import SwiftUI
 struct DiaryView: View {
     @Binding var isShow: Bool
     
-    @ObservedObject var viewModel: CalendarViewModel
+    @ObservedObject var viewModel: DiaryViewModel
     
-    @State private var text: String = ""
+    init(isShow: Binding<Bool>, viewModel: DiaryViewModel) {
+        self._isShow = isShow
+        self.viewModel = viewModel
+    }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            NavigationBarView(isShow: $isShow)
-            
+        ZStack {
             VStack(alignment: .leading) {
-                Text("오늘 하루는 어땠나요?")
-                    .font(size: 28)
-                    .foregroundColor(Color.black)
+                NavigationBarView(isShow: $isShow)
                 
-                Text("\(currentDiaryDay) 오늘 기분은")
-                    .font(size: 24)
-                    .foregroundColor(Color.black)
-                
-                writeDiaryView()
-                
-                Spacer()
-                    .frame(height: 225)
-                
-                Button {
-                    isShow = false
-                } label: {
-                    Text("저장하기")
-                        .font(size: 20)
-                        .foregroundColor(Color.white)
-                        .padding(.vertical, 16)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.black)
+                VStack(alignment: .leading) {
+                    Text("오늘 하루는 어땠나요?")
+                        .font(size: 28)
+                        .foregroundColor(Color.black)
+                    
+                    Text("\(currentDiaryDay) 오늘 기분은")
+                        .font(size: 24)
+                        .foregroundColor(Color.black)
+                    
+                    writeDiaryView()
+                    
+                    Spacer()
+                        .frame(height: 225)
+                    
+                    Button {
+                        isShow = false
+                    } label: {
+                        Text("저장하기")
+                            .font(size: 20)
+                            .foregroundColor(Color.white)
+                            .padding(.vertical, 16)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.black)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .cornerRadius(8.0)
+                    
                 }
-                .frame(maxWidth: .infinity)
-                .cornerRadius(8.0)
-
+                .padding(.horizontal, 20)
+                .padding(.bottom, 12)
+                
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 12)
+            .ignoresSafeArea(.keyboard)
+            .background(UIColor.CommonBackground.background.color)
             
+            if viewModel.showEmotionSelectView {
+                EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView)
+            }
         }
-        .ignoresSafeArea(.keyboard)
-        .background(UIColor.CommonBackground.background.color)
     }
 }
 
@@ -60,7 +69,7 @@ extension DiaryView {
         VStack(alignment: .leading, spacing: 8) {
             /// 감정 노출 영역
             HStack { // TODO: 아직 미리보기엔 반영되지 않기 때문에 일단 임시로 하드코딩 진행
-                Image("icon_happy")
+                Image(viewModel.diary.emotion?.imageName ?? "icon_basic")
                 
                 Text("행복해")
                     .font(size: 20)
@@ -68,10 +77,13 @@ extension DiaryView {
                 
                 Spacer()
             }
+            .onTapGesture {
+                viewModel.showEmotionSelectView = true
+            }
             
             ZStack(alignment: .topLeading) {
                 HStack(spacing: 0) {
-                    if text.isEmpty {
+                    if viewModel.diary.diaryContents?.isEmpty == true {
                         Text("일기를 작성해주세요. (최대 2,000자)")
                             .font(size: 16)
                             .foregroundColor(UIColor.Gray.gray500.color)
@@ -82,7 +94,7 @@ extension DiaryView {
                 .padding(.leading, 3)
                 .allowsHitTesting(false)
                 
-                CustomTextView(text: $text)
+                CustomTextView(text: $viewModel.diary.diaryContents)
             }
             
             Spacer()
@@ -100,8 +112,8 @@ extension DiaryView {
         dateFormmater.dateFormat = "M.dd EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
-        if viewModel.selectDate != nil {
-            let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
+        if viewModel.diary.date != nil {
+            let dateString = dateFormmater.string(from: viewModel.diary.date ?? Date())
             
             return dateString
         } else {
@@ -113,7 +125,7 @@ extension DiaryView {
 private struct CustomTextView: UIViewRepresentable {
     typealias UIViewType = UITextView
     
-    @Binding var text: String
+    @Binding var text: String?
     var maxLength: Int = 2000
     
     func makeUIView(context: Context) -> UITextView {
@@ -164,5 +176,5 @@ private struct CustomTextView: UIViewRepresentable {
 }
 
 #Preview {
-    DiaryView(isShow: .constant(false), viewModel: CalendarViewModel())
+    DiaryView(isShow: .constant(false), viewModel: DiaryViewModel())
 }
