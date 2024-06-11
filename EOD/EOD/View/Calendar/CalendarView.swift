@@ -77,7 +77,7 @@ struct CalendarView: View {
                 /// DiaryView로 이동
                 NavigationLink("", isActive: $showDiaryView) {
                     LazyView(
-                        DiaryView(isShow: $showDiaryView, viewModel: DiaryViewModel())
+                        DiaryView(isShow: $showDiaryView, viewModel: DiaryViewModel(selectDate: viewModel.selectDate)) // TODO: 등록 진입인지 수정 진입인진 이때 결정
                             .background(Color.white)
                             .navigationBarHidden(true)
                     )

@@ -58,7 +58,7 @@ struct DiaryView: View {
             .background(UIColor.CommonBackground.background.color)
             
             if viewModel.showEmotionSelectView {
-                EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView)
+                EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
             }
         }
     }
@@ -71,7 +71,7 @@ extension DiaryView {
             HStack { // TODO: 아직 미리보기엔 반영되지 않기 때문에 일단 임시로 하드코딩 진행
                 Image(viewModel.diary.emotion?.imageName ?? "icon_basic")
                 
-                Text("행복해")
+                Text(viewModel.diary.emotion?.description ?? "감정을 선택해주세요.")
                     .font(size: 20)
                     .foregroundColor(Color.black)
                 
@@ -83,7 +83,7 @@ extension DiaryView {
             
             ZStack(alignment: .topLeading) {
                 HStack(spacing: 0) {
-                    if viewModel.diary.diaryContents?.isEmpty == true {
+                    if viewModel.diary.diaryContents?.count == 0 {
                         Text("일기를 작성해주세요. (최대 2,000자)")
                             .font(size: 16)
                             .foregroundColor(UIColor.Gray.gray500.color)
@@ -112,13 +112,9 @@ extension DiaryView {
         dateFormmater.dateFormat = "M.dd EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
-        if viewModel.diary.date != nil {
-            let dateString = dateFormmater.string(from: viewModel.diary.date ?? Date())
-            
-            return dateString
-        } else {
-            return ""
-        }
+        let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
+        
+        return dateString
     }
 }
 

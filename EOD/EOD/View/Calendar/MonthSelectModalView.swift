@@ -100,7 +100,9 @@ extension MonthSelectModalView {
                     viewModel.date = Date()
                     viewModel.selectDate = Date()
                     
-                    dismissWithAnimation()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                        dismissWithAnimation()
+                    })
                 }, label: {
                     Text("오늘로 이동")
                         .font(size: 16.0)
@@ -161,7 +163,10 @@ extension MonthSelectModalView {
                             Button(action: {
                                 viewModel.setCalendarDate(year: selectYear, month: month)
                                 
-                                dismissWithAnimation()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                                    dismissWithAnimation()
+                                })
+                                
                             }) {
                                 Text(months[month - 1])
                                     .font(size: 20)

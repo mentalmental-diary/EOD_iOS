@@ -10,5 +10,5 @@ import Foundation
 struct Diary {
     var date: Date? = Date()
     var emotion: EmotionType?
-    var diaryContents: String? // 일기 내용 (최대 2000자)
+    var diaryContents: String? = "" // 일기 내용 (최대 2000자)
 }

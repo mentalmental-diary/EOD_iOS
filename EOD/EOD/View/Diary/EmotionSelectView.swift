@@ -12,11 +12,13 @@ struct EmotionSelectView: View {
     @ObservedObject var viewModel: DiaryViewModel
     @State var selectYear: Int
     @Binding var showModalView: Bool
+    @Binding var isShowDiaryView: Bool
     
-    init(viewModel: DiaryViewModel, showModalView: Binding<Bool>) {
+    init(viewModel: DiaryViewModel, showModalView: Binding<Bool>, isShowDiaryView: Binding<Bool>) {
         self.viewModel = viewModel
         self.selectYear = viewModel.diary.date?.year ?? 2024
         self._showModalView = showModalView
+        self._isShowDiaryView = isShowDiaryView
     }
     
     var body: some View {
@@ -28,7 +30,7 @@ struct EmotionSelectView: View {
                     .background(Color.black.opacity(appearAnimation ? 0.3 : 0.0))
                     .zIndex(-1)
                     .onTapGesture {
-                        dismissWithAnimation()
+                        checkAndDismiss()
                     }
                 
                 if appearAnimation {
@@ -68,7 +70,7 @@ extension EmotionSelectView {
                 Spacer()
                 
                 Button(action: {
-                    dismissWithAnimation()
+                    checkAndDismiss()
                 }, label: {
                     Image("btn_close")
                 })
@@ -89,6 +91,10 @@ extension EmotionSelectView {
                     }
                     .onTapGesture {
                         viewModel.diary.emotion = emotion
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                            dismissWithAnimation()
+                        })
                     }
                     .frame(width: 72, height: 90)
                     .background(viewModel.diary.emotion == emotion ? UIColor.Yellow.yellow50.color : Color.clear)
@@ -113,8 +119,16 @@ extension EmotionSelectView {
             showModalView = false
         }
     }
+    
+    private func checkAndDismiss() {
+        if !viewModel.isModify, viewModel.diary.emotion == nil { // 등록 진입이면서 선택된 감정이 없는경우
+            isShowDiaryView = false
+        } else {
+            dismissWithAnimation()
+        }
+    }
 }
 
 #Preview {
-    EmotionSelectView(viewModel: DiaryViewModel(), showModalView: .constant(true))
+    EmotionSelectView(viewModel: DiaryViewModel(), showModalView: .constant(true), isShowDiaryView: .constant(false))
 }

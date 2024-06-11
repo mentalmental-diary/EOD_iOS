@@ -38,6 +38,7 @@ struct MainTabView: View {
             }
             .frame(width: geo.size.width, height: geo.size.height + geo.safeAreaInsets.bottom)
         }
+        .background(UIColor.CommonBackground.background.color)
     }
 }
 
