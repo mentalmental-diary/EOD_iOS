@@ -95,6 +95,7 @@ extension DiaryView {
                 .allowsHitTesting(false)
                 
                 CustomTextView(text: $viewModel.diary.diaryContents)
+                    .frame(minHeight: 16)
             }
             
             Spacer()
@@ -131,9 +132,21 @@ private struct CustomTextView: UIViewRepresentable {
         textView.isScrollEnabled = true
         textView.showsVerticalScrollIndicator = false
         textView.backgroundColor = UIColor.clear
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+        
+        textView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         
         textView.textColor = UIColor.black
+        
+        // 키보드 위에 'Done' 버튼을 추가
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textView.frame.size.width, height: 50))
+        toolbar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
+        ]
+        toolbar.sizeToFit()
+        textView.inputAccessoryView = toolbar
         
         return textView
     }
@@ -167,6 +180,10 @@ private struct CustomTextView: UIViewRepresentable {
         /// TextView 정보 업데이트
         func updateTextView(_ textView: UITextView) {
             
+        }
+        
+        @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
 }
