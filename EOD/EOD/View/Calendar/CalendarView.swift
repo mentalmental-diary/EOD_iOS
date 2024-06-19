@@ -32,10 +32,11 @@ struct CalendarView: View {
                         })
                         Spacer()
                     }
-                    .padding()
                     
                     let daysInMonth = days(for: viewModel.date)
                     let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+                    
+                    Spacer().frame(height: 21)
                     
                     LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
                         // 요일 헤더

@@ -124,6 +124,7 @@ private struct CustomTextView: UIViewRepresentable {
     
     @Binding var text: String?
     var maxLength: Int = 2000
+    var lineHeight: CGFloat = 19  // 추가된 라인 높이 설정
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
@@ -148,11 +149,14 @@ private struct CustomTextView: UIViewRepresentable {
         toolbar.sizeToFit()
         textView.inputAccessoryView = toolbar
         
+        // 라인 높이 설정을 적용
+        updateTextView(textView, text: text)
+        
         return textView
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = text
+        updateTextView(uiView, text: text)
     }
     
     func makeCoordinator() -> CustomTextView.Coordinator {
@@ -185,6 +189,19 @@ private struct CustomTextView: UIViewRepresentable {
         @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
+    }
+    
+    /// TextView의 NSAttributedString을 업데이트하여 라인 높이를 적용
+    private func updateTextView(_ textView: UITextView, text: String?) {
+        guard let text = text, let font = textView.font else { return }
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .paragraphStyle: paragraphStyle
+        ]
+        textView.attributedText = NSAttributedString(string: text, attributes: attributes)
     }
 }
 

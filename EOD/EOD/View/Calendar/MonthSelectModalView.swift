@@ -122,6 +122,8 @@ extension MonthSelectModalView {
             }
             .padding(.horizontal, 20)
             
+            Spacer().frame(height: 36)
+            
             selectView()
         }
         .frame(maxWidth: .infinity)
@@ -163,7 +165,7 @@ extension MonthSelectModalView {
                             Button(action: {
                                 viewModel.setCalendarDate(year: selectYear, month: month)
                                 
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
                                     dismissWithAnimation()
                                 })
                                 
