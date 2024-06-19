@@ -25,7 +25,8 @@ public extension UIApplication {
     
     /// 기존의 `keyWindow` 대신 사용할 수 있는 property
     var firstKeyWindow: UIWindow? {
-        windows.first(where: { $0.isKeyWindow })
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        return windowScene?.windows.first(where: { $0.isKeyWindow })
     }
     
     /// 기존의 `statusBarOrientation` 대신 사용할 수 있는 property

@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
+		CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4318132BEBBF5500880898 /* omyu pretty.ttf */; };
+		CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
+		CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318192BECC82500880898 /* MonthSelectModalView.swift */; };
+		CE43181C2BECD2DC00880898 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43181B2BECD2DC00880898 /* CornerRadius.swift */; };
+		CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */; };
+		CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B62C12B77500E03B5A /* LazyView.swift */; };
+		CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B82C12B86300E03B5A /* DiaryView.swift */; };
+		CE6466BB2C16765B00E03B5A /* DiaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466BA2C16765B00E03B5A /* DiaryViewModel.swift */; };
+		CE6466BD2C167FBA00E03B5A /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466BC2C167FBA00E03B5A /* Diary.swift */; };
+		CE648B872C05FD7500EBC335 /* EmotionSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */; };
 		CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */; };
 		CE77A9A02AC954AE00D9C58B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */; };
 		CE77A9A42ACA8C9A00D9C58B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */; };
@@ -18,13 +28,17 @@
 		CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */; };
 		CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B12ACAD42D00D9C58B /* IntroView.swift */; };
 		CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B52ACAD50D00D9C58B /* HomeView.swift */; };
-		CE77A9B82ACAD8B800D9C58B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B72ACAD8B800D9C58B /* HomeViewModel.swift */; };
 		CE77A9BD2ACD269B00D9C58B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */; };
 		CE77A9BF2ACD31F700D9C58B /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */; };
 		CE77A9C12AD29F1800D9C58B /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C02AD29F1800D9C58B /* View+Extension.swift */; };
 		CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C22AD29F3600D9C58B /* ToastView.swift */; };
 		CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
+		CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
+		CEA422FB2BE5052300725E6B /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEA422FA2BE5052300725E6B /* SwifterSwift */; };
+		CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FD2BE50B3900725E6B /* CalendarView.swift */; };
+		CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */; };
+		CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA423012BE50D4800725E6B /* CalendarViewModel.swift */; };
 		CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
 		CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
 		CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
@@ -37,7 +51,6 @@
 		CEB7F02D2AAC5371001C99EA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F02C2AAC5371001C99EA /* Alamofire */; };
 		CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F02F2AAC5594001C99EA /* Result+Extension.swift */; };
 		CEB7F0322AAC5FBB001C99EA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0312AAC5FBB001C99EA /* String+Extension.swift */; };
-		CEB7F0352AAC5FE8001C99EA /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CEB7F0342AAC5FE8001C99EA /* SwifterSwift */; };
 		CEB7F0372AAC6194001C99EA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0362AAC6194001C99EA /* Logger.swift */; };
 		CEB7F0682AAC61D4001C99EA /* StandardOutputLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03A2AAC61D4001C99EA /* StandardOutputLogRecorder.swift */; };
 		CEB7F0692AAC61D4001C99EA /* FieldBasedLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03B2AAC61D4001C99EA /* FieldBasedLogFormatter.swift */; };
@@ -114,6 +127,17 @@
 /* Begin PBXFileReference section */
 		CE13E45D2ABE952D00C64EA1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CE4318132BEBBF5500880898 /* omyu pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu pretty.ttf"; sourceTree = "<group>"; };
+		CE4318152BEBBFAD00880898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE4318162BEBC2CC00880898 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
+		CE4318192BECC82500880898 /* MonthSelectModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectModalView.swift; sourceTree = "<group>"; };
+		CE43181B2BECD2DC00880898 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
+		CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEnums.swift; sourceTree = "<group>"; };
+		CE6466B62C12B77500E03B5A /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
+		CE6466B82C12B86300E03B5A /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
+		CE6466BA2C16765B00E03B5A /* DiaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryViewModel.swift; sourceTree = "<group>"; };
+		CE6466BC2C167FBA00E03B5A /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSelectView.swift; sourceTree = "<group>"; };
 		CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
@@ -123,13 +147,16 @@
 		CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		CE77A9B12ACAD42D00D9C58B /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		CE77A9B52ACAD50D00D9C58B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		CE77A9B72ACAD8B800D9C58B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		CE77A9C02AD29F1800D9C58B /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9C22AD29F3600D9C58B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
+		CEA422F72BE5022F00725E6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CEA422FD2BE50B3900725E6B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
+		CEA423012BE50D4800725E6B /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		CEB7EFF52AAC5025001C99EA /* EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB7EFF82AAC5025001C99EA /* EODApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODApp.swift; sourceTree = "<group>"; };
 		CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB7F02D2AAC5371001C99EA /* Alamofire in Frameworks */,
-				CEB7F0352AAC5FE8001C99EA /* SwifterSwift in Frameworks */,
+				CEA422FB2BE5052300725E6B /* SwifterSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,8 +260,37 @@
 				CE13E45D2ABE952D00C64EA1 /* MainView.swift */,
 				CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */,
 				CE77A9B12ACAD42D00D9C58B /* IntroView.swift */,
+				CEA422F72BE5022F00725E6B /* MainTabView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		CE4318122BEBBF3800880898 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */,
+				CE4318132BEBBF5500880898 /* omyu pretty.ttf */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		CE6466B32C0F048B00E03B5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */,
+				CE6466BC2C167FBA00E03B5A /* Diary.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE648B852C05FD6100EBC335 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */,
+				CE6466B82C12B86300E03B5A /* DiaryView.swift */,
+				CE6466BA2C16765B00E03B5A /* DiaryViewModel.swift */,
+			);
+			path = Diary;
 			sourceTree = "<group>";
 		};
 		CE77A9A12ACA8C8400D9C58B /* Common */ = {
@@ -275,6 +331,8 @@
 		CE77A9B32ACAD4F600D9C58B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE648B852C05FD6100EBC335 /* Diary */,
+				CEA422FC2BE50B1E00725E6B /* Calendar */,
 				CE77A9AA2ACA99C800D9C58B /* User */,
 				CE77A9B42ACAD50200D9C58B /* Home */,
 				CE13E45C2ABE952200C64EA1 /* Main */,
@@ -286,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				CE77A9B52ACAD50D00D9C58B /* HomeView.swift */,
-				CE77A9B72ACAD8B800D9C58B /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -298,6 +355,8 @@
 				CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */,
 				CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */,
 				CE77A9C22AD29F3600D9C58B /* ToastView.swift */,
+				CE43181B2BECD2DC00880898 /* CornerRadius.swift */,
+				CE6466B62C12B77500E03B5A /* LazyView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -309,6 +368,17 @@
 				CEA422F52BE4FF4900725E6B /* ColorSet.swift */,
 			);
 			path = ColorSet;
+			sourceTree = "<group>";
+		};
+		CEA422FC2BE50B1E00725E6B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				CEA422FD2BE50B3900725E6B /* CalendarView.swift */,
+				CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */,
+				CEA423012BE50D4800725E6B /* CalendarViewModel.swift */,
+				CE4318192BECC82500880898 /* MonthSelectModalView.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		CEB7EFEC2AAC5025001C99EA = {
@@ -334,7 +404,10 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CE4318152BEBBFAD00880898 /* Info.plist */,
+				CE4318122BEBBF3800880898 /* Resource */,
 				CE77A9B32ACAD4F600D9C58B /* View */,
+				CE6466B32C0F048B00E03B5A /* Model */,
 				CE77A9A12ACA8C8400D9C58B /* Common */,
 				CEF7E40A2AAC6F6900E133F6 /* Splash */,
 				CEB7F0982AAC6272001C99EA /* Module */,
@@ -342,7 +415,6 @@
 				CEB7F02E2AAC5585001C99EA /* Utility */,
 				CEB7F0242AAC5122001C99EA /* Networking */,
 				CEB7EFF82AAC5025001C99EA /* EODApp.swift */,
-				CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */,
 				CEB7EFFE2AAC5026001C99EA /* Preview Content */,
 			);
 			path = EOD;
@@ -483,6 +555,7 @@
 				CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */,
 				CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */,
 				CE77A9C02AD29F1800D9C58B /* View+Extension.swift */,
+				CE4318162BEBC2CC00880898 /* Text+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -513,7 +586,7 @@
 			name = EOD;
 			packageProductDependencies = (
 				CEB7F02C2AAC5371001C99EA /* Alamofire */,
-				CEB7F0342AAC5FE8001C99EA /* SwifterSwift */,
+				CEA422FA2BE5052300725E6B /* SwifterSwift */,
 			);
 			productName = EOD;
 			productReference = CEB7EFF52AAC5025001C99EA /* EOD.app */;
@@ -589,7 +662,7 @@
 			mainGroup = CEB7EFEC2AAC5025001C99EA;
 			packageReferences = (
 				CEB7F02B2AAC5371001C99EA /* XCRemoteSwiftPackageReference "Alamofire" */,
-				CEB7F0332AAC5FE8001C99EA /* XCRemoteSwiftPackageReference "SwifterSwift" */,
+				CEA422F92BE5052300725E6B /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 			);
 			productRefGroup = CEB7EFF62AAC5025001C99EA /* Products */;
 			projectDirPath = "";
@@ -610,6 +683,7 @@
 				CEB7F07E2AAC61D5001C99EA /* README.md in Resources */,
 				CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */,
 				CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */,
+				CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */,
 				CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */,
 				CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */,
 				CEB7F0802AAC61D5001C99EA /* README-CleanroomLogger.md in Resources */,
@@ -642,6 +716,9 @@
 				CEB7F06E2AAC61D4001C99EA /* XcodeLogConfiguration.swift in Sources */,
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
+				CE648B872C05FD7500EBC335 /* EmotionSelectView.swift in Sources */,
+				CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */,
+				CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */,
 				CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
@@ -656,6 +733,7 @@
 				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
 				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
+				CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */,
 				CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */,
 				CEB7F09B2AAC6289001C99EA /* BootLoader.swift in Sources */,
 				CEB7F08F2AAC61D5001C99EA /* PayloadMessageLogFormatter.swift in Sources */,
@@ -667,11 +745,12 @@
 				CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */,
 				CEB7F0722AAC61D4001C99EA /* OSLogMimicFormatter.swift in Sources */,
 				CEB7F08C2AAC61D5001C99EA /* ProcessIDLogFormatter.swift in Sources */,
-				CE77A9B82ACAD8B800D9C58B /* HomeViewModel.swift in Sources */,
 				CE77A9A62ACA929D00D9C58B /* LoginBootModule.swift in Sources */,
 				CEB7F0322AAC5FBB001C99EA /* String+Extension.swift in Sources */,
 				CEB7F06F2AAC61D4001C99EA /* ConsoleLogConfiguration.swift in Sources */,
 				CEB7F06C2AAC61D4001C99EA /* StandardStreamsLogRecorder.swift in Sources */,
+				CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */,
+				CE6466BD2C167FBA00E03B5A /* Diary.swift in Sources */,
 				CEB7F0952AAC61D5001C99EA /* StackFrameLogFormatter.swift in Sources */,
 				CE77A9C12AD29F1800D9C58B /* View+Extension.swift in Sources */,
 				CEB7F08E2AAC61D5001C99EA /* LogRecorderBase.swift in Sources */,
@@ -681,9 +760,12 @@
 				CEB7F06D2AAC61D4001C99EA /* TimestampLogFormatter.swift in Sources */,
 				CEB7F0922AAC61D5001C99EA /* LogConfiguration.swift in Sources */,
 				CEB7F0912AAC61D5001C99EA /* RotatingLogFileConfiguration.swift in Sources */,
+				CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */,
 				CEB7F0762AAC61D5001C99EA /* ParsableLogFormatter.swift in Sources */,
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
+				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
+				CE6466BB2C16765B00E03B5A /* DiaryViewModel.swift in Sources */,
 				CEB7F09D2AAC62C1001C99EA /* LoggerBootModule.swift in Sources */,
 				CEB7F0902AAC61D5001C99EA /* RotatingLogFileRecorder.swift in Sources */,
 				CEB7F0292AAC5122001C99EA /* URLBuilder.swift in Sources */,
@@ -696,8 +778,12 @@
 				CEB7F0822AAC61D5001C99EA /* LogChannel.swift in Sources */,
 				CE77A9BD2ACD269B00D9C58B /* NavigationBarView.swift in Sources */,
 				CEB7F0682AAC61D4001C99EA /* StandardOutputLogRecorder.swift in Sources */,
+				CE43181C2BECD2DC00880898 /* CornerRadius.swift in Sources */,
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
+				CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */,
+				CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */,
+				CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */,
 				CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */,
 				CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */,
 				CEB7F0712AAC61D4001C99EA /* PayloadTraceLogFormatter.swift in Sources */,
@@ -872,6 +958,7 @@
 				DEVELOPMENT_TEAM = 37V7VV782Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EOD/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -903,6 +990,7 @@
 				DEVELOPMENT_TEAM = 37V7VV782Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EOD/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1041,6 +1129,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CEA422F92BE5052300725E6B /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
 		CEB7F02B2AAC5371001C99EA /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1049,26 +1145,18 @@
 				kind = branch;
 			};
 		};
-		CEB7F0332AAC5FE8001C99EA /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CEA422FA2BE5052300725E6B /* SwifterSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEA422F92BE5052300725E6B /* XCRemoteSwiftPackageReference "SwifterSwift" */;
+			productName = SwifterSwift;
+		};
 		CEB7F02C2AAC5371001C99EA /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CEB7F02B2AAC5371001C99EA /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		CEB7F0342AAC5FE8001C99EA /* SwifterSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CEB7F0332AAC5FE8001C99EA /* XCRemoteSwiftPackageReference "SwifterSwift" */;
-			productName = SwifterSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -10,6 +10,7 @@ import SwiftUI
 
 class MainViewModel: ObservableObject {
     @Published var isLogin: Bool = false
+    @Published var currentTab: Tab = .Home
     
     init() {
         isLogin = LoginManager.shared.isLogin ?? false
@@ -18,4 +19,12 @@ class MainViewModel: ObservableObject {
     func test() {
         isLogin.toggle()
     }
+}
+
+// MARK: - TAB ITEM CASE
+enum Tab: String {
+    case Home = "home"
+    case Calender = "calender"
+    case Report = "report"
+    case Setting = "setting"
 }
