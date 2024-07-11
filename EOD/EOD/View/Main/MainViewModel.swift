@@ -16,7 +16,7 @@ class MainViewModel: ObservableObject {
         isLogin = LoginManager.shared.isLogin ?? false
     }
     
-    func test() {
+    func loginAction() {
         isLogin.toggle()
     }
 }

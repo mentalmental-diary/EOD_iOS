@@ -69,20 +69,23 @@ extension IntroView {
             TabView(selection: $currentPage) {
                 // 페이지 1
                 Text("튜토리얼 화면 1")
+                    .foregroundColor(Color.black)
                     .tag(0)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 
                 // 페이지 2
                 Text("튜토리얼 화면 2")
+                    .foregroundColor(Color.black)
                     .tag(1)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 
                 // 페이지 3
                 Text("튜토리얼 화면 3")
+                    .foregroundColor(Color.black)
                     .tag(2)
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
             PageControlView(currentPage: $currentPage, pages: 3)
             

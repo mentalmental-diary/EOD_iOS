@@ -9,7 +9,20 @@ import SwiftUI
 
 struct SignUpView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack(alignment: .leading) {
+                NavigationBarView(title: "가입하기")
+                
+                Spacer()
+                
+                Text("시작해볼까요?")
+                
+                Text("아이디")
+                
+                Spacer()
+            }
+            .background(UIColor.CommonBackground.background.color)
+        }
     }
 }
 
