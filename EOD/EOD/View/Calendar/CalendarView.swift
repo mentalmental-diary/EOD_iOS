@@ -101,7 +101,7 @@ extension CalendarView {
             VStack {
                 Spacer()
                 
-                Image("basic")
+                Image("icon_basic")
                 
                 EmptyDiaryText(text: viewModel.emptyDiaryText)
                     .foregroundColor(Color.black)
@@ -109,7 +109,6 @@ extension CalendarView {
                 if viewModel.selectDate != nil {
                     Button(action: {
                         showDiaryView = true
-                        // TODO: 일기 작성 화면 진입
                     }, label: {
                         Text("일기쓰기")
                             .font(size: 14)

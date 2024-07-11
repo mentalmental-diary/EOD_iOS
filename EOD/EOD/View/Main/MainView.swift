@@ -13,7 +13,8 @@ struct MainView: View {
     var body: some View {
         GeometryReader { proxy in
             if viewModel.isLogin { // 로그인 상태일경우
-                MainTabView(viewModel: viewModel)
+                CalendarView()
+                    .background(Color.white)
             } else { // 로그인 상태가 아닐경우
                 IntroView(viewModel: viewModel)
             }

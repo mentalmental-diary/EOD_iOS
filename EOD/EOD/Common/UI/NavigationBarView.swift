@@ -11,8 +11,6 @@ import SwiftUI
 struct NavigationBarView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var isShow: Bool
-    
     /// 헤더 타이틀
     var title: String = ""
     
@@ -20,11 +18,10 @@ struct NavigationBarView: View {
         ZStack(alignment: .leading) {
             Button(action: {
                 withAnimation {
-                    isShow = false
                     presentationMode.wrappedValue.dismiss()
                 }
             }, label: {
-                Image(systemName: "arrow.left")
+                Image("icon_back")
                     .frame(maxHeight: .infinity, alignment: .leading)
                     .padding(EdgeInsets(top: 0.0, leading: 13.0, bottom: 2.0, trailing: 16.0))
                     .foregroundColor(Color.black)
@@ -32,9 +29,9 @@ struct NavigationBarView: View {
             HStack(spacing: 0) {
                 Spacer()
                 Text(title)
+                    .font(size: 28)
                     .kerning(0.0)
                     .foregroundColor(Color.black)
-                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 18))
                 Spacer()
             }
         }
@@ -49,7 +46,7 @@ struct NavigationBarView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { proxy in
             VStack(alignment: .leading) {
-                NavigationBarView(isShow: .constant(false), title: "알림")
+                NavigationBarView(title: "알림")
             }
             .frame(width: proxy.size.width, alignment: .leading)
         }

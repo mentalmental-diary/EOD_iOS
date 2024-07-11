@@ -12,7 +12,7 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            NavigationBarView(isShow: $isShow, title: "메인 홈 화면")
+            NavigationBarView(title: "메인 홈 화면")
                 .frame(height: 54)
             Spacer()
             Text("주로 활용되는 메인 홈 화면 -> 탭으로 구성")

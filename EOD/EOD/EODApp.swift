@@ -40,7 +40,11 @@ struct EODApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear(perform: {
+                    // 여기서 Login여부 판단 후 넘어가야함
+                })
         }
+        
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {
             case .active:

@@ -20,7 +20,7 @@ struct DiaryView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
-                NavigationBarView(isShow: $isShow)
+                NavigationBarView()
                 
                 VStack(alignment: .leading) {
                     Text("오늘 하루는 어땠나요?")
