@@ -34,7 +34,7 @@ struct DiaryView: View {
                     writeDiaryView()
                     
                     Spacer()
-                        .frame(height: 225)
+//                        .frame(height: 225) // TODO: 여기 확인
                     
                     Button {
                         isShow = false
@@ -50,17 +50,18 @@ struct DiaryView: View {
                     .cornerRadius(8.0)
                     
                 }
+                .frame(maxHeight: .infinity)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 12)
                 
             }
-            .ignoresSafeArea(.keyboard)
+            
             .background(UIColor.CommonBackground.background.color)
             
             if viewModel.showEmotionSelectView {
                 EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
             }
-        }
+        }.ignoresSafeArea(.keyboard)
     }
 }
 
@@ -140,13 +141,22 @@ private struct CustomTextView: UIViewRepresentable {
         
         textView.textColor = UIColor.black
         
-        // 키보드 위에 'Done' 버튼을 추가
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textView.frame.size.width, height: 50))
-        toolbar.items = [
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
-        ]
+        
+        // Adding the toolbar
+        let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        
+        // Setting the toolbar height
+        let customToolbarHeight: CGFloat = 24 // TODO: 추후 높이값 확인 
+        var frame = toolbar.frame
+        frame.size.height = customToolbarHeight
+        toolbar.frame = frame
+        
+        // Adding buttons to the toolbar
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
+        toolbar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                         doneButton]
+        
         textView.inputAccessoryView = toolbar
         
         // 라인 높이 설정을 적용

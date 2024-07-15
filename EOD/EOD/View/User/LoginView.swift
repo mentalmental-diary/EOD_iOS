@@ -12,6 +12,7 @@ struct LoginView: View {
     
     @State var inputEmail: String = ""
     @State var inputPassWord: String = ""
+    @State var isMasking: Bool = true // 마스킹 처리 여부
     
     var body: some View {
         NavigationView(content: {
@@ -28,16 +29,16 @@ struct LoginView: View {
                         
                         forgetPasswordView()
                         
-                        Spacer().frame(minHeight: 250) // TODO: 여기 height고정 안하고도 가능한 방법 찾아야함
+                        Spacer()
                         
                         bottomView()
                     }
                     .padding(.bottom, proxy.safeAreaInsets.bottom)
                     .edgesIgnoringSafeArea(.bottom)
                     .background(UIColor.CommonBackground.background.color)
-                    .ignoresSafeArea(.keyboard)
+                    
                 }
-            }
+            }.ignoresSafeArea(.keyboard)
         })
     }
 }
@@ -55,7 +56,7 @@ extension LoginView {
             
             Spacer().frame(height: 40)
             
-            Text("아이디")
+            Text("아이디") // TODO: 다른 폰트 추가
                 .font(size: 20)
                 .foregroundColor(Color.black)
             
@@ -100,16 +101,31 @@ extension LoginView {
                         .frame(height: 16)
                 }
                 
-                SecureField("", text: $inputPassWord)
-                    .background(Color.clear)
-                    .font(.system(size: 16))
-                    .foregroundColor(Color.black)
-                    .frame(height: 16)
+                if isMasking {
+                    SecureField("", text: $inputPassWord)
+                        .background(Color.clear)
+                        .font(.system(size: 16))
+                        .foregroundColor(Color.black)
+                        .frame(height: 16)
+                } else {
+                    TextField("", text: $inputPassWord)
+                        .background(Color.clear)
+                        .font(.system(size: 16))
+                        .foregroundColor(Color.black)
+                        .frame(height: 16)
+                }
                 
+                Button {
+                    self.isMasking.toggle()
+                } label: {
+                    Image(isMasking ? "icon_eyes_off" : "icon_eyes_on").frame(width: 24, height: 24, alignment: .trailing)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+
             }
             .padding(.bottom, 1)
             
-            Spacer().frame(height: 16)
+            Spacer().frame(height: 8)
             
             Divider()
                 .frame(minHeight: 1.0)
