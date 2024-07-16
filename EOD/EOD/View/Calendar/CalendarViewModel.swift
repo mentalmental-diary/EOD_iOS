@@ -14,6 +14,8 @@ class CalendarViewModel: ObservableObject {
     
     @Published var selectEmotionType: EmotionType?
     
+    @Published var isToast: Bool = false
+    
     let calendar = Calendar.current
 }
 

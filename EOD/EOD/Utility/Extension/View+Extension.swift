@@ -17,8 +17,8 @@ extension View {
         }
     }
     
-    func toast(message: String, isShowing: Binding<Bool>) -> some View {
-        self.modifier(ToastModifier(message: message, isShowing: isShowing))
+    func toast(message: String, visibleIcon: Bool = false, isShowing: Binding<Bool>) -> some View {
+        self.modifier(ToastModifier(message: message, visibleIcon: visibleIcon, isShowing: isShowing))
     }
 }
 

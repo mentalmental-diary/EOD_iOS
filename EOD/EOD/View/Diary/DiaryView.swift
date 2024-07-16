@@ -12,8 +12,11 @@ struct DiaryView: View {
     
     @ObservedObject var viewModel: DiaryViewModel
     
-    init(isShow: Binding<Bool>, viewModel: DiaryViewModel) {
+    @Binding var isToast: Bool
+    
+    init(isShow: Binding<Bool>, isToast: Binding<Bool>, viewModel: DiaryViewModel) {
         self._isShow = isShow
+        self._isToast = isToast
         self.viewModel = viewModel
     }
     
@@ -38,6 +41,9 @@ struct DiaryView: View {
                     
                     Button {
                         isShow = false
+                        withAnimation(.easeInOut(duration: 0.6)) {
+                            isToast = true
+                        }
                     } label: {
                         Text("저장하기")
                             .font(size: 20)
@@ -147,7 +153,7 @@ private struct CustomTextView: UIViewRepresentable {
         toolbar.sizeToFit()
         
         // Setting the toolbar height
-        let customToolbarHeight: CGFloat = 24 // TODO: 추후 높이값 확인 
+        let customToolbarHeight: CGFloat = 24 // TODO: 추후 높이값 확인
         var frame = toolbar.frame
         frame.size.height = customToolbarHeight
         toolbar.frame = frame
@@ -216,5 +222,5 @@ private struct CustomTextView: UIViewRepresentable {
 }
 
 #Preview {
-    DiaryView(isShow: .constant(false), viewModel: DiaryViewModel())
+    DiaryView(isShow: .constant(false), isToast: .constant(false), viewModel: DiaryViewModel())
 }

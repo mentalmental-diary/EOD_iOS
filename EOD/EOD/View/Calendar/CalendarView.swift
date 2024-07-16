@@ -70,6 +70,7 @@ struct CalendarView: View {
                 .padding(.top, 44)
                 .padding(.bottom, 12)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
                 
                 if showMonthSelectModalView {
                     MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
@@ -78,7 +79,7 @@ struct CalendarView: View {
                 /// DiaryView로 이동
                 NavigationLink("", isActive: $showDiaryView) {
                     LazyView(
-                        DiaryView(isShow: $showDiaryView, viewModel: DiaryViewModel(selectDate: viewModel.selectDate)) // TODO: 등록 진입인지 수정 진입인진 이때 결정
+                        DiaryView(isShow: $showDiaryView, isToast: $viewModel.isToast, viewModel: DiaryViewModel(selectDate: viewModel.selectDate)) // TODO: 등록 진입인지 수정 진입인진 이때 결정
                             .background(Color.white)
                             .navigationBarHidden(true)
                     )
