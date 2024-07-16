@@ -16,12 +16,16 @@ class CalendarViewModel: ObservableObject {
     
     @Published var isToast: Bool = false
     
+    var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
+    
     let calendar = Calendar.current
 }
 
 /// Var
 extension CalendarViewModel {
     var emptyDiaryText: String { return selectDate == nil ? "날짜를 선택해주세요" : "작성한 일기가 없어요" }
+    
+    var existDiaryContents: Bool { return false } // TODO: 일단 임시로 false로 하드코딩
 }
 
 /// Func

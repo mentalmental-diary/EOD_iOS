@@ -32,6 +32,9 @@
 		CE77A9BF2ACD31F700D9C58B /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */; };
 		CE77A9C12AD29F1800D9C58B /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C02AD29F1800D9C58B /* View+Extension.swift */; };
 		CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C22AD29F3600D9C58B /* ToastView.swift */; };
+		CE8AD19D2C46195D00B3D9F9 /* short-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19A2C46195D00B3D9F9 /* short-loading.json */; };
+		CE8AD19E2C46195D00B3D9F9 /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
+		CE8AD19F2C46195D00B3D9F9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19C2C46195D00B3D9F9 /* splash.json */; };
 		CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
 		CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
@@ -151,6 +154,9 @@
 		CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		CE77A9C02AD29F1800D9C58B /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9C22AD29F3600D9C58B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		CE8AD19A2C46195D00B3D9F9 /* short-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "short-loading.json"; sourceTree = "<group>"; };
+		CE8AD19B2C46195D00B3D9F9 /* game-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "game-loading.json"; sourceTree = "<group>"; };
+		CE8AD19C2C46195D00B3D9F9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CEA422F72BE5022F00725E6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -268,6 +274,7 @@
 		CE4318122BEBBF3800880898 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				CE8AD1992C46193400B3D9F9 /* json */,
 				CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */,
 				CE4318132BEBBF5500880898 /* omyu pretty.ttf */,
 			);
@@ -359,6 +366,16 @@
 				CE6466B62C12B77500E03B5A /* LazyView.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		CE8AD1992C46193400B3D9F9 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				CE8AD19B2C46195D00B3D9F9 /* game-loading.json */,
+				CE8AD19A2C46195D00B3D9F9 /* short-loading.json */,
+				CE8AD19C2C46195D00B3D9F9 /* splash.json */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 		CEA422F22BE4FCA300725E6B /* ColorSet */ = {
@@ -684,8 +701,11 @@
 				CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */,
 				CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */,
 				CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */,
+				CE8AD19F2C46195D00B3D9F9 /* splash.json in Resources */,
 				CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */,
+				CE8AD19D2C46195D00B3D9F9 /* short-loading.json in Resources */,
 				CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */,
+				CE8AD19E2C46195D00B3D9F9 /* game-loading.json in Resources */,
 				CEB7F0802AAC61D5001C99EA /* README-CleanroomLogger.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

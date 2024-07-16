@@ -44,7 +44,7 @@ struct ToastView: View {
             Spacer()
         }
         .padding(.horizontal, 20)
-        .padding(.bottom, 16)
+        .padding(.top, 16)
     }
 }
 

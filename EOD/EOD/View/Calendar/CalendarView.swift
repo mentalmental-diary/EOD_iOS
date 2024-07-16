@@ -65,6 +65,7 @@ struct CalendarView: View {
                     Spacer().frame(height: 24)
                     
                     diaryView()
+                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 44)
@@ -94,10 +95,30 @@ struct CalendarView: View {
 extension CalendarView {
     @ViewBuilder func diaryView() -> some View {
         VStack {
-            Text(currentDiaryDay)
-                .font(size: 16)
-                .foregroundColor(Color.black)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: 0) {
+                Text(currentDiaryDay)
+                    .font(size: 16)
+                    .foregroundColor(UIColor.Gray.gray900.color)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                
+                if viewModel.existDiaryContents {
+                    Button(action: {
+                        // TODO: 수정 액션 구현
+                    }, label: {
+                        Image("icon_edit")
+                    })
+                    
+                    Spacer().frame(width: 8)
+                    
+                    Button(action: {
+                        // TODO: 삭제 액션 구현
+                    }, label: {
+                        Image("icon_delete")
+                    })
+                }
+            }
             
             VStack {
                 Spacer()
@@ -145,7 +166,7 @@ extension CalendarView {
 extension CalendarView {
     private var currentDiaryDay: String {
         let dateFormmater = DateFormatter()
-        dateFormmater.dateFormat = "M.dd EEEE"
+        dateFormmater.dateFormat = "M월 dd일 EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
         if viewModel.selectDate != nil {
