@@ -35,9 +35,10 @@ struct DiaryView: View {
                         .foregroundColor(Color.black)
                     
                     writeDiaryView()
+                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
                     
                     Spacer()
-//                        .frame(height: 225) // TODO: 여기 확인
+                        .frame(height: 241)
                     
                     Button {
                         isShow = false
@@ -153,7 +154,7 @@ private struct CustomTextView: UIViewRepresentable {
         toolbar.sizeToFit()
         
         // Setting the toolbar height
-        let customToolbarHeight: CGFloat = 24 // TODO: 추후 높이값 확인
+        let customToolbarHeight: CGFloat = 36
         var frame = toolbar.frame
         frame.size.height = customToolbarHeight
         toolbar.frame = frame
