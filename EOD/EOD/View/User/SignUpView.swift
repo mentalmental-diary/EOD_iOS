@@ -19,29 +19,40 @@ struct SignUpView: View {
     @State var passwordMasking: Bool = true
     @State var validPasswordMasking: Bool = true
     @State var isShowAlert: Bool = false
+    @State var visibleLoginView: Bool = false
     
     var body: some View {
-        GeometryReader { proxy in
-            ZStack {
-                VStack(alignment: .leading) {
-                    NavigationBarView(title: "가입하기", dismissAction: dismissAction)
+        NavigationView(content: {
+            GeometryReader { proxy in
+                ZStack {
+                    VStack(alignment: .leading) {
+                        NavigationBarView(title: "가입하기", dismissAction: dismissAction)
+                        
+                        Spacer().frame(height: 56)
+                        
+                        inputView()
+                        
+                        Spacer()
+                        
+                        bottomView()
+                    }
+                    .padding(.bottom, proxy.safeAreaInsets.bottom)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .background(UIColor.CommonBackground.background.color)
                     
-                    Spacer().frame(height: 56)
-                    
-                    inputView()
-                    
-                    Spacer()
-                }
-                .background(UIColor.CommonBackground.background.color)
-                
-                if isShowAlert {
-                    Alert(showAlert: $isShowAlert, title: "회원 가입을 그만 둘까요?", message: "그만 두기를 누르면 작성한 내용이 저장되지 않아요", accept: "그만 두기", acceptAction: {
-                        presentationMode.wrappedValue.dismiss()
-                    }, cancel: "취소")
+                    if isShowAlert {
+                        Alert(showAlert: $isShowAlert, title: "회원 가입을 그만 둘까요?", message: "그만 두기를 누르면 작성한 내용이 저장되지 않아요", accept: "그만 두기", acceptAction: {
+                            presentationMode.wrappedValue.dismiss()
+                            viewModel.presentSignUpView = false
+                        }, cancel: "취소")
+                    }
                 }
             }
-        }
-        .ignoresSafeArea(.keyboard)
+            .ignoresSafeArea(.keyboard)
+        })
+        .onAppear(perform: {
+            viewModel.presentSignUpView = true
+        })
     }
 }
 
@@ -96,11 +107,6 @@ extension SignUpView {
             Spacer().frame(height: 25)
             
             inputPasswordView()
-            
-            Spacer()
-            
-            bottomView()
-            
         }
         .padding(.horizontal, 20)
     }
@@ -283,26 +289,38 @@ extension SignUpView {
                     .font(size: 20)
                     .foregroundColor(UIColor.Gray.gray500.color)
                 
-                Text("로그인")
-                    .font(size: 20)
-                    .underline(true)
-                    .foregroundColor(UIColor.Gray.gray900.color)
-                    .onTapGesture {
-                        if emptyInfo {
-                            presentationMode.wrappedValue.dismiss()
-                        } else {
-                            isShowAlert = true
-                        }
+                Button(action: {
+                    if viewModel.presentLoginView {
+                        dismissAction()
+                    } else {
+                        visibleLoginView = true
                     }
+                }, label: {
+                    Text("로그인")
+                        .font(size: 20)
+                        .underline(true)
+                        .foregroundColor(UIColor.Gray.gray900.color)
+                })
+                .background(
+                    NavigationLink(destination: LazyView(
+                        LoginView(viewModel: viewModel)
+                            .navigationBarHidden(true)
+                    ), isActive: $visibleLoginView) {
+                        EmptyView()
+                    }
+                )
             }
             .frame(maxWidth: .infinity, alignment: .center)
         }
+        .padding(.horizontal, 20)
+        .padding(.bottom, 20)
     }
 }
 
 extension SignUpView {
     func dismissAction() {
         if emptyInfo {
+            viewModel.presentSignUpView = false
             presentationMode.wrappedValue.dismiss()
         } else {
             isShowAlert = true

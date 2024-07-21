@@ -41,7 +41,7 @@ struct NavigationBarView: View {
                 Spacer()
             }
         }
-        .frame(height: 54)
+        .frame(height: 48)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.clear)
     }

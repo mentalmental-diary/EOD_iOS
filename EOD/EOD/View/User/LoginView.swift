@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var viewModel: MainViewModel
     
     @State var inputEmail: String = ""
     @State var inputPassWord: String = ""
     @State var isMasking: Bool = true // 마스킹 처리 여부
+    @State var visibleSignUpView: Bool = false
     
     var body: some View {
         NavigationView(content: {
             GeometryReader { proxy in
                 ZStack {
                     VStack(alignment: .leading, spacing: 0) {
-                        NavigationBarView(title: "로그인")
+                        NavigationBarView(title: "로그인", dismissAction: dismissAction)
                         
                         Spacer().frame(height: 56)
                         
@@ -38,7 +41,11 @@ struct LoginView: View {
                     .background(UIColor.CommonBackground.background.color)
                     
                 }
-            }.ignoresSafeArea(.keyboard)
+            }
+            .ignoresSafeArea(.keyboard)
+        })
+        .onAppear(perform: {
+            viewModel.presentLoginView = true
         })
     }
 }
@@ -176,16 +183,26 @@ extension LoginView {
                     .font(size: 20)
                     .foregroundColor(UIColor.Gray.gray500.color)
                 
-                NavigationLink {
-                    LazyView(
-                        SignUpView(viewModel: viewModel).navigationBarHidden(true)
-                    )
-                } label: {
+                Button(action: {
+                    if viewModel.presentSignUpView {
+                        dismissAction()
+                    } else {
+                        visibleSignUpView = true
+                    }
+                }, label: {
                     Text("가입하기")
                         .font(size: 20)
                         .underline(true)
                         .foregroundColor(UIColor.Gray.gray900.color)
-                }
+                })
+                .background(
+                    NavigationLink(destination: LazyView(
+                        SignUpView(viewModel: viewModel)
+                            .navigationBarHidden(true)
+                    ), isActive: $visibleSignUpView) {
+                        EmptyView()
+                    }
+                )
             }
         }
         .padding(.horizontal, 20)
@@ -197,6 +214,13 @@ extension LoginView {
 /// Var
 extension LoginView {
     private var availableLoginButton: Bool { return !inputEmail.isEmpty && !inputPassWord.isEmpty }
+}
+
+extension LoginView {
+    func dismissAction() {
+        viewModel.presentLoginView = false
+        presentationMode.wrappedValue.dismiss()
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
