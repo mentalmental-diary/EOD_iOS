@@ -178,7 +178,7 @@ extension LoginView {
                 
                 NavigationLink {
                     LazyView(
-                        SignUpView().navigationBarHidden(true)
+                        SignUpView(viewModel: viewModel).navigationBarHidden(true)
                     )
                 } label: {
                     Text("가입하기")

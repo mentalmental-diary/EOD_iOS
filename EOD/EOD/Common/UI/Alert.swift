@@ -25,11 +25,13 @@ struct Alert: View {
                 VStack(spacing: 0) {
                     Text(title)
                         .font(size: 22)
+                        .foregroundColor(.black)
                     
                     Spacer().frame(height: 19)
                     
                     Text(message)
                         .font(size: 16)
+                        .foregroundColor(.black)
                     
                     Spacer().frame(height: 22)
                     

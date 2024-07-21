@@ -12,6 +12,8 @@ class DiaryViewModel: ObservableObject {
     
     @Published var diary: Diary = Diary()
     
+    @Published var isShowAlert: Bool = false
+    
     var selectDate: Date?
     
     var original: Diary? // 수정진입이 최초 일기 정보

@@ -11,6 +11,10 @@ import SwiftUI
 class MainViewModel: ObservableObject {
     @Published var isLogin: Bool = false
     @Published var currentTab: Tab = .Home
+    @Published var confirmEmail: Bool = false
+    @Published var confirmTerms: Bool = false
+    
+    @Published var isShowAlert: Bool = false
     
     init() {
         isLogin = LoginManager.shared.isLogin ?? false

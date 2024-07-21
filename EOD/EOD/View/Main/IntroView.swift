@@ -145,7 +145,7 @@ extension IntroView {
             
             NavigationLink(destination: {
                 LazyView(
-                    SignUpView().navigationBarHidden(true)
+                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
                 )
             }, label: {
                 Text("회원가입")

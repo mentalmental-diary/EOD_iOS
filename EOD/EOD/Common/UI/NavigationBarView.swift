@@ -14,11 +14,17 @@ struct NavigationBarView: View {
     /// 헤더 타이틀
     var title: String = ""
     
+    var dismissAction: (() -> Void)?
+    
     var body: some View {
         ZStack(alignment: .leading) {
             Button(action: {
-                withAnimation {
-                    presentationMode.wrappedValue.dismiss()
+                if dismissAction != nil {
+                    dismissAction?()
+                } else {
+                    withAnimation {
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
             }, label: {
                 Image("icon_back")
@@ -37,6 +43,7 @@ struct NavigationBarView: View {
         }
         .frame(height: 54)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.clear)
     }
 }
 
