@@ -16,27 +16,27 @@ struct MainTabView: View {
     
     var body: some View {
         GeometryReader { geo in
-            VStack {
-                TabView()
-                    .frame(maxHeight: geo.size.height)
-                    .frame(width: geo.size.width)
-                
-                HStack(spacing: 0) {
-                    TabButton(tab: .Home)
-                    TabButton(tab: .Calender)
-                    TabButton(tab: .Report)
-                    TabButton(tab: .Setting)
+            ZStack {
+                VStack {
+                    TabView()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    HStack(spacing: 0) {
+                        TabButton(tab: .Home)
+                        TabButton(tab: .Calender)
+                        TabButton(tab: .Game)
+                        TabButton(tab: .Shop)
+                        TabButton(tab: .My)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.bottom, geo.safeAreaInsets.bottom)
+                    .padding(.top, 12)
+                    .background(.white)
+                    .edgesIgnoringSafeArea(.bottom)
+                    .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
                 }
-                .frame(maxWidth: .infinity)
-                .edgesIgnoringSafeArea(.bottom)
-                .background(
-                    Color.white
-                        .ignoresSafeArea(.container, edges: .bottom)
-                )
-                
-                Spacer().frame(height: geo.safeAreaInsets.bottom)
+                .edgesIgnoringSafeArea([.top, .bottom])
             }
-            .frame(width: geo.size.width, height: geo.size.height + geo.safeAreaInsets.bottom)
         }
         .background(UIColor.CommonBackground.background.color)
     }
@@ -51,8 +51,16 @@ extension MainTabView {
                 viewModel.currentTab = tab
             }
         }, label: {
-            Text(tab.rawValue) // TODO: 향후 디자인 가이드에 맞게 이미지로 변경할 예정
-                .frame(maxWidth: .infinity)
+            VStack {
+                Image(tab.iconName)
+                    .renderingMode(viewModel.currentTab == tab ? .template : .original)
+                    .foregroundColor(viewModel.currentTab == tab ? .black : nil)
+                
+                Text(tab.title)
+                    .font(size: 14)
+                    .foregroundColor(viewModel.currentTab == tab ? .black : UIColor.Gray.gray300.color)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
         })
     }
     
@@ -63,9 +71,11 @@ extension MainTabView {
             HomeView()
         case .Calender: // TODO: 임시로 뷰 지정 -> 차후 개발될때마다 변경
             CalendarView()
-        case .Report:
+        case .Game:
             HomeView()
-        case .Setting:
+        case .Shop:
+            HomeView()
+        case .My:
             HomeView()
         }
     }
