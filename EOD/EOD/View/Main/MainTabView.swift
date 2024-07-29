@@ -20,11 +20,11 @@ struct MainTabView: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
                         HStack(spacing: 0) {
-                            TabButton(tab: .Home)
-                            TabButton(tab: .Calender)
-                            TabButton(tab: .Game)
-                            TabButton(tab: .Shop)
-                            TabButton(tab: .My)
+                            TabButton(tab: .Home, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .Calender, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .Game, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .Shop, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .My, currentTab: $viewModel.currentTab)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.bottom, geo.safeAreaInsets.bottom)
@@ -58,31 +58,11 @@ struct MainTabView: View {
 /// ViewBuilder
 extension MainTabView {
     @ViewBuilder
-    func TabButton(tab: Tab) -> some View {
-        Button(action: {
-            withAnimation {
-                viewModel.currentTab = tab
-            }
-        }, label: {
-            VStack {
-                Image(tab.iconName)
-                    .renderingMode(viewModel.currentTab == tab ? .template : .original)
-                    .foregroundColor(viewModel.currentTab == tab ? .black : nil)
-                
-                Text(tab.title)
-                    .font(size: 14)
-                    .foregroundColor(viewModel.currentTab == tab ? .black : UIColor.Gray.gray300.color)
-            }
-            .frame(maxWidth: .infinity, alignment: .center)
-        })
-    }
-    
-    @ViewBuilder
     func TabView() -> some View {
         switch viewModel.currentTab {
         case .Home:
             HomeView()
-        case .Calender: // TODO: 임시로 뷰 지정 -> 차후 개발될때마다 변경
+        case .Calender:
             CalendarView(viewModel: calendarViewModel)
         case .Game:
             HomeView()
@@ -91,6 +71,40 @@ extension MainTabView {
         case .My:
             MyPageView(viewModel: viewModel)
         }
+    }
+}
+
+struct TabButton: View {
+    let tab: Tab
+    @Binding var currentTab: Tab
+    
+    @State private var isPressed = false
+    
+    private var iconName: String { return tab.iconName + (currentTab == tab ? "_B" : "") }
+    
+    var body: some View {
+        Button(action: {
+            withAnimation {
+                currentTab = tab
+            }
+        }, label: {
+            VStack(spacing: 6) {
+                Image(iconName)
+                
+                Text(tab.title)
+                    .font(size: 14)
+                    .foregroundColor(currentTab == tab ? .black : UIColor.Gray.gray300.color)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+            .scaleEffect(isPressed ? 0.8 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+        })
+        .buttonStyle(PlainButtonStyle())
+        .onLongPressGesture(minimumDuration: 0.1, pressing: { pressing in
+            withAnimation {
+                isPressed = pressing
+            }
+        }, perform: {})
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var viewModel: MainViewModel = MainViewModel()
+    @StateObject var viewModel: MainViewModel = MainViewModel()
     
     var body: some View {
         GeometryReader { proxy in
