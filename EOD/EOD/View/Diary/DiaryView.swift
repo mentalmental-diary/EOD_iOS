@@ -13,57 +13,67 @@ struct DiaryView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading) {
-                NavigationBarView()
-                
-                VStack(alignment: .leading) {
-                    Text("오늘 하루는 어땠나요?")
-                        .font(size: 28)
-                        .foregroundColor(Color.black)
+        GeometryReader(content: { geometry in
+            ZStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    NavigationBarView()
                     
-                    Text("\(currentDiaryDay) 오늘 기분은")
-                        .font(size: 24)
-                        .foregroundColor(Color.black)
-                    
-                    writeDiaryView()
-                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
-                    
-                    Spacer()
-                        .frame(height: 241)
-                    
-                    Button {
-                        isShow = false
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            viewModel.isToast = true
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("오늘 하루는 어땠나요?")
+                            .font(size: 28)
+                            .foregroundColor(Color.black)
+                        
+                        Spacer().frame(height: 16)
+                        
+                        Text("\(currentDiaryDay) 오늘 기분은")
+                            .font(size: 24)
+                            .foregroundColor(Color.black)
+                        
+                        Spacer().frame(height: 20)
+                        
+                        writeDiaryView()
+                            .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
+                        
+                        Spacer()
+                            .frame(height: 241)
+                        
+                        Button {
+                            isShow = false
+                            withAnimation(.easeInOut(duration: 0.6)) {
+                                viewModel.isToast = true
+                            }
+                        } label: {
+                            Text("저장하기")
+                                .font(size: 20)
+                                .foregroundColor(Color.white)
+                                .padding(.vertical, 16)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.black)
                         }
-                    } label: {
-                        Text("저장하기")
-                            .font(size: 20)
-                            .foregroundColor(Color.white)
-                            .padding(.vertical, 16)
-                            .frame(maxWidth: .infinity)
-                            .background(Color.black)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(8.0)
+                        
                     }
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(8.0)
+                    .frame(maxHeight: .infinity)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 12)
                     
                 }
-                .frame(maxHeight: .infinity)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 12)
+                .padding(.bottom, geometry.safeAreaInsets.bottom)
+                .edgesIgnoringSafeArea(.bottom)
+                .background(UIColor.CommonBackground.background.color)
                 
+                if viewModel.showEmotionSelectView {
+                    EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
+                }
             }
-            .background(UIColor.CommonBackground.background.color)
+            .onDisappear {
+                viewModel.diary = Diary() // TODO: 나중에 확인
+            }
             
-            if viewModel.showEmotionSelectView {
-                EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
-            }
-        }
-        .onDisappear {
-            viewModel.diary = Diary() // TODO: 나중에 확인 
-        }
+        })
         .ignoresSafeArea(.keyboard)
+        
     }
 }
 

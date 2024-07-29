@@ -12,29 +12,46 @@ struct MainTabView: View {
     @StateObject private var calendarViewModel = CalendarViewModel()
     
     var body: some View {
-        GeometryReader { geo in
-            VStack {
-                TabView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                HStack(spacing: 0) {
-                    TabButton(tab: .Home)
-                    TabButton(tab: .Calender)
-                    TabButton(tab: .Game)
-                    TabButton(tab: .Shop)
-                    TabButton(tab: .My)
+        NavigationView(content: {
+            GeometryReader { geo in
+                ZStack{
+                    VStack {
+                        TabView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        
+                        HStack(spacing: 0) {
+                            TabButton(tab: .Home)
+                            TabButton(tab: .Calender)
+                            TabButton(tab: .Game)
+                            TabButton(tab: .Shop)
+                            TabButton(tab: .My)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, geo.safeAreaInsets.bottom)
+                        .padding(.top, 12)
+                        .background(.white)
+                        .edgesIgnoringSafeArea(.bottom)
+                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
+                    }
+                    .edgesIgnoringSafeArea([.top, .bottom])
+                    
+                    if calendarViewModel.showMonthSelectModalView {
+                        MonthSelectModalView(viewModel: calendarViewModel, showModalView: $calendarViewModel.showMonthSelectModalView)
+                    }
                 }
-                .frame(maxWidth: .infinity)
-                .padding(.bottom, geo.safeAreaInsets.bottom)
-                .padding(.top, 12)
-                .background(.white)
-                .edgesIgnoringSafeArea(.bottom)
-                .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
+                
+                NavigationLink("", isActive: $calendarViewModel.showDiaryView) {
+                    LazyView(
+                        DiaryView(isShow: $calendarViewModel.showDiaryView, viewModel: calendarViewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
+                            .background(Color.white)
+                            .navigationBarHidden(true)
+                    )
+                }
             }
-            .edgesIgnoringSafeArea([.top, .bottom])
-        }
-        .ignoresSafeArea(.keyboard)
-        .background(UIColor.CommonBackground.background.color)
+            .ignoresSafeArea(.keyboard)
+            .background(UIColor.CommonBackground.background.color)
+        })
+        
     }
 }
 

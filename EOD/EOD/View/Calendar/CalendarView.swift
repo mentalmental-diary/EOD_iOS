@@ -10,10 +10,6 @@ import SwiftUI
 struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
-    @State var showMonthSelectModalView: Bool = false
-    
-    @State var showDiaryView: Bool = false
-    
     var body: some View {
         NavigationView {
             ZStack(alignment: .top) {
@@ -21,7 +17,7 @@ struct CalendarView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            showMonthSelectModalView = true
+                            viewModel.showMonthSelectModalView = true
                         }, label: {
                             HStack(spacing: 4) {
                                 Text(monthYearString(from: viewModel.date))
@@ -73,18 +69,6 @@ struct CalendarView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
                 
-                if showMonthSelectModalView {
-                    MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
-                }
-                
-                /// DiaryView로 이동
-                NavigationLink("", isActive: $showDiaryView) {
-                    LazyView(
-                        DiaryView(isShow: $showDiaryView, viewModel: viewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
-                            .background(Color.white)
-                            .navigationBarHidden(true)
-                    )
-                }
             }
             .background(UIColor.CommonBackground.background.color)
         }
@@ -130,7 +114,7 @@ extension CalendarView {
                 
                 if viewModel.selectDate != nil {
                     Button(action: {
-                        showDiaryView = true
+                        viewModel.showDiaryView = true
                         viewModel.diaryAction()
                     }, label: {
                         Text("일기쓰기")
