@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State var isShow: Bool = false
-    
     var body: some View {
         VStack {
-            NavigationBarView(isShow: $isShow, title: "메인 홈 화면")
-                .frame(height: 54)
             Spacer()
-            Text("주로 활용되는 메인 홈 화면 -> 탭으로 구성")
+            Text("메인 홈 화면")
+                .foregroundColor(.black)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

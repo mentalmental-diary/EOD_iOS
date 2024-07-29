@@ -9,12 +9,12 @@ import SwiftUI
 
 struct EmotionSelectView: View {
     @State var appearAnimation: Bool = false
-    @ObservedObject var viewModel: DiaryViewModel
+    @ObservedObject var viewModel: CalendarViewModel
     @State var selectYear: Int
     @Binding var showModalView: Bool
     @Binding var isShowDiaryView: Bool
     
-    init(viewModel: DiaryViewModel, showModalView: Binding<Bool>, isShowDiaryView: Binding<Bool>) {
+    init(viewModel: CalendarViewModel, showModalView: Binding<Bool>, isShowDiaryView: Binding<Bool>) {
         self.viewModel = viewModel
         self.selectYear = viewModel.diary.date?.year ?? 2024
         self._showModalView = showModalView
@@ -130,5 +130,5 @@ extension EmotionSelectView {
 }
 
 #Preview {
-    EmotionSelectView(viewModel: DiaryViewModel(), showModalView: .constant(true), isShowDiaryView: .constant(false))
+    EmotionSelectView(viewModel: CalendarViewModel(), showModalView: .constant(true), isShowDiaryView: .constant(false))
 }

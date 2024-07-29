@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @ObservedObject var viewModel: CalendarViewModel = CalendarViewModel()
-    
-    @State var showMonthSelectModalView: Bool = false
-    
-    @State var showDiaryView: Bool = false
+    @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
         NavigationView {
@@ -21,7 +17,7 @@ struct CalendarView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            showMonthSelectModalView = true
+                            viewModel.showMonthSelectModalView = true
                         }, label: {
                             HStack(spacing: 4) {
                                 Text(monthYearString(from: viewModel.date))
@@ -65,24 +61,14 @@ struct CalendarView: View {
                     Spacer().frame(height: 24)
                     
                     diaryView()
+                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 44)
                 .padding(.bottom, 12)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
                 
-                if showMonthSelectModalView {
-                    MonthSelectModalView(viewModel: viewModel, showModalView: $showMonthSelectModalView)
-                }
-                
-                /// DiaryView로 이동
-                NavigationLink("", isActive: $showDiaryView) {
-                    LazyView(
-                        DiaryView(isShow: $showDiaryView, viewModel: DiaryViewModel(selectDate: viewModel.selectDate)) // TODO: 등록 진입인지 수정 진입인진 이때 결정
-                            .background(Color.white)
-                            .navigationBarHidden(true)
-                    )
-                }
             }
             .background(UIColor.CommonBackground.background.color)
         }
@@ -93,23 +79,43 @@ struct CalendarView: View {
 extension CalendarView {
     @ViewBuilder func diaryView() -> some View {
         VStack {
-            Text(currentDiaryDay)
-                .font(size: 16)
-                .foregroundColor(Color.black)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: 0) {
+                Text(currentDiaryDay)
+                    .font(size: 16)
+                    .foregroundColor(UIColor.Gray.gray900.color)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+                
+                if viewModel.existDiaryContents {
+                    Button(action: {
+                        // TODO: 수정 액션 구현
+                    }, label: {
+                        Image("icon_edit")
+                    })
+                    
+                    Spacer().frame(width: 8)
+                    
+                    Button(action: {
+                        // TODO: 삭제 액션 구현
+                    }, label: {
+                        Image("icon_delete")
+                    })
+                }
+            }
             
             VStack {
                 Spacer()
                 
-                Image("basic")
+                Image("icon_basic")
                 
                 EmptyDiaryText(text: viewModel.emptyDiaryText)
                     .foregroundColor(Color.black)
                 
                 if viewModel.selectDate != nil {
                     Button(action: {
-                        showDiaryView = true
-                        // TODO: 일기 작성 화면 진입
+                        viewModel.showDiaryView = true
+                        viewModel.diaryAction()
                     }, label: {
                         Text("일기쓰기")
                             .font(size: 14)
@@ -145,7 +151,7 @@ extension CalendarView {
 extension CalendarView {
     private var currentDiaryDay: String {
         let dateFormmater = DateFormatter()
-        dateFormmater.dateFormat = "M.dd EEEE"
+        dateFormmater.dateFormat = "M월 dd일 EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
         if viewModel.selectDate != nil {
@@ -197,5 +203,5 @@ extension CalendarView {
 }
 
 #Preview {
-    CalendarView()
+    CalendarView(viewModel: CalendarViewModel())
 }

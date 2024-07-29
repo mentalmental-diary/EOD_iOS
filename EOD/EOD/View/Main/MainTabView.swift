@@ -9,65 +9,102 @@ import SwiftUI
 
 struct MainTabView: View {
     @ObservedObject var viewModel: MainViewModel
-    
-    init(viewModel: MainViewModel) {
-        self.viewModel = viewModel
-    }
+    @StateObject private var calendarViewModel = CalendarViewModel()
     
     var body: some View {
-        GeometryReader { geo in
-            VStack {
-                TabView()
-                    .frame(maxHeight: geo.size.height)
-                    .frame(width: geo.size.width)
-                
-                HStack(spacing: 0) {
-                    TabButton(tab: .Home)
-                    TabButton(tab: .Calender)
-                    TabButton(tab: .Report)
-                    TabButton(tab: .Setting)
+        NavigationView(content: {
+            GeometryReader { geo in
+                ZStack{
+                    VStack {
+                        TabView()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        
+                        HStack(spacing: 0) {
+                            TabButton(tab: .Home, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .Calender, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .Game, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .Shop, currentTab: $viewModel.currentTab)
+                            TabButton(tab: .My, currentTab: $viewModel.currentTab)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.bottom, geo.safeAreaInsets.bottom)
+                        .padding(.top, 12)
+                        .background(.white)
+                        .edgesIgnoringSafeArea(.bottom)
+                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
+                    }
+                    .edgesIgnoringSafeArea([.top, .bottom])
+                    
+                    if calendarViewModel.showMonthSelectModalView {
+                        MonthSelectModalView(viewModel: calendarViewModel, showModalView: $calendarViewModel.showMonthSelectModalView)
+                    }
                 }
-                .frame(maxWidth: .infinity)
-                .edgesIgnoringSafeArea(.bottom)
-                .background(
-                    Color.white
-                        .ignoresSafeArea(.container, edges: .bottom)
-                )
                 
-                Spacer().frame(height: geo.safeAreaInsets.bottom)
+                NavigationLink("", isActive: $calendarViewModel.showDiaryView) {
+                    LazyView(
+                        DiaryView(isShow: $calendarViewModel.showDiaryView, viewModel: calendarViewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
+                            .background(Color.white)
+                            .navigationBarHidden(true)
+                    )
+                }
             }
-            .frame(width: geo.size.width, height: geo.size.height + geo.safeAreaInsets.bottom)
-        }
-        .background(UIColor.CommonBackground.background.color)
+            .ignoresSafeArea(.keyboard)
+            .background(UIColor.CommonBackground.background.color)
+        })
+        
     }
 }
 
 /// ViewBuilder
 extension MainTabView {
     @ViewBuilder
-    func TabButton(tab: Tab) -> some View {
-        Button(action: {
-            withAnimation {
-                viewModel.currentTab = tab
-            }
-        }, label: {
-            Text(tab.rawValue) // TODO: 향후 디자인 가이드에 맞게 이미지로 변경할 예정
-                .frame(maxWidth: .infinity)
-        })
-    }
-    
-    @ViewBuilder
     func TabView() -> some View {
         switch viewModel.currentTab {
         case .Home:
             HomeView()
-        case .Calender: // TODO: 임시로 뷰 지정 -> 차후 개발될때마다 변경
-            CalendarView()
-        case .Report:
+        case .Calender:
+            CalendarView(viewModel: calendarViewModel)
+        case .Game:
             HomeView()
-        case .Setting:
+        case .Shop:
             HomeView()
+        case .My:
+            MyPageView(viewModel: viewModel)
         }
+    }
+}
+
+struct TabButton: View {
+    let tab: Tab
+    @Binding var currentTab: Tab
+    
+    @State private var isPressed = false
+    
+    private var iconName: String { return tab.iconName + (currentTab == tab ? "_B" : "") }
+    
+    var body: some View {
+        Button(action: {
+            withAnimation {
+                currentTab = tab
+            }
+        }, label: {
+            VStack(spacing: 6) {
+                Image(iconName)
+                
+                Text(tab.title)
+                    .font(size: 14)
+                    .foregroundColor(currentTab == tab ? .black : UIColor.Gray.gray300.color)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+            .scaleEffect(isPressed ? 0.8 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+        })
+        .buttonStyle(PlainButtonStyle())
+        .onLongPressGesture(minimumDuration: 0.1, pressing: { pressing in
+            withAnimation {
+                isPressed = pressing
+            }
+        }, perform: {})
     }
 }
 

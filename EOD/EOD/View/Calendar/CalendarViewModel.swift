@@ -9,10 +9,18 @@ import SwiftUI
 
 class CalendarViewModel: ObservableObject {
     @Published var date: Date = Date() // 우선 오늘 날짜로 세팅
-    
     @Published var selectDate: Date? = Date() // 현재 선택된 날짜 -> 초기값은 오늘날짜
-    
     @Published var selectEmotionType: EmotionType?
+    @Published var isToast: Bool = false
+    @Published var showEmotionSelectView: Bool = false
+    @Published var diary: Diary = Diary()
+    @Published var isShowAlert: Bool = false
+    @Published var showDiaryView: Bool = false
+    @Published var showMonthSelectModalView: Bool = false
+    
+    var original: Diary? // 수정진입이 최초 일기 정보
+    
+    var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
     
     let calendar = Calendar.current
 }
@@ -20,6 +28,10 @@ class CalendarViewModel: ObservableObject {
 /// Var
 extension CalendarViewModel {
     var emptyDiaryText: String { return selectDate == nil ? "날짜를 선택해주세요" : "작성한 일기가 없어요" }
+    
+    var existDiaryContents: Bool { return false } // TODO: 일단 임시로 false로 하드코딩
+    
+    var isModify: Bool { return original != nil }
 }
 
 /// Func
@@ -30,5 +42,9 @@ extension CalendarViewModel {
         components.month = month
         self.date = self.calendar.date(from: components) ?? Date()
         self.selectDate = nil
+    }
+    
+    func diaryAction() { // TODO: 네이밍 변경
+        self.showEmotionSelectView = self.diary.emotion == nil // 저장된 감정 표현이 없을 경우 노출
     }
 }

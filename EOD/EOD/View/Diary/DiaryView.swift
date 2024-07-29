@@ -10,57 +10,70 @@ import SwiftUI
 struct DiaryView: View {
     @Binding var isShow: Bool
     
-    @ObservedObject var viewModel: DiaryViewModel
-    
-    init(isShow: Binding<Bool>, viewModel: DiaryViewModel) {
-        self._isShow = isShow
-        self.viewModel = viewModel
-    }
+    @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading) {
-                NavigationBarView(isShow: $isShow)
-                
-                VStack(alignment: .leading) {
-                    Text("오늘 하루는 어땠나요?")
-                        .font(size: 28)
-                        .foregroundColor(Color.black)
+        GeometryReader(content: { geometry in
+            ZStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    NavigationBarView()
                     
-                    Text("\(currentDiaryDay) 오늘 기분은")
-                        .font(size: 24)
-                        .foregroundColor(Color.black)
-                    
-                    writeDiaryView()
-                    
-                    Spacer()
-                        .frame(height: 225)
-                    
-                    Button {
-                        isShow = false
-                    } label: {
-                        Text("저장하기")
-                            .font(size: 20)
-                            .foregroundColor(Color.white)
-                            .padding(.vertical, 16)
-                            .frame(maxWidth: .infinity)
-                            .background(Color.black)
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("오늘 하루는 어땠나요?")
+                            .font(size: 28)
+                            .foregroundColor(Color.black)
+                        
+                        Spacer().frame(height: 16)
+                        
+                        Text("\(currentDiaryDay) 오늘 기분은")
+                            .font(size: 24)
+                            .foregroundColor(Color.black)
+                        
+                        Spacer().frame(height: 20)
+                        
+                        writeDiaryView()
+                            .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
+                        
+                        Spacer()
+                            .frame(height: 241)
+                        
+                        Button {
+                            isShow = false
+                            withAnimation(.easeInOut(duration: 0.6)) {
+                                viewModel.isToast = true
+                            }
+                        } label: {
+                            Text("저장하기")
+                                .font(size: 20)
+                                .foregroundColor(Color.white)
+                                .padding(.vertical, 16)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.black)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(8.0)
+                        
                     }
-                    .frame(maxWidth: .infinity)
-                    .cornerRadius(8.0)
+                    .frame(maxHeight: .infinity)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 12)
                     
                 }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 12)
+                .padding(.bottom, geometry.safeAreaInsets.bottom)
+                .edgesIgnoringSafeArea(.bottom)
+                .background(UIColor.CommonBackground.background.color)
                 
+                if viewModel.showEmotionSelectView {
+                    EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
+                }
             }
-            .ignoresSafeArea(.keyboard)
-            .background(UIColor.CommonBackground.background.color)
+            .onDisappear {
+                viewModel.diary = Diary() // TODO: 나중에 확인
+            }
             
-            if viewModel.showEmotionSelectView {
-                EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
-            }
-        }
+        })
+        .ignoresSafeArea(.keyboard)
+        
     }
 }
 
@@ -140,23 +153,27 @@ private struct CustomTextView: UIViewRepresentable {
         
         textView.textColor = UIColor.black
         
-        // 키보드 위에 'Done' 버튼을 추가
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textView.frame.size.width, height: 50))
-        toolbar.items = [
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
-        ]
+        // Adding the toolbar
+        let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        textView.inputAccessoryView = toolbar
         
-        // 라인 높이 설정을 적용
-        updateTextView(textView, text: text)
+        // Setting the toolbar height
+        let customToolbarHeight: CGFloat = 36
+        var frame = toolbar.frame
+        frame.size.height = customToolbarHeight
+        toolbar.frame = frame
+        
+        // Adding buttons to the toolbar
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
+        toolbar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                         doneButton]
+        
+        textView.inputAccessoryView = toolbar
         
         return textView
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
-        updateTextView(uiView, text: text)
     }
     
     func makeCoordinator() -> CustomTextView.Coordinator {
@@ -190,21 +207,8 @@ private struct CustomTextView: UIViewRepresentable {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
-    
-    /// TextView의 NSAttributedString을 업데이트하여 라인 높이를 적용
-    private func updateTextView(_ textView: UITextView, text: String?) {
-        guard let text = text, let font = textView.font else { return }
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: font,
-            .paragraphStyle: paragraphStyle
-        ]
-        textView.attributedText = NSAttributedString(string: text, attributes: attributes)
-    }
 }
 
 #Preview {
-    DiaryView(isShow: .constant(false), viewModel: DiaryViewModel())
+    DiaryView(isShow: .constant(false), viewModel: CalendarViewModel())
 }
