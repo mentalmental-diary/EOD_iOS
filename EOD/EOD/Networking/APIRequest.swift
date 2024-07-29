@@ -153,7 +153,7 @@ extension APIRequest {
 
 extension APIRequest {
     
-    private class var userAccessToken: String { return "User-Agent" } // TODO: accessToken 이름 확인
+    private class var userAccessToken: String { return "X-AUTH-TOKEN" } // TODO: accessToken 이름 확인
     
     private class func createHeaders(with initialHeaders: HTTPHeaders?) -> HTTPHeaders {
         var headers: HTTPHeaders = initialHeaders ?? [:]

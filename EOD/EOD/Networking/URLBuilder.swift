@@ -31,7 +31,7 @@ public class UrlBuilder {
 extension UrlBuilder {
     
     fileprivate class func apiPath() -> String {
-        return "http://13.125.28.166/" // TODO: 향후에 해당 내용 추가해야함
+        return "http://110.165.18.141:8080/"
     }
     
     // 주소 앞에 /가 붙어있으면 제거한다.

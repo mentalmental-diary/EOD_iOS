@@ -76,7 +76,7 @@ extension MainTabView {
         case .Shop:
             HomeView()
         case .My:
-            HomeView()
+            MyPageView(viewModel: viewModel)
         }
     }
 }

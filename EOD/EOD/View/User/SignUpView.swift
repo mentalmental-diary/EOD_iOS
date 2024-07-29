@@ -268,9 +268,10 @@ extension SignUpView {
             Spacer().frame(height: 12)
             
             Button(action: {
-                if availableLoginButton {
-                    viewModel.loginAction() // TODO: 로그인 액션 생성
-                }
+                viewModel.signUpAction(email: inputEmail, password: inputPassword) // TODO: 회원가입 액션 생성
+//                if availableLoginButton {
+//                    viewModel.signUpAction(email: inputEmail, password: inputPassword) // TODO: 회원가입 액션 생성
+//                }
             }, label: {
                 Text("시작하기")
                     .font(size: 20)

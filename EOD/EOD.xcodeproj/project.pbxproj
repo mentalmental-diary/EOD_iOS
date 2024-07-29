@@ -36,6 +36,8 @@
 		CE8AD19D2C46195D00B3D9F9 /* short-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19A2C46195D00B3D9F9 /* short-loading.json */; };
 		CE8AD19E2C46195D00B3D9F9 /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
 		CE8AD19F2C46195D00B3D9F9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19C2C46195D00B3D9F9 /* splash.json */; };
+		CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */; };
+		CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
 		CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
 		CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
@@ -161,6 +163,8 @@
 		CE8AD19A2C46195D00B3D9F9 /* short-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "short-loading.json"; sourceTree = "<group>"; };
 		CE8AD19B2C46195D00B3D9F9 /* game-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "game-loading.json"; sourceTree = "<group>"; };
 		CE8AD19C2C46195D00B3D9F9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
+		CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkModel.swift; sourceTree = "<group>"; };
+		CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CEA422F72BE5022F00725E6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 			children = (
 				CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */,
 				CE6466BC2C167FBA00E03B5A /* Diary.swift */,
+				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 			children = (
 				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
 				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
+				CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -774,6 +780,7 @@
 				CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */,
 				CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */,
 				CEB7F0722AAC61D4001C99EA /* OSLogMimicFormatter.swift in Sources */,
+				CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */,
 				CEB7F08C2AAC61D5001C99EA /* ProcessIDLogFormatter.swift in Sources */,
 				CE77A9A62ACA929D00D9C58B /* LoginBootModule.swift in Sources */,
 				CEB7F0322AAC5FBB001C99EA /* String+Extension.swift in Sources */,
@@ -829,6 +836,7 @@
 				CEB7F07D2AAC61D5001C99EA /* OSLogRecorder.swift in Sources */,
 				CEB7F0792AAC61D5001C99EA /* XcodeTraceLogFormatter.swift in Sources */,
 				CEB7F0942AAC61D5001C99EA /* LogEntry.swift in Sources */,
+				CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
