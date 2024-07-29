@@ -10,15 +10,7 @@ import SwiftUI
 struct DiaryView: View {
     @Binding var isShow: Bool
     
-    @ObservedObject var viewModel: DiaryViewModel
-    
-    @Binding var isToast: Bool
-    
-    init(isShow: Binding<Bool>, isToast: Binding<Bool>, viewModel: DiaryViewModel) {
-        self._isShow = isShow
-        self._isToast = isToast
-        self.viewModel = viewModel
-    }
+    @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
         ZStack {
@@ -43,7 +35,7 @@ struct DiaryView: View {
                     Button {
                         isShow = false
                         withAnimation(.easeInOut(duration: 0.6)) {
-                            isToast = true
+                            viewModel.isToast = true
                         }
                     } label: {
                         Text("저장하기")
@@ -62,13 +54,16 @@ struct DiaryView: View {
                 .padding(.bottom, 12)
                 
             }
-            
             .background(UIColor.CommonBackground.background.color)
             
             if viewModel.showEmotionSelectView {
                 EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
             }
-        }.ignoresSafeArea(.keyboard)
+        }
+        .onDisappear {
+            viewModel.diary = Diary() // TODO: 나중에 확인 
+        }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
@@ -148,7 +143,6 @@ private struct CustomTextView: UIViewRepresentable {
         
         textView.textColor = UIColor.black
         
-        
         // Adding the toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -166,14 +160,10 @@ private struct CustomTextView: UIViewRepresentable {
         
         textView.inputAccessoryView = toolbar
         
-        // 라인 높이 설정을 적용
-        updateTextView(textView, text: text)
-        
         return textView
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
-        updateTextView(uiView, text: text)
     }
     
     func makeCoordinator() -> CustomTextView.Coordinator {
@@ -207,21 +197,8 @@ private struct CustomTextView: UIViewRepresentable {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
-    
-    /// TextView의 NSAttributedString을 업데이트하여 라인 높이를 적용
-    private func updateTextView(_ textView: UITextView, text: String?) {
-        guard let text = text, let font = textView.font else { return }
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: font,
-            .paragraphStyle: paragraphStyle
-        ]
-        textView.attributedText = NSAttributedString(string: text, attributes: attributes)
-    }
 }
 
 #Preview {
-    DiaryView(isShow: .constant(false), isToast: .constant(false), viewModel: DiaryViewModel())
+    DiaryView(isShow: .constant(false), viewModel: CalendarViewModel())
 }

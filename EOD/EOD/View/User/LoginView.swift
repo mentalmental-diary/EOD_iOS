@@ -40,7 +40,7 @@ struct LoginView: View {
                     .edgesIgnoringSafeArea(.bottom)
                     .background(UIColor.CommonBackground.background.color)
                     
-                }
+                }.toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
             }
             .ignoresSafeArea(.keyboard)
         })

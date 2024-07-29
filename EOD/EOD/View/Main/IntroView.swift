@@ -44,6 +44,7 @@ extension IntroView {
             
             Text("노른자의 세계에 오신 걸 환영해요!")
                 .font(size: 22)
+                .foregroundColor(.black)
             
             Button(action: {
                 initScreen = false

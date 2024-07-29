@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @ObservedObject var viewModel: CalendarViewModel = CalendarViewModel()
+    @ObservedObject var viewModel: CalendarViewModel
     
     @State var showMonthSelectModalView: Bool = false
     
@@ -80,7 +80,7 @@ struct CalendarView: View {
                 /// DiaryView로 이동
                 NavigationLink("", isActive: $showDiaryView) {
                     LazyView(
-                        DiaryView(isShow: $showDiaryView, isToast: $viewModel.isToast, viewModel: DiaryViewModel(selectDate: viewModel.selectDate)) // TODO: 등록 진입인지 수정 진입인진 이때 결정
+                        DiaryView(isShow: $showDiaryView, viewModel: viewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
                             .background(Color.white)
                             .navigationBarHidden(true)
                     )
@@ -131,6 +131,7 @@ extension CalendarView {
                 if viewModel.selectDate != nil {
                     Button(action: {
                         showDiaryView = true
+                        viewModel.diaryAction()
                     }, label: {
                         Text("일기쓰기")
                             .font(size: 14)
@@ -218,5 +219,5 @@ extension CalendarView {
 }
 
 #Preview {
-    CalendarView()
+    CalendarView(viewModel: CalendarViewModel())
 }

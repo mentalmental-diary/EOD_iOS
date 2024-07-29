@@ -13,6 +13,8 @@ class MainViewModel: ObservableObject {
     @Published var currentTab: Tab = .Home
     @Published var confirmEmail: Bool = false
     @Published var confirmTerms: Bool = false
+    @Published var isToast: Bool = false
+    var toastMessage: String = ""
     
     var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
     var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해
@@ -35,6 +37,11 @@ extension MainViewModel {
                 self?.isLogin = true
                 break
             case .failure(let error):
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.toastMessage = error.localizedDescription
+                    self?.isToast = true
+                }
+                
                 debugLog("error: \(error)")
             }
         })
@@ -49,6 +56,11 @@ extension MainViewModel {
                 self?.isLogin = true
                 break
             case .failure(let error):
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.toastMessage = error.localizedDescription
+                    self?.isToast = true
+                }
+                
                 debugLog("error: \(error)")
             }
         })
@@ -87,5 +99,17 @@ enum Tab: String {
         case .Shop: return "icon_shop"
         case .My: return "icon_my"
         }
+    }
+}
+
+/// Swipe Back
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
     }
 }

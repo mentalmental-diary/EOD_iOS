@@ -26,7 +26,7 @@ struct ToastView: View {
                             .foregroundColor(Color.white)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 12)
+                    .padding(.horizontal, 12)
                     .padding(.vertical, 10)
                     .background(Color(red: 65/255, green: 58/255, blue: 53/255, opacity: 0.7))
                     .cornerRadius(8)

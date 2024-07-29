@@ -39,6 +39,7 @@ struct SignUpView: View {
                     .padding(.bottom, proxy.safeAreaInsets.bottom)
                     .edgesIgnoringSafeArea(.bottom)
                     .background(UIColor.CommonBackground.background.color)
+                    .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
                     
                     if isShowAlert {
                         Alert(showAlert: $isShowAlert, title: "회원 가입을 그만 둘까요?", message: "그만 두기를 누르면 작성한 내용이 저장되지 않아요", accept: "그만 두기", acceptAction: {

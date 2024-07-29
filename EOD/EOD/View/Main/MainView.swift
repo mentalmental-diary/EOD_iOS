@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject private var viewModel: MainViewModel = MainViewModel()
+    @ObservedObject var viewModel: MainViewModel = MainViewModel()
     
     var body: some View {
         GeometryReader { proxy in
@@ -17,7 +17,7 @@ struct MainView: View {
             } else { // 로그인 상태가 아닐경우
                 IntroView(viewModel: viewModel)
             }
-        }
+        }.ignoresSafeArea(.keyboard)
     }
 }
 

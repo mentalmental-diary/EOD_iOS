@@ -9,35 +9,31 @@ import SwiftUI
 
 struct MainTabView: View {
     @ObservedObject var viewModel: MainViewModel
-    
-    init(viewModel: MainViewModel) {
-        self.viewModel = viewModel
-    }
+    @StateObject private var calendarViewModel = CalendarViewModel()
     
     var body: some View {
         GeometryReader { geo in
-            ZStack {
-                VStack {
-                    TabView()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    HStack(spacing: 0) {
-                        TabButton(tab: .Home)
-                        TabButton(tab: .Calender)
-                        TabButton(tab: .Game)
-                        TabButton(tab: .Shop)
-                        TabButton(tab: .My)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.bottom, geo.safeAreaInsets.bottom)
-                    .padding(.top, 12)
-                    .background(.white)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
+            VStack {
+                TabView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                HStack(spacing: 0) {
+                    TabButton(tab: .Home)
+                    TabButton(tab: .Calender)
+                    TabButton(tab: .Game)
+                    TabButton(tab: .Shop)
+                    TabButton(tab: .My)
                 }
-                .edgesIgnoringSafeArea([.top, .bottom])
+                .frame(maxWidth: .infinity)
+                .padding(.bottom, geo.safeAreaInsets.bottom)
+                .padding(.top, 12)
+                .background(.white)
+                .edgesIgnoringSafeArea(.bottom)
+                .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
             }
+            .edgesIgnoringSafeArea([.top, .bottom])
         }
+        .ignoresSafeArea(.keyboard)
         .background(UIColor.CommonBackground.background.color)
     }
 }
@@ -70,7 +66,7 @@ extension MainTabView {
         case .Home:
             HomeView()
         case .Calender: // TODO: 임시로 뷰 지정 -> 차후 개발될때마다 변경
-            CalendarView()
+            CalendarView(viewModel: calendarViewModel)
         case .Game:
             HomeView()
         case .Shop:
