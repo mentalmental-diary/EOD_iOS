@@ -17,7 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        Thread.sleep(forTimeInterval: 0.1) // TODO: 여기서 최대 3초 핸들링 진행 -> 근데 굳이 그건 필요 없을 것 같고 적당한 시간 런치로 보여준다 느낌으로 진행 -> 짧아도 괜찮을듯
+        Thread.sleep(forTimeInterval: 0.1)
         
         return true
     }
