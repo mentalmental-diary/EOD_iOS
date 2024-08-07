@@ -14,8 +14,8 @@ struct MainTabView: View {
     var body: some View {
         NavigationView(content: {
             GeometryReader { geo in
-                ZStack{
-                    VStack {
+                ZStack {
+                    VStack(spacing: 0) {
                         TabView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
@@ -89,18 +89,18 @@ struct TabButton: View {
             }
         }, label: {
             VStack(spacing: 6) {
-                Image(iconName)
+                Image(iconName).scaleEffect(isPressed ? 0.8 : 1.0)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
                 
                 Text(tab.title)
                     .font(size: 14)
                     .foregroundColor(currentTab == tab ? .black : UIColor.Gray.gray300.color)
             }
             .frame(maxWidth: .infinity, alignment: .center)
-            .scaleEffect(isPressed ? 0.8 : 1.0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0), value: isPressed)
+            
         })
         .buttonStyle(PlainButtonStyle())
-        .onLongPressGesture(minimumDuration: 0.1, pressing: { pressing in
+        .onLongPressGesture(minimumDuration: 0.01, pressing: { pressing in
             withAnimation {
                 isPressed = pressing
             }
