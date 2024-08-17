@@ -50,7 +50,7 @@ struct MainTabView: View {
             }
             .ignoresSafeArea(.keyboard)
             .background(UIColor.CommonBackground.background.color)
-        })
+        }).navigationBarHidden(true)
         
     }
 }

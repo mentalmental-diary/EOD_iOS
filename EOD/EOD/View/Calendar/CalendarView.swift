@@ -11,67 +11,63 @@ struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .top) {
-                VStack(spacing: 0) {
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            viewModel.showMonthSelectModalView = true
-                        }, label: {
-                            HStack(spacing: 4) {
-                                Text(monthYearString(from: viewModel.date))
-                                    .font(size: 26)
-                                    .foregroundColor(Color.black)
-                                Image("polygon")
-                            }
-                        })
-                        Spacer()
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    viewModel.showMonthSelectModalView = true
+                }, label: {
+                    HStack(spacing: 4) {
+                        Text(monthYearString(from: viewModel.date))
+                            .font(size: 26)
+                            .foregroundColor(Color.black)
+                        Image("polygon")
                     }
-                    
-                    let daysInMonth = days(for: viewModel.date)
-                    let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
-                    
-                    Spacer().frame(height: 21)
-                    
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
-                        // 요일 헤더
-                        ForEach(daysOfWeek, id: \.self) { day in
-                            Text(day)
-                                .font(size: 16)
-                                .foregroundColor(Color.black)
-                        }
-                    }
-                    
-                    Spacer().frame(height: 12)
-                    
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
-                        
-                        // 날짜 그리드
-                        ForEach(daysInMonth, id: \.self) { day in
-                            CalendarCellView(day: day)
-                                .onTapGesture {
-                                    if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
-                                        viewModel.selectDate = date
-                                    }
-                                }
-                        }
-                    }
-                    
-                    Spacer().frame(height: 24)
-                    
-                    diaryView()
-                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 44)
-                .padding(.bottom, 12)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
-                
+                })
+                Spacer()
             }
-            .background(UIColor.CommonBackground.background.color)
+            
+            let daysInMonth = days(for: viewModel.date)
+            let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+            
+            Spacer().frame(height: 21)
+            
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                // 요일 헤더
+                ForEach(daysOfWeek, id: \.self) { day in
+                    Text(day)
+                        .font(size: 16)
+                        .foregroundColor(Color.black)
+                }
+            }
+            
+            Spacer().frame(height: 12)
+            
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
+                
+                // 날짜 그리드
+                ForEach(daysInMonth, id: \.self) { day in
+                    CalendarCellView(day: day)
+                        .onTapGesture {
+                            if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                viewModel.selectDate = date
+                            }
+                        }
+                }
+            }
+            
+            Spacer().frame(height: 24)
+            
+            diaryView()
+                .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
         }
+        .padding(.horizontal, 20)
+            .padding(.top, 44)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
+        .background(UIColor.CommonBackground.background.color)
+        .background(Color.red)
     }
 }
 
