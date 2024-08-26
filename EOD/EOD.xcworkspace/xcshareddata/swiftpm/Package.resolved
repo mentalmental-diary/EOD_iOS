@@ -1,5 +1,5 @@
 {
-  "originHash" : "91709721272de950830a9dce13a886093bba315aa0c2fe2aeede4d964d4cff65",
+  "originHash" : "aceca0c973d8efe8d069cb81bf522ace08d6a1258b48197a08fc849f34cd8f80",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,15 +17,6 @@
       "state" : {
         "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
         "version" : "4.5.0"
-      }
-    },
-    {
-      "identity" : "swifterswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwifterSwift/SwifterSwift.git",
-      "state" : {
-        "revision" : "39fa28c90a3ebe3d53f80289304fd880cf2c42d0",
-        "version" : "6.2.0"
       }
     }
   ],
