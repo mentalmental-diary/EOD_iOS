@@ -16,7 +16,7 @@ struct EmotionSelectView: View {
     
     init(viewModel: CalendarViewModel, showModalView: Binding<Bool>, isShowDiaryView: Binding<Bool>) {
         self.viewModel = viewModel
-        self.selectYear = viewModel.diary.date?.year ?? 2024
+        self.selectYear = viewModel.diary.writeDate?.year ?? 2024
         self._showModalView = showModalView
         self._isShowDiaryView = isShowDiaryView
     }

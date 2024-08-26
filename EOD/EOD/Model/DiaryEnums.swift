@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum EmotionType: String, CaseIterable, CustomStringConvertible, Decodable {
+public enum EmotionType: Int, CaseIterable, CustomStringConvertible, Decodable {
     case happy
     case angry
     case relax

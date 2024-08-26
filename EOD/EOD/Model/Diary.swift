@@ -8,7 +8,12 @@
 import Foundation
 
 struct Diary {
-    var date: Date? = Date()
+    var writeDate: Date? = Date()
     var emotion: EmotionType?
-    var diaryContents: String? = "" // 일기 내용 (최대 2000자)
+    var contents: String? = "" // 일기 내용 (최대 2000자)
+    var id: Int?
+    var userNo: Int?
+    var seq: Int?
+    var isCustomEmotion: Bool?
+    var title: String?
 }

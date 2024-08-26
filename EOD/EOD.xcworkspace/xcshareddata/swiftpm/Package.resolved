@@ -1,5 +1,5 @@
 {
-  "originHash" : "855aa353c665c282fefc58d02c8bd81cf1d79ec212b062fa3674961862f95f92",
+  "originHash" : "91709721272de950830a9dce13a886093bba315aa0c2fe2aeede4d964d4cff65",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
         "branch" : "master",
-        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a"
+        "revision" : "9b5bd5be3c2d451006ca16b286cf1ed30f434b9c"
       }
     },
     {

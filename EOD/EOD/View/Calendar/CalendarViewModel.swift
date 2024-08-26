@@ -18,6 +18,8 @@ class CalendarViewModel: ObservableObject {
     @Published var showDiaryView: Bool = false
     @Published var showMonthSelectModalView: Bool = false
     
+    private var networkModel: CalenderNetworkModel = CalenderNetworkModel()
+    
     var original: Diary? // 수정진입이 최초 일기 정보
     
     var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
