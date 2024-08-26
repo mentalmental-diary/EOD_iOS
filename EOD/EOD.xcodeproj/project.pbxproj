@@ -45,6 +45,9 @@
 		CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
 		CE8F1E7E2CE829EA00173B1F /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */; };
 		CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95A6642C6302D000BF33F7 /* SplashView.swift */; };
+		CE979DE62C79916100D0ED53 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DE52C79916100D0ED53 /* GameView.swift */; };
+		CE979DF32C7C164500D0ED53 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE979DF62C7C166400D0ED53 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DF52C7C166400D0ED53 /* GameManager.swift */; };
 		CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */; };
 		CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
@@ -134,6 +137,9 @@
 		CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
+		CEEF2BFC2C7C47D900A21686 /* SwifterSwiftCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF2BFB2C7C47D900A21686 /* SwifterSwiftCode.swift */; };
+		CEEF2BFF2C7C490E00A21686 /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF2BFE2C7C490E00A21686 /* SwifterSwift+Date.swift */; };
+		CEEF2C012C7C4AB100A21686 /* SwifterSwift+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEF2C002C7C4AB100A21686 /* SwifterSwift+String.swift */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -155,6 +161,20 @@
 			remoteInfo = EOD;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE979DF42C7C164500D0ED53 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE979DF32C7C164500D0ED53 /* UnityFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
@@ -196,6 +216,10 @@
 		CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		CE95A6642C6302D000BF33F7 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE979DE52C79916100D0ED53 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE979DF52C7C166400D0ED53 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNetworkModel.swift; sourceTree = "<group>"; };
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
@@ -285,6 +309,9 @@
 		CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Etc.swift"; sourceTree = "<group>"; };
 		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CEEF2BFB2C7C47D900A21686 /* SwifterSwiftCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwifterSwiftCode.swift; sourceTree = "<group>"; };
+		CEEF2BFE2C7C490E00A21686 /* SwifterSwift+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Date.swift"; sourceTree = "<group>"; };
+		CEEF2C002C7C4AB100A21686 /* SwifterSwift+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+String.swift"; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -460,6 +487,24 @@
 			path = json;
 			sourceTree = "<group>";
 		};
+		CE979DDB2C7990A700D0ED53 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */,
+				CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE979DE22C79914800D0ED53 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				CE979DE52C79916100D0ED53 /* GameView.swift */,
+				CE979DF52C7C166400D0ED53 /* GameManager.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		CEA422F22BE4FCA300725E6B /* ColorSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -497,6 +542,7 @@
 				CEB7F0082AAC5026001C99EA /* EODTests */,
 				CEB7F0122AAC5027001C99EA /* EODUITests */,
 				CEB7EFF62AAC5025001C99EA /* Products */,
+				CE979DDB2C7990A700D0ED53 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -513,6 +559,7 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CE979DE22C79914800D0ED53 /* Game */,
 				CE4318152BEBBFAD00880898 /* Info.plist */,
 				CE4318122BEBBF3800880898 /* Resource */,
 				CE77A9B32ACAD4F600D9C58B /* View */,
@@ -573,6 +620,7 @@
 				CEC6D7DC2C7C511300FFEC9F /* SwifterSwift */,
 				CEB7F0A02AAC6418001C99EA /* Extension */,
 				CEB7F0A32AAC661D001C99EA /* RegexParser.swift */,
+				CEEF2BFB2C7C47D900A21686 /* SwifterSwiftCode.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -705,6 +753,7 @@
 				CEB7EFF12AAC5025001C99EA /* Sources */,
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
+				CE979DF42C7C164500D0ED53 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -917,6 +966,7 @@
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
 				CE06C3962CC5DA4C0075A9C0 /* ShowRoomNetworkModel.swift in Sources */,
 				CEB7F09D2AAC62C1001C99EA /* LoggerBootModule.swift in Sources */,
+				CE979DE62C79916100D0ED53 /* GameView.swift in Sources */,
 				CEB7F0902AAC61D5001C99EA /* RotatingLogFileRecorder.swift in Sources */,
 				CEB7F0292AAC5122001C99EA /* URLBuilder.swift in Sources */,
 				CEB7F0862AAC61D5001C99EA /* BasicLogConfiguration.swift in Sources */,
@@ -924,7 +974,9 @@
 				CEB7F0282AAC5122001C99EA /* CommonError.swift in Sources */,
 				CEB7F02A2AAC5122001C99EA /* APIRequest.swift in Sources */,
 				CEB7F07F2AAC61D5001C99EA /* LogFormatter.swift in Sources */,
+				CEEF2BFF2C7C490E00A21686 /* SwifterSwift+Date.swift in Sources */,
 				CEB7F0772AAC61D5001C99EA /* DelimiterLogFormatter.swift in Sources */,
+				CEEF2BFC2C7C47D900A21686 /* SwifterSwiftCode.swift in Sources */,
 				CEB7F0822AAC61D5001C99EA /* LogChannel.swift in Sources */,
 				CEC6D7E42C7C51BE00FFEC9F /* SwifterSwift+Etc.swift in Sources */,
 				CE77A9BD2ACD269B00D9C58B /* NavigationBarView.swift in Sources */,
@@ -940,8 +992,10 @@
 				CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */,
 				CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */,
 				CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */,
+				CEEF2C012C7C4AB100A21686 /* SwifterSwift+String.swift in Sources */,
 				CEB7F0712AAC61D4001C99EA /* PayloadTraceLogFormatter.swift in Sources */,
 				CEB7F08B2AAC61D5001C99EA /* BufferedLogRecorder.swift in Sources */,
+				CE979DF62C7C166400D0ED53 /* GameManager.swift in Sources */,
 				CEB7F0A22AAC6424001C99EA /* Alamofire+Extension.swift in Sources */,
 				CEAAF8022CD7747800EFBDA9 /* RoomThemeEnums.swift in Sources */,
 				CEB7F0372AAC6194001C99EA /* Logger.swift in Sources */,
