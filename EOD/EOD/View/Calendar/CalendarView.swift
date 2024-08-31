@@ -46,11 +46,13 @@ struct CalendarView: View {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
                 
                 // 날짜 그리드
-                ForEach(daysInMonth, id: \.self) { day in
+                ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
                     CalendarCellView(day: day)
                         .onTapGesture {
-                            if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
-                                viewModel.selectDate = date
+                            if day != 0 {
+                                if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                    viewModel.selectDate = date
+                                }
                             }
                         }
                 }
@@ -62,12 +64,11 @@ struct CalendarView: View {
                 .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
         }
         .padding(.horizontal, 20)
-            .padding(.top, 44)
+        .padding(.top, 44)
         .padding(.bottom, 12)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
         .background(UIColor.CommonBackground.background.color)
-        .background(Color.red)
     }
 }
 

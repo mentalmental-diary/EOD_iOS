@@ -33,7 +33,7 @@ struct MainTabView: View {
                         .edgesIgnoringSafeArea(.bottom)
                         .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
                     }
-                    .edgesIgnoringSafeArea([.top, .bottom])
+                    .edgesIgnoringSafeArea(.bottom)
                     
                     if calendarViewModel.showMonthSelectModalView {
                         MonthSelectModalView(viewModel: calendarViewModel, showModalView: $calendarViewModel.showMonthSelectModalView)

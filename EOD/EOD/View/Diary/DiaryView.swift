@@ -154,7 +154,7 @@ private struct CustomTextView: UIViewRepresentable {
         textView.textColor = UIColor.black
         
         // Adding the toolbar
-        let toolbar = UIToolbar()
+        let toolbar = ShadowToolbar()
         toolbar.sizeToFit()
         
         // Setting the toolbar height
@@ -162,6 +162,7 @@ private struct CustomTextView: UIViewRepresentable {
         var frame = toolbar.frame
         frame.size.height = customToolbarHeight
         toolbar.frame = frame
+        toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
         
         // Adding buttons to the toolbar
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
@@ -206,6 +207,25 @@ private struct CustomTextView: UIViewRepresentable {
         @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
+    }
+}
+
+class ShadowToolbar: UIToolbar {
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Setting the toolbar shadow
+        self.layer.shadowColor = UIColor(red: 242/255, green: 242/255, blue: 229/255, alpha: 1).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: -1) // X: 0, Y: -1
+        self.layer.shadowRadius = 6 / 2.0 // Blur value is halved for shadowRadius
+        self.layer.shadowOpacity = 1.0
+        
+        // Customizing the shadow spread by setting shadowPath
+        let spread: CGFloat = 2
+        let rect = self.bounds.insetBy(dx: -spread, dy: -spread)
+        self.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+        self.layer.masksToBounds = false
     }
 }
 
