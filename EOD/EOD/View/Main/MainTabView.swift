@@ -23,7 +23,7 @@ struct MainTabView: View {
                             TabButton(tab: .Home, currentTab: $viewModel.currentTab)
                             TabButton(tab: .Calender, currentTab: $viewModel.currentTab)
                             TabButton(tab: .Game, currentTab: $viewModel.currentTab)
-                            TabButton(tab: .Shop, currentTab: $viewModel.currentTab)
+//                            TabButton(tab: .Shop, currentTab: $viewModel.currentTab)
                             TabButton(tab: .My, currentTab: $viewModel.currentTab)
                         }
                         .frame(maxWidth: .infinity)
@@ -66,8 +66,8 @@ extension MainTabView {
             CalendarView(viewModel: calendarViewModel)
         case .Game:
             HomeView()
-        case .Shop:
-            HomeView()
+//        case .Shop:
+//            HomeView()
         case .My:
             MyPageView(viewModel: viewModel)
         }

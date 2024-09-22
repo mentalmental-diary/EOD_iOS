@@ -8,7 +8,13 @@
 import Foundation
 
 class CalenderNetworkModel {
-    func fetchMonthDiary(completion: @escaping (Result<[Diary], Error>) -> Void) {
+    func fetchMonthDiary(yearMonth: String, completion: @escaping (Result<DiarySummaryModel, Error>) -> Void) {
+        let api = "api-external/diary/month"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
+    
+    func uploadDiary(uploadDiary: Diary, completion: @escaping (() -> Void)) {
         
     }
 }

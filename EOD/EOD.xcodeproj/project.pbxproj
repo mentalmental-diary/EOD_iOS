@@ -114,6 +114,7 @@
 		CEC6D7E02C7C513F00FFEC9F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
 		CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
 		CEC6D7E42C7C51BE00FFEC9F /* SwifterSwift+Etc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */; };
+		CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -247,6 +248,7 @@
 		CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Date.swift"; sourceTree = "<group>"; };
 		CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Double.swift"; sourceTree = "<group>"; };
 		CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Etc.swift"; sourceTree = "<group>"; };
+		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -306,6 +308,7 @@
 				CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */,
 				CE6466BC2C167FBA00E03B5A /* Diary.swift */,
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
+				CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -776,6 +779,7 @@
 				CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */,
 				CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
+				CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
 				CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */,

@@ -96,7 +96,7 @@ extension DiaryView {
             
             ZStack(alignment: .topLeading) {
                 HStack(spacing: 0) {
-                    if viewModel.diary.contents?.count == 0 {
+                    if viewModel.diary.content?.count == 0 {
                         Text("일기를 작성해주세요. (최대 2,000자)")
                             .font(size: 16)
                             .foregroundColor(UIColor.Gray.gray500.color)
@@ -107,7 +107,7 @@ extension DiaryView {
                 .padding(.leading, 3)
                 .allowsHitTesting(false)
                 
-                CustomTextView(text: $viewModel.diary.contents)
+                CustomTextView(text: $viewModel.diary.content)
                     .frame(minHeight: 16)
             }
             

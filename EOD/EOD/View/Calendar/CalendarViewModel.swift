@@ -20,11 +20,19 @@ class CalendarViewModel: ObservableObject {
     
     private var networkModel: CalenderNetworkModel = CalenderNetworkModel()
     
+    private var uploadDiary: Diary?
+    
     var original: Diary? // 수정진입이 최초 일기 정보
     
     var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
     
+    var diarySummaryList: [DiarySummary]?
+    
     let calendar = Calendar.current
+    
+    init() {
+        fetchMonthDiary()
+    }
 }
 
 /// Var
@@ -48,5 +56,30 @@ extension CalendarViewModel {
     
     func diaryAction() { // TODO: 네이밍 변경
         self.showEmotionSelectView = self.diary.emotion == nil // 저장된 감정 표현이 없을 경우 노출
+    }
+    
+    private func fetchMonthDiary() {
+        let calendar = Calendar.current
+
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        
+        let yearMonth = String(format: "%04d%02d", year, month)
+
+        networkModel.fetchMonthDiary(yearMonth: yearMonth, completion: { [weak self] result in
+            debugLog("월 달력 정보 호출 API완료 result: \(result)")
+            switch result {
+            case .success(let summaryModel):
+                self?.diarySummaryList = summaryModel.list
+                
+                debugLog("호출된 정보 확인 : \(summaryModel.list)")
+            case .failure(_):
+                break
+            }
+        })
+    }
+    
+    func uploadDiaryAction() {
+        
     }
 }

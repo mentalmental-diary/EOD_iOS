@@ -17,8 +17,13 @@ struct CalendarCellView: View {
                 .foregroundColor(.clear)
         } else {
             VStack(spacing: 2) {
-                Image(emotionType?.imageName ?? "icon_default")
-                    .frame(width: 36, height: 34)
+                if day == today {
+                    Image(emotionType?.imageName ?? "icon_today")
+                        .frame(width: 36, height: 34)
+                } else {
+                    Image(emotionType?.imageName ?? "icon_default")
+                        .frame(width: 36, height: 34)
+                }
                 
                 Text("\(day)")
                     .font(size: 12)
@@ -26,6 +31,16 @@ struct CalendarCellView: View {
                     .background(Color.clear)
             }
         }
+    }
+}
+
+extension CalendarCellView {
+    private var today: Int {
+        let calendar = Calendar.current
+
+        let day = calendar.component(.day, from: Date())
+        
+        return day
     }
 }
 
