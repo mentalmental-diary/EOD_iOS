@@ -38,7 +38,7 @@
 		CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */; };
 		CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
 		CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95A6642C6302D000BF33F7 /* SplashView.swift */; };
-		CE979DCF2C797DCA00D0ED53 /* CalenderNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalenderNetworkModel.swift */; };
+		CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */; };
 		CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
 		CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
@@ -170,7 +170,7 @@
 		CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkModel.swift; sourceTree = "<group>"; };
 		CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		CE95A6642C6302D000BF33F7 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
-		CE979DCE2C797DCA00D0ED53 /* CalenderNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderNetworkModel.swift; sourceTree = "<group>"; };
+		CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNetworkModel.swift; sourceTree = "<group>"; };
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CEA422F72BE5022F00725E6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 				CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */,
 				CEA423012BE50D4800725E6B /* CalendarViewModel.swift */,
 				CE4318192BECC82500880898 /* MonthSelectModalView.swift */,
-				CE979DCE2C797DCA00D0ED53 /* CalenderNetworkModel.swift */,
+				CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -791,7 +791,7 @@
 				CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */,
 				CEB7F0852AAC61D5001C99EA /* ProcessNameLogFormatter.swift in Sources */,
 				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
-				CE979DCF2C797DCA00D0ED53 /* CalenderNetworkModel.swift in Sources */,
+				CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */,
 				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
 				CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */,

@@ -111,8 +111,7 @@ extension CalendarView {
                 
                 if viewModel.selectDate != nil {
                     Button(action: {
-                        viewModel.showDiaryView = true
-                        viewModel.diaryAction()
+                        viewModel.showDiaryViewAction()
                     }, label: {
                         Text("일기쓰기")
                             .font(size: 14)

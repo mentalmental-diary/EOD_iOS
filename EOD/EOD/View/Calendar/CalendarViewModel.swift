@@ -18,7 +18,7 @@ class CalendarViewModel: ObservableObject {
     @Published var showDiaryView: Bool = false
     @Published var showMonthSelectModalView: Bool = false
     
-    private var networkModel: CalenderNetworkModel = CalenderNetworkModel()
+    private var networkModel: CalendarNetworkModel = CalendarNetworkModel()
     
     private var uploadDiary: Diary?
     
@@ -54,8 +54,10 @@ extension CalendarViewModel {
         self.selectDate = nil
     }
     
-    func diaryAction() { // TODO: 네이밍 변경
-        self.showEmotionSelectView = self.diary.emotion == nil // 저장된 감정 표현이 없을 경우 노출
+    func showDiaryViewAction() {
+        self.showDiaryView = true
+        self.showEmotionSelectView = self.diary.emotion == nil
+        self.diary.writeDate = self.date
     }
     
     private func fetchMonthDiary() {

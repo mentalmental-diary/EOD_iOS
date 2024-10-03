@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DiaryView: View {
-    @Binding var isShow: Bool
-    
     @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
@@ -38,7 +36,7 @@ struct DiaryView: View {
                             .frame(height: 241)
                         
                         Button {
-                            isShow = false
+                            viewModel.showDiaryView = false
                             withAnimation(.easeInOut(duration: 0.6)) {
                                 viewModel.isToast = true
                             }
@@ -64,7 +62,7 @@ struct DiaryView: View {
                 .background(UIColor.CommonBackground.background.color)
                 
                 if viewModel.showEmotionSelectView {
-                    EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
+                    EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $viewModel.showDiaryView)
                 }
             }
             .onDisappear {
@@ -73,7 +71,6 @@ struct DiaryView: View {
             
         })
         .ignoresSafeArea(.keyboard)
-        
     }
 }
 
@@ -230,5 +227,5 @@ class ShadowToolbar: UIToolbar {
 }
 
 #Preview {
-    DiaryView(isShow: .constant(false), viewModel: CalendarViewModel())
+    DiaryView(viewModel: CalendarViewModel())
 }
