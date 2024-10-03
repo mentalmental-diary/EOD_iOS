@@ -22,6 +22,8 @@ class UserNetworkModel {
         let request = APIRequest.request(api: api, method: .post, requestParameters: param).0
         
         request.response(completionHandler: { [weak self] response in
+            
+            debugLog("로그인 API호출 완료 response: \(response)")
             guard let accessToken = self?.fetchAccessToken(from: response) else {
                 let error = response.parsedError
                 completion(.failure(error))

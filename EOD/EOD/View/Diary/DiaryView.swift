@@ -36,10 +36,7 @@ struct DiaryView: View {
                             .frame(height: 241)
                         
                         Button {
-                            viewModel.showDiaryView = false
-                            withAnimation(.easeInOut(duration: 0.6)) {
-                                viewModel.isToast = true
-                            }
+                            viewModel.uploadDiaryAction()
                         } label: {
                             Text("저장하기")
                                 .font(size: 20)

@@ -28,6 +28,8 @@ class CalendarViewModel: ObservableObject {
     
     var diarySummaryList: [DiarySummary]?
     
+    var toastMessage: String = ""
+    
     let calendar = Calendar.current
     
     init() {
@@ -82,6 +84,21 @@ extension CalendarViewModel {
     }
     
     func uploadDiaryAction() {
+        networkModel.uploadDiary(uploadDiary: diary, completion: { [weak self] result in
+            guard let error = result.error else {
+                self?.showDiaryView = false
+                self?.toastMessage = "일기가 저장되었어요!"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+                return
+            }
+            
+            self?.toastMessage = "일기 저장시 오류가 발생했습니다. error: \(error)"
+            withAnimation(.easeInOut(duration: 0.6)) {
+                self?.isToast = true
+            }
+        })
         
     }
 }

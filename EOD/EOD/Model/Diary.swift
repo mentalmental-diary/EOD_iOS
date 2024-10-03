@@ -8,11 +8,12 @@
 import Foundation
 
 struct Diary: Decodable {
-    var writeDate: Date? = Date()
-    var emotion: EmotionType?
-    var content: String? = "" // 일기 내용 (최대 2000자)
     var id: Int?
     var userNo: Int?
+    var writeDate: Date? = Date()
     var seq: Int?
-    var isCustomEmotion: Bool?
+    var isCustomEmotion: Bool? = false // TODO: 나중에 바뀔 수 있는 변수
+    var emotion: EmotionType?
+    var title: String? = "" // TODO: 추후 삭제 예정
+    var content: String? = "" // 일기 내용 (최대 2000자)
 }

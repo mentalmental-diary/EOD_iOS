@@ -117,6 +117,8 @@
 		CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
+		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
+		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -250,6 +252,8 @@
 		CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Etc.swift"; sourceTree = "<group>"; };
 		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -593,6 +597,8 @@
 		CEB7F0A02AAC6418001C99EA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				CEE906012CAEB35B00C69077 /* Int+Extension.swift */,
+				CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */,
 				CEB7F02F2AAC5594001C99EA /* Result+Extension.swift */,
 				CEB7F0312AAC5FBB001C99EA /* String+Extension.swift */,
 				CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */,
@@ -828,6 +834,7 @@
 				CEB7F0912AAC61D5001C99EA /* RotatingLogFileConfiguration.swift in Sources */,
 				CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */,
 				CEB7F0762AAC61D5001C99EA /* ParsableLogFormatter.swift in Sources */,
+				CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */,
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
 				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
@@ -863,6 +870,7 @@
 				CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */,
 				CEB7F07D2AAC61D5001C99EA /* OSLogRecorder.swift in Sources */,
 				CEB7F0792AAC61D5001C99EA /* XcodeTraceLogFormatter.swift in Sources */,
+				CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */,
 				CEB7F0942AAC61D5001C99EA /* LogEntry.swift in Sources */,
 				CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */,
 			);

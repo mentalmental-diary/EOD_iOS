@@ -67,7 +67,7 @@ struct CalendarView: View {
         .padding(.top, 44)
         .padding(.bottom, 12)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
+        .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
         .background(UIColor.CommonBackground.background.color)
     }
 }
