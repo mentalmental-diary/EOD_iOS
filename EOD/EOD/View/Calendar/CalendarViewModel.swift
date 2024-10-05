@@ -9,7 +9,7 @@ import SwiftUI
 
 class CalendarViewModel: ObservableObject {
     @Published var date: Date = Date() // 우선 오늘 날짜로 세팅
-    @Published var selectDate: Date? = Date() // 현재 선택된 날짜 -> 초기값은 오늘날짜
+    @Published var selectDate: Date? = nil // 현재 선택된 날짜
     @Published var selectEmotionType: EmotionType?
     @Published var isToast: Bool = false
     @Published var showEmotionSelectView: Bool = false
@@ -26,7 +26,7 @@ class CalendarViewModel: ObservableObject {
     
     var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
     
-    var diarySummaryList: [DiarySummary]?
+    var diarySummaryList: [Int: DiarySummary?] = [:]
     
     var toastMessage: String = ""
     
@@ -62,6 +62,29 @@ extension CalendarViewModel {
         self.diary.writeDate = self.date
     }
     
+    func groupEntriesByDay(diarySummaryList: [DiarySummary]) -> [Int: DiarySummary?] { // TODO: 네이밍 변경, 기능 확인
+        var groupedEntries = [Int: DiarySummary?]()
+        
+        // 해당 월의 총 일수 계산
+        guard let range = calendar.range(of: .day, in: .month, for: self.date) else {
+            return groupedEntries
+        }
+        
+        // 해당 월의 모든 날짜를 nil로 초기화
+        for day in range {
+            groupedEntries[day] = nil
+        }
+        
+        for entry in diarySummaryList {
+            // 일기를 작성한 날짜의 '일(day)' 값을 가져옴
+            let day = calendar.component(.day, from: entry.writeDate)
+            // 특정 일자에 해당하는 DiarySummary를 저장, 여러 개면 마지막 값으로 덮어씀
+            groupedEntries[day] = entry
+        }
+        
+        return groupedEntries
+    }
+    
     private func fetchMonthDiary() {
         let calendar = Calendar.current
 
@@ -74,11 +97,11 @@ extension CalendarViewModel {
             debugLog("월 달력 정보 호출 API완료 result: \(result)")
             switch result {
             case .success(let summaryModel):
-                self?.diarySummaryList = summaryModel.list
+                self?.diarySummaryList = self?.groupEntriesByDay(diarySummaryList: summaryModel.data) ?? [:]
                 
-                debugLog("호출된 정보 확인 : \(summaryModel.list)")
-            case .failure(_):
-                break
+                debugLog("호출된 정보 확인 : \(summaryModel.data)")
+            case .failure(let error):
+                warningLog("월 달력 정보 호출 API 실패 error: \(error)")
             }
         })
     }
@@ -89,6 +112,7 @@ extension CalendarViewModel {
             guard let error = result.error else {
                 self?.showDiaryView = false
                 self?.toastMessage = "일기가 저장되었어요!"
+                self?.fetchMonthDiary()
                 withAnimation(.easeInOut(duration: 0.6)) {
                     self?.isToast = true
                 }

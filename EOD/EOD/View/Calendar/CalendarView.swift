@@ -47,7 +47,7 @@ struct CalendarView: View {
                 
                 // 날짜 그리드
                 ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
-                    CalendarCellView(day: day)
+                    CalendarCellView(day: day, diaryInfo: viewModel.diarySummaryList[day] ?? nil, selectDay: viewModel.selectDate)
                         .onTapGesture {
                             if day != 0 {
                                 if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
@@ -150,13 +150,9 @@ extension CalendarView {
         dateFormmater.dateFormat = "M월 dd일 EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
-        if viewModel.selectDate != nil {
-            let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
-            
-            return dateString
-        } else {
-            return ""
-        }
+        let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
+        
+        return dateString
     }
 }
 

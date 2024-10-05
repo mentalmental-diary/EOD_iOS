@@ -8,7 +8,7 @@
 import Foundation
 
 struct DiarySummaryModel: Decodable {
-    var list: [DiarySummary]
+    var data: [DiarySummary]
     
     var status: Int
     var message: String
