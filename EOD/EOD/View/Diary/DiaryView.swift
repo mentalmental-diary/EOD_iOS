@@ -67,6 +67,7 @@ struct DiaryView: View {
             }
             
         })
+        .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
         .ignoresSafeArea(.keyboard)
     }
 }

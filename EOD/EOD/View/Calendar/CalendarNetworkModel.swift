@@ -11,7 +11,9 @@ class CalendarNetworkModel {
     func fetchMonthDiary(yearMonth: String, completion: @escaping (Result<DiarySummaryModel, Error>) -> Void) {
         let api = "api-external/diary/month"
         
-        APIRequest.requestDecodable(api: api, completion: completion)
+        let parameters: [String: Any] = ["yearMonth": yearMonth]
+        
+        APIRequest.requestDecodable(api: api, requestParameters: parameters, completion: completion)
     }
     
     func uploadDiary(uploadDiary: Diary, completion: @escaping ((Result<Diary, Error>) -> Void)) {
@@ -23,11 +25,12 @@ class CalendarNetworkModel {
         parameters["seq"] = 0
         parameters["isCustomEmotion"] = false
         parameters["emotion"] = uploadDiary.emotion?.rawValue
-        parameters["title"] = ""
         parameters["content"] = uploadDiary.content
         parameters["customEmotion"] = false // TODO: 해당 내용 중복된 것 같으니까 패스
         
-        APIRequest.requestDecodable(api: api, parameters: parameters, completion: completion)
+        debugLog("다이어리 추가 API 파라미터: \(parameters)")
+        
+        APIRequest.requestDecodable(api: api, method: .post, parameters: parameters, completion: completion)
         
     }
 }

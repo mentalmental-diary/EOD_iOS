@@ -85,6 +85,7 @@ extension CalendarViewModel {
     
     func uploadDiaryAction() {
         networkModel.uploadDiary(uploadDiary: diary, completion: { [weak self] result in
+            debugLog("업로드 API완료 result: \(result)")
             guard let error = result.error else {
                 self?.showDiaryView = false
                 self?.toastMessage = "일기가 저장되었어요!"
