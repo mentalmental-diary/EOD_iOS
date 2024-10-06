@@ -84,7 +84,7 @@ extension CalendarView {
                 
                 Spacer()
                 
-                if viewModel.existDiaryContents {
+                if viewModel.visibleDiaryIcon {
                     Button(action: {
                         // TODO: 수정 액션 구현
                     }, label: {
@@ -146,13 +146,13 @@ extension CalendarView {
 // MARK: - Variable
 extension CalendarView {
     private var currentDiaryDay: String {
+        guard let selectedDate = viewModel.selectDate else { return "" }
+        
         let dateFormmater = DateFormatter()
         dateFormmater.dateFormat = "M월 dd일 EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
-        let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
-        
-        return dateString
+        return dateFormmater.string(from: selectedDate)
     }
 }
 

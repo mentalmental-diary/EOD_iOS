@@ -82,6 +82,13 @@ extension DiaryView {
                 Text(viewModel.diary.emotion?.description ?? "감정을 선택해주세요.")
                     .font(size: 20)
                     .foregroundColor(Color.black)
+                    .background(
+                        GeometryReader { geometry in
+                            (viewModel.diary.emotion?.description == nil ? UIColor.Gray.gray100.color : UIColor.Yellow.yellow200.color)
+                                .frame(width: geometry.size.width, height: 8)
+                                .offset(x: 0, y: geometry.size.height - 8)
+                        }
+                    )
                 
                 Spacer()
             }

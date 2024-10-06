@@ -15,7 +15,7 @@ class CalendarNetworkModel {
         
         debugLog("다이어리 조회 API 파라미터 : \(parameters)")
         
-        APIRequest.requestDecodable(api: api, requestParameters: parameters, completion: completion)
+        APIRequest.requestDecodable(api: api, parameters: parameters, completion: completion)
     }
     
     func uploadDiary(uploadDiary: Diary, completion: @escaping ((Result<Diary, Error>) -> Void)) {

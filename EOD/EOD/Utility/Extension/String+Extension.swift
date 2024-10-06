@@ -292,6 +292,14 @@ public extension String {
 // MARK: - Date
 
 public extension String {
+    /// 한국 서버에서 내려준 시간대를 한국 타임존 기준의 Date instance로 변환한다.
+    /// yyyy-MM-dd 형식
+    var dateInKoreaTimeZone: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.seoul
+        dateFormatter.dateFormat = "yyyy-MM-dd" // 날짜 형식에 맞춰 설정
+        return dateFormatter.date(from: self) // self는 변환하고자 하는 날짜 문자열
+    }
     
     /// 2020-04-07T10:20:00 / 2020-04-07T10:20:00.000 포맷의 스트링을 Date로 변환한다.
     var presetDate: Date? {

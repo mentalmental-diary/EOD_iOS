@@ -41,7 +41,14 @@ class CalendarViewModel: ObservableObject {
 extension CalendarViewModel {
     var emptyDiaryText: String { return selectDate == nil ? "날짜를 선택해주세요" : "작성한 일기가 없어요" }
     
-    var existDiaryContents: Bool { return false } // TODO: 일단 임시로 false로 하드코딩
+    var visibleDiaryIcon: Bool {
+        let selectDay = selectDate?.day ?? 0
+        if diarySummaryList[selectDay] != nil { // 해당 날짜에 정보가 있기 때문에 컨텐츠가 있다 생각하고 false반환
+            return true
+        } else {
+            return false
+        }
+    }
     
     var isModify: Bool { return original != nil }
 }
@@ -77,7 +84,7 @@ extension CalendarViewModel {
         
         for entry in diarySummaryList {
             // 일기를 작성한 날짜의 '일(day)' 값을 가져옴
-            let day = calendar.component(.day, from: entry.writeDate)
+            let day = calendar.component(.day, from: entry.writeDate ?? Date())
             // 특정 일자에 해당하는 DiarySummary를 저장, 여러 개면 마지막 값으로 덮어씀
             groupedEntries[day] = entry
         }
@@ -91,7 +98,7 @@ extension CalendarViewModel {
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
         
-        let yearMonth = String(format: "%04d%02d", year, month)
+        let yearMonth = String(format: "%04d-%02d", year, month)
 
         networkModel.fetchMonthDiary(yearMonth: yearMonth, completion: { [weak self] result in
             debugLog("월 달력 정보 호출 API완료 result: \(result)")
