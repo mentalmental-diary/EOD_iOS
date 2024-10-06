@@ -58,7 +58,7 @@ struct CalendarView: View {
                 }
             }
             
-            Spacer().frame(height: 24)
+            Spacer().frame(height: 44)
             
             diaryView()
                 .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
@@ -101,7 +101,24 @@ extension CalendarView {
                 }
             }
             
-            VStack {
+            summaryDiaryView()
+        }
+    }
+    
+    @ViewBuilder func EmptyDiaryText(text: String) -> some View {
+        ZStack(alignment: .bottom) {
+            Rectangle()
+                .frame(width: 119, height: 5)
+                .foregroundColor(UIColor.Yellow.yellow200.color)
+            
+            Text(text)
+                .font(size: 16)
+        }
+    }
+    
+    private func summaryDiaryView() -> some View {
+        VStack {
+            if emptySelectedDateContent {
                 Spacer()
                 
                 Image("icon_basic")
@@ -123,23 +140,42 @@ extension CalendarView {
                     })
                 }
                 Spacer()
+            } else {
+                HStack(spacing: 0) {
+                    Image(viewModel.selectedDiaryInfo?.emotion.imageName ?? "")
+                    
+                    Spacer().frame(width: 14)
+                    
+                    Text(viewModel.selectedDiaryInfo?.emotion.description ?? "")
+                        .font(size: 20)
+                        .foregroundColor(Color.black)
+                        .padding(EdgeInsets.init())
+                        .background(
+                            GeometryReader { geometry in
+                                UIColor.Yellow.yellow200.color
+                                    .frame(width: geometry.size.width, height: 8)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    Spacer()
+                }
+                
+                Spacer().frame(height: 12)
+                
+                Text(viewModel.selectedDiaryInfo?.content ?? "")
+                    .font(size: 18)
+                    .foregroundColor(Color.black)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
-            .cornerRadius(17.0)
-            
         }
-    }
-    
-    @ViewBuilder func EmptyDiaryText(text: String) -> some View {
-        ZStack(alignment: .bottom) {
-            Rectangle()
-                .frame(width: 119, height: 5)
-                .foregroundColor(UIColor.Yellow.yellow200.color)
-            
-            Text(text)
-                .font(size: 16)
-        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
+        .padding(.bottom, 16)
+        .background(Color.white)
+        .cornerRadius(17.0)
     }
 }
 
@@ -153,6 +189,16 @@ extension CalendarView {
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
         return dateFormmater.string(from: selectedDate)
+    }
+    
+    /// 해당 날짜에 저장된 일기 내용 존재 여부
+    /// 일기 내용이 없는 경우 true
+    private var emptySelectedDateContent: Bool {
+        if viewModel.selectedDiaryInfo != nil { // 날짜가 선택되있으면서 해당 날짜에 데이터가 있는 경우 false
+            return false
+        } else { // 날짜 미선택 또는 해당 날짜에 데이터가 없는경우 true
+            return true
+        }
     }
 }
 

@@ -51,6 +51,12 @@ extension CalendarViewModel {
     }
     
     var isModify: Bool { return original != nil }
+    
+    var selectedDiaryInfo: DiarySummary? {
+        guard let day = self.selectDate?.day else { return nil }
+        
+        return diarySummaryList[day] ?? nil
+    }
 }
 
 /// Func
@@ -66,7 +72,7 @@ extension CalendarViewModel {
     func showDiaryViewAction() {
         self.showDiaryView = true
         self.showEmotionSelectView = self.diary.emotion == nil
-        self.diary.writeDate = self.date
+        self.diary.writeDate = self.selectDate
     }
     
     func groupEntriesByDay(diarySummaryList: [DiarySummary]) -> [Int: DiarySummary?] { // TODO: 네이밍 변경, 기능 확인
@@ -84,8 +90,8 @@ extension CalendarViewModel {
         
         for entry in diarySummaryList {
             // 일기를 작성한 날짜의 '일(day)' 값을 가져옴
-            let day = calendar.component(.day, from: entry.writeDate ?? Date())
-            // 특정 일자에 해당하는 DiarySummary를 저장, 여러 개면 마지막 값으로 덮어씀
+            guard let day = entry.writeDate?.day else { continue }
+            
             groupedEntries[day] = entry
         }
         
