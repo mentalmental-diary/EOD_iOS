@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarCellView: View {
     var day: Int
+    @Binding var calendarDate: Date
     var diaryInfo: DiarySummary? = nil
     var selectDay: Date? = nil
     
@@ -18,7 +19,7 @@ struct CalendarCellView: View {
                 .foregroundColor(.clear)
         } else {
             VStack(spacing: 2) {
-                if day == today {
+                if isToday {
                     Image(diaryInfo?.emotion.imageName ?? "icon_today")
                         .frame(width: 36, height: 34)
                 } else {
@@ -47,9 +48,15 @@ extension CalendarCellView {
         return day
     }
     
+    private var isToday: Bool {
+        let currentDate = Date().month == calendarDate.month && Date().year == calendarDate.year
+        
+        return currentDate && Date().day == day // 달력 날짜와 오늘 날짜 년월이 맞으면서 일자가 맞는경우
+    }
+    
     private var dayColor: Color {
         if selectDay == nil {
-            return today == day ? .black : UIColor.Gray.gray300.color
+            return isToday ? .black : UIColor.Gray.gray300.color
         } else {
             return selectDay?.day == day ? .white : UIColor.Gray.gray300.color
         }
@@ -61,9 +68,9 @@ extension CalendarCellView {
 }
 
 #Preview {
-    CalendarCellView(day: 1)
+    CalendarCellView(day: 1, calendarDate: .constant(Date()))
 }
 
 #Preview {
-    CalendarCellView(day: 5, selectDay: Date())
+    CalendarCellView(day: 5, calendarDate: .constant(Date()), selectDay: Date())
 }

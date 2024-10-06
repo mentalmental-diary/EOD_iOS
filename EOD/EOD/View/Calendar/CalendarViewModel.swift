@@ -8,7 +8,11 @@
 import SwiftUI
 
 class CalendarViewModel: ObservableObject {
-    @Published var date: Date = Date() // 우선 오늘 날짜로 세팅
+    @Published var date: Date = Date() {
+        didSet {
+            fetchMonthDiary()
+        }
+    }
     @Published var selectDate: Date? = nil // 현재 선택된 날짜
     @Published var selectEmotionType: EmotionType?
     @Published var isToast: Bool = false
