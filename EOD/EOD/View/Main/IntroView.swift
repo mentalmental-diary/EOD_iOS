@@ -30,31 +30,50 @@ struct IntroView: View {
 /// ViewBuilder
 extension IntroView {
     @ViewBuilder func welcomeView(geometry: GeometryProxy) -> some View {
-        VStack {
-            Spacer()
+        VStack(spacing: 0) {
+            if currentPage < 2 {
+                Button {
+                    initScreen = false
+                } label: {
+                    Text("Skip")
+                        .font(size: 22)
+                        .foregroundColor(UIColor.Gray.gray800.color)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.top, 20)
+            }
             
-            Text("노른자의 하루")
-                .font(size: 32)
-                .foregroundColor(UIColor.Yellow.yellow500.color)
-                .frame(maxWidth: .infinity)
+            TabView(selection: $currentPage) {
+                ForEach(viewModel.onboardingItems) { item in
+                    onBoadingDetailView(item: item)
+                        .tag(viewModel.onboardingItems.firstIndex(of: item) ?? 0)
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
-            Image("welcome")
+            Spacer().frame(height: 36)
             
-            Spacer()
+            PageControlView(currentPage: $currentPage, pages: 3)
             
-            Text("노른자의 세계에 오신 걸 환영해요!")
-                .font(size: 22)
-                .foregroundColor(.black)
+            Spacer().frame(height: 84)
             
             Button(action: {
-                initScreen = false
+                if currentPage < 2 {
+                    currentPage += 1
+                } else {
+                    initScreen = false
+                }
             }, label: {
-                Text("시작하기")
+                Text(currentPage < 2 ? "다음" : "시작하기")
                     .font(size: 20)
                     .foregroundColor(Color.black)
                     .padding(.vertical, 16)
                     .frame(maxWidth: .infinity)
-                    .background(UIColor.Yellow.yellow500.color)
+                    .background(currentPage < 2 ? .clear : UIColor.Yellow.yellow500.color)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(currentPage < 2 ? .gray : .clear, lineWidth: 1)
+                    )
             })
             .frame(maxWidth: .infinity)
             .cornerRadius(8.0)
@@ -62,33 +81,13 @@ extension IntroView {
         .padding(.horizontal, 20)
         .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
         .background(UIColor.CommonBackground.background.color)
-        .edgesIgnoringSafeArea([.top, .bottom])
+        .edgesIgnoringSafeArea(.bottom)
     }
     
     @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0.0) {
-            TabView(selection: $currentPage) {
-                // 페이지 1
-                Text("튜토리얼 화면 1")
-                    .foregroundColor(Color.black)
-                    .tag(0)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                
-                // 페이지 2
-                Text("튜토리얼 화면 2")
-                    .foregroundColor(Color.black)
-                    .tag(1)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                
-                // 페이지 3
-                Text("튜토리얼 화면 3")
-                    .foregroundColor(Color.black)
-                    .tag(2)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
-            PageControlView(currentPage: $currentPage, pages: 3)
+            Text("노른자의 하루")
             
             HStack(spacing: 11) {
                 Divider()
@@ -122,7 +121,31 @@ extension IntroView {
         }
         .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
         .background(UIColor.CommonBackground.background.color)
-        .edgesIgnoringSafeArea([.top, .bottom])
+        .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    private func onBoadingDetailView(item: OnboardingItem) -> some View {
+        VStack(spacing: 0) {
+            Spacer()
+            
+            Image(item.imageName)
+            
+            Spacer().frame(height: 60)
+            
+            Text(item.title)
+                .font(size: 28)
+                .foregroundColor(.black)
+                .lineSpacing(4)
+                .multilineTextAlignment(.center)
+            
+            Spacer().frame(height: 24)
+            
+            Text(item.description)
+                .font(size: 18)
+                .foregroundColor(Color(red: 153/255, green: 153/255, blue: 153/255))
+                .lineSpacing(4)
+                .multilineTextAlignment(.center)
+        }
     }
 }
 
