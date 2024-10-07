@@ -17,10 +17,10 @@ struct IntroView: View {
         NavigationView(content: {
             GeometryReader { geometry in
                 if initScreen {
-                    welcomeView(geometry: geometry)
+                    tutorialView(geometry: geometry)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                 } else {
-                    tutorialView(geometry: geometry)
+                    onBoardingView(geometry: geometry)
                 }
             }
         })
@@ -29,7 +29,7 @@ struct IntroView: View {
 
 /// ViewBuilder
 extension IntroView {
-    @ViewBuilder func welcomeView(geometry: GeometryProxy) -> some View {
+    @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             if currentPage < 2 {
                 Button {
@@ -84,10 +84,34 @@ extension IntroView {
         .edgesIgnoringSafeArea(.bottom)
     }
     
-    @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
+    @ViewBuilder func onBoardingView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0.0) {
             
-            Text("노른자의 하루")
+            VStack(spacing: 0) {
+                Spacer()
+                
+                Image("icon_onBoarding")
+                
+                Spacer().frame(height: 37)
+                
+                Text("노른자의 하루")
+                    .font(size: 32) // TODO: 나중에 해당 폰트 확인
+                    .foregroundColor(UIColor.Yellow.yellow500.color)
+                    .lineSpacing(6)
+                
+                Spacer().frame(height: 20)
+                
+                Text("노른자와 함께 일상을 꾸며볼까요?")
+                    .font(size: 22)
+                    .foregroundColor(UIColor.Gray.gray500.color)
+                    .lineSpacing(2)
+            }
+            
+            Spacer().frame(height: 86)
+            
+            buttonView()
+            
+            Spacer().frame(height: 34)
             
             HStack(spacing: 11) {
                 Divider()
@@ -104,18 +128,9 @@ extension IntroView {
             }
             .padding(.horizontal, 22)
             
-            Spacer().frame(height: 15)
-            
-            HStack {
-                Image("icon_basic") // TODO: 임시 이미지 사용
-                Image("icon_basic") // 임시 이미지 사용
-                Image("icon_basic") // 임시 이미지 사용
-            }
-            .frame(maxWidth: .infinity)
-            
             Spacer().frame(height: 20)
             
-            buttonView()
+            socialLoginView()
             
             Spacer()
         }
@@ -147,12 +162,9 @@ extension IntroView {
                 .multilineTextAlignment(.center)
         }
     }
-}
-
-/// ViewBuilder
-extension IntroView {
+    
     @ViewBuilder func buttonView() -> some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             NavigationLink(destination: {
                 LazyView(
                     LoginView(viewModel: viewModel).navigationBarHidden(true)
@@ -173,6 +185,42 @@ extension IntroView {
                 )
             }, label: {
                 Text("회원가입")
+                    .font(size: 20)
+                    .foregroundColor(Color.black)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black, lineWidth: 1) // 검정색 테두리
+                    )
+            })
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    private func socialLoginView() -> some View { // TODO: 나중에 소셜로그인 추가되면 그때 작업하기
+        VStack(spacing: 16) {
+            NavigationLink(destination: {
+                LazyView(
+                    LoginView(viewModel: viewModel).navigationBarHidden(true)
+                )
+            }, label: {
+                Text("카카오")
+                    .font(size: 20)
+                    .foregroundColor(Color.white)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.black)
+                    .cornerRadius(8.0)
+            })
+            
+            NavigationLink(destination: {
+                LazyView(
+                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
+                )
+            }, label: {
+                Text("네이버")
                     .font(size: 20)
                     .foregroundColor(Color.black)
                     .padding(.vertical, 16)
