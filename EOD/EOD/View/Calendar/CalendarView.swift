@@ -43,7 +43,7 @@ struct CalendarView: View {
             
             Spacer().frame(height: 12)
             
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 8 : 12) {
                 
                 // 날짜 그리드
                 ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
