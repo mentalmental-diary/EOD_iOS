@@ -26,6 +26,7 @@ struct MainView: View {
             } else {
                 if viewModel.isLogin { // 로그인 상태일경우
                     MainTabView(viewModel: viewModel)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else { // 로그인 상태가 아닐경우
                     IntroView(viewModel: viewModel)
                 }

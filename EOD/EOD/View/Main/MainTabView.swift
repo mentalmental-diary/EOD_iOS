@@ -23,7 +23,7 @@ struct MainTabView: View {
                             TabButton(tab: .Home, currentTab: $viewModel.currentTab)
                             TabButton(tab: .Calender, currentTab: $viewModel.currentTab)
                             TabButton(tab: .Game, currentTab: $viewModel.currentTab)
-                            TabButton(tab: .Shop, currentTab: $viewModel.currentTab)
+//                            TabButton(tab: .Shop, currentTab: $viewModel.currentTab)
                             TabButton(tab: .My, currentTab: $viewModel.currentTab)
                         }
                         .frame(maxWidth: .infinity)
@@ -33,7 +33,7 @@ struct MainTabView: View {
                         .edgesIgnoringSafeArea(.bottom)
                         .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: -1)
                     }
-                    .edgesIgnoringSafeArea([.top, .bottom])
+                    .edgesIgnoringSafeArea(.bottom)
                     
                     if calendarViewModel.showMonthSelectModalView {
                         MonthSelectModalView(viewModel: calendarViewModel, showModalView: $calendarViewModel.showMonthSelectModalView)
@@ -42,7 +42,7 @@ struct MainTabView: View {
                 
                 NavigationLink("", isActive: $calendarViewModel.showDiaryView) {
                     LazyView(
-                        DiaryView(isShow: $calendarViewModel.showDiaryView, viewModel: calendarViewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
+                        DiaryView(viewModel: calendarViewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
                             .background(Color.white)
                             .navigationBarHidden(true)
                     )
@@ -50,7 +50,7 @@ struct MainTabView: View {
             }
             .ignoresSafeArea(.keyboard)
             .background(UIColor.CommonBackground.background.color)
-        })
+        }).navigationBarHidden(true)
         
     }
 }
@@ -66,8 +66,8 @@ extension MainTabView {
             CalendarView(viewModel: calendarViewModel)
         case .Game:
             HomeView()
-        case .Shop:
-            HomeView()
+//        case .Shop:
+//            HomeView()
         case .My:
             MyPageView(viewModel: viewModel)
         }

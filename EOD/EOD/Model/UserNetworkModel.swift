@@ -19,36 +19,20 @@ class UserNetworkModel {
         
         debugLog("이떄 들어온 값 확인 email: \(email), password: \(password)")
         
-//        let request = APIRequest.request(api: api, method: .post, requestParameters: param).0
-//        
-//        request.response(completionHandler: { [weak self] response in
-//            guard let accessToken = self?.fetchAccessToken(from: response) else {
-//                let error = response.parsedError
-//                completion(.failure(error))
-//                return
-//            }
-//            
-//            self?.setUserInfo(accessToken: accessToken)
-//            completion(.success(()))
-//        })
+        let request = APIRequest.request(api: api, method: .post, requestParameters: param).0
         
-        
-        // TODO: 일단 헤더에 토큰이 들어오기 전까진 이렇게 진행
-        APIRequest.requestDecodable(api: api, method: .post, requestParameters: param, completion: { [weak self] (result: Result<[String:String], Error>) in
-            switch result {
-            case .success(let data):
-                debugLog("혹시 모르니까 data: \(data)")
-                guard let accessToken = data["jwtToken"] else { completion(.failure(CommonError.failedToApply)); return }
-                
-                debugLog("요기 토큰 : \(accessToken)")
-                self?.setUserInfo(accessToken: accessToken)
-                completion(.success(()))
-                
-            case .failure(let error):
+        request.response(completionHandler: { [weak self] response in
+            
+            debugLog("로그인 API호출 완료 response: \(response)")
+            guard let accessToken = self?.fetchAccessToken(from: response) else {
+                let error = response.parsedError
                 completion(.failure(error))
+                return
             }
+            
+            self?.setUserInfo(accessToken: accessToken)
+            completion(.success(()))
         })
-        
     }
     
     func fetchSignUp(email: String, password: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
@@ -62,6 +46,8 @@ class UserNetworkModel {
         ]
         
         APIRequest.requestData(api: api, method: .post, requestParameters: param, completion: { [weak self] result in
+            
+            debugLog("회원가입 API가 완료되었습니다. result: \(result)")
             guard let error = result.error else {
                 self?.fetchLogin(email: email, password: password, completion: completion)
                 
@@ -74,7 +60,7 @@ class UserNetworkModel {
     }
     
     private func fetchAccessToken(from response: AFDataResponse<Data?>) -> String? {
-        guard let accessToken = response.response?.allHeaderFields["X-AUTH-TOKEN"] as? String, !accessToken.isBlank else {
+        guard let accessToken = response.response?.allHeaderFields["Authentication"] as? String, !accessToken.isBlank else {
             warningLog("로그인 API에서 토큰 획득 실패.")
             return nil
         }

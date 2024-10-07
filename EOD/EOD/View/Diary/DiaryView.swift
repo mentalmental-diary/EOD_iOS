@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct DiaryView: View {
-    @Binding var isShow: Bool
-    
     @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
@@ -38,10 +36,7 @@ struct DiaryView: View {
                             .frame(height: 241)
                         
                         Button {
-                            isShow = false
-                            withAnimation(.easeInOut(duration: 0.6)) {
-                                viewModel.isToast = true
-                            }
+                            viewModel.uploadDiaryAction()
                         } label: {
                             Text("저장하기")
                                 .font(size: 20)
@@ -64,7 +59,7 @@ struct DiaryView: View {
                 .background(UIColor.CommonBackground.background.color)
                 
                 if viewModel.showEmotionSelectView {
-                    EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $isShow)
+                    EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $viewModel.showDiaryView)
                 }
             }
             .onDisappear {
@@ -72,8 +67,8 @@ struct DiaryView: View {
             }
             
         })
+        .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
         .ignoresSafeArea(.keyboard)
-        
     }
 }
 
@@ -87,6 +82,13 @@ extension DiaryView {
                 Text(viewModel.diary.emotion?.description ?? "감정을 선택해주세요.")
                     .font(size: 20)
                     .foregroundColor(Color.black)
+                    .background(
+                        GeometryReader { geometry in
+                            (viewModel.diary.emotion?.description == nil ? UIColor.Gray.gray100.color : UIColor.Yellow.yellow200.color)
+                                .frame(width: geometry.size.width, height: 8)
+                                .offset(x: 0, y: geometry.size.height - 8)
+                        }
+                    )
                 
                 Spacer()
             }
@@ -96,7 +98,7 @@ extension DiaryView {
             
             ZStack(alignment: .topLeading) {
                 HStack(spacing: 0) {
-                    if viewModel.diary.diaryContents?.count == 0 {
+                    if viewModel.diary.content?.count == 0 {
                         Text("일기를 작성해주세요. (최대 2,000자)")
                             .font(size: 16)
                             .foregroundColor(UIColor.Gray.gray500.color)
@@ -107,7 +109,7 @@ extension DiaryView {
                 .padding(.leading, 3)
                 .allowsHitTesting(false)
                 
-                CustomTextView(text: $viewModel.diary.diaryContents)
+                CustomTextView(text: $viewModel.diary.content)
                     .frame(minHeight: 16)
             }
             
@@ -154,7 +156,7 @@ private struct CustomTextView: UIViewRepresentable {
         textView.textColor = UIColor.black
         
         // Adding the toolbar
-        let toolbar = UIToolbar()
+        let toolbar = ShadowToolbar()
         toolbar.sizeToFit()
         
         // Setting the toolbar height
@@ -162,6 +164,7 @@ private struct CustomTextView: UIViewRepresentable {
         var frame = toolbar.frame
         frame.size.height = customToolbarHeight
         toolbar.frame = frame
+        toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
         
         // Adding buttons to the toolbar
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
@@ -209,6 +212,25 @@ private struct CustomTextView: UIViewRepresentable {
     }
 }
 
+class ShadowToolbar: UIToolbar {
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Setting the toolbar shadow
+        self.layer.shadowColor = UIColor(red: 242/255, green: 242/255, blue: 229/255, alpha: 1).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: -1) // X: 0, Y: -1
+        self.layer.shadowRadius = 6 / 2.0 // Blur value is halved for shadowRadius
+        self.layer.shadowOpacity = 1.0
+        
+        // Customizing the shadow spread by setting shadowPath
+        let spread: CGFloat = 2
+        let rect = self.bounds.insetBy(dx: -spread, dy: -spread)
+        self.layer.shadowPath = UIBezierPath(rect: rect).cgPath
+        self.layer.masksToBounds = false
+    }
+}
+
 #Preview {
-    DiaryView(isShow: .constant(false), viewModel: CalendarViewModel())
+    DiaryView(viewModel: CalendarViewModel())
 }

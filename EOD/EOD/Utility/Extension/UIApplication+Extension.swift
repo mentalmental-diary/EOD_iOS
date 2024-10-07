@@ -64,7 +64,7 @@ public extension UIApplication {
         }
         
         if let tabbarController = (navigationController as? UINavigationController)?.viewControllers.first as? UITabBarController,
-            let nc = tabbarController.viewControllers?[safe: tabbarController.selectedIndex] as? UINavigationController {
+           let nc = tabbarController.viewControllers?[tabbarController.selectedIndex] as? UINavigationController {
             navigationController = nc
         }
         

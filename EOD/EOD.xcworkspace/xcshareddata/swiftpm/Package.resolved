@@ -1,5 +1,5 @@
 {
-  "originHash" : "855aa353c665c282fefc58d02c8bd81cf1d79ec212b062fa3674961862f95f92",
+  "originHash" : "aceca0c973d8efe8d069cb81bf522ace08d6a1258b48197a08fc849f34cd8f80",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
         "branch" : "master",
-        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a"
+        "revision" : "9b5bd5be3c2d451006ca16b286cf1ed30f434b9c"
       }
     },
     {
@@ -17,15 +17,6 @@
       "state" : {
         "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
         "version" : "4.5.0"
-      }
-    },
-    {
-      "identity" : "swifterswift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwifterSwift/SwifterSwift.git",
-      "state" : {
-        "revision" : "39fa28c90a3ebe3d53f80289304fd880cf2c42d0",
-        "version" : "6.2.0"
       }
     }
   ],

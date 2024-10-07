@@ -98,7 +98,6 @@ extension MonthSelectModalView {
                 
                 Button(action: {
                     viewModel.date = Date()
-                    viewModel.selectDate = Date()
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                         dismissWithAnimation()

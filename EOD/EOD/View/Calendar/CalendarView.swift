@@ -11,67 +11,64 @@ struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .top) {
-                VStack(spacing: 0) {
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            viewModel.showMonthSelectModalView = true
-                        }, label: {
-                            HStack(spacing: 4) {
-                                Text(monthYearString(from: viewModel.date))
-                                    .font(size: 26)
-                                    .foregroundColor(Color.black)
-                                Image("polygon")
-                            }
-                        })
-                        Spacer()
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    viewModel.showMonthSelectModalView = true
+                }, label: {
+                    HStack(spacing: 4) {
+                        Text(monthYearString(from: viewModel.date))
+                            .font(size: 26)
+                            .foregroundColor(Color.black)
+                        Image("polygon")
                     }
-                    
-                    let daysInMonth = days(for: viewModel.date)
-                    let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
-                    
-                    Spacer().frame(height: 21)
-                    
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
-                        // 요일 헤더
-                        ForEach(daysOfWeek, id: \.self) { day in
-                            Text(day)
-                                .font(size: 16)
-                                .foregroundColor(Color.black)
-                        }
-                    }
-                    
-                    Spacer().frame(height: 12)
-                    
-                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 22 : 26) {
-                        
-                        // 날짜 그리드
-                        ForEach(daysInMonth, id: \.self) { day in
-                            CalendarCellView(day: day)
-                                .onTapGesture {
-                                    if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
-                                        viewModel.selectDate = date
-                                    }
-                                }
-                        }
-                    }
-                    
-                    Spacer().frame(height: 24)
-                    
-                    diaryView()
-                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
-                }
-                .padding(.horizontal, 20)
-                .padding(.top, 44)
-                .padding(.bottom, 12)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                .toast(message: "일기가 저장되었어요!", visibleIcon: true, isShowing: $viewModel.isToast)
-                
+                })
+                Spacer()
             }
-            .background(UIColor.CommonBackground.background.color)
+            
+            let daysInMonth = days(for: viewModel.date)
+            let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+            
+            Spacer().frame(height: 21)
+            
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                // 요일 헤더
+                ForEach(daysOfWeek, id: \.self) { day in
+                    Text(day)
+                        .font(size: 16)
+                        .foregroundColor(Color.black)
+                }
+            }
+            
+            Spacer().frame(height: 12)
+            
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 8 : 12) {
+                
+                // 날짜 그리드
+                ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
+                    CalendarCellView(day: day, calendarDate: $viewModel.date, diaryInfo: viewModel.diarySummaryList[day] ?? nil, selectDay: viewModel.selectDate)
+                        .onTapGesture {
+                            if day != 0 {
+                                if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                    viewModel.selectDate = date
+                                }
+                            }
+                        }
+                }
+            }
+            
+            Spacer().frame(height: 44)
+            
+            diaryView()
+                .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
         }
+        .padding(.horizontal, 20)
+        .padding(.top, 44)
+        .padding(.bottom, 12)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
+        .background(UIColor.CommonBackground.background.color)
     }
 }
 
@@ -87,7 +84,7 @@ extension CalendarView {
                 
                 Spacer()
                 
-                if viewModel.existDiaryContents {
+                if viewModel.visibleDiaryIcon {
                     Button(action: {
                         // TODO: 수정 액션 구현
                     }, label: {
@@ -104,34 +101,7 @@ extension CalendarView {
                 }
             }
             
-            VStack {
-                Spacer()
-                
-                Image("icon_basic")
-                
-                EmptyDiaryText(text: viewModel.emptyDiaryText)
-                    .foregroundColor(Color.black)
-                
-                if viewModel.selectDate != nil {
-                    Button(action: {
-                        viewModel.showDiaryView = true
-                        viewModel.diaryAction()
-                    }, label: {
-                        Text("일기쓰기")
-                            .font(size: 14)
-                            .foregroundColor(Color.white)
-                            .padding(.horizontal, 28.5)
-                            .padding(.vertical, 12.0)
-                            .background(Color.black)
-                            .cornerRadius(6.0)
-                    })
-                }
-                Spacer()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
-            .cornerRadius(17.0)
-            
+            summaryDiaryView()
         }
     }
     
@@ -145,21 +115,89 @@ extension CalendarView {
                 .font(size: 16)
         }
     }
+    
+    private func summaryDiaryView() -> some View {
+        VStack {
+            if emptySelectedDateContent {
+                Spacer()
+                
+                Image("icon_basic")
+                
+                EmptyDiaryText(text: viewModel.emptyDiaryText)
+                    .foregroundColor(Color.black)
+                
+                if viewModel.selectDate != nil {
+                    Button(action: {
+                        viewModel.showDiaryViewAction()
+                    }, label: {
+                        Text("일기쓰기")
+                            .font(size: 14)
+                            .foregroundColor(Color.white)
+                            .padding(.horizontal, 28.5)
+                            .padding(.vertical, 12.0)
+                            .background(Color.black)
+                            .cornerRadius(6.0)
+                    })
+                }
+                Spacer()
+            } else {
+                HStack(spacing: 0) {
+                    Image(viewModel.selectedDiaryInfo?.emotion.imageName ?? "")
+                    
+                    Spacer().frame(width: 14)
+                    
+                    Text(viewModel.selectedDiaryInfo?.emotion.description ?? "")
+                        .font(size: 20)
+                        .foregroundColor(Color.black)
+                        .padding(EdgeInsets.init())
+                        .background(
+                            GeometryReader { geometry in
+                                UIColor.Yellow.yellow200.color
+                                    .frame(width: geometry.size.width, height: 8)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    Spacer()
+                }
+                
+                Spacer().frame(height: 12)
+                
+                Text(viewModel.selectedDiaryInfo?.content ?? "")
+                    .font(size: 18)
+                    .foregroundColor(Color.black)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
+        .padding(.bottom, 16)
+        .background(Color.white)
+        .cornerRadius(17.0)
+    }
 }
 
 // MARK: - Variable
 extension CalendarView {
     private var currentDiaryDay: String {
+        guard let selectedDate = viewModel.selectDate else { return "" }
+        
         let dateFormmater = DateFormatter()
         dateFormmater.dateFormat = "M월 dd일 EEEE"
         dateFormmater.locale = Locale(identifier: "ko_KR")
         
-        if viewModel.selectDate != nil {
-            let dateString = dateFormmater.string(from: viewModel.selectDate ?? Date())
-            
-            return dateString
-        } else {
-            return ""
+        return dateFormmater.string(from: selectedDate)
+    }
+    
+    /// 해당 날짜에 저장된 일기 내용 존재 여부
+    /// 일기 내용이 없는 경우 true
+    private var emptySelectedDateContent: Bool {
+        if viewModel.selectedDiaryInfo != nil { // 날짜가 선택되있으면서 해당 날짜에 데이터가 있는 경우 false
+            return false
+        } else { // 날짜 미선택 또는 해당 날짜에 데이터가 없는경우 true
+            return true
         }
     }
 }
