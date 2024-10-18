@@ -19,6 +19,16 @@ struct HomeView: View {
     }
 }
 
+extension HomeView {
+    private func topView() -> some View {
+        HStack(spacing: 0) {
+            
+        }
+        .padding(.vertical, 20)
+        .padding(.top, 15)
+    }
+}
+
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()

@@ -17,10 +17,10 @@ struct IntroView: View {
         NavigationView(content: {
             GeometryReader { geometry in
                 if initScreen {
-                    welcomeView(geometry: geometry)
+                    tutorialView(geometry: geometry)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                 } else {
-                    tutorialView(geometry: geometry)
+                    onBoardingView(geometry: geometry)
                 }
             }
         })
@@ -29,32 +29,51 @@ struct IntroView: View {
 
 /// ViewBuilder
 extension IntroView {
-    @ViewBuilder func welcomeView(geometry: GeometryProxy) -> some View {
-        VStack {
-            Spacer()
+    @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            if currentPage < 2 {
+                Button {
+                    initScreen = false
+                } label: {
+                    Text("Skip")
+                        .font(size: 22)
+                        .foregroundColor(UIColor.Gray.gray800.color)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.top, 20)
+            }
             
-            Text("노른자의 하루")
-                .font(size: 32)
-                .foregroundColor(UIColor.Yellow.yellow500.color)
-                .frame(maxWidth: .infinity)
+            TabView(selection: $currentPage) {
+                ForEach(viewModel.onboardingItems) { item in
+                    onBoadingDetailView(item: item)
+                        .tag(viewModel.onboardingItems.firstIndex(of: item) ?? 0)
+                }
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
-            Image("welcome")
+            Spacer().frame(height: 36)
             
-            Spacer()
+            PageControlView(currentPage: $currentPage, pages: 3)
             
-            Text("노른자의 세계에 오신 걸 환영해요!")
-                .font(size: 22)
-                .foregroundColor(.black)
+            Spacer().frame(height: 84)
             
             Button(action: {
-                initScreen = false
+                if currentPage < 2 {
+                    currentPage += 1
+                } else {
+                    initScreen = false
+                }
             }, label: {
-                Text("시작하기")
+                Text(currentPage < 2 ? "다음" : "시작하기")
                     .font(size: 20)
                     .foregroundColor(Color.black)
                     .padding(.vertical, 16)
                     .frame(maxWidth: .infinity)
-                    .background(UIColor.Yellow.yellow500.color)
+                    .background(currentPage < 2 ? .clear : UIColor.Yellow.yellow500.color)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(currentPage < 2 ? .gray : .clear, lineWidth: 1)
+                    )
             })
             .frame(maxWidth: .infinity)
             .cornerRadius(8.0)
@@ -62,33 +81,37 @@ extension IntroView {
         .padding(.horizontal, 20)
         .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
         .background(UIColor.CommonBackground.background.color)
-        .edgesIgnoringSafeArea([.top, .bottom])
+        .edgesIgnoringSafeArea(.bottom)
     }
     
-    @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
+    @ViewBuilder func onBoardingView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0.0) {
-            TabView(selection: $currentPage) {
-                // 페이지 1
-                Text("튜토리얼 화면 1")
-                    .foregroundColor(Color.black)
-                    .tag(0)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                
-                // 페이지 2
-                Text("튜토리얼 화면 2")
-                    .foregroundColor(Color.black)
-                    .tag(1)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                
-                // 페이지 3
-                Text("튜토리얼 화면 3")
-                    .foregroundColor(Color.black)
-                    .tag(2)
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
-            PageControlView(currentPage: $currentPage, pages: 3)
+            VStack(spacing: 0) {
+                Spacer()
+                
+                Image("icon_onBoarding")
+                
+                Spacer().frame(height: 37)
+                
+                Text("노른자의 하루")
+                    .font(size: 32) // TODO: 나중에 해당 폰트 확인
+                    .foregroundColor(UIColor.Yellow.yellow500.color)
+                    .lineSpacing(6)
+                
+                Spacer().frame(height: 20)
+                
+                Text("노른자와 함께 일상을 꾸며볼까요?")
+                    .font(size: 22)
+                    .foregroundColor(UIColor.Gray.gray500.color)
+                    .lineSpacing(2)
+            }
+            
+            Spacer().frame(height: 86)
+            
+            buttonView()
+            
+            Spacer().frame(height: 34)
             
             HStack(spacing: 11) {
                 Divider()
@@ -105,31 +128,43 @@ extension IntroView {
             }
             .padding(.horizontal, 22)
             
-            Spacer().frame(height: 15)
-            
-            HStack {
-                Image("icon_basic") // TODO: 임시 이미지 사용
-                Image("icon_basic") // 임시 이미지 사용
-                Image("icon_basic") // 임시 이미지 사용
-            }
-            .frame(maxWidth: .infinity)
-            
             Spacer().frame(height: 20)
             
-            buttonView()
+            socialLoginView()
             
             Spacer()
         }
         .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
         .background(UIColor.CommonBackground.background.color)
-        .edgesIgnoringSafeArea([.top, .bottom])
+        .edgesIgnoringSafeArea(.bottom)
     }
-}
-
-/// ViewBuilder
-extension IntroView {
+    
+    private func onBoadingDetailView(item: OnboardingItem) -> some View {
+        VStack(spacing: 0) {
+            Spacer()
+            
+            Image(item.imageName)
+            
+            Spacer().frame(height: 60)
+            
+            Text(item.title)
+                .font(size: 28)
+                .foregroundColor(.black)
+                .lineSpacing(4)
+                .multilineTextAlignment(.center)
+            
+            Spacer().frame(height: 24)
+            
+            Text(item.description)
+                .font(size: 18)
+                .foregroundColor(Color(red: 153/255, green: 153/255, blue: 153/255))
+                .lineSpacing(4)
+                .multilineTextAlignment(.center)
+        }
+    }
+    
     @ViewBuilder func buttonView() -> some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             NavigationLink(destination: {
                 LazyView(
                     LoginView(viewModel: viewModel).navigationBarHidden(true)
@@ -150,6 +185,42 @@ extension IntroView {
                 )
             }, label: {
                 Text("회원가입")
+                    .font(size: 20)
+                    .foregroundColor(Color.black)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.black, lineWidth: 1) // 검정색 테두리
+                    )
+            })
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    private func socialLoginView() -> some View { // TODO: 나중에 소셜로그인 추가되면 그때 작업하기
+        VStack(spacing: 16) {
+            NavigationLink(destination: {
+                LazyView(
+                    LoginView(viewModel: viewModel).navigationBarHidden(true)
+                )
+            }, label: {
+                Text("카카오")
+                    .font(size: 20)
+                    .foregroundColor(Color.white)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.black)
+                    .cornerRadius(8.0)
+            })
+            
+            NavigationLink(destination: {
+                LazyView(
+                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
+                )
+            }, label: {
+                Text("네이버")
                     .font(size: 20)
                     .foregroundColor(Color.black)
                     .padding(.vertical, 16)
