@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */; };
+		CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */; };
+		CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */; };
+		CE06C3942CC5DA3D0075A9C0 /* HouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */; };
+		CE06C3962CC5DA4C0075A9C0 /* ShowRoomNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */; };
+		CE06C3982CC5E9CD0075A9C0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3972CC5E9C70075A9C0 /* HomeViewModel.swift */; };
 		CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
 		CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4318132BEBBF5500880898 /* omyu pretty.ttf */; };
@@ -140,6 +146,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseView.swift; sourceTree = "<group>"; };
+		CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
+		CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseViewModel.swift; sourceTree = "<group>"; };
+		CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowRoomNetworkModel.swift; sourceTree = "<group>"; };
+		CE06C3972CC5E9C70075A9C0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE13E45D2ABE952D00C64EA1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		CE4318132BEBBF5500880898 /* omyu pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu pretty.ttf"; sourceTree = "<group>"; };
@@ -284,6 +296,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE06C3882CC5D2BB0075A9C0 /* ShowRoom */ = {
+			isa = PBXGroup;
+			children = (
+				CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */,
+				CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */,
+				CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */,
+				CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */,
+				CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */,
+			);
+			path = ShowRoom;
+			sourceTree = "<group>";
+		};
 		CE13E45C2ABE952200C64EA1 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +389,7 @@
 		CE77A9B32ACAD4F600D9C58B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE06C3882CC5D2BB0075A9C0 /* ShowRoom */,
 				CE648B852C05FD6100EBC335 /* Diary */,
 				CEA422FC2BE50B1E00725E6B /* Calendar */,
 				CE77A9AA2ACA99C800D9C58B /* User */,
@@ -377,6 +402,7 @@
 		CE77A9B42ACAD50200D9C58B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CE06C3972CC5E9C70075A9C0 /* HomeViewModel.swift */,
 				CE77A9B52ACAD50D00D9C58B /* HomeView.swift */,
 			);
 			path = Home;
@@ -790,6 +816,7 @@
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
 				CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */,
 				CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */,
+				CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */,
 				CEB7F06B2AAC61D4001C99EA /* PayloadValueLogFormatter.swift in Sources */,
 				CEB7F0832AAC61D5001C99EA /* CallingThreadLogFormatter.swift in Sources */,
 				CEB7F0732AAC61D4001C99EA /* LogRecorder.swift in Sources */,
@@ -819,6 +846,7 @@
 				CEB7F0322AAC5FBB001C99EA /* String+Extension.swift in Sources */,
 				CEB7F06F2AAC61D4001C99EA /* ConsoleLogConfiguration.swift in Sources */,
 				CEB7F06C2AAC61D4001C99EA /* StandardStreamsLogRecorder.swift in Sources */,
+				CE06C3942CC5DA3D0075A9C0 /* HouseViewModel.swift in Sources */,
 				CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */,
 				CE6466BD2C167FBA00E03B5A /* Diary.swift in Sources */,
 				CEC6D7DE2C7C512400FFEC9F /* SwifterSwift+String.swift in Sources */,
@@ -838,6 +866,7 @@
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
 				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
+				CE06C3962CC5DA4C0075A9C0 /* ShowRoomNetworkModel.swift in Sources */,
 				CEB7F09D2AAC62C1001C99EA /* LoggerBootModule.swift in Sources */,
 				CEB7F0902AAC61D5001C99EA /* RotatingLogFileRecorder.swift in Sources */,
 				CEB7F0292AAC5122001C99EA /* URLBuilder.swift in Sources */,
@@ -853,12 +882,14 @@
 				CEB7F0682AAC61D4001C99EA /* StandardOutputLogRecorder.swift in Sources */,
 				CE43181C2BECD2DC00880898 /* CornerRadius.swift in Sources */,
 				CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */,
+				CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */,
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
 				CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */,
 				CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */,
 				CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */,
 				CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */,
+				CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */,
 				CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */,
 				CEB7F0712AAC61D4001C99EA /* PayloadTraceLogFormatter.swift in Sources */,
 				CEB7F08B2AAC61D5001C99EA /* BufferedLogRecorder.swift in Sources */,
@@ -869,6 +900,7 @@
 				CE77A9BF2ACD31F700D9C58B /* PageControlView.swift in Sources */,
 				CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */,
 				CEB7F07D2AAC61D5001C99EA /* OSLogRecorder.swift in Sources */,
+				CE06C3982CC5E9CD0075A9C0 /* HomeViewModel.swift in Sources */,
 				CEB7F0792AAC61D5001C99EA /* XcodeTraceLogFormatter.swift in Sources */,
 				CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */,
 				CEB7F0942AAC61D5001C99EA /* LogEntry.swift in Sources */,
