@@ -8,11 +8,37 @@
 import SwiftUI
 
 struct HouseView: View {
+    @Binding var showHouseView: Bool
+    @ObservedObject var viewModel: HouseViewModel
+    
+    init(showHouseView: Binding<Bool>, viewModel: HouseViewModel) {
+        self._showHouseView = showHouseView
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            topAreaView()
+            Text("")
+        }
+    }
+}
+
+extension HouseView {
+    private func topAreaView() -> some View {
+        ZStack {
+            HStack {
+                Button {
+                    self.showHouseView = false
+                } label: {
+                    Image("btn_close_B")
+                }
+
+            }
+        }
     }
 }
 
 #Preview {
-    HouseView()
+    HouseView(showHouseView: .constant(false), viewModel: HouseViewModel())
 }

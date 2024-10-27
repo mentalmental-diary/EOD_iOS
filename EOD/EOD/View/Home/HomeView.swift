@@ -11,8 +11,11 @@ struct HomeView: View {
     @State private var showCharacterView: Bool = false
     @State private var showHouseView: Bool = false
     
+    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    
     var body: some View {
         VStack {
+            topView()
             Spacer()
             Text("메인 홈 화면")
                 .foregroundColor(.black)
@@ -28,13 +31,19 @@ extension HomeView {
             Button {
                 self.showCharacterView = true
             } label: {
-                Text("캐릭터 꾸미기")
+                Image("icon_clothes")
+            }
+            .fullScreenCover(isPresented: $showCharacterView) {
+                CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel()) // TODO: 변수 추가
             }
             
             Button {
-                
+                self.showHouseView = true
             } label: {
-                Text("방꾸미기")
+                Image("icon_interior")
+            }
+            .fullScreenCover(isPresented: $showHouseView) {
+                HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel())
             }
 
 
