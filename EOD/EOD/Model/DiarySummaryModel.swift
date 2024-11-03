@@ -37,7 +37,7 @@ public struct DiarySummary: Decodable {
         writeDate = {
             // 서버에서 한국시간 string으로 내려주면 한국 타임존의 Date로 변환
             guard let dateString = try? container.decode(String.self, forKey: .writeDate) else { return nil }
-            return dateString.dateInKoreaTimeZone
+            return dateString.summaryDateInKoreaTimeZone
         }()
         emotion = try container.decode(EmotionType.self, forKey: .emotion)
         content = try container.decode(String.self, forKey: .content)

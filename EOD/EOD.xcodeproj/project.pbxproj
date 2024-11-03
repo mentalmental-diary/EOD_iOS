@@ -55,6 +55,10 @@
 		CEA9D9F72CCE698000AA1DC2 /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */; };
 		CEAAF7FF2CD76F1100EFBDA9 /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */; };
 		CEAAF8022CD7747800EFBDA9 /* RoomThemeEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8012CD7746800EFBDA9 /* RoomThemeEnums.swift */; };
+		CEAAF8042CD78C6B00EFBDA9 /* ListNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8032CD78C6600EFBDA9 /* ListNetworkModel.swift */; };
+		CEAAF8062CD7909D00EFBDA9 /* RequestRetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8052CD7909C00EFBDA9 /* RequestRetryHandler.swift */; };
+		CEAAF8082CD792E000EFBDA9 /* KeyedDecodingContainer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */; };
+		CEAAF80A2CD792FD00EFBDA9 /* OptionalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */; };
 		CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
 		CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
 		CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
@@ -198,6 +202,10 @@
 		CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
 		CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeItem.swift; sourceTree = "<group>"; };
 		CEAAF8012CD7746800EFBDA9 /* RoomThemeEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomThemeEnums.swift; sourceTree = "<group>"; };
+		CEAAF8032CD78C6600EFBDA9 /* ListNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNetworkModel.swift; sourceTree = "<group>"; };
+		CEAAF8052CD7909C00EFBDA9 /* RequestRetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRetryHandler.swift; sourceTree = "<group>"; };
+		CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Extension.swift"; sourceTree = "<group>"; };
+		CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalObject.swift; sourceTree = "<group>"; };
 		CEB7EFF52AAC5025001C99EA /* EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB7EFF82AAC5025001C99EA /* EODApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODApp.swift; sourceTree = "<group>"; };
 		CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -540,6 +548,8 @@
 		CEB7F0242AAC5122001C99EA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CEAAF8052CD7909C00EFBDA9 /* RequestRetryHandler.swift */,
+				CEAAF8032CD78C6600EFBDA9 /* ListNetworkModel.swift */,
 				CEB7F0252AAC5122001C99EA /* CommonError.swift */,
 				CEB7F0262AAC5122001C99EA /* URLBuilder.swift */,
 				CEB7F0272AAC5122001C99EA /* APIRequest.swift */,
@@ -550,6 +560,7 @@
 		CEB7F02E2AAC5585001C99EA /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */,
 				CEC6D7DC2C7C511300FFEC9F /* SwifterSwift */,
 				CEB7F0A02AAC6418001C99EA /* Extension */,
 				CEB7F0A32AAC661D001C99EA /* RegexParser.swift */,
@@ -642,6 +653,7 @@
 		CEB7F0A02AAC6418001C99EA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */,
 				CEE906012CAEB35B00C69077 /* Int+Extension.swift */,
 				CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */,
 				CEB7F02F2AAC5594001C99EA /* Result+Extension.swift */,
@@ -849,7 +861,9 @@
 				CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */,
 				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
+				CEAAF8082CD792E000EFBDA9 /* KeyedDecodingContainer+Extension.swift in Sources */,
 				CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */,
+				CEAAF8042CD78C6B00EFBDA9 /* ListNetworkModel.swift in Sources */,
 				CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */,
 				CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */,
 				CEB7F09B2AAC6289001C99EA /* BootLoader.swift in Sources */,
@@ -885,6 +899,7 @@
 				CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */,
 				CEB7F0762AAC61D5001C99EA /* ParsableLogFormatter.swift in Sources */,
 				CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */,
+				CEAAF8062CD7909D00EFBDA9 /* RequestRetryHandler.swift in Sources */,
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
 				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
@@ -926,6 +941,7 @@
 				CE06C3982CC5E9CD0075A9C0 /* HomeViewModel.swift in Sources */,
 				CEB7F0792AAC61D5001C99EA /* XcodeTraceLogFormatter.swift in Sources */,
 				CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */,
+				CEAAF80A2CD792FD00EFBDA9 /* OptionalObject.swift in Sources */,
 				CEB7F0942AAC61D5001C99EA /* LogEntry.swift in Sources */,
 				CEAAF7FF2CD76F1100EFBDA9 /* ThemeItem.swift in Sources */,
 				CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */,

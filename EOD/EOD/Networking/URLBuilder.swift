@@ -26,6 +26,18 @@ public class UrlBuilder {
         
         return url
     }
+    
+    
+    /// next key parameter 생성
+    class func createParameter(nextKey: Int?) -> [String: Any] {
+        var parameters: [String: Any] = ["pageSize": 20]
+        
+        if let nextKey = nextKey {
+            parameters["page"] = nextKey
+        }
+        
+        return parameters
+    }
 }
 
 extension UrlBuilder {
