@@ -7,13 +7,6 @@
 
 import Foundation
 
-/// 캐릭터 아이템 모델
-struct CharacterItem: Decodable {
-    var id: Int?
-    var imageUrl: String?
-    var name: String?
-}
-
 struct CharacterItemModel: Decodable {
     var data: [CharacterItem]
     
@@ -21,30 +14,29 @@ struct CharacterItemModel: Decodable {
     var message: String
 }
 
-/// 상점 캐릭터 아이템 모델
-struct ShopCharacterItem: Decodable {
-    var id: Int?
-    var imageUrl: String?
-    var name: String?
+/// 캐릭터 아이템 모델
+struct CharacterItem: Decodable {
+    var id: Int
+    var imageUrl: String
+    var name: String
     var price: Int?
     var createdAt: Date?
     var updatedAt: Date?
     
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encodeIfPresent(imageUrl, forKey: .imageUrl)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(price, forKey: .price)
-        try? container.encode(createdAt, forKey: .createdAt)
-        try? container.encode(updatedAt, forKey: .updatedAt)
+    init(id: Int, imageUrl: String, name: String, price: Int? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+        self.id = id
+        self.imageUrl = imageUrl
+        self.name = name
+        self.price = price
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
     }
     
-    init (from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decodeIfPresent(Int.self, forKey: .id)
-        imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
-        name = try container.decodeIfPresent(String.self, forKey: .name)
+        id = try container.decode(Int.self, forKey: .id)
+        imageUrl = try container.decode(String.self, forKey: .imageUrl)
+        name = try container.decode(String.self, forKey: .name)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         
         createdAt = {
@@ -69,9 +61,15 @@ struct ShopCharacterItem: Decodable {
     }
 }
 
-struct ShopCharacterItemModel: Decodable {
-    var data: [ShopCharacterItem]
+extension CharacterItem: Equatable {
     
-    var status: String
-    var message: String
+    public static func == (lhs: CharacterItem, rhs: CharacterItem) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension CharacterItem: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
