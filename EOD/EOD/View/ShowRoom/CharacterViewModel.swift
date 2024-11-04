@@ -19,7 +19,7 @@ class CharacterViewModel: ObservableObject {
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
     init(items: [CharacterItem]? = nil) {
-        if let items = items {
+        if let items = items { // Preview용
             userItems = items
         }
         self.fetchCharacterItem()

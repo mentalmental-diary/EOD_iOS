@@ -35,6 +35,9 @@ extension CharacterView {
             ZStack {
                 Image("character_background")
                     .resizable()
+                
+                KFImage(viewModel.selectItem?.imageUrl.url)
+                    .resizable()
             }
             
             HStack {
@@ -91,7 +94,9 @@ extension CharacterView {
                 .frame(minHeight: 1.0)
                 .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
             
-            Spacer()
+            itemListView()
+                .padding(.horizontal, 10)
+                .padding(.top, 17)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -119,8 +124,11 @@ extension CharacterView {
     
     private func itemListView() -> some View {
         ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: 10) {
-                // TODO: 데이터 연결 부분에서 마저 진행
+            LazyVGrid(columns: columns, spacing: 10) {
+                
+                ForEach(viewModel.presentItemList ?? [], id: \.id) { item in
+                    characterDetailView(item: item)
+                }
             }
         }
     }
@@ -148,8 +156,69 @@ extension CharacterView {
         }
         .frame(width: 51, height: 48)
     }
+    
+    private func characterDetailView(item: CharacterItem) -> some View {
+        Button {
+            viewModel.selectItem = item
+        } label: {
+            ZStack(alignment: .top) {
+                if viewModel.selectItem == item {
+                    HStack {
+                        Spacer()
+                        Image("btnConfirmOn")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
+                    .padding([.top, .trailing], 5.0)
+                    .frame(maxWidth: .infinity)
+                    .offset(x: 0, y: 25) // 위치 조정을 위해 offset 사용
+                }
+                
+                VStack(spacing: 16) {
+                    KFImage(item.imageUrl.url)
+                        .resizable()
+                        .frame(width: 63, height: 55)
+                        .aspectRatio(contentMode: .fill)
+                    
+                    Text(item.name)
+                        .font(size: 14)
+                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                        .lineSpacing(2)
+                }
+                .padding(.top, 28)
+                .padding(.bottom, 12)
+                .padding(.vertical, 22)
+                .frame(maxWidth: .infinity)
+                
+               
+            }
+            .padding(EdgeInsets.init())
+            .frame(height: 120)
+            .background(.white) // 배경색을 흰색으로 설정
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(viewModel.selectItem == item ? Color.yellow : .clear, lineWidth: 2) // 테두리 색상과 두께 설정
+            )
+            .cornerRadius(16) // 모서리를 둥글게 설정
+        }
+        .buttonStyle(PlainButtonStyle()) // 기본 스타일 제거
+        .padding(EdgeInsets.init())
+    }
+}
+
+extension CharacterView {
+    private var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: 105, maximum: 120), spacing: 10, alignment: .top)]
+    }
 }
 
 #Preview {
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel())
+    let a = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf")
+    let b = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
+    let c = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
+    let d = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
+    
+    let list = [a, b, c, d]
+    
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(items: list))
 }
