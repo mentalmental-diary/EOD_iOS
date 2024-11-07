@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RoomThemeType: String, CaseIterable, Decodable {
+public enum RoomThemeItemType: String, CaseIterable, Decodable {
     case wallpaper = "WALLPAPER"
     case flooring = "FLOORING"
     case window = "WINDOW"

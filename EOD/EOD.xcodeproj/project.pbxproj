@@ -59,6 +59,7 @@
 		CEAAF8062CD7909D00EFBDA9 /* RequestRetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8052CD7909C00EFBDA9 /* RequestRetryHandler.swift */; };
 		CEAAF8082CD792E000EFBDA9 /* KeyedDecodingContainer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */; };
 		CEAAF80A2CD792FD00EFBDA9 /* OptionalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */; };
+		CEAAF80E2CD865A200EFBDA9 /* HousePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF80D2CD865A200EFBDA9 /* HousePreviewView.swift */; };
 		CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
 		CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
 		CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
@@ -206,6 +207,7 @@
 		CEAAF8052CD7909C00EFBDA9 /* RequestRetryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRetryHandler.swift; sourceTree = "<group>"; };
 		CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyedDecodingContainer+Extension.swift"; sourceTree = "<group>"; };
 		CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalObject.swift; sourceTree = "<group>"; };
+		CEAAF80D2CD865A200EFBDA9 /* HousePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HousePreviewView.swift; sourceTree = "<group>"; };
 		CEB7EFF52AAC5025001C99EA /* EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB7EFF82AAC5025001C99EA /* EODApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODApp.swift; sourceTree = "<group>"; };
 		CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */,
 				CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */,
 				CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */,
+				CEAAF80D2CD865A200EFBDA9 /* HousePreviewView.swift */,
 			);
 			path = ShowRoom;
 			sourceTree = "<group>";
@@ -884,6 +887,7 @@
 				CEB7F06C2AAC61D4001C99EA /* StandardStreamsLogRecorder.swift in Sources */,
 				CE06C3942CC5DA3D0075A9C0 /* HouseViewModel.swift in Sources */,
 				CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */,
+				CEAAF80E2CD865A200EFBDA9 /* HousePreviewView.swift in Sources */,
 				CE6466BD2C167FBA00E03B5A /* Diary.swift in Sources */,
 				CEC6D7DE2C7C512400FFEC9F /* SwifterSwift+String.swift in Sources */,
 				CEB7F0952AAC61D5001C99EA /* StackFrameLogFormatter.swift in Sources */,

@@ -46,7 +46,7 @@ struct ThemeModel: Decodable {
 /// 룸 테마 아이템 모델
 struct ThemeItem: Decodable {
     var id: Int
-    var type: RoomThemeType
+    var type: RoomThemeItemType
     var imageUrl: String
     var name: String
 }
@@ -58,10 +58,24 @@ struct ThemeItemModel: Decodable {
     var message: String
 }
 
+extension ThemeItem: Equatable {
+    
+    public static func == (lhs: ThemeItem, rhs: ThemeItem) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+extension ThemeItem: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+
 /// 상점 룸 테마 아이템 모델
 struct ShopThemeItem: Decodable {
     var id: Int
-    var type: RoomThemeType
+    var type: RoomThemeItemType
     var themeId: Int
     var name: String
     var imageUrl: String
@@ -72,7 +86,7 @@ struct ShopThemeItem: Decodable {
     init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
-        type = try container.decode(RoomThemeType.self, forKey: .type)
+        type = try container.decode(RoomThemeItemType.self, forKey: .type)
         themeId = try container.decode(Int.self, forKey: .themeId)
         name = try container.decode(String.self, forKey: .name)
         imageUrl = try container.decode(String.self, forKey: .imageUrl)

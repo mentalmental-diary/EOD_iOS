@@ -18,14 +18,21 @@ struct CharacterView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            topAreaView()
-            bottomAreaView()
+        ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
+                topAreaView()
+                bottomAreaView()
+            }
+            .edgesIgnoringSafeArea([.top, .bottom])
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            
+            if viewModel.currentShowType == .shop && viewModel.selectItem != nil {
+                bottomButtonView()
+                    .transition(.move(edge: .bottom))
+            }
         }
-        .edgesIgnoringSafeArea([.top, .bottom])
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(red: 251/255, green: 251/255, blue: 244/255))
-        
+        .animation(.easeInOut, value: viewModel.selectItem)
     }
 }
 
@@ -36,8 +43,13 @@ extension CharacterView {
                 Image("character_background")
                     .resizable()
                 
-                KFImage(viewModel.selectItem?.imageUrl.url)
-                    .resizable()
+                GeometryReader { geometry in
+                    KFImage(viewModel.selectItem?.imageUrl.url)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
+                        .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 40) // TODO: 좌표 확인
+                }
             }
             
             HStack {
@@ -53,30 +65,32 @@ extension CharacterView {
             .padding(.top, 48)
             .frame(maxWidth: .infinity, alignment: .topLeading)
             
-            VStack {
-                Spacer()
-                
-                HStack {
-                    returnButtonView()
-                    
+            if viewModel.currentShowType == .item {
+                VStack {
                     Spacer()
                     
-                    Button {
-                        // TODO: 세부 로직 추후 수정
-                    } label: {
-                        Text("저장")
-                            .font(size: 14)
-                            .foregroundColor(Color.white)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 24)
-                            .background(Color.black)
-                            .cornerRadius(6.0)
-                    }
-                    
-                }.frame(maxWidth: .infinity, alignment: .bottom)
+                    HStack {
+                        returnButtonView()
+                        
+                        Spacer()
+                        
+                        Button {
+                            // TODO: 세부 로직 추후 수정
+                        } label: {
+                            Text("저장")
+                                .font(size: 14)
+                                .foregroundColor(Color.white)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 24)
+                                .background(Color.black)
+                                .cornerRadius(6.0)
+                        }
+                        
+                    }.frame(maxWidth: .infinity, alignment: .bottom)
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 16)
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 16)
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
         
@@ -157,6 +171,52 @@ extension CharacterView {
         .frame(width: 51, height: 48)
     }
     
+    private func bottomButtonView() -> some View {
+        VStack(spacing: 0) {
+            // 상단 그라데이션
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(1),
+                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(0)
+                ]),
+                startPoint: .bottom,
+                endPoint: .top
+            )
+            .frame(height: 50) // TODO: 명확한 높이값 나중에 확인해보기
+            
+            HStack(spacing: 16) {
+                Button {
+                    viewModel.selectItem = nil
+                } label: {
+                    Text("선택 취소")
+                        .font(size: 20)
+                        .foregroundColor(Color(red: 93/255, green: 93/255, blue: 79/255))
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 229/255, green: 229/255, blue: 212/255))
+                        .cornerRadius(8.0)
+                }
+                
+                
+                Button {
+                    // TODO: 세부 로직 추후 수정
+                } label: {
+                    Text("선택 상품 구매")
+                        .font(size: 20)
+                        .foregroundColor(Color.white)
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black)
+                        .cornerRadius(8.0)
+                }
+                
+            }
+            .padding(.horizontal, 24)
+            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+        }
+        .padding(.bottom, 15)
+    }
+    
     private func characterDetailView(item: CharacterItem) -> some View {
         Button {
             viewModel.selectItem = item
@@ -218,7 +278,16 @@ extension CharacterView {
     let c = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
     let d = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
     
-    let list = [a, b, c, d]
+    let userItems = [a, b, c, d]
     
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(items: list))
+    let shopa = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf")
+    let shopb = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
+    let shopc = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
+    let shopd = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
+    let shope = CharacterItem(id: 5, imageUrl: "asdf", name: "asdf")
+    let shopf = CharacterItem(id: 6, imageUrl: "asdf", name: "asdf")
+    
+    let shopItems = [shopa, shopb, shopc, shopd, shope, shopf]
+    
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems))
 }
