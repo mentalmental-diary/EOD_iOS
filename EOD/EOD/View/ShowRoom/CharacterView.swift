@@ -26,6 +26,7 @@ struct CharacterView: View {
             .edgesIgnoringSafeArea([.top, .bottom])
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
             
             if viewModel.currentShowType == .shop && viewModel.selectItem != nil {
                 bottomButtonView()
@@ -75,14 +76,17 @@ extension CharacterView {
                         Spacer()
                         
                         Button {
+                            if availableSaveButton {
+                                viewModel.setCharacterItem()
+                            }
                             // TODO: 세부 로직 추후 수정
                         } label: {
                             Text("저장")
                                 .font(size: 14)
-                                .foregroundColor(Color.white)
+                                .foregroundColor(availableSaveButton ? Color.white : Color(red: 177/255, green: 177/255, blue: 163/255))
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 24)
-                                .background(Color.black)
+                                .background(availableSaveButton ? Color.black : Color(red: 210/255, green: 210/255, blue: 188/255))
                                 .cornerRadius(6.0)
                         }
                         
@@ -148,27 +152,31 @@ extension CharacterView {
     }
     
     private func returnButtonView() -> some View {
-        VStack(spacing: -10) {
-            ZStack {
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 40, height: 40)
+        Button {
+            viewModel.selectItem = viewModel.originalCharacter
+        } label: {
+            VStack(spacing: -10) {
+                ZStack {
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 40, height: 40)
+                    
+                    Image("icon_return")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                }
                 
-                Image("icon_return")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18, height: 18)
+                Text("되돌리기")
+                    .font(size: 12)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
+                    .background(Color.white)
+                    .foregroundColor(Color(red: 64/255, green: 64/255, blue: 64/255))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            
-            Text("되돌리기")
-                .font(size: 12)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 4)
-                .background(Color.white)
-                .foregroundColor(Color(red: 64/255, green: 64/255, blue: 64/255))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+            .frame(width: 51, height: 48)
         }
-        .frame(width: 51, height: 48)
     }
     
     private func bottomButtonView() -> some View {
@@ -269,6 +277,10 @@ extension CharacterView {
 extension CharacterView {
     private var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 105, maximum: 120), spacing: 10, alignment: .top)]
+    }
+    
+    private var availableSaveButton: Bool { // 기존 캐릭터랑 다른 캐릭터가 선택되었을경우 저장버튼 활성화
+        return viewModel.selectItem != viewModel.originalCharacter
     }
 }
 

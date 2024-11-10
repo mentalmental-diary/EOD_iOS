@@ -16,6 +16,12 @@ class CharacterViewModel: ObservableObject {
     
     @Published var selectItem: CharacterItem?
     
+    @Published var isToast: Bool = false
+    
+    var originalCharacter: CharacterItem?
+    
+    var toastMessage: String = ""
+    
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
     init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil) {
@@ -56,6 +62,15 @@ extension CharacterViewModel {
                 warningLog("상점 캐릭터 아이템 조회 API 실패 error: \(error)")
             }
         })
+    }
+    
+    func setCharacterItem() {
+        // TODO: 저장 로직 구현
+        
+        self.toastMessage = "대표 캐릭터로 저장되었습니다!"
+        withAnimation(.easeInOut(duration: 0.6)) {
+            self.isToast = true
+        }
     }
 }
 
