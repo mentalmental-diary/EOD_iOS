@@ -11,6 +11,14 @@ import UIKit
 // MARK:- 기타 Util성
 
 extension String {
+    /// SwifterSwift: URL from string (if applicable).
+    ///
+    ///        "https://google.com".url -> URL(string: "https://google.com")
+    ///        "not url".url -> nil
+    ///
+    var url: URL? {
+        return URL(string: self)
+    }
     
     /// 스트링에서 HTML Tag를 추출해서 array로 리턴한다.
     public var htmlTags: [String]? {
@@ -294,10 +302,20 @@ public extension String {
 public extension String {
     /// 한국 서버에서 내려준 시간대를 한국 타임존 기준의 Date instance로 변환한다.
     /// yyyy-MM-dd 형식
-    var dateInKoreaTimeZone: Date? {
+    var summaryDateInKoreaTimeZone: Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone.seoul
         dateFormatter.dateFormat = "yyyy-MM-dd" // 날짜 형식에 맞춰 설정
+        return dateFormatter.date(from: self) // self는 변환하고자 하는 날짜 문자열
+    }
+    
+    /// 한국 서버에서 내려준 시간대를 한국 타임존 기준의 Date instance로 변환한다.
+    /// yyyy-MM-dd'T'HH:mm:ss.SSSZ 형식
+    var dateInKoreaTimeZone: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.seoul
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" // 날짜 형식에 맞춰 설정
         return dateFormatter.date(from: self) // self는 변환하고자 하는 날짜 문자열
     }
     
