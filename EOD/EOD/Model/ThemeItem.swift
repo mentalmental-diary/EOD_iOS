@@ -78,6 +78,7 @@ struct ShopThemeItem: Decodable {
     var type: RoomThemeItemType
     var themeId: Int
     var name: String
+    var price: Int
     var imageUrl: String
     var details: String
     var createdAt: Date?
@@ -89,6 +90,7 @@ struct ShopThemeItem: Decodable {
         type = try container.decode(RoomThemeItemType.self, forKey: .type)
         themeId = try container.decode(Int.self, forKey: .themeId)
         name = try container.decode(String.self, forKey: .name)
+        price = try container.decode(Int.self, forKey: .price)
         imageUrl = try container.decode(String.self, forKey: .imageUrl)
         details = try container.decode(String.self, forKey: .details)
         
@@ -110,6 +112,7 @@ struct ShopThemeItem: Decodable {
         case type
         case themeId
         case name
+        case price
         case imageUrl
         case details
         case createdAt

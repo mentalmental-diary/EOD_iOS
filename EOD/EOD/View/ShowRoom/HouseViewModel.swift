@@ -17,4 +17,6 @@ class HouseViewModel: ObservableObject {
     @Published var themeShopItemList: [ShopThemeItem]? = [] // 각 테마 상점 진입시 노출되는 아이템 리스트
     
     @Published var selectTheme: Theme? // 선택된 테마
+    
+    @Published var selectShopItem: ShopThemeItem?
 }

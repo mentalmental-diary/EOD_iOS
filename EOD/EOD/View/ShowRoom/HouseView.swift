@@ -98,30 +98,6 @@ extension HouseView {
         .frame(width: 51, height: 48)
     }
     
-    private func bottomAreaView() -> some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                if viewModel.selectTheme != nil {
-                    selectTopNavigationView()
-                } else {
-                    tabButton(type: .item)
-                    tabButton(type: .shop)
-                }
-            }
-            .frame(maxWidth: .infinity)
-            
-            Divider()
-                .frame(minHeight: 1.0)
-                .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
-            
-            Spacer()
-//            itemListView()
-//                .padding(.horizontal, 10)
-//                .padding(.top, 17)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-    
     private func selectTopNavigationView() -> some View {
         ZStack(alignment: .leading) {
             HStack(spacing: 0) {
@@ -160,6 +136,93 @@ extension HouseView {
         .padding(.top, 31)
         .padding(.bottom, 28)
         .frame(maxWidth: .infinity)
+    }
+    
+    private func bottomAreaView() -> some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                if viewModel.selectTheme != nil {
+                    selectTopNavigationView()
+                } else {
+                    tabButton(type: .item)
+                    tabButton(type: .shop)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            
+            Divider()
+                .frame(minHeight: 1.0)
+                .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
+            
+            Spacer()
+//            itemListView()
+//                .padding(.horizontal, 10)
+//                .padding(.top, 17)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    private func itemListView() -> some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                
+//                ForEach(viewModel.presentItemList ?? [], id: \.id) { item in
+//                    characterDetailView(item: item)
+//                }
+            }
+        }
+    }
+    
+    private func bottomButtonView() -> some View {
+        VStack(spacing: 0) {
+            // 상단 그라데이션
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(1),
+                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(0)
+                ]),
+                startPoint: .bottom,
+                endPoint: .top
+            )
+            .frame(height: 50) // TODO: 명확한 높이값 나중에 확인해보기
+            
+            HStack(spacing: 16) {
+                Button {
+                    viewModel.selectShopItem = nil
+                } label: {
+                    Text("선택 취소")
+                        .font(size: 20)
+                        .foregroundColor(Color(red: 93/255, green: 93/255, blue: 79/255))
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 229/255, green: 229/255, blue: 212/255))
+                        .cornerRadius(8.0)
+                }
+                
+                
+                Button {
+                    // TODO: 세부 로직 추후 수정
+                } label: {
+                    Text("선택 상품 구매")
+                        .font(size: 20)
+                        .foregroundColor(Color.white)
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black)
+                        .cornerRadius(8.0)
+                }
+                
+            }
+            .padding(.horizontal, 24)
+            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+        }
+        .padding(.bottom, 15)
+    }
+}
+
+extension HouseView {
+    private var columns: [GridItem] {
+        [GridItem(.adaptive(minimum: 105, maximum: 120), spacing: 10, alignment: .top)]
     }
 }
 
