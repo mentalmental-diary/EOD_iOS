@@ -8,5 +8,5 @@
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    
+    @Published var userGold: Int = 0
 }

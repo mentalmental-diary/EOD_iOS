@@ -7,13 +7,6 @@
 
 import Foundation
 
-struct CharacterItemModel: Decodable {
-    var data: [CharacterItem]
-    
-    var status: String
-    var message: String
-}
-
 /// 캐릭터 아이템 모델
 struct CharacterItem: Decodable {
     var id: Int

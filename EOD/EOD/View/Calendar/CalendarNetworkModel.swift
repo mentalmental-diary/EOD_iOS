@@ -8,7 +8,7 @@
 import Foundation
 
 class CalendarNetworkModel {
-    func fetchMonthDiary(yearMonth: String, completion: @escaping (Result<DiarySummaryModel, Error>) -> Void) {
+    func fetchMonthDiary(yearMonth: String, completion: @escaping (Result<[DiarySummary], Error>) -> Void) {
         let api = "api-external/diary/month"
         
         let parameters: [String: Any] = ["yearMonth": yearMonth]
@@ -32,7 +32,7 @@ class CalendarNetworkModel {
         
         debugLog("다이어리 추가 API 파라미터: \(parameters)")
         
-        APIRequest.requestDecodable(api: api, method: .post, parameters: parameters, completion: completion)
+        APIRequest.requestDecodable(api: api, method: .post, requestParameters: parameters, completion: completion)
         
     }
 }

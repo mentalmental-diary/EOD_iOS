@@ -34,13 +34,6 @@ struct Theme: Decodable {
     }
 }
 
-struct ThemeModel: Decodable {
-    var data: [Theme]
-    
-    var status: String
-    var message: String
-}
-
 // MARK: - 룸 테마 아이템 모델
 
 /// 룸 테마 아이템 모델
@@ -49,13 +42,6 @@ struct ThemeItem: Decodable {
     var type: RoomThemeItemType
     var imageUrl: String
     var name: String
-}
-
-struct ThemeItemModel: Decodable {
-    var data: [ThemeItem]
-    
-    var status: String
-    var message: String
 }
 
 extension ThemeItem: Equatable {
@@ -118,11 +104,4 @@ struct ShopThemeItem: Decodable {
         case createdAt
         case updatedAt
     }
-}
-
-struct ShopThemeItemModel: Decodable {
-    var data: [Theme]
-    
-    var status: String
-    var message: String
 }

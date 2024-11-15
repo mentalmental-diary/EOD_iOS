@@ -51,6 +51,7 @@
 		CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FD2BE50B3900725E6B /* CalendarView.swift */; };
 		CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */; };
 		CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA423012BE50D4800725E6B /* CalendarViewModel.swift */; };
+		CEA64F712CE6D1A200FD5627 /* HomeNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA64F702CE6D19D00FD5627 /* HomeNetworkModel.swift */; };
 		CEA9D9F52CCE61AD00AA1DC2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEA9D9F42CCE61AD00AA1DC2 /* Kingfisher */; };
 		CEA9D9F72CCE698000AA1DC2 /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */; };
 		CEAAF7FF2CD76F1100EFBDA9 /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */; };
@@ -200,6 +201,7 @@
 		CEA422FD2BE50B3900725E6B /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellView.swift; sourceTree = "<group>"; };
 		CEA423012BE50D4800725E6B /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		CEA64F702CE6D19D00FD5627 /* HomeNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkModel.swift; sourceTree = "<group>"; };
 		CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
 		CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeItem.swift; sourceTree = "<group>"; };
 		CEAAF8012CD7746800EFBDA9 /* RoomThemeEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomThemeEnums.swift; sourceTree = "<group>"; };
@@ -356,7 +358,6 @@
 				CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */,
 				CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */,
 				CE6466BC2C167FBA00E03B5A /* Diary.swift */,
-				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
 				CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */,
 			);
 			path = Model;
@@ -402,6 +403,7 @@
 			children = (
 				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
 				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
+				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
 				CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */,
 			);
 			path = User;
@@ -423,6 +425,7 @@
 		CE77A9B42ACAD50200D9C58B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CEA64F702CE6D19D00FD5627 /* HomeNetworkModel.swift */,
 				CE06C3972CC5E9C70075A9C0 /* HomeViewModel.swift */,
 				CE77A9B52ACAD50D00D9C58B /* HomeView.swift */,
 			);
@@ -850,6 +853,7 @@
 				CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
+				CEA64F712CE6D1A200FD5627 /* HomeNetworkModel.swift in Sources */,
 				CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */,
 				CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */,
 				CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */,
