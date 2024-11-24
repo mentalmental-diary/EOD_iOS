@@ -46,6 +46,12 @@ extension CharacterView {
                 
                 GeometryReader { geometry in
                     KFImage(viewModel.selectItem?.imageUrl?.url)
+                        .placeholder {
+                            Image("character_default")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
+                        }
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
@@ -230,7 +236,7 @@ extension CharacterView {
     
     private func characterDetailView(item: CharacterItem) -> some View {
         Button {
-            viewModel.selectItem = item
+            viewModel.selectItem = (viewModel.selectItem == item) ? nil : item
         } label: {
             ZStack(alignment: .top) {
                 if viewModel.selectItem == item {
