@@ -18,22 +18,22 @@ struct CharacterView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 0) {
-                topAreaView()
-                bottomAreaView()
+        GeometryReader { proxy in
+            ZStack(alignment: .bottom) {
+                VStack(spacing: 0) {
+                    topAreaView()
+                    bottomAreaView()
+                }
+                .edgesIgnoringSafeArea([.top, .bottom])
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+                .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
+                
+                bottomButtonView(proxy: proxy)
+                    .animation(.easeInOut, value: availableBuyArea)
             }
-            .edgesIgnoringSafeArea([.top, .bottom])
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
-            .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
             
-            if viewModel.currentShowType == .shop && viewModel.selectItem != nil {
-                bottomButtonView()
-                    .transition(.move(edge: .bottom))
-            }
         }
-        .animation(.easeInOut, value: viewModel.selectItem)
     }
 }
 
@@ -179,7 +179,7 @@ extension CharacterView {
         }
     }
     
-    private func bottomButtonView() -> some View {
+    private func bottomButtonView(proxy: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             // 상단 그라데이션
             LinearGradient(
@@ -194,7 +194,9 @@ extension CharacterView {
             
             HStack(spacing: 16) {
                 Button {
-                    viewModel.selectItem = nil
+                    withAnimation { // 버튼 동작에도 애니메이션 적용
+                        viewModel.selectItem = nil
+                    }
                 } label: {
                     Text("선택 취소")
                         .font(size: 20)
@@ -221,8 +223,9 @@ extension CharacterView {
             }
             .padding(.horizontal, 24)
             .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            
         }
-        .padding(.bottom, 15)
+        .offset(y: availableBuyArea ? 0 : 54 + proxy.safeAreaInsets.bottom)
     }
     
     private func characterDetailView(item: CharacterItem) -> some View {
@@ -281,6 +284,10 @@ extension CharacterView {
     
     private var availableSaveButton: Bool { // 기존 캐릭터랑 다른 캐릭터가 선택되었을경우 저장버튼 활성화
         return viewModel.selectItem != viewModel.originalCharacter
+    }
+    
+    private var availableBuyArea: Bool {
+        return viewModel.currentShowType == .shop && viewModel.selectItem != nil
     }
 }
 

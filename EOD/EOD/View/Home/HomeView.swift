@@ -19,8 +19,6 @@ struct HomeView: View {
             topView()
             Spacer()
             houseView()
-//            Text("메인 홈 화면")
-//                .foregroundColor(.black)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
