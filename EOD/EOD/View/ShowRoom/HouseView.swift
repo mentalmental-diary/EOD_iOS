@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HouseView: View {
     @Binding var showHouseView: Bool
@@ -100,18 +101,18 @@ extension HouseView {
     
     private func selectTopNavigationView() -> some View {
         ZStack(alignment: .leading) {
-            HStack(spacing: 0) {
-                Spacer()
-                
-                Text("하우스 이름") // TODO: 아마 해당 테마 이름일듯 -> viewModel.selectTheme.name
-                
-                Spacer()
-            }
-            
             Button {
                 viewModel.selectTheme = nil
             } label: {
                 Image("btn_left")
+            }
+            
+            HStack(spacing: 0) {
+                Spacer()
+                
+                Text(viewModel.selectTheme?.name ?? "하우스 이름")
+                
+                Spacer()
             }
         }
         .padding(.horizontal, 20)
@@ -155,6 +156,8 @@ extension HouseView {
                 .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
             
             Spacer()
+            
+            themeListView()
 //            itemListView()
 //                .padding(.horizontal, 10)
 //                .padding(.top, 17)
@@ -162,13 +165,22 @@ extension HouseView {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    private func itemListView() -> some View {
+    private func themeListView() -> some View {
         ScrollView {
-            LazyVGrid(columns: columns, spacing: 10) {
-                
-//                ForEach(viewModel.presentItemList ?? [], id: \.id) { item in
-//                    characterDetailView(item: item)
-//                }
+            if viewModel.selectTheme != nil {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    
+                    ForEach(viewModel.themeShopItemList ?? [], id: \.id) { item in
+                        roomThemeItemDetailView(item: item) // TODO: 일단 임시로 상점이라도 잘 되는지 확인해야할듯
+                    }
+                }
+            } else {
+                LazyVGrid(columns: columns, spacing: 10) {
+                    
+                    ForEach(viewModel.themeList ?? [], id: \.id) { theme in
+                        roomThemeDetailView(theme: theme)
+                    }
+                }
             }
         }
     }
@@ -218,11 +230,137 @@ extension HouseView {
         }
         .padding(.bottom, 15)
     }
+    
+    private func roomThemeDetailView(theme: Theme) -> some View {
+        Button {
+            viewModel.selectTheme = theme
+        } label: {
+            ZStack(alignment: .bottom) {
+                KFImage(theme.imageUrl.url)
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .aspectRatio(contentMode: .fill)
+                
+                Text(theme.name)
+                    .font(size: 14)
+                    .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                    .lineSpacing(2)
+                    .padding(.bottom, 12)
+                    .frame(maxWidth: .infinity)
+            }
+            .frame(height: 120)
+            .background(.white)
+            .cornerRadius(16) // 모서리를 둥글게 설정
+        }
+        .buttonStyle(PlainButtonStyle()) // 기본 스타일 제거
+        .padding(EdgeInsets.init())
+    }
+    
+    private func roomThemeItemDetailView(item: ThemeItem) -> some View {
+        Button {
+            viewModel.selectShopItem = (viewModel.selectShopItem == item) ? nil : item
+        } label: {
+            ZStack(alignment: .top) {
+                if viewModel.selectShopItem == item {
+                    HStack {
+                        Spacer()
+                        Image("btnConfirmOn")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
+                    .padding([.top, .trailing], 5.0)
+                    .frame(maxWidth: .infinity)
+                    .offset(x: 0, y: 25) // 위치 조정을 위해 offset 사용
+                }
+                
+                VStack(spacing: 16) {
+                    KFImage(item.itemImageUrl.url)
+                        .resizable()
+                        .frame(width: 63, height: 55)
+                        .aspectRatio(contentMode: .fill)
+                    
+                    Text(item.name)
+                        .font(size: 14)
+                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                        .lineSpacing(2)
+                }
+                .padding(.top, 28)
+                .padding(.bottom, 12)
+                .padding(.vertical, 22)
+                .frame(maxWidth: .infinity)
+                
+               
+            }
+            .padding(EdgeInsets.init())
+            .frame(height: 120)
+            .background(.white) // 배경색을 흰색으로 설정
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(viewModel.selectShopItem == item ? Color.yellow : .clear, lineWidth: 2) // 테두리 색상과 두께 설정
+            )
+            .cornerRadius(16) // 모서리를 둥글게 설정
+        }
+        .buttonStyle(PlainButtonStyle()) // 기본 스타일 제거
+        .padding(EdgeInsets.init())
+    }
+    
+    private func bottomButtonView(proxy: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            // 상단 그라데이션
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(1),
+                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(0)
+                ]),
+                startPoint: .bottom,
+                endPoint: .top
+            )
+            .frame(height: 50) // TODO: 명확한 높이값 나중에 확인해보기
+            
+            HStack(spacing: 16) {
+                Button {
+                    withAnimation { // 버튼 동작에도 애니메이션 적용
+                        viewModel.selectShopItem = nil
+                    }
+                } label: {
+                    Text("선택 취소")
+                        .font(size: 20)
+                        .foregroundColor(Color(red: 93/255, green: 93/255, blue: 79/255))
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 229/255, green: 229/255, blue: 212/255))
+                        .cornerRadius(8.0)
+                }
+                
+                
+                Button {
+                    // TODO: 세부 로직 추후 수정
+                } label: {
+                    Text("선택 상품 구매")
+                        .font(size: 20)
+                        .foregroundColor(Color.white)
+                        .padding(.vertical, 16)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black)
+                        .cornerRadius(8.0)
+                }
+                
+            }
+            .padding(.horizontal, 24)
+            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            
+        }
+        .offset(y: availableBuyArea ? 0 : 54 + proxy.safeAreaInsets.bottom)
+    }
 }
 
 extension HouseView {
     private var columns: [GridItem] {
         [GridItem(.adaptive(minimum: 105, maximum: 120), spacing: 10, alignment: .top)]
+    }
+    
+    private var availableBuyArea: Bool {
+        return viewModel.currentShowType == .shop && viewModel.selectShopItem != nil
     }
 }
 

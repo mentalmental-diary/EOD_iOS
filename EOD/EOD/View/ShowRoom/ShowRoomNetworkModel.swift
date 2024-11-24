@@ -25,4 +25,16 @@ class ShowRoomNetworkModel: ListNetworkModel {
         
         APIRequest.requestDecodable(api: api, completion: completion)
     }
+    
+    func fetchThemeList(completion: @escaping ((Result<[Theme], Error>) -> Void)) {
+        let api = "/api-external/shop/room/theme"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
+    
+    func fetchShopThemeItemList(id: Int, completion: @escaping ((Result<[ThemeItem], Error>) -> Void)) {
+        let api = "/api-external/shop/room/theme/\(id)"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
 }
