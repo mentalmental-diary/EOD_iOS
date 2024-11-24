@@ -40,7 +40,8 @@ struct Theme: Decodable {
 struct ThemeItem: Decodable {
     var id: Int
     var type: RoomThemeItemType
-    var imageUrl: String
+    var itemImageUrl: String
+    var homeImageUrl: String
     var name: String
 }
 

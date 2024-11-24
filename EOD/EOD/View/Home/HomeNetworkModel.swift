@@ -13,4 +13,10 @@ class HomeNetworkModel {
         
         APIRequest.requestDecodable(api: api, completion: completion)
     }
+    
+    func fetchUserInfo(completion: @escaping (Result<UserInfoModel, Error>) -> Void) {
+        let api = "/api-external/user/rewards"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
 }
