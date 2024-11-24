@@ -54,9 +54,4 @@ public extension String {
         guard let first = first else { return nil }
         return String(first)
     }
-    
-    /// SwifterSwift: Array of characters of a string.
-    var charactersArray: [Character] {
-        return Array(self)
-    }
 }

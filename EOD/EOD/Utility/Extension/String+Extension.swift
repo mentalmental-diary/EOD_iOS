@@ -197,6 +197,11 @@ extension String {
     }
     
     var carriageReturns: [String] { return ["\n", "\r"] }
+    
+    /// SwifterSwift: Array of characters of a string.
+    var charactersArray: [Character] {
+        return Array(self)
+    }
 }
 
 extension String {

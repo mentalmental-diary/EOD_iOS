@@ -65,7 +65,7 @@ extension MainTabView {
         case .Calender:
             CalendarView(viewModel: calendarViewModel)
         case .Game:
-            HomeView()
+            GameView()
 //        case .Shop:
 //            HomeView()
         case .My:
