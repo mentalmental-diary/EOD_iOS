@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct GameView: View {
+    @StateObject private var gameDataViewModel: GameDataViewModel = GameDataViewModel()
+    
     var body: some View {
-        Button(action: {
-            GameManager.shared.launchUnity()
-        }, label: {
-            Text("게임시작")
-                .foregroundColor(.black)
-        })
+        VStack {
+            Button(action: {
+                GameManager.shared.launchUnity()
+            }, label: {
+                Text("게임시작")
+                    .foregroundColor(.black)
+            })
+            
+            Text("Highest Score: \(gameDataViewModel.score)")
+            Text("Coin Count: \(gameDataViewModel.coinCount)")
+        }
+        .onAppear {
+            gameDataViewModel.sendHighScoreToUnity()
+        }
     }
 }
 
