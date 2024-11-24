@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:yolkgamebuild240730/Unity-iPhone.xcodeproj">
+      location = "container:eod_game/Unity-iPhone.xcodeproj">
    </FileRef>
    <FileRef
       location = "container:EOD.xcodeproj">

@@ -45,10 +45,9 @@
 		CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
 		CE8F1E7E2CE829EA00173B1F /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */; };
 		CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95A6642C6302D000BF33F7 /* SplashView.swift */; };
-		CE979DE62C79916100D0ED53 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DE52C79916100D0ED53 /* GameView.swift */; };
-		CE979DF32C7C164500D0ED53 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CE979DF62C7C166400D0ED53 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DF52C7C166400D0ED53 /* GameManager.swift */; };
 		CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */; };
+		CE979DE62C79916100D0ED53 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DE52C79916100D0ED53 /* GameView.swift */; };
+		CE979DF62C7C166400D0ED53 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DF52C7C166400D0ED53 /* GameManager.swift */; };
 		CEA422F42BE4FCC600725E6B /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
 		CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
 		CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
@@ -137,6 +136,7 @@
 		CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
+		CEE232412CF3133C00583587 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -160,13 +160,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CE979DF42C7C164500D0ED53 /* Embed Frameworks */ = {
+		CEE232422CF3133C00583587 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CE979DF32C7C164500D0ED53 /* UnityFramework.framework in Embed Frameworks */,
+				CEE232412CF3133C00583587 /* UnityFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,11 +213,11 @@
 		CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		CE95A6642C6302D000BF33F7 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNetworkModel.swift; sourceTree = "<group>"; };
 		CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE979DE52C79916100D0ED53 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE979DF52C7C166400D0ED53 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNetworkModel.swift; sourceTree = "<group>"; };
 		CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorSet.xcassets; sourceTree = "<group>"; };
 		CEA422F52BE4FF4900725E6B /* ColorSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSet.swift; sourceTree = "<group>"; };
 		CEA422F72BE5022F00725E6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -746,7 +746,7 @@
 				CEB7EFF12AAC5025001C99EA /* Sources */,
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
-				CE979DF42C7C164500D0ED53 /* Embed Frameworks */,
+				CEE232422CF3133C00583587 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
