@@ -6,6 +6,6 @@
 //
 
 class UserInfoModel: Decodable {
-    let characterInfo: [CharacterItem]
+    let characterInfo: CharacterItem?
     let roomItems: [String: ThemeItem]
 }

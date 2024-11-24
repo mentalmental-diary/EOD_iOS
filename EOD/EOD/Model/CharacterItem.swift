@@ -10,7 +10,7 @@ import Foundation
 /// 캐릭터 아이템 모델
 struct CharacterItem: Decodable {
     var id: Int
-    var imageUrl: String
+    var imageUrl: String?
     var name: String
     var price: Int?
     var createdAt: Date?
@@ -28,7 +28,7 @@ struct CharacterItem: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
-        imageUrl = try container.decode(String.self, forKey: .imageUrl)
+        imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
         name = try container.decode(String.self, forKey: .name)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         

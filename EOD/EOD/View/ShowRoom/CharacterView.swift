@@ -45,7 +45,7 @@ extension CharacterView {
                     .resizable()
                 
                 GeometryReader { geometry in
-                    KFImage(viewModel.selectItem?.imageUrl.url)
+                    KFImage(viewModel.selectItem?.imageUrl?.url)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
@@ -243,7 +243,7 @@ extension CharacterView {
                 }
                 
                 VStack(spacing: 16) {
-                    KFImage(item.imageUrl.url)
+                    KFImage(item.imageUrl?.url)
                         .resizable()
                         .frame(width: 63, height: 55)
                         .aspectRatio(contentMode: .fill)

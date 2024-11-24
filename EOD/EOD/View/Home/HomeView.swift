@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @State private var showCharacterView: Bool = false
@@ -17,8 +18,9 @@ struct HomeView: View {
         VStack {
             topView()
             Spacer()
-            Text("메인 홈 화면")
-                .foregroundColor(.black)
+            houseView()
+//            Text("메인 홈 화면")
+//                .foregroundColor(.black)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -100,6 +102,19 @@ extension HomeView {
     
     // 캐릭터 테마 메인 뷰
     private func houseView() -> some View {
+        VStack {
+            if viewModel.userInfo?.characterInfo?.imageUrl != nil {
+                KFImage(viewModel.userInfo?.characterInfo?.imageUrl?.url)
+                    .resizable()
+            } else {
+                Image("character_default")
+//                    .resizable()
+                
+            }
+        }
+    }
+    
+    private func todayTextView() -> some View {
         VStack {
             
         }
