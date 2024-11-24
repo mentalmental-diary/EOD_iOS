@@ -1539,11 +1539,11 @@ struct WaitOrTimerCallback_t7F57455D2C211D4751694104BA7DD36A9AB51711;
 struct WeakReference_tD4B0518CE911FFD9FAAB3FCD492644A354312D8E;
 struct YogaConfig_tA7EBAFAD020EA5AB3104A2C25AB95CC7CE6FB3E2;
 struct YogaNode_t9EE7C2B7C0BD1299C28837B1A66CF4660E724C8B;
-struct Yolk_GotoSleep_ButtonManager_t38A71DC255C95504F3078909E1A7028EE3E2CDA7;
-struct Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610;
-struct Yolk_Running_CharacterController_t56EF6BB00341F29A1FE135AD4816F4FD7D7D8B76;
-struct Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007;
-struct Yolk_Running_Spawner_t040C826720929A3EE29448B5E9760F98C3DFD848;
+struct Yolk_Catch_ButtonManager_tF62A3D346C8941ED18706C0FB85F71DBAEA4AAB9;
+struct Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7;
+struct Yolk_Run_CharacterController_t887E7FC51AF32DADCBB48716D39CA6F60135658E;
+struct Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F;
+struct Yolk_Run_Spawner_t8CF2F32CD52C901458C863422642FC81DDD39C80;
 struct __BinaryWriter_t030DAE49A9AEB83F8C5E758B355C7F0D21A117BE;
 struct ASCIIEncodingSealed_tF8E814B8895F47AC8DACD5B80A1D32FF80A5EE55;
 struct UxmlTraits_t71FC85ADDE15ED13EAEAA0CEF1B5D7F4F44DAFAE;
@@ -7132,31 +7132,31 @@ struct Sse_t1388C7824E01DCC99D081049BA94FD2712BF858B  : public RuntimeObject
 struct Sse2_t7D2C1FEA4C8F078FDAE4AFF2DC6276B49F2466CF  : public RuntimeObject
 {
 };
-struct U3CGameTimerU3Ed__15_t734A5167688144CD608E8A50119B82718039E747  : public RuntimeObject
+struct U3CGameTimerU3Ed__15_tE1BCEFBCD7C35DB00C707CAFA4AE990E01A16843  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
-	Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610* ___U3CU3E4__this;
+	Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7* ___U3CU3E4__this;
 };
-struct U3CU3COnCollisionEnter2DU3Eg__ExecuteAfterTimeU7C7_0U3Ed_t6D810E345EACF85F699CC1E201CB3251F0FAA09B  : public RuntimeObject
+struct U3CU3COnCollisionEnter2DU3Eg__ExecuteAfterTimeU7C7_0U3Ed_tA4B79D80B8190DC625F23D28CD6CBEFC141D8C18  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
 	float ___time;
-	Yolk_Running_CharacterController_t56EF6BB00341F29A1FE135AD4816F4FD7D7D8B76* ___U3CU3E4__this;
+	Yolk_Run_CharacterController_t887E7FC51AF32DADCBB48716D39CA6F60135658E* ___U3CU3E4__this;
 };
-struct U3CGameTimerU3Ed__26_t27665D0224B04841E10B66EA287A7C02B26F2DF0  : public RuntimeObject
+struct U3CGameTimerU3Ed__26_t22A4F31F0485B7F873326B02B21A562F432A1A65  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
-	Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007* ___U3CU3E4__this;
+	Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F* ___U3CU3E4__this;
 };
-struct U3CSpawnTimerU3Ed__11_tCCB1F4073F4DE38D11BA010337AE07D5D3AA16B5  : public RuntimeObject
+struct U3CSpawnTimerU3Ed__11_t7E2C6685720A76D0462B44BF7F05B70515C64EBA  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
 	float ____timer;
-	Yolk_Running_Spawner_t040C826720929A3EE29448B5E9760F98C3DFD848* ___U3CU3E4__this;
+	Yolk_Run_Spawner_t8CF2F32CD52C901458C863422642FC81DDD39C80* ___U3CU3E4__this;
 };
 struct DebuggerProxy_t7ADF52C52717A46ECA0C565057AE4DE54B2C69B8  : public RuntimeObject
 {
@@ -13115,7 +13115,7 @@ struct v64_t9C4037532D386FF1E9B95E5FBD01FEF472AC1F96
 	};
 };
 #pragma pack(push, tp, 1)
-struct __StaticArrayInitTypeSizeU3D1206_t7FB2332689615A361D955C63E38AD8E06D3BD761 
+struct __StaticArrayInitTypeSizeU3D1140_t3B0CC01561D0E3A82DED1C50B20190AEF87A029D 
 {
 	union
 	{
@@ -13125,12 +13125,12 @@ struct __StaticArrayInitTypeSizeU3D1206_t7FB2332689615A361D955C63E38AD8E06D3BD76
 			{
 			};
 		};
-		uint8_t __StaticArrayInitTypeSizeU3D1206_t7FB2332689615A361D955C63E38AD8E06D3BD761__padding[1206];
+		uint8_t __StaticArrayInitTypeSizeU3D1140_t3B0CC01561D0E3A82DED1C50B20190AEF87A029D__padding[1140];
 	};
 };
 #pragma pack(pop, tp)
 #pragma pack(push, tp, 1)
-struct __StaticArrayInitTypeSizeU3D706_tF4DD35132E6D681E5D43992B97BD464308EFAA8D 
+struct __StaticArrayInitTypeSizeU3D640_t75AAA620FDDB641AC92B3BB769076DF4B70BB4B9 
 {
 	union
 	{
@@ -13140,7 +13140,7 @@ struct __StaticArrayInitTypeSizeU3D706_tF4DD35132E6D681E5D43992B97BD464308EFAA8D
 			{
 			};
 		};
-		uint8_t __StaticArrayInitTypeSizeU3D706_tF4DD35132E6D681E5D43992B97BD464308EFAA8D__padding[706];
+		uint8_t __StaticArrayInitTypeSizeU3D640_t75AAA620FDDB641AC92B3BB769076DF4B70BB4B9__padding[640];
 	};
 };
 #pragma pack(pop, tp)
@@ -27918,11 +27918,11 @@ struct U3Cget_stylesheetsU3Ed__23_t084BB43C160D07BB39AC22ED785CA130162000D8  : p
 	String_t* ___U3CstylesheetPathU3E5__7;
 	StyleSheet_t6FAF43FCDB45BC6BED0522A222FD4C1A9BB10428* ___U3CstylesheetU3E5__8;
 };
-struct U3CFadeOutCoroutineU3Ed__16_t93EBDF7DAAF327711DE65250490B743A40C593BF  : public RuntimeObject
+struct U3CFadeOutCoroutineU3Ed__16_tDA1FB1415F37DE50F4AC4877B99205754EE79122  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
-	Yolk_GotoSleep_ButtonManager_t38A71DC255C95504F3078909E1A7028EE3E2CDA7* ___U3CU3E4__this;
+	Yolk_Catch_ButtonManager_tF62A3D346C8941ED18706C0FB85F71DBAEA4AAB9* ___U3CU3E4__this;
 	Image_tBC1D03F63BF71132E9A5E472B8742F172A011E7E* ___U3CgameObjectImageU3E5__2;
 	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___U3CstartColorU3E5__3;
 	float ___U3CstartTimeU3E5__4;
@@ -39608,13 +39608,13 @@ struct KeyUpEvent_tA037C42AEA6A8E0919BA60BD796B3AD1DA506394  : public KeyboardEv
 };
 struct MainScene_tF2B107300040A766BD3321D2ACE53F958A793B5B  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___runningYolkHighScore;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___goToSleepHighScore;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___flyingHighScore;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___runYolkHighScore;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___catchYolkHighScore;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___flyYolkHighScore;
 	int32_t ___gamenum;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isGame1Open;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isGame2Open;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isGame3Open;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isCatchYolkOpen;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isRunYolkOpen;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isFlyYolkOpen;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isStory1Open;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isStory2Open;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___isStory3Open;
@@ -40136,60 +40136,11 @@ struct WheelEvent_tDD5DB3A6F5F6FDB59AD7FF27491502FF18B9775E  : public MouseEvent
 {
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___U3CdeltaU3Ek__BackingField;
 };
-struct Yolk_Flying_CameraController_t68FF4F259870B8E32B59ABE6216C297FBFEA6536  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
-{
-	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___player;
-	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset;
-	float ___smoothSpeed;
-};
-struct Yolk_Flying_CharacterController_tBBBCEC7D92BE000B6CE0DEE83537D7F6B3788FBA  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
-{
-	Rigidbody2D_tBEBE9523CF4448544085AF46BF7E10AA499F320F* ___myRigidbody;
-	float ___forceAmount;
-	float ___maxJumpvelocity;
-	float ___speed;
-};
-struct Yolk_Flying_DataManager_t140C556AB58F08DC0ED736FC4BA6811FB2164AC5  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
-{
-	bool ___IsGameStart;
-	bool ___isGameOver;
-	float ___score;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___scoreText;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___highScoreText;
-};
-struct Yolk_Flying_GameManager_t73203EAF6C0950F501C94E9AAEDEA4077F8EE4F7  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
-{
-	int32_t ___resultCoin;
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameStartUI;
-	bool ___isGameStartUIOn;
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameOverUI;
-	bool ___isGameOverUIOn;
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___PauseUI;
-	bool ___isPauseUIOn;
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___RetryButton;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___resultScoreText;
-	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___resultCoinText;
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Player;
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Spawner;
-};
-struct Yolk_Flying_Obstacle_t7A0C8CF03F8A49C440C56E4D3695383708332EB5  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
-{
-	float ___destroyTime;
-};
-struct Yolk_Flying_Spawner_t721BC3F62AE911F5F50E8DB2E7756C452AB220B0  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
-{
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___player;
-	float ___x_spawnPosition;
-	float ___y_min;
-	float ___y_max;
-	GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* ___spawnObject;
-	float ___spawnTime;
-};
-struct Yolk_GotoSleep_AddAnimatorToPrefab_t1E7757E52A92391CF0F74CD4553C50E2C6489D4E  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Catch_AddAnimatorToPrefab_t16DE07E1072285DA6756DB38C5A352DEDF78E79E  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	Animator_t8A52E42AE54F76681838FE9E632683EF3952E883* ___animator;
 };
-struct Yolk_GotoSleep_ButtonManager_t38A71DC255C95504F3078909E1A7028EE3E2CDA7  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Catch_ButtonManager_tF62A3D346C8941ED18706C0FB85F71DBAEA4AAB9  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	float ___fadeDuration;
 	bool ___isNormal;
@@ -40205,7 +40156,7 @@ struct Yolk_GotoSleep_ButtonManager_t38A71DC255C95504F3078909E1A7028EE3E2CDA7  :
 	float ___detroyTimer;
 	float ___fxSoundStartTime;
 };
-struct Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	bool ___IsGameStart;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___timerText;
@@ -40218,7 +40169,7 @@ struct Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610  : p
 	float ___score;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___scoreText;
 };
-struct Yolk_GotoSleep_GameManager_tC0890F41FFB0AD6DA09A912582A1CA3C17FC602C  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Catch_GameManager_t2A973E7556C9BCD2437F2BC30F1B68E3EB134962  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	int32_t ___resultCoin;
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameStartUI;
@@ -40231,21 +40182,70 @@ struct Yolk_GotoSleep_GameManager_tC0890F41FFB0AD6DA09A912582A1CA3C17FC602C  : p
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___resultCoinText;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___highScoreText;
 };
-struct Yolk_GotoSleep_Spawner_t3D349CEF8CD774CC86ECD1AB4E426D71EF57D16A  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Catch_Spawner_tC527C4CD3CC5476CD89D8890C8966BAB6D8E85AE  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___normal_Prefab;
 	GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* ___spawner;
 };
-struct Yolk_GotoSleep_YolkAnimate_t0ACAC1E545009FB39239BE11D6F75BFC1F2D8E90  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Catch_YolkAnimate_t5350CC8E57C7AE69955435B23C8CEB5B1D1BBA94  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 };
-struct Yolk_Running_ButtonManager_t66D3DD5B056C363E2C49F85AF5553688EB2E836C  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Fly_CameraController_t49DD48DB18597CE3EB1C540E834BC884EE7F57E5  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___player;
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___offset;
+	float ___smoothSpeed;
+};
+struct Yolk_Fly_CharacterController_tA348817E8AD60BFDAA8FB0F3F132F0A202758331  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	Rigidbody2D_tBEBE9523CF4448544085AF46BF7E10AA499F320F* ___myRigidbody;
+	float ___forceAmount;
+	float ___maxJumpvelocity;
+	float ___speed;
+};
+struct Yolk_Fly_DataManager_tECDAE5610F631BA3F845CBCF29B0E3FBF0D6CA51  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	bool ___IsGameStart;
+	bool ___isGameOver;
+	float ___score;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___scoreText;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___highScoreText;
+};
+struct Yolk_Fly_GameManager_t868E349B69FB0091EC59AC294692D445F3651D8B  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	int32_t ___resultCoin;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameStartUI;
+	bool ___isGameStartUIOn;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameOverUI;
+	bool ___isGameOverUIOn;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___PauseUI;
+	bool ___isPauseUIOn;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___RetryButton;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___resultScoreText;
+	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___resultCoinText;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Player;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___Spawner;
+};
+struct Yolk_Fly_Obstacle_t61C6E7B267073112938B7D16B76B1AA5B9816BCE  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	float ___destroyTime;
+};
+struct Yolk_Fly_Spawner_t27551EA568A42963F28B077313127D08706026F0  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___player;
+	float ___x_spawnPosition;
+	float ___y_min;
+	float ___y_max;
+	GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* ___spawnObject;
+	float ___spawnTime;
+};
+struct Yolk_Run_ButtonManager_tF3A79504EDFDCEABBEDB95A116310CDE1EF5D300  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___m_gameobject;
 	Animator_t8A52E42AE54F76681838FE9E632683EF3952E883* ___animator;
 	float ___fxSoundStartTime;
 };
-struct Yolk_Running_CharacterController_t56EF6BB00341F29A1FE135AD4816F4FD7D7D8B76  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Run_CharacterController_t887E7FC51AF32DADCBB48716D39CA6F60135658E  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	Sprite_tAFF74BC83CD68037494CB0B4F28CBDF8971CAB99* ___sp_UnderAttack_Fire;
 	Sprite_tAFF74BC83CD68037494CB0B4F28CBDF8971CAB99* ___sp_UnderAttack_Fryingpan;
@@ -40253,7 +40253,7 @@ struct Yolk_Running_CharacterController_t56EF6BB00341F29A1FE135AD4816F4FD7D7D8B7
 	Animator_t8A52E42AE54F76681838FE9E632683EF3952E883* ___animator;
 	float ___fxSoundStartTime;
 };
-struct Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	bool ___IsGameStart;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___timerText;
@@ -40273,7 +40273,7 @@ struct Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007  : pub
 	bool ___isCollided;
 	bool ___isSpawnTiming;
 };
-struct Yolk_Running_GameManager_t813D58607D3C05C1C77D4C4314E704D275BF8103  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Run_GameManager_t15EB24F0EEE7EA5443C850C25DA0B8ED1CEF6DCC  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	int32_t ___resultCoin;
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___GameStartUI;
@@ -40286,7 +40286,7 @@ struct Yolk_Running_GameManager_t813D58607D3C05C1C77D4C4314E704D275BF8103  : pub
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___scoreNum;
 	Text_tD60B2346DAA6666BF0D822FF607F0B220C2B9E62* ___highScoreText;
 };
-struct Yolk_Running_ObjectMovement_t7D998E22EEDC762E2062EF883E157B0D26C9FC2D  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Run_ObjectMovement_t42D38495E4C030DE19ECA13F28EF02875282C08B  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	float ___speed;
 	float ___startY;
@@ -40294,7 +40294,7 @@ struct Yolk_Running_ObjectMovement_t7D998E22EEDC762E2062EF883E157B0D26C9FC2D  : 
 	float ___t;
 	int32_t ___lifetime;
 };
-struct Yolk_Running_Spawner_t040C826720929A3EE29448B5E9760F98C3DFD848  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+struct Yolk_Run_Spawner_t8CF2F32CD52C901458C863422642FC81DDD39C80  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
 {
 	GameObjectU5BU5D_tFF67550DFCE87096D7A3734EA15B75896B2722CF* ___Spawner;
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___obstaclePrefab_Fire;
@@ -42120,8 +42120,8 @@ struct ScrollerSlider_t9E2F7FDBE4107F3A9E7294597D336BEA67DEB59C  : public Slider
 };
 struct U3CPrivateImplementationDetailsU3E_t0F5473E849A5A5185A9F4C5246F0C32816C49FCA_StaticFields
 {
-	__StaticArrayInitTypeSizeU3D1206_t7FB2332689615A361D955C63E38AD8E06D3BD761 ___47D1EAA874EEF8BD5CE577DBA7CFE41FB08B7298B3951F27EED870AAE4F34B73;
-	__StaticArrayInitTypeSizeU3D706_tF4DD35132E6D681E5D43992B97BD464308EFAA8D ___EBFFBE621B26D325CBAC18CD5417F0071CA333B846C2852DDC6A045611A361C8;
+	__StaticArrayInitTypeSizeU3D640_t75AAA620FDDB641AC92B3BB769076DF4B70BB4B9 ___31009AA6BA128E049F6AEAA1E4FFFE581E020680D2742C23A2DFAF8EB55B28D5;
+	__StaticArrayInitTypeSizeU3D1140_t3B0CC01561D0E3A82DED1C50B20190AEF87A029D ___716F9187DF6B077460A41DF26F5F3AE5925B82652C3310B77516508C335F7AE2;
 };
 struct U3CPrivateImplementationDetailsU3E_t56F624E1051A2E261613B6A81CA2333397F49CB3_StaticFields
 {
@@ -46053,12 +46053,12 @@ struct InlineStyleAccess_t5CA7877999C9442491A220AE50D605C84D09A165_StaticFields
 };
 struct MainScene_DataManager_tD620CDF2AAAADC596A7182E848666AD6B4E905FC_StaticFields
 {
-	float ___highScore_GoToSleep;
-	float ___highScore_RunningYolk;
-	float ___highScore_FlyingYolk;
-	bool ___isGame1Open;
-	bool ___isGame2Open;
-	bool ___isGame3Open;
+	float ___highScore_CatchYolk;
+	float ___highScore_RunYolk;
+	float ___highScore_FlyYolk;
+	bool ___isCatchYolkOpen;
+	bool ___isRunYolkOpen;
+	bool ___isFlyYolkOpen;
 	bool ___isStory1Open;
 	bool ___isStory2Open;
 	bool ___isStory3Open;
@@ -46179,21 +46179,21 @@ struct UnityToObjC_t5A8ABF66FADFE7D01FF182D51187066C91FB2FA0_StaticFields
 {
 	UnityToObjC_t5A8ABF66FADFE7D01FF182D51187066C91FB2FA0* ___instance;
 };
-struct Yolk_Flying_DataManager_t140C556AB58F08DC0ED736FC4BA6811FB2164AC5_StaticFields
+struct Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7_StaticFields
 {
-	Yolk_Flying_DataManager_t140C556AB58F08DC0ED736FC4BA6811FB2164AC5* ___instance;
+	Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7* ___instance;
 };
-struct Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610_StaticFields
+struct Yolk_Catch_Spawner_tC527C4CD3CC5476CD89D8890C8966BAB6D8E85AE_StaticFields
 {
-	Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610* ___instance;
+	Yolk_Catch_Spawner_tC527C4CD3CC5476CD89D8890C8966BAB6D8E85AE* ___instance;
 };
-struct Yolk_GotoSleep_Spawner_t3D349CEF8CD774CC86ECD1AB4E426D71EF57D16A_StaticFields
+struct Yolk_Fly_DataManager_tECDAE5610F631BA3F845CBCF29B0E3FBF0D6CA51_StaticFields
 {
-	Yolk_GotoSleep_Spawner_t3D349CEF8CD774CC86ECD1AB4E426D71EF57D16A* ___instance;
+	Yolk_Fly_DataManager_tECDAE5610F631BA3F845CBCF29B0E3FBF0D6CA51* ___instance;
 };
-struct Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007_StaticFields
+struct Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F_StaticFields
 {
-	Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007* ___instance;
+	Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F* ___instance;
 };
 struct AbstractProgressBar_t953B809E5B45C1CF994EDD60757A74B59267BC30_StaticFields
 {
@@ -54975,59 +54975,59 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize4183 = { sizeof(StoryManager
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4184;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize4184 = { sizeof(UnityToObjC_t5A8ABF66FADFE7D01FF182D51187066C91FB2FA0), -1, sizeof(UnityToObjC_t5A8ABF66FADFE7D01FF182D51187066C91FB2FA0_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4185;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4185 = { sizeof(Yolk_Flying_CameraController_t68FF4F259870B8E32B59ABE6216C297FBFEA6536), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4185 = { sizeof(Yolk_Catch_AddAnimatorToPrefab_t16DE07E1072285DA6756DB38C5A352DEDF78E79E), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4186;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4186 = { sizeof(Yolk_Flying_CharacterController_tBBBCEC7D92BE000B6CE0DEE83537D7F6B3788FBA), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4186 = { sizeof(U3CFadeOutCoroutineU3Ed__16_tDA1FB1415F37DE50F4AC4877B99205754EE79122), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4187;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4187 = { sizeof(Yolk_Flying_DataManager_t140C556AB58F08DC0ED736FC4BA6811FB2164AC5), -1, sizeof(Yolk_Flying_DataManager_t140C556AB58F08DC0ED736FC4BA6811FB2164AC5_StaticFields), 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4187 = { sizeof(Yolk_Catch_ButtonManager_tF62A3D346C8941ED18706C0FB85F71DBAEA4AAB9), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4188;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4188 = { sizeof(Yolk_Flying_GameManager_t73203EAF6C0950F501C94E9AAEDEA4077F8EE4F7), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4188 = { sizeof(U3CGameTimerU3Ed__15_tE1BCEFBCD7C35DB00C707CAFA4AE990E01A16843), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4189;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4189 = { sizeof(Yolk_Flying_Obstacle_t7A0C8CF03F8A49C440C56E4D3695383708332EB5), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4189 = { sizeof(Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7), -1, sizeof(Yolk_Catch_DataManager_t943D90C0291E292177A2720107CEC229084D9BC7_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4190;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4190 = { sizeof(Yolk_Flying_Spawner_t721BC3F62AE911F5F50E8DB2E7756C452AB220B0), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4190 = { sizeof(Yolk_Catch_GameManager_t2A973E7556C9BCD2437F2BC30F1B68E3EB134962), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4191;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4191 = { sizeof(Yolk_GotoSleep_AddAnimatorToPrefab_t1E7757E52A92391CF0F74CD4553C50E2C6489D4E), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4191 = { sizeof(Yolk_Catch_Spawner_tC527C4CD3CC5476CD89D8890C8966BAB6D8E85AE), -1, sizeof(Yolk_Catch_Spawner_tC527C4CD3CC5476CD89D8890C8966BAB6D8E85AE_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4192;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4192 = { sizeof(U3CFadeOutCoroutineU3Ed__16_t93EBDF7DAAF327711DE65250490B743A40C593BF), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4192 = { sizeof(Yolk_Catch_YolkAnimate_t5350CC8E57C7AE69955435B23C8CEB5B1D1BBA94), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4193;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4193 = { sizeof(Yolk_GotoSleep_ButtonManager_t38A71DC255C95504F3078909E1A7028EE3E2CDA7), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4193 = { sizeof(Yolk_Fly_CameraController_t49DD48DB18597CE3EB1C540E834BC884EE7F57E5), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4194;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4194 = { sizeof(U3CGameTimerU3Ed__15_t734A5167688144CD608E8A50119B82718039E747), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4194 = { sizeof(Yolk_Fly_CharacterController_tA348817E8AD60BFDAA8FB0F3F132F0A202758331), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4195;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4195 = { sizeof(Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610), -1, sizeof(Yolk_GotoSleep_DataManager_t348E6C3F6AC39A2A9273902D3BA760AFE4ED6610_StaticFields), 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4195 = { sizeof(Yolk_Fly_DataManager_tECDAE5610F631BA3F845CBCF29B0E3FBF0D6CA51), -1, sizeof(Yolk_Fly_DataManager_tECDAE5610F631BA3F845CBCF29B0E3FBF0D6CA51_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4196;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4196 = { sizeof(Yolk_GotoSleep_GameManager_tC0890F41FFB0AD6DA09A912582A1CA3C17FC602C), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4196 = { sizeof(Yolk_Fly_GameManager_t868E349B69FB0091EC59AC294692D445F3651D8B), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4197;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4197 = { sizeof(Yolk_GotoSleep_Spawner_t3D349CEF8CD774CC86ECD1AB4E426D71EF57D16A), -1, sizeof(Yolk_GotoSleep_Spawner_t3D349CEF8CD774CC86ECD1AB4E426D71EF57D16A_StaticFields), 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4197 = { sizeof(Yolk_Fly_Obstacle_t61C6E7B267073112938B7D16B76B1AA5B9816BCE), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4198;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4198 = { sizeof(Yolk_GotoSleep_YolkAnimate_t0ACAC1E545009FB39239BE11D6F75BFC1F2D8E90), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4198 = { sizeof(Yolk_Fly_Spawner_t27551EA568A42963F28B077313127D08706026F0), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4199;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4199 = { sizeof(Yolk_Running_ButtonManager_t66D3DD5B056C363E2C49F85AF5553688EB2E836C), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4199 = { sizeof(Yolk_Run_ButtonManager_tF3A79504EDFDCEABBEDB95A116310CDE1EF5D300), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4200;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4200 = { sizeof(U3CU3COnCollisionEnter2DU3Eg__ExecuteAfterTimeU7C7_0U3Ed_t6D810E345EACF85F699CC1E201CB3251F0FAA09B), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4200 = { sizeof(U3CU3COnCollisionEnter2DU3Eg__ExecuteAfterTimeU7C7_0U3Ed_tA4B79D80B8190DC625F23D28CD6CBEFC141D8C18), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4201;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4201 = { sizeof(Yolk_Running_CharacterController_t56EF6BB00341F29A1FE135AD4816F4FD7D7D8B76), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4201 = { sizeof(Yolk_Run_CharacterController_t887E7FC51AF32DADCBB48716D39CA6F60135658E), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4202;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4202 = { sizeof(U3CGameTimerU3Ed__26_t27665D0224B04841E10B66EA287A7C02B26F2DF0), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4202 = { sizeof(U3CGameTimerU3Ed__26_t22A4F31F0485B7F873326B02B21A562F432A1A65), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4203;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4203 = { sizeof(Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007), -1, sizeof(Yolk_Running_DataManager_tA01E834507DE8901C40AF80F246C1986F3048007_StaticFields), 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4203 = { sizeof(Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F), -1, sizeof(Yolk_Run_DataManager_t94296726C29906D0E6959C5AE018732ABA5A623F_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4204;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4204 = { sizeof(Yolk_Running_GameManager_t813D58607D3C05C1C77D4C4314E704D275BF8103), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4204 = { sizeof(Yolk_Run_GameManager_t15EB24F0EEE7EA5443C850C25DA0B8ED1CEF6DCC), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4205;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4205 = { sizeof(Yolk_Running_ObjectMovement_t7D998E22EEDC762E2062EF883E157B0D26C9FC2D), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4205 = { sizeof(Yolk_Run_ObjectMovement_t42D38495E4C030DE19ECA13F28EF02875282C08B), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4206;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4206 = { sizeof(U3CSpawnTimerU3Ed__11_tCCB1F4073F4DE38D11BA010337AE07D5D3AA16B5), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4206 = { sizeof(U3CSpawnTimerU3Ed__11_t7E2C6685720A76D0462B44BF7F05B70515C64EBA), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4207;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4207 = { sizeof(Yolk_Running_Spawner_t040C826720929A3EE29448B5E9760F98C3DFD848), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4207 = { sizeof(Yolk_Run_Spawner_t8CF2F32CD52C901458C863422642FC81DDD39C80), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4208;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize4208 = { sizeof(MonoScriptData_t8F50E352855B96FFFC1D9CB07EACC90C99D73A3E)+ sizeof(RuntimeObject), sizeof(MonoScriptData_t8F50E352855B96FFFC1D9CB07EACC90C99D73A3E_marshaled_pinvoke), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4209;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize4209 = { sizeof(UnitySourceGeneratedAssemblyMonoScriptTypes_v1_tC95F24D0C6E6B77389433852BB389F39C692926E), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4210;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4210 = { sizeof(__StaticArrayInitTypeSizeU3D706_tF4DD35132E6D681E5D43992B97BD464308EFAA8D)+ sizeof(RuntimeObject), sizeof(__StaticArrayInitTypeSizeU3D706_tF4DD35132E6D681E5D43992B97BD464308EFAA8D), 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4210 = { sizeof(__StaticArrayInitTypeSizeU3D640_t75AAA620FDDB641AC92B3BB769076DF4B70BB4B9)+ sizeof(RuntimeObject), sizeof(__StaticArrayInitTypeSizeU3D640_t75AAA620FDDB641AC92B3BB769076DF4B70BB4B9), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4211;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize4211 = { sizeof(__StaticArrayInitTypeSizeU3D1206_t7FB2332689615A361D955C63E38AD8E06D3BD761)+ sizeof(RuntimeObject), sizeof(__StaticArrayInitTypeSizeU3D1206_t7FB2332689615A361D955C63E38AD8E06D3BD761), 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize4211 = { sizeof(__StaticArrayInitTypeSizeU3D1140_t3B0CC01561D0E3A82DED1C50B20190AEF87A029D)+ sizeof(RuntimeObject), sizeof(__StaticArrayInitTypeSizeU3D1140_t3B0CC01561D0E3A82DED1C50B20190AEF87A029D), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4212;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize4212 = { sizeof(U3CPrivateImplementationDetailsU3E_t0F5473E849A5A5185A9F4C5246F0C32816C49FCA), -1, sizeof(U3CPrivateImplementationDetailsU3E_t0F5473E849A5A5185A9F4C5246F0C32816C49FCA_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize4213;

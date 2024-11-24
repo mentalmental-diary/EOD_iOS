@@ -36,19 +36,19 @@ class GameManager {
 
     private func loadUnityFramework() -> UnityFramework? {
         let bundlePath: String = Bundle.main.bundlePath + frameworkPath
+        guard let bundle = Bundle(path: bundlePath) else { return nil }
 
-        let bundle = Bundle(path: bundlePath)
-        if bundle?.isLoaded == false {
-            bundle?.load()
+        if !bundle.isLoaded {
+            bundle.load()
         }
 
-        let ufw = bundle?.principalClass?.getInstance()
-        if ufw?.appController() == nil {
-            let machineHeader = UnsafeMutablePointer<MachHeader>.allocate(capacity: 1)
-            machineHeader.pointee = _mh_execute_header
-
-            ufw?.setExecuteHeader(machineHeader)
+        guard let ufw = bundle.principalClass?.getInstance() else { return nil }
+        
+        // UnityFramework의 appController가 설정되지 않았다면 설정
+        if ufw.appController() == nil {
+            ufw.setExecuteHeader(nil) // 헤더 설정 제거
         }
+        
         return ufw
     }
 }

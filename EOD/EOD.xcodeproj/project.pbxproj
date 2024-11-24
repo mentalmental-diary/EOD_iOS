@@ -129,6 +129,7 @@
 		CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */; };
 		CEB7F0A22AAC6424001C99EA /* Alamofire+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */; };
 		CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A32AAC661D001C99EA /* RegexParser.swift */; };
+		CEC1CFB62CF3466000B2279F /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEC6D7DE2C7C512400FFEC9F /* SwifterSwift+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */; };
 		CEC6D7E02C7C513F00FFEC9F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
 		CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
@@ -137,7 +138,6 @@
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
 		CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
-		CEE232412CF3133C00583587 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -161,13 +161,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEE232422CF3133C00583587 /* Embed Frameworks */ = {
+		CEC1CFB72CF3466000B2279F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEE232412CF3133C00583587 /* UnityFramework.framework in Embed Frameworks */,
+				CEC1CFB62CF3466000B2279F /* UnityFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -749,7 +749,7 @@
 				CEB7EFF12AAC5025001C99EA /* Sources */,
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
-				CEE232422CF3133C00583587 /* Embed Frameworks */,
+				CEC1CFB72CF3466000B2279F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1178,6 +1178,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggofdiary.EOD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1211,6 +1212,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.eggofdiary.EOD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

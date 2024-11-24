@@ -39,7 +39,6 @@ UnityAppController* GetAppController()
 {
     return _UnityAppController;
 }
-
 extern "C" {
     void _sendMessageToiOS(const char* message) {
         NSString *messageStr = [NSString stringWithUTF8String:message];
