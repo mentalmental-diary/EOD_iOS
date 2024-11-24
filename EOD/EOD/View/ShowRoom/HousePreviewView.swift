@@ -12,9 +12,6 @@ import Kingfisher
 let themeCoordinates: [RoomThemeItemType: CGPoint] = [
     .wallpaper: CGPoint(x: 0, y: 0),
     .flooring: CGPoint(x: 0, y: 300),
-    .window: CGPoint(x: 50, y: 50),
-    .nightstand: CGPoint(x: 100, y: 100),
-    .sofa: CGPoint(x: 150, y: 150),
     // 나머지 RoomThemeType에 대한 좌표를 추가
 ] // TODO: 디자인 명확하게 나오면 그때 진행 현재는 임시 좌표 진행
 
@@ -29,7 +26,7 @@ struct HousePreviewView: View {
             
             ForEach(themeItemList ?? [], id: \.id) { item in
                 if let coordinates = themeCoordinates[item.type] {
-                    KFImage(item.imageUrl.url)
+                    KFImage(item.homeImageUrl.url)
                         .resizable()
                         .position(coordinates)
                 }
