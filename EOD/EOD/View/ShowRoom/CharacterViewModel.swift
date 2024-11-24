@@ -43,8 +43,8 @@ extension CharacterViewModel {
             debugLog("API 호출 완료 result: \(result)")
             switch result {
             case .success(let list):
-                debugLog("보유 캐릭터 아이템 조회 API 성공 data: \(list.data)")
-                self?.userItems = list.data
+                debugLog("보유 캐릭터 아이템 조회 API 성공 data: \(list)")
+                self?.userItems = list
             case .failure(let error):
                 warningLog("보유 캐릭터 아이템 조회 API 실패 error: \(error)")
             }
@@ -56,8 +56,8 @@ extension CharacterViewModel {
             debugLog("상점 API 호출 완료 result: \(result)")
             switch result {
             case .success(let list):
-                debugLog("상점 캐릭터 아이템 조회 API 성공 data: \(list.data)")
-                self?.shopItems = list.data
+                debugLog("상점 캐릭터 아이템 조회 API 성공 data: \(list)")
+                self?.shopItems = list
             case .failure(let error):
                 warningLog("상점 캐릭터 아이템 조회 API 실패 error: \(error)")
             }

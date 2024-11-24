@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Diary: Decodable {
+public struct Diary: Decodable {
     var id: Int?
     var userNo: Int?
     var writeDate: Date? = Date()
@@ -16,4 +16,35 @@ struct Diary: Decodable {
     var emotion: EmotionType?
     var title: String? = "" // TODO: 추후 삭제 예정
     var content: String? = "" // 일기 내용 (최대 2000자)
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userNo
+        case writeDate
+        case seq
+        case isCustomEmotion
+        case emotion
+        case title
+        case content
+    }
+    
+    public init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id)
+        self.userNo = try container.decodeIfPresent(Int.self, forKey: .userNo)
+        writeDate = {
+            // 서버에서 한국시간 string으로 내려주면 한국 타임존의 Date로 변환
+            guard let dateString = try? container.decode(String.self, forKey: .writeDate) else { return nil }
+            return dateString.summaryDateInKoreaTimeZone
+        }()
+        self.seq = try container.decodeIfPresent(Int.self, forKey: .seq)
+        self.isCustomEmotion = try container.decodeIfPresent(Bool.self, forKey: .isCustomEmotion)
+        self.emotion = try container.decodeIfPresent(EmotionType.self, forKey: .emotion)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.content = try container.decodeIfPresent(String.self, forKey: .content)
+    }
+    
+    public init() {
+        
+    }
 }

@@ -114,9 +114,9 @@ extension CalendarViewModel {
             debugLog("월 달력 정보 호출 API완료 result: \(result)")
             switch result {
             case .success(let summaryModel):
-                self?.diarySummaryList = self?.groupEntriesByDay(diarySummaryList: summaryModel.data) ?? [:]
+                self?.diarySummaryList = self?.groupEntriesByDay(diarySummaryList: summaryModel) ?? [:]
                 
-                debugLog("호출된 정보 확인 : \(summaryModel.data)")
+                debugLog("호출된 정보 확인 : \(summaryModel)")
             case .failure(let error):
                 warningLog("월 달력 정보 호출 API 실패 error: \(error)")
             }
