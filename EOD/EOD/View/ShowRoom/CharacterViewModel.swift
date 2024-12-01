@@ -69,6 +69,10 @@ extension CharacterViewModel {
         })
     }
     
+    func setSelectItem(item: CharacterItem) {
+        self.selectItem = self.selectItem == item ? nil : item
+    }
+    
     func setCharacterItem() {
         // TODO: 저장 로직 구현
         

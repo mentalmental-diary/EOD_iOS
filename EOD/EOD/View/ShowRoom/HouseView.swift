@@ -18,23 +18,28 @@ struct HouseView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 0) {
-                topAreaView()
-                bottomAreaView()
+        GeometryReader { proxy in
+            ZStack(alignment: .bottom) {
+                VStack(spacing: 0) {
+                    topAreaView()
+                    bottomAreaView()
+                }
+                .edgesIgnoringSafeArea([.top, .bottom])
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+                
+                bottomButtonView(proxy: proxy)
+                    .animation(.easeInOut, value: availableBuyArea)
             }
-            .edgesIgnoringSafeArea([.top, .bottom])
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
-            
         }
+        
     }
 }
 
 extension HouseView {
     private func topAreaView() -> some View {
         ZStack(alignment: .topLeading) {
-            HousePreviewView(themeItemList: viewModel.themeItemList)
+            HousePreviewView(themeItemList: viewModel.selectThemeItemList)
                 .padding(.top, 53)
             
             HStack {
@@ -46,17 +51,19 @@ extension HouseView {
                 
                 Spacer()
                 
-                HStack(spacing: 5) {
-                    Image("icon_egg")
-                    
-                    Text(viewModel.userGold?.formattedDecimal() ?? "0")
-                        .font(size: 20)
-                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                if viewModel.currentShowType == .shop {
+                    HStack(spacing: 5) {
+                        Image("icon_egg")
+                        
+                        Text(viewModel.userGold?.formattedDecimal() ?? "0")
+                            .font(size: 20)
+                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                    .clipShape(Capsule())
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(Color(red: 239/255, green: 239/255, blue: 228/255))
-                .clipShape(Capsule())
             }
             .padding(.horizontal, 20)
             .padding(.top, 48)
@@ -70,16 +77,18 @@ extension HouseView {
                     
                     Spacer()
                     
-                    Button {
-                        // TODO: 세부 로직 추후 수정
-                    } label: {
-                        Text("저장")
-                            .font(size: 14)
-                            .foregroundColor(Color.white)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 24)
-                            .background(Color.black)
-                            .cornerRadius(6.0)
+                    if availableSaveButton {
+                        Button {
+                            // TODO: 세부 로직 추후 수정
+                        } label: {
+                            Text("저장")
+                                .font(size: 14)
+                                .foregroundColor(Color.white)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 24)
+                                .background(Color.black)
+                                .cornerRadius(6.0)
+                        }
                     }
                     
                 }.frame(maxWidth: .infinity, alignment: .bottom)
@@ -92,27 +101,31 @@ extension HouseView {
     }
     
     private func returnButtonView() -> some View {
-        VStack(spacing: -10) {
-            ZStack {
-                Circle()
-                    .foregroundColor(.white)
-                    .frame(width: 40, height: 40)
+        Button {
+            // TODO: 되돌리기 로직 확인
+        } label: {
+            VStack(spacing: -10) {
+                ZStack {
+                    Circle()
+                        .foregroundColor(.white)
+                        .frame(width: 40, height: 40)
+                    
+                    Image("icon_return")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18, height: 18)
+                }
                 
-                Image("icon_return")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18, height: 18)
+                Text("되돌리기")
+                    .font(size: 12)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 4)
+                    .background(Color.white)
+                    .foregroundColor(Color(red: 64/255, green: 64/255, blue: 64/255))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
             }
-            
-            Text("되돌리기")
-                .font(size: 12)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 4)
-                .background(Color.white)
-                .foregroundColor(Color(red: 64/255, green: 64/255, blue: 64/255))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+            .frame(width: 51, height: 48)
         }
-        .frame(width: 51, height: 48)
     }
     
     private func selectTopNavigationView() -> some View {
@@ -127,6 +140,8 @@ extension HouseView {
                 Spacer()
                 
                 Text(viewModel.selectTheme?.name ?? "하우스 이름")
+                    .font(size: 20)
+                    .foregroundColor(.black)
                 
                 Spacer()
             }
@@ -174,9 +189,8 @@ extension HouseView {
             Spacer()
             
             themeListView()
-//            itemListView()
-//                .padding(.horizontal, 10)
-//                .padding(.top, 17)
+                .padding(.horizontal, 10)
+                .padding(.top, 17)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -186,8 +200,8 @@ extension HouseView {
             if viewModel.selectTheme != nil {
                 LazyVGrid(columns: columns, spacing: 10) {
                     
-                    ForEach(viewModel.themeShopItemList ?? [], id: \.id) { item in
-                        roomThemeItemDetailView(item: item) // TODO: 일단 임시로 상점이라도 잘 되는지 확인해야할듯
+                    ForEach(viewModel.presentItemList ?? [], id: \.id) { item in
+                        roomThemeItemDetailView(item: item)
                     }
                 }
             } else {
@@ -216,7 +230,7 @@ extension HouseView {
             
             HStack(spacing: 16) {
                 Button {
-                    viewModel.selectShopItem = nil
+                    viewModel.selectThemeItemList = nil
                 } label: {
                     Text("선택 취소")
                         .font(size: 20)
@@ -274,10 +288,10 @@ extension HouseView {
     
     private func roomThemeItemDetailView(item: ThemeItem) -> some View {
         Button {
-            viewModel.selectShopItem = (viewModel.selectShopItem == item) ? nil : item
+            viewModel.setSelectThemeItem(item: item)
         } label: {
             ZStack(alignment: .top) {
-                if viewModel.selectShopItem == item {
+                if viewModel.selectThemeItem == item {
                     HStack {
                         Spacer()
                         Image("btnConfirmOn")
@@ -292,8 +306,9 @@ extension HouseView {
                 VStack(spacing: 16) {
                     KFImage(item.itemImageUrl.url)
                         .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .frame(width: 63, height: 55)
-                        .aspectRatio(contentMode: .fill)
+                        .aspectRatio(contentMode: .fit)
                     
                     Text(item.name)
                         .font(size: 14)
@@ -304,15 +319,13 @@ extension HouseView {
                 .padding(.bottom, 12)
                 .padding(.vertical, 22)
                 .frame(maxWidth: .infinity)
-                
-               
             }
             .padding(EdgeInsets.init())
             .frame(height: 120)
             .background(.white) // 배경색을 흰색으로 설정
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(viewModel.selectShopItem == item ? Color.yellow : .clear, lineWidth: 2) // 테두리 색상과 두께 설정
+                    .stroke(viewModel.selectThemeItem == item ? Color.yellow : .clear, lineWidth: 2) // 테두리 색상과 두께 설정
             )
             .cornerRadius(16) // 모서리를 둥글게 설정
         }
@@ -336,7 +349,7 @@ extension HouseView {
             HStack(spacing: 16) {
                 Button {
                     withAnimation { // 버튼 동작에도 애니메이션 적용
-                        viewModel.selectShopItem = nil
+                        viewModel.selectThemeItemList = nil
                     }
                 } label: {
                     Text("선택 취소")
@@ -376,7 +389,11 @@ extension HouseView {
     }
     
     private var availableBuyArea: Bool {
-        return viewModel.currentShowType == .shop && viewModel.selectShopItem != nil
+        return viewModel.currentShowType == .shop && viewModel.selectThemeItem != nil
+    }
+    
+    private var availableSaveButton: Bool {
+        return (viewModel.currentShowType == .item && viewModel.isModify) || (viewModel.currentShowType == .shop && viewModel.selectThemeItemList != nil)
     }
 }
 
