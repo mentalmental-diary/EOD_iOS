@@ -8,30 +8,61 @@
 import SwiftUI
 import Kingfisher
 
-// 각 RoomThemeType에 대한 고정 좌표를 설정
-let themeCoordinates: [RoomThemeItemType: CGPoint] = [
-    .wallpaper: CGPoint(x: 0, y: 0),
-    .flooring: CGPoint(x: 0, y: 300),
-    // 나머지 RoomThemeType에 대한 좌표를 추가
-] // TODO: 디자인 명확하게 나오면 그때 진행 현재는 임시 좌표 진행
-
 struct HousePreviewView: View {
-    var backgroundUrl: String?
     var themeItemList: [ThemeItem]?
     
     var body: some View {
-        ZStack {
-            KFImage(backgroundUrl?.url)
-                .resizable()
+        GeometryReader { geometry in
+            let screenCenter = CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2)
+            let themeCoordinates = calculateThemeCoordinates(center: screenCenter)
             
-            ForEach(themeItemList ?? [], id: \.id) { item in
-                if let coordinates = themeCoordinates[item.type] {
-                    KFImage(item.homeImageUrl.url)
-                        .resizable()
-                        .position(coordinates)
+            ZStack {
+                ForEach(RoomThemeItemType.allCases, id: \.rawValue) { type in
+                    if let coordinates = themeCoordinates[type] {
+                        if let item = themeItemList?.first(where: { $0.type == type }) {
+                            if type == .backGround {
+                                KFImage(item.homeImageUrl.url)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .ignoresSafeArea()
+                            } else {
+                                KFImage(item.homeImageUrl.url)
+                                    .resizable()
+                                    .scaledToFit()
+                            }
+                        } else if [.backGround, .wallpaper, .flooring].contains(type) {
+                            if type == .backGround {
+                                Image(type.imageName)
+                                    .resizable()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .ignoresSafeArea()
+                            } else {
+                                Image(type.imageName)
+                                    .position(coordinates)
+                            }
+                        }
+                    }
                 }
             }
         }
+        
+    }
+}
+
+extension HousePreviewView {
+    private func calculateThemeCoordinates(center: CGPoint) -> [RoomThemeItemType: CGPoint] {
+        return [
+            .backGround: center,
+            .wallpaper: CGPoint(x: center.x, y: center.y - 80),
+            .flooring: CGPoint(x: center.x, y: center.y + 70),
+            .parts1: CGPoint(x: center.x - 100, y: center.y - 50),
+            .parts2: CGPoint(x: center.x + 100, y: center.y - 50),
+            .parts3: CGPoint(x: center.x - 100, y: center.y),
+            .parts4: CGPoint(x: center.x + 100, y: center.y),
+            .parts5: CGPoint(x: center.x - 100, y: center.y + 50),
+            .parts6: CGPoint(x: center.x, y: center.y + 50),
+            .parts7: CGPoint(x: center.x + 100, y: center.y + 50)
+        ]
     }
 }
 

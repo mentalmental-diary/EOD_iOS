@@ -26,9 +26,13 @@ class HouseViewModel: ObservableObject {
     
     @Published var selectShopItem: ThemeItem?
     
+    @Binding var userGold: Int? // 현재 유저가 보유하고 있는 골드
+    
     private let networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
-    init() {
+    init(userGold: Binding<Int?>) {
+        self._userGold = userGold
+        
         self.fetchThemeList()
     }
 }

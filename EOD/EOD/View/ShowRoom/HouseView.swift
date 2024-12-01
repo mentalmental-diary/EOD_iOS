@@ -18,20 +18,24 @@ struct HouseView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            topAreaView()
-            bottomAreaView()
+        ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
+                topAreaView()
+                bottomAreaView()
+            }
+            .edgesIgnoringSafeArea([.top, .bottom])
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            
         }
-        .edgesIgnoringSafeArea([.top, .bottom])
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(red: 251/255, green: 251/255, blue: 244/255))
     }
 }
 
 extension HouseView {
     private func topAreaView() -> some View {
         ZStack(alignment: .topLeading) {
-            HousePreviewView(backgroundUrl: viewModel.selectTheme?.imageUrl, themeItemList: viewModel.themeItemList)
+            HousePreviewView(themeItemList: viewModel.themeItemList)
+                .padding(.top, 53)
             
             HStack {
                 Button {
@@ -41,6 +45,18 @@ extension HouseView {
                 }
                 
                 Spacer()
+                
+                HStack(spacing: 5) {
+                    Image("icon_egg")
+                    
+                    Text(viewModel.userGold?.formattedDecimal() ?? "0")
+                        .font(size: 20)
+                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                .clipShape(Capsule())
             }
             .padding(.horizontal, 20)
             .padding(.top, 48)
@@ -365,5 +381,5 @@ extension HouseView {
 }
 
 #Preview {
-    HouseView(showHouseView: .constant(false), viewModel: HouseViewModel())
+    HouseView(showHouseView: .constant(false), viewModel: HouseViewModel(userGold: .constant(0)))
 }
