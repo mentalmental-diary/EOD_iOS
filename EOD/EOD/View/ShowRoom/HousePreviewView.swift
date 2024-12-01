@@ -23,12 +23,15 @@ struct HousePreviewView: View {
                             if type == .backGround {
                                 KFImage(item.homeImageUrl.url)
                                     .resizable()
-                                    .scaledToFill()
+                                    .scaledToFit()
                                     .ignoresSafeArea()
                             } else {
                                 KFImage(item.homeImageUrl.url)
                                     .resizable()
                                     .scaledToFit()
+                                    .frame(width: type.frameSize?.width, height: type.frameSize?.height)
+                                    .position(coordinates)
+                                
                             }
                         } else if [.backGround, .wallpaper, .flooring].contains(type) {
                             if type == .backGround {
@@ -45,7 +48,6 @@ struct HousePreviewView: View {
                 }
             }
         }
-        
     }
 }
 
@@ -55,13 +57,13 @@ extension HousePreviewView {
             .backGround: center,
             .wallpaper: CGPoint(x: center.x, y: center.y - 80),
             .flooring: CGPoint(x: center.x, y: center.y + 70),
-            .parts1: CGPoint(x: center.x - 100, y: center.y - 50),
-            .parts2: CGPoint(x: center.x + 100, y: center.y - 50),
-            .parts3: CGPoint(x: center.x - 100, y: center.y),
-            .parts4: CGPoint(x: center.x + 100, y: center.y),
-            .parts5: CGPoint(x: center.x - 100, y: center.y + 50),
+            .parts1: CGPoint(x: center.x - 50, y: center.y - 80),
+            .parts2: CGPoint(x: center.x + 50, y: center.y - 80),
+            .parts3: CGPoint(x: center.x - 50, y: center.y),
+            .parts4: CGPoint(x: center.x + 50, y: center.y),
+            .parts5: CGPoint(x: center.x - 70, y: center.y + 50),
             .parts6: CGPoint(x: center.x, y: center.y + 50),
-            .parts7: CGPoint(x: center.x + 100, y: center.y + 50)
+            .parts7: CGPoint(x: center.x + 70, y: center.y + 50)
         ]
     }
 }

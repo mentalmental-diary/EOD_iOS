@@ -13,6 +13,7 @@ class HouseViewModel: ObservableObject {
             guard oldValue != currentShowType else { return } // 이전과 값이 달라질 경우에만 해당 로직 타기
             
             selectTheme = nil // 선택된 테마 초기화
+            selectThemeItem = nil
             
             if currentShowType == .item {
                 self.selectThemeItemList = self.originalThemeItemList
@@ -36,13 +37,15 @@ class HouseViewModel: ObservableObject {
                 } else {
                     self.fetchShopThemeItemList(id: selectTheme?.id ?? 0)
                 }
+            } else {
+                self.selectThemeItemList = self.originalThemeItemList
             }
         }
     }
     
     @Published var selectThemeItemList: [ThemeItem]? = [] // 현재 선택되있는 테마 아이템 리스트
     
-    @Published var selectThemeItem: ThemeItem?
+    @Published var selectThemeItem: ThemeItem? // 현재 선택된 상점 내 아이템
     
     @Binding var userGold: Int? // 현재 유저가 보유하고 있는 골드
     
@@ -98,6 +101,7 @@ extension HouseViewModel {
             case .success(let list):
                 debugLog("테마 상점 아이템 리스트 호출 API 성공. 리스트 목록 : \(list)")
                 self?.themeShopItemList = list
+                self?.selectThemeItemList = list
             case .failure(let error):
                 errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
             }
@@ -106,6 +110,35 @@ extension HouseViewModel {
     
     func setSelectThemeItem(item: ThemeItem) {
         self.selectThemeItem = selectThemeItem == item ? nil : item
+    }
+    
+    func setSelectThemeItemList(item: ThemeItem) { // TODO: 실제로 되는진 확인해보기
+        debugLog("아이템 선택 item: \(item.id)")
+        
+        if let index = self.selectThemeItemList?.firstIndex(where: { $0.id == item.id }) { // 존재하는 아이템인경우 
+            self.selectThemeItemList?.remove(at: index)
+        } else {
+            self.selectThemeItemList?.append(item)
+        }
+    }
+    
+    func isSelectItem(item: ThemeItem) -> Bool {
+        debugLog("선택된 아이템인지 확인 ")
+        return self.selectThemeItemList?.contains(where: { $0.id == item.id }) == true
+    }
+    
+    func buyThemeItem() {
+        guard let id = selectThemeItem?.id else { errorLog("선택된 아이템이 없습니다."); return }
+        networkModel.buyCharacterItem(id: id, completion: { [weak self] result in
+            debugLog("캐릭터 아이템 구매 API 호출 완료. result: \(result)")
+            switch result {
+            case .success(_):
+                let resultGold = (self?.userGold ?? 0) - (self?.selectThemeItem?.price ?? 0)
+                self?.userGold = resultGold
+            case .failure(let error):
+                errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
+            }
+        })
     }
 }
 

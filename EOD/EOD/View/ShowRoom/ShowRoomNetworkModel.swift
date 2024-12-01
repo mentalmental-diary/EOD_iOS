@@ -50,4 +50,10 @@ class ShowRoomNetworkModel: ListNetworkModel {
         
         APIRequest.requestDecodable(api: api, method: .post, completion: completion)
     }
+    
+    func buyThemeItem(id: Int, completion: @escaping ((Result<Bool, Error>) -> Void)) {
+        let api = "/api-external/shop/trade/room/\(id)"
+        
+        APIRequest.requestDecodable(api: api, method: .post, completion: completion)
+    }
 }

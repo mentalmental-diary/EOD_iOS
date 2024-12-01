@@ -251,7 +251,7 @@ extension CharacterView {
     
     private func characterDetailView(item: CharacterItem) -> some View {
         Button {
-            viewModel.setCharacterItem()
+            viewModel.setSelectItem(item: item)
         } label: {
             ZStack(alignment: .top) {
                 if viewModel.selectItem == item {
@@ -270,7 +270,7 @@ extension CharacterView {
                     KFImage(item.imageUrl?.url)
                         .resizable()
                         .frame(width: 63, height: 55)
-                        .aspectRatio(contentMode: .fit)
+                        .scaledToFit()
                     
                     Text(item.name)
                         .font(size: 14)
