@@ -43,7 +43,7 @@ public class UrlBuilder {
 extension UrlBuilder {
     
     fileprivate class func apiPath() -> String {
-        return "http://110.165.18.141:8080/"
+        return "https://www.doreun.shop/"
     }
     
     // 주소 앞에 /가 붙어있으면 제거한다.
