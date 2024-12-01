@@ -24,11 +24,12 @@ struct CustomBuyAlert: View {
             Spacer().frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color.black.opacity(0.7))
             
-            VStack {
+            VStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    
                     KFImage(imageUrl?.url)
                         .resizable()
+                        .scaledToFit()
+                        .frame(width: 105, height: 91)
                     
                     Spacer().frame(height: 36)
                     
@@ -109,5 +110,5 @@ struct CustomBuyAlert: View {
 }
 
 #Preview {
-    CustomBuyAlert(showAlert: .constant(false))
+    CustomBuyAlert(showAlert: .constant(false), imageUrl: "https://yolk-shop-image.kr.object.ncloudstorage.com/1_character/1-3_character2.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241201T085616Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=9HwjhTcz2kypE8HXSl6d%2F20241201%2Fkr-standard%2Fs3%2Faws4_request&X-Amz-Signature=35be30a0cde40ce78937ee08ba507e92930912b75a348488b58495a68246242f")
 }

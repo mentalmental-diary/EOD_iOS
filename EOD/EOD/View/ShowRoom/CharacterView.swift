@@ -65,8 +65,7 @@ extension CharacterView {
                         .placeholder {
                             Image("character_default")
                                 .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
+                                .scaledToFit()
                         }
                         .resizable()
                         .aspectRatio(contentMode: .fit)
