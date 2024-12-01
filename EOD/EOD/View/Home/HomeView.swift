@@ -100,14 +100,20 @@ extension HomeView {
     
     // 캐릭터 테마 메인 뷰
     private func houseView() -> some View {
-        VStack {
-            if viewModel.userInfo?.characterInfo?.imageUrl != nil {
-                KFImage(viewModel.userInfo?.characterInfo?.imageUrl?.url)
+        ZStack {
+            HousePreviewView(themeItemList: viewModel.userThemeList)
+            
+            GeometryReader { geometry in
+                KFImage(viewModel.userCharacterInfo?.imageUrl?.url)
+                    .placeholder {
+                        Image("character_default")
+                            .resizable()
+                            .scaledToFit()
+                    }
                     .resizable()
-            } else {
-                Image("character_default")
-//                    .resizable()
-                
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: min(geometry.size.width, 120), height: min(geometry.size.height, 120)) // TODO: 사이즈 확인
+                    .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 40) // TODO: 좌표 확인
             }
         }
     }
