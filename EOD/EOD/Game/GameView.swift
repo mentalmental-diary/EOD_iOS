@@ -13,7 +13,9 @@ struct GameView: View {
     var body: some View {
         VStack {
             Button(action: {
+#if !PREVIEW
                 GameManager.shared.launchUnity()
+#endif
             }, label: {
                 Text("게임시작")
                     .foregroundColor(.black)
