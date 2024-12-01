@@ -11,6 +11,7 @@ import Kingfisher
 struct CharacterView: View {
     @Binding var showCharacterView: Bool
     @ObservedObject var viewModel: CharacterViewModel
+    @State var showBuyAlert: Bool = false
     
     init(showCharacterView: Binding<Bool>, viewModel: CharacterViewModel) {
         self._showCharacterView = showCharacterView
@@ -31,6 +32,21 @@ struct CharacterView: View {
                 
                 bottomButtonView(proxy: proxy)
                     .animation(.easeInOut, value: availableBuyArea)
+                
+                if showBuyAlert {
+                    CustomBuyAlert(
+                        showAlert: $showBuyAlert,
+                        imageUrl: viewModel.selectItem?.imageUrl,
+                        itemName: viewModel.selectItem?.name,
+                        itemDescription: viewModel.selectItem?.details,
+                        userGold: viewModel.userGold,
+                        availableBuyButton: availableBuyButton,
+                        acceptAction: {
+                            if availableBuyButton {
+                                viewModel.buyCharacterItem()
+                            }
+                        })
+                }
             }
             
         }
@@ -215,7 +231,7 @@ extension CharacterView {
                 
                 
                 Button {
-                    // TODO: 세부 로직 추후 수정
+                    showBuyAlert = true
                 } label: {
                     Text("선택 상품 구매")
                         .font(size: 20)
@@ -295,6 +311,14 @@ extension CharacterView {
     private var availableBuyArea: Bool {
         return viewModel.currentShowType == .shop && viewModel.selectItem != nil
     }
+    
+    private var availableBuyButton: Bool {
+        if let userGold = viewModel.userGold, let price = viewModel.selectItem?.price {
+            return (userGold - price) > 0
+        } else {
+            return false
+        }
+    }
 }
 
 #Preview {
@@ -314,5 +338,5 @@ extension CharacterView {
     
     let shopItems = [shopa, shopb, shopc, shopd, shope, shopf]
     
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems))
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: .constant(0)))
 }

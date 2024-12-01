@@ -12,14 +12,16 @@ struct CharacterItem: Decodable {
     var id: Int
     var imageUrl: String?
     var name: String
+    var details: String?
     var price: Int?
     var createdAt: Date?
     var updatedAt: Date?
     
-    init(id: Int, imageUrl: String, name: String, price: Int? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    init(id: Int, imageUrl: String, name: String, details: String? = "", price: Int? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.id = id
         self.imageUrl = imageUrl
         self.name = name
+        self.details = details
         self.price = price
         self.createdAt = createdAt
         self.updatedAt = updatedAt
@@ -30,6 +32,7 @@ struct CharacterItem: Decodable {
         id = try container.decode(Int.self, forKey: .id)
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
         name = try container.decode(String.self, forKey: .name)
+        details = try container.decodeIfPresent(String.self, forKey: .details)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         
         createdAt = {
@@ -48,6 +51,7 @@ struct CharacterItem: Decodable {
         case id
         case imageUrl
         case name
+        case details
         case price
         case createdAt
         case updatedAt

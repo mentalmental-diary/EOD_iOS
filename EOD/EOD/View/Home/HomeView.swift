@@ -32,7 +32,7 @@ extension HomeView {
             HStack(spacing: 5) {
                 Image("icon_egg")
                 
-                Text(viewModel.userGold.formattedDecimal())
+                Text(viewModel.userGold?.formattedDecimal() ?? "0")
                     .font(size: 20)
                     .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
             }
@@ -57,7 +57,7 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showCharacterView) {
-                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel()) // TODO: 변수 추가
+                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel(userGold: $viewModel.userGold)) // TODO: 변수 추가
                 }
                 
                 Button {

@@ -268,6 +268,8 @@
 		CEE63FB52CFC4F5D00275C7F /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
 		CEE63FB62CFC4F5D00275C7F /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
 		CEE63FB72CFC4F5D00275C7F /* README-CleanroomLogger.md in Resources */ = {isa = PBXBuildFile; fileRef = CEB7F0522AAC61D4001C99EA /* README-CleanroomLogger.md */; };
+		CEE63FC32CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
+		CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -440,6 +442,7 @@
 		CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataViewModel.swift; sourceTree = "<group>"; };
 		CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preview EOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EOD copy-Info.plist"; path = "/Users/user/Desktop/jy/EOD_iOS/EOD/EOD copy-Info.plist"; sourceTree = "<absolute>"; };
+		CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBuyAlert.swift; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -486,6 +489,7 @@
 		CE06C3882CC5D2BB0075A9C0 /* ShowRoom */ = {
 			isa = PBXGroup;
 			children = (
+				CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */,
 				CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */,
 				CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */,
 				CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */,
@@ -1076,6 +1080,7 @@
 				CEB7F07C2AAC61D5001C99EA /* OSLogTypeTranslator.swift in Sources */,
 				CEB7F06E2AAC61D4001C99EA /* XcodeLogConfiguration.swift in Sources */,
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
+				CEE63FC32CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
 				CE648B872C05FD7500EBC335 /* EmotionSelectView.swift in Sources */,
 				CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */,
@@ -1217,6 +1222,7 @@
 				CEE63F352CFC4F5D00275C7F /* OSLogTypeTranslator.swift in Sources */,
 				CEE63F362CFC4F5D00275C7F /* XcodeLogConfiguration.swift in Sources */,
 				CEE63F372CFC4F5D00275C7F /* SeverityLogFormatter.swift in Sources */,
+				CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */,
 				CEE63F382CFC4F5D00275C7F /* LogSeverity.swift in Sources */,
 				CEE63F392CFC4F5D00275C7F /* EmotionSelectView.swift in Sources */,
 				CEE63F3A2CFC4F5D00275C7F /* CalendarView.swift in Sources */,

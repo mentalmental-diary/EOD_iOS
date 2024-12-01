@@ -18,13 +18,15 @@ class CharacterViewModel: ObservableObject {
     
     @Published var isToast: Bool = false
     
+    @Binding var userGold: Int? // 현재 유저가 보유하고 있는 골드
+    
     var originalCharacter: CharacterItem?
     
     var toastMessage: String = ""
     
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
-    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil) {
+    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil, userGold: Binding<Int?>) {
         if let userItems = userItems { // Preview용
             self.userItems = userItems
         }
@@ -32,6 +34,8 @@ class CharacterViewModel: ObservableObject {
         if let shopItems = shopItems {
             self.shopItems = shopItems
         }
+        
+        self._userGold = userGold
         
         self.fetchCharacterItem()
         self.fetchShopCharacterItem() // TODO: 어처피 초기 화면 진입시엔 보유아이템이 메인이라면 상점 관련된건 상점 탭 눌렀을떄 해도 되지 않을까? -> 하지만 초기에 그냥 다 받아오는것도 나쁘진 않아 보이는데 일단 시점은 고민해보기
@@ -72,6 +76,20 @@ extension CharacterViewModel {
         withAnimation(.easeInOut(duration: 0.6)) {
             self.isToast = true
         }
+    }
+    
+    func buyCharacterItem() {
+        guard let id = selectItem?.id else { errorLog("선택된 아이템이 없습니다."); return }
+        networkModel.buyCharacterItem(id: id, completion: { [weak self] result in
+            debugLog("캐릭터 아이템 구매 API 호출 완료. result: \(result)")
+            switch result {
+            case .success(_):
+                let resultGold = (self?.userGold ?? 0) - (self?.selectItem?.price ?? 0)
+                self?.userGold = resultGold
+            case .failure(let error):
+                errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
+            }
+        })
     }
 }
 
