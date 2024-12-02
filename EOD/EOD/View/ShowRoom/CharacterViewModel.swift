@@ -8,7 +8,13 @@
 import SwiftUI
 
 class CharacterViewModel: ObservableObject {
-    @Published var currentShowType: ShowType = .item
+    @Published var currentShowType: ShowType = .item {
+        didSet {
+            guard oldValue != currentShowType else { return }
+            
+            selectItem = nil
+        }
+    }
     
     @Published var userItems: [CharacterItem]? = []
     
@@ -44,7 +50,7 @@ class CharacterViewModel: ObservableObject {
 
 extension CharacterViewModel {
     func fetchCharacterItem() {
-        networkModel.testFetchCharacterItemList(completion: { [weak self] result in
+        networkModel.fetchCharacterItemList(completion: { [weak self] result in
             debugLog("API 호출 완료 result: \(result)")
             switch result {
             case .success(let list):
@@ -57,7 +63,7 @@ extension CharacterViewModel {
     }
     
     func fetchShopCharacterItem() {
-        networkModel.testFetchShopCharacterItemList(completion: { [weak self] result in
+        networkModel.fetchShopCharacterItemList(completion: { [weak self] result in
             debugLog("상점 API 호출 완료 result: \(result)")
             switch result {
             case .success(let list):
@@ -74,12 +80,23 @@ extension CharacterViewModel {
     }
     
     func setCharacterItem() {
-        // TODO: 저장 로직 구현
+        guard let id = selectItem?.id else { errorLog("선택된 아이템이 없습니다."); return }
         
-        self.toastMessage = "대표 캐릭터로 저장되었습니다!"
-        withAnimation(.easeInOut(duration: 0.6)) {
-            self.isToast = true
-        }
+        networkModel.setCharacterItem(id: id, completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.toastMessage = "대표 캐릭터로 저장되었습니다!"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            case .failure(let error):
+                errorLog("대표 캐릭터 저장 실패 error: \(error)")
+                self?.toastMessage = "대표 캐릭터로 저장이 실패하였습니다."
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            }
+        })
     }
     
     func buyCharacterItem() {

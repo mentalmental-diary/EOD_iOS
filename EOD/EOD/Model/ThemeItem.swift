@@ -59,6 +59,7 @@ struct ThemeItem: Decodable {
     var price: Int?
     var themeId: Int?
     var details: String?
+    var hasItem: Bool?
     var createdAt: Date?
     var updatedAt: Date?
     
@@ -72,6 +73,7 @@ struct ThemeItem: Decodable {
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         themeId = try container.decodeIfPresent(Int.self, forKey: .themeId)
         details = try container.decodeIfPresent(String.self, forKey: .details)
+        hasItem = try container.decodeIfPresent(Bool.self, forKey: .hasItem)
         
         createdAt = {
             // 서버에서 한국시간 string으로 내려주면 한국 타임존의 Date로 변환
@@ -95,6 +97,7 @@ struct ThemeItem: Decodable {
         case price
         case themeId
         case details
+        case hasItem
         case createdAt
         case updatedAt
     }

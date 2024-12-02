@@ -51,6 +51,10 @@ class HouseViewModel: ObservableObject {
     
     var originalThemeItemList: [ThemeItem]? = [] // 최초 유저가 설정해둔 테마 아이템 리스트
     
+    @Published var isToast: Bool = false
+    
+    var toastMessage: String = ""
+    
     private let networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
     init(userGold: Binding<Int?>, userThemeList: [ThemeItem]? = nil) {
@@ -129,14 +133,34 @@ extension HouseViewModel {
     
     func buyThemeItem() {
         guard let id = selectThemeItem?.id else { errorLog("선택된 아이템이 없습니다."); return }
-        networkModel.buyCharacterItem(id: id, completion: { [weak self] result in
-            debugLog("캐릭터 아이템 구매 API 호출 완료. result: \(result)")
+        networkModel.buyThemeItem(id: id, completion: { [weak self] result in
+            debugLog("테마 아이템 구매 API 호출 완료. result: \(result)")
             switch result {
             case .success(_):
                 let resultGold = (self?.userGold ?? 0) - (self?.selectThemeItem?.price ?? 0)
                 self?.userGold = resultGold
             case .failure(let error):
-                errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
+                errorLog("테마 아이템 구매 API 실패. error: \(error)")
+            }
+        })
+    }
+    
+    func setThemeItem() {
+        guard let list = selectThemeItemList else { errorLog("선택된 테마 아이템들이 없습니다."); return }
+        
+        networkModel.setThemeItem(themeList: list, completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.toastMessage = "현재 방 상태가 저장되었습니다!"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            case .failure(let error):
+                errorLog("테마 아이템 저장 API 실패 error: \(error)")
+                self?.toastMessage = "방 상태 저장에 실패하였습니다."
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
             }
         })
     }

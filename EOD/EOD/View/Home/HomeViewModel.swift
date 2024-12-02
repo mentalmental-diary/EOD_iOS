@@ -10,9 +10,9 @@ import SwiftUI
 class HomeViewModel: ObservableObject {
     @Published var userGold: Int? = 0
     
-    var userCharacterInfo: CharacterItem?
+    @Published var userCharacterInfo: CharacterItem?
     
-    var userThemeList: [ThemeItem]?
+    @Published var userThemeList: [ThemeItem]?
     
     private var networkModel: HomeNetworkModel = HomeNetworkModel()
     
@@ -49,5 +49,9 @@ extension HomeViewModel {
                 errorLog("유저가 설정한 캐릭터 및 테마 조회 API 실패. error: \(error.localizedDescription)")
             }
         }
+    }
+    
+    public func refreshUserInfo() {
+        self.fetchUserInfo()
     }
 }

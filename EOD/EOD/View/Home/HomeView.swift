@@ -57,7 +57,10 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showCharacterView) {
-                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel(userGold: $viewModel.userGold)) // TODO: 변수 추가
+                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel(userGold: $viewModel.userGold))
+                        .onDisappear {
+                            viewModel.refreshUserInfo()
+                        }
                 }
                 
                 Button {
@@ -74,6 +77,9 @@ extension HomeView {
                 }
                 .fullScreenCover(isPresented: $showHouseView) {
                     HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel(userGold: $viewModel.userGold))
+                        .onDisappear {
+                            viewModel.refreshUserInfo()
+                        }
                 }
                 
                 Button {
@@ -127,6 +133,10 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        let previewViewModel = HomeViewModel()
+        previewViewModel.userCharacterInfo = CharacterItem(id: 1, imageUrl: "https://yolk-shop-image.kr.object.ncloudstorage.com/1_character/1-2_character1.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241202T021128Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=9HwjhTcz2kypE8HXSl6d%2F20241202%2Fkr-standard%2Fs3%2Faws4_request&X-Amz-Signature=801f82fec7300abf3fd0302769f50947bc9f3fb53d859f9a96f8cc2a476c7d11", name: "asdf")
+        previewViewModel.userGold = 1000
+        
+        return HomeView(viewModel: previewViewModel)
     }
 }

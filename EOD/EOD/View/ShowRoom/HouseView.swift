@@ -28,6 +28,7 @@ struct HouseView: View {
                 .edgesIgnoringSafeArea([.top, .bottom])
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+                .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
                 
                 bottomButtonView(proxy: proxy)
                     .animation(.easeInOut, value: availableBuyArea)
@@ -93,19 +94,38 @@ extension HouseView {
                     
                     Spacer()
                     
-                    if availableSaveButton {
+                    if viewModel.currentShowType == .item {
                         Button {
-                            // TODO: 세부 로직 추후 수정
+                            if availableSaveButton {
+                                viewModel.setThemeItem()
+                            }
                         } label: {
                             Text("저장")
                                 .font(size: 14)
-                                .foregroundColor(Color.white)
+                                .foregroundColor(availableSaveButton ? Color.white : Color(red: 177/255, green: 177/255, blue: 163/255))
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 24)
-                                .background(Color.black)
+                                .background(availableSaveButton ? Color.black : Color(red: 210/255, green: 210/255, blue: 188/255))
                                 .cornerRadius(6.0)
                         }
+                    } else {
+                        if viewModel.selectTheme != nil { // 테마 진입시 전체 구매 버튼 노출
+                            Button {
+                                if availableSaveButton {
+                                    viewModel.setThemeItem()
+                                }
+                            } label: {
+                                Text("전체 구매")
+                                    .font(size: 14)
+                                    .foregroundColor(.black)
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 24)
+                                    .background(.white)
+                                    .cornerRadius(6.0)
+                            }
+                        }
                     }
+                    
                     
                 }
                 .frame(maxWidth: .infinity, alignment: .bottom)
@@ -464,7 +484,7 @@ extension HouseView {
     }
     
     private var availableSaveButton: Bool {
-        return (viewModel.currentShowType == .item && viewModel.isModify) || (viewModel.currentShowType == .shop && viewModel.selectThemeItemList != nil)
+        return viewModel.currentShowType == .item && viewModel.isModify
     }
     
     private var availableBuyButton: Bool {

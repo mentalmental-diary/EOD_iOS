@@ -14,15 +14,17 @@ struct CharacterItem: Decodable {
     var name: String
     var details: String?
     var price: Int?
+    var hasItem: Bool? // 구매여부
     var createdAt: Date?
     var updatedAt: Date?
     
-    init(id: Int, imageUrl: String, name: String, details: String? = "", price: Int? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    init(id: Int, imageUrl: String, name: String, details: String? = "", price: Int? = nil, hasItem: Bool? = false, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.id = id
         self.imageUrl = imageUrl
         self.name = name
         self.details = details
         self.price = price
+        self.hasItem = hasItem
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -34,6 +36,7 @@ struct CharacterItem: Decodable {
         name = try container.decode(String.self, forKey: .name)
         details = try container.decodeIfPresent(String.self, forKey: .details)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
+        hasItem = try container.decodeIfPresent(Bool.self, forKey: .hasItem)
         
         createdAt = {
             // 서버에서 한국시간 string으로 내려주면 한국 타임존의 Date로 변환
@@ -53,6 +56,7 @@ struct CharacterItem: Decodable {
         case name
         case details
         case price
+        case hasItem
         case createdAt
         case updatedAt
     }

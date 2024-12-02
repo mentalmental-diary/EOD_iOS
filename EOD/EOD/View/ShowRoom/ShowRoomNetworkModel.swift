@@ -8,19 +8,13 @@
 import Foundation
 
 class ShowRoomNetworkModel: ListNetworkModel {
-    func fetchCharacterItemList(isRefresh: Bool, completion: @escaping ((Result<CharacterItem, Error>) -> Void)) {
-        
-    }
-    
-    // TODO: 일단 페이징 전 API테스트
-    func testFetchCharacterItemList(completion: @escaping ((Result<[CharacterItem], Error>) -> Void)) {
+    func fetchCharacterItemList(completion: @escaping ((Result<[CharacterItem], Error>) -> Void)) {
         let api = "/api-external/user/rewards/api-external/user/rewards/character"
         
         APIRequest.requestDecodable(api: api, completion: completion)
     }
     
-    // TODO: 일단 페이징 전 API테스트
-    func testFetchShopCharacterItemList(completion: @escaping ((Result<[CharacterItem], Error>) -> Void)) {
+    func fetchShopCharacterItemList(completion: @escaping ((Result<[CharacterItem], Error>) -> Void)) {
         let api = "/api-external/shop/character"
         
         APIRequest.requestDecodable(api: api, completion: completion)
@@ -55,5 +49,54 @@ class ShowRoomNetworkModel: ListNetworkModel {
         let api = "/api-external/shop/trade/room/\(id)"
         
         APIRequest.requestDecodable(api: api, method: .post, completion: completion)
+    }
+    
+    func setCharacterItem(id: Int, completion: @escaping ((Result<Void, Error>) -> Void)) {
+        let api = "/api-external/user/rewards/character"
+        
+        let param = [
+            "characterId": id
+        ]
+        
+        APIRequest.requestData(api: api, method: .put, requestParameters: param, completion: { result in
+            completion(result.voidMap())
+        })
+    }
+    
+    func setThemeItem(themeList: [ThemeItem], completion: @escaping ((Result<Void, Error>) -> Void)) {
+        let api = "/api-external/user/rewards/room-info"
+        
+        // RoomThemeItemType의 모든 케이스를 초기값 0으로 가진 딕셔너리 생성
+        var requestBody: [String: Int] = RoomThemeItemType.allCases.reduce(into: [:]) { result, type in
+            switch type {
+            case .wallpaper:
+                result["roomWall"] = 0
+            case .flooring:
+                result["roomFlooring"] = 0
+            case .backGround:
+                result["roomBackground"] = 0
+            default:
+                result["room\(type.rawValue.capitalized)"] = 0
+            }
+        }
+        
+        // themeList를 순회하며 requestBody 업데이트
+        for item in themeList {
+            switch item.type {
+            case .wallpaper:
+                requestBody["roomWall"] = item.id
+            case .flooring:
+                requestBody["roomFlooring"] = item.id
+            case .backGround:
+                requestBody["roomBackground"] = item.id
+            default:
+                let key = "room\(item.type.rawValue.capitalized)"
+                requestBody[key] = item.id
+            }
+        }
+        
+        APIRequest.requestData(api: api, method: .put, requestParameters: requestBody, completion: { result in
+            completion(result.voidMap())
+        })
     }
 }
