@@ -62,7 +62,7 @@ extension HomeViewModel {
             case .success:
                 self?.fetchUserGold()
             case .failure(let error):
-                errorLog("충전 안됨")
+                errorLog("충전 안됨 error: \(error)")
             }
         })
     }

@@ -23,7 +23,7 @@ struct CharacterView: View {
             ZStack(alignment: .bottom) {
                 VStack(spacing: 0) {
                     topAreaView()
-                    bottomAreaView()
+                    bottomAreaView(proxy: proxy)
                 }
                 .edgesIgnoringSafeArea([.top, .bottom])
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -121,7 +121,7 @@ extension CharacterView {
         
     }
     
-    private func bottomAreaView() -> some View {
+    private func bottomAreaView(proxy: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 tabButton(type: .item)
@@ -133,7 +133,7 @@ extension CharacterView {
                 .frame(minHeight: 1.0)
                 .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
             
-            itemListView()
+            itemListView(proxy: proxy)
                 .padding(.horizontal, 10)
                 .padding(.top, 17)
         }
@@ -161,7 +161,7 @@ extension CharacterView {
 
     }
     
-    private func itemListView() -> some View {
+    private func itemListView(proxy: GeometryProxy) -> some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 10) {
                 
@@ -169,6 +169,8 @@ extension CharacterView {
                     characterDetailView(item: item)
                 }
             }
+            
+            Spacer().frame(height: 54 + proxy.safeAreaInsets.bottom)
         }
     }
     

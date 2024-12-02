@@ -23,7 +23,7 @@ struct HouseView: View {
             ZStack(alignment: .bottom) {
                 VStack(spacing: 0) {
                     topAreaView()
-                    bottomAreaView()
+                    bottomAreaView(proxy: proxy)
                 }
                 .edgesIgnoringSafeArea([.top, .bottom])
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -111,9 +111,7 @@ extension HouseView {
                     } else {
                         if viewModel.selectTheme != nil { // 테마 진입시 전체 구매 버튼 노출
                             Button {
-                                if availableSaveButton {
-                                    viewModel.setThemeItem()
-                                }
+                                // TODO: 전체 구매 프로세스 확인 후 구현
                             } label: {
                                 Text("전체 구매")
                                     .font(size: 14)
@@ -207,7 +205,7 @@ extension HouseView {
         .frame(maxWidth: .infinity)
     }
     
-    private func bottomAreaView() -> some View {
+    private func bottomAreaView(proxy: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 if viewModel.selectTheme != nil {
@@ -225,14 +223,14 @@ extension HouseView {
             
             Spacer()
             
-            themeListView()
+            themeListView(proxy: proxy)
                 .padding(.horizontal, 10)
                 .padding(.top, 17)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    private func themeListView() -> some View {
+    private func themeListView(proxy: GeometryProxy) -> some View {
         ScrollView {
             if viewModel.selectTheme != nil {
                 LazyVGrid(columns: columns, spacing: 10) {
@@ -255,53 +253,9 @@ extension HouseView {
                     }
                 }
             }
-        }
-    }
-    
-    private func bottomButtonView() -> some View {
-        VStack(spacing: 0) {
-            // 상단 그라데이션
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(1),
-                    Color(red: 251/255, green: 251/255, blue: 244/255).opacity(0)
-                ]),
-                startPoint: .bottom,
-                endPoint: .top
-            )
-            .frame(height: 50) // TODO: 명확한 높이값 나중에 확인해보기
             
-            HStack(spacing: 16) {
-                Button {
-                    viewModel.selectThemeItem = nil
-                } label: {
-                    Text("선택 취소")
-                        .font(size: 20)
-                        .foregroundColor(Color(red: 93/255, green: 93/255, blue: 79/255))
-                        .padding(.vertical, 16)
-                        .frame(maxWidth: .infinity)
-                        .background(Color(red: 229/255, green: 229/255, blue: 212/255))
-                        .cornerRadius(8.0)
-                }
-                
-                
-                Button {
-                    // TODO: 세부 로직 추후 수정
-                } label: {
-                    Text("선택 상품 구매")
-                        .font(size: 20)
-                        .foregroundColor(Color.white)
-                        .padding(.vertical, 16)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.black)
-                        .cornerRadius(8.0)
-                }
-                
-            }
-            .padding(.horizontal, 24)
-            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            Spacer().frame(height: 54 + proxy.safeAreaInsets.bottom)
         }
-        .padding(.bottom, 15)
     }
     
     private func roomThemeDetailView(theme: Theme) -> some View {

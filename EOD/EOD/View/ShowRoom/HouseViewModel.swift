@@ -165,6 +165,8 @@ extension HouseViewModel {
                 withAnimation(.easeInOut(duration: 0.6)) {
                     self?.isToast = true
                 }
+                
+                self?.originalThemeItemList = self?.selectThemeItemList ?? []
             case .failure(let error):
                 errorLog("테마 아이템 저장 API 실패 error: \(error)")
                 self?.toastMessage = "방 상태 저장에 실패하였습니다."

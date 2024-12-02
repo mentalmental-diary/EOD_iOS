@@ -85,7 +85,7 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showHouseView) {
-                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel(userGold: viewModel.userGold))
+                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel(userGold: viewModel.userGold, userThemeList: viewModel.userThemeList ?? []))
                         .onDisappear {
                             viewModel.refreshUserInfo()
                         }
