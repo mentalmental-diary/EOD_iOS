@@ -43,6 +43,15 @@ extension HomeView {
            
             Spacer()
             
+            Button {
+                viewModel.testAddGold()
+            } label: {
+                Text("임시 골드 1000 충전")
+                    .font(size: 5)
+            }
+
+            Spacer()
+            
             HStack(spacing: 12) {
                 Button {
                     self.showCharacterView = true
@@ -57,7 +66,7 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showCharacterView) {
-                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel(userGold: $viewModel.userGold))
+                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel(userGold: viewModel.userGold))
                         .onDisappear {
                             viewModel.refreshUserInfo()
                         }
@@ -76,7 +85,7 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showHouseView) {
-                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel(userGold: $viewModel.userGold))
+                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel(userGold: viewModel.userGold))
                         .onDisappear {
                             viewModel.refreshUserInfo()
                         }

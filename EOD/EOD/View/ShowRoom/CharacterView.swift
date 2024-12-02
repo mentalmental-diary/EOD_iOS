@@ -282,7 +282,18 @@ extension CharacterView {
                 .padding(.vertical, 22)
                 .frame(maxWidth: .infinity)
                 
-               
+                if viewModel.currentShowType == .shop, item.hasItem == true {
+                    ZStack {
+                        // 배경색과 blur 효과
+                        Color(red: 75 / 255, green: 66 / 255, blue: 46 / 255, opacity: 0.7)
+                            .blur(radius: 3) // Blur 효과 적용
+                        
+                        Text("Sold Out")
+                            .font(size: 20)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             .padding(EdgeInsets.init())
             .frame(height: 120)
@@ -321,21 +332,21 @@ extension CharacterView {
 }
 
 #Preview {
-    let a = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf")
+    let a = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf", hasItem: true)
     let b = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
     let c = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
     let d = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
     
     let userItems = [a, b, c, d]
     
-    let shopa = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf")
+    let shopa = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf", hasItem: true)
     let shopb = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
     let shopc = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
-    let shopd = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
+    let shopd = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf", hasItem: true)
     let shope = CharacterItem(id: 5, imageUrl: "asdf", name: "asdf")
     let shopf = CharacterItem(id: 6, imageUrl: "asdf", name: "asdf")
     
     let shopItems = [shopa, shopb, shopc, shopd, shope, shopf]
     
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: .constant(0)))
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: 0))
 }

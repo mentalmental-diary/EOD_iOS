@@ -18,7 +18,7 @@ class HouseViewModel: ObservableObject {
             if currentShowType == .item {
                 self.selectThemeItemList = self.originalThemeItemList
             } else {
-                self.selectThemeItemList = nil
+                self.selectThemeItemList = []
             }
         }
     }
@@ -43,13 +43,13 @@ class HouseViewModel: ObservableObject {
         }
     }
     
-    @Published var selectThemeItemList: [ThemeItem]? = [] // 현재 선택되있는 테마 아이템 리스트
+    @Published var selectThemeItemList: [ThemeItem] = [] // 현재 선택되있는 테마 아이템 리스트
     
     @Published var selectThemeItem: ThemeItem? // 현재 선택된 상점 내 아이템
     
-    @Binding var userGold: Int? // 현재 유저가 보유하고 있는 골드
+    @Published var userGold: Int? // 현재 유저가 보유하고 있는 골드
     
-    var originalThemeItemList: [ThemeItem]? = [] // 최초 유저가 설정해둔 테마 아이템 리스트
+    var originalThemeItemList: [ThemeItem] = [] // 최초 유저가 설정해둔 테마 아이템 리스트
     
     @Published var isToast: Bool = false
     
@@ -57,8 +57,8 @@ class HouseViewModel: ObservableObject {
     
     private let networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
-    init(userGold: Binding<Int?>, userThemeList: [ThemeItem]? = nil) {
-        self._userGold = userGold
+    init(userGold: Int?, userThemeList: [ThemeItem] = []) {
+        self.userGold = userGold
         self.selectThemeItemList = userThemeList
         self.originalThemeItemList = userThemeList
         
@@ -113,22 +113,32 @@ extension HouseViewModel {
     }
     
     func setSelectThemeItem(item: ThemeItem) {
-        self.selectThemeItem = selectThemeItem == item ? nil : item
+        if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
+            self.selectThemeItem = self.selectThemeItem == item ? nil : item
+        } else { // 솔드아웃된경우
+            self.toastMessage = "이미 구매한 아이템입니다."
+            withAnimation(.easeInOut(duration: 0.6)) {
+                self.isToast = true
+            }
+        }
     }
     
     func setSelectThemeItemList(item: ThemeItem) { // TODO: 실제로 되는진 확인해보기
         debugLog("아이템 선택 item: \(item.id)")
+        debugLog("해당 아이템 인덱스 위치? \(self.selectThemeItemList.firstIndex(where: { $0.id == item.id }))")
+        debugLog(" 리스트? \(self.selectThemeItemList)")
         
-        if let index = self.selectThemeItemList?.firstIndex(where: { $0.id == item.id }) { // 존재하는 아이템인경우 
-            self.selectThemeItemList?.remove(at: index)
+        if let index = self.selectThemeItemList.firstIndex(where: { $0.id == item.id }) { // 존재하는 아이템인경우 
+            self.selectThemeItemList.remove(at: index)
         } else {
-            self.selectThemeItemList?.append(item)
+            debugLog("여기 들어와서 추가가 되야하는데 왜 안되지?")
+            self.selectThemeItemList.append(item)
         }
     }
     
     func isSelectItem(item: ThemeItem) -> Bool {
-        debugLog("선택된 아이템인지 확인 ")
-        return self.selectThemeItemList?.contains(where: { $0.id == item.id }) == true
+        debugLog("선택된 아이템인지 확인 item : \(item.id), list: \(self.selectThemeItemList)")
+        return self.selectThemeItemList.contains(where: { $0.id == item.id }) == true
     }
     
     func buyThemeItem() {
@@ -146,9 +156,9 @@ extension HouseViewModel {
     }
     
     func setThemeItem() {
-        guard let list = selectThemeItemList else { errorLog("선택된 테마 아이템들이 없습니다."); return }
+        guard !selectThemeItemList.isEmpty else { errorLog("선택된 테마 아이템들이 없습니다."); return }
         
-        networkModel.setThemeItem(themeList: list, completion: { [weak self] result in
+        networkModel.setThemeItem(themeList: selectThemeItemList, completion: { [weak self] result in
             switch result {
             case .success:
                 self?.toastMessage = "현재 방 상태가 저장되었습니다!"

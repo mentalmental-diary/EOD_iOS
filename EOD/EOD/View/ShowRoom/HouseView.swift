@@ -273,7 +273,7 @@ extension HouseView {
             
             HStack(spacing: 16) {
                 Button {
-                    viewModel.selectThemeItemList = nil
+                    viewModel.selectThemeItem = nil
                 } label: {
                     Text("선택 취소")
                         .font(size: 20)
@@ -410,6 +410,19 @@ extension HouseView {
                 .padding(.bottom, 12)
                 .padding(.vertical, 22)
                 .frame(maxWidth: .infinity)
+                
+                if viewModel.currentShowType == .shop, item.hasItem == true {
+                    ZStack {
+                        // 배경색과 blur 효과
+                        Color(red: 75 / 255, green: 66 / 255, blue: 46 / 255, opacity: 0.7)
+                            .blur(radius: 3) // Blur 효과 적용
+                        
+                        Text("Sold Out")
+                            .font(size: 20)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             .padding(EdgeInsets.init())
             .frame(height: 120)
@@ -440,7 +453,7 @@ extension HouseView {
             HStack(spacing: 16) {
                 Button {
                     withAnimation { // 버튼 동작에도 애니메이션 적용
-                        viewModel.selectThemeItemList = nil
+                        viewModel.selectThemeItem = nil
                     }
                 } label: {
                     Text("선택 취소")
@@ -454,7 +467,7 @@ extension HouseView {
                 
                 
                 Button {
-                    viewModel.buyThemeItem()
+                    showBuyAlert = true
                 } label: {
                     Text("선택 상품 구매")
                         .font(size: 20)
@@ -497,5 +510,5 @@ extension HouseView {
 }
 
 #Preview {
-    HouseView(showHouseView: .constant(false), viewModel: HouseViewModel(userGold: .constant(0)))
+    HouseView(showHouseView: .constant(false), viewModel: HouseViewModel(userGold: 0))
 }

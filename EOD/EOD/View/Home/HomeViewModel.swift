@@ -53,5 +53,17 @@ extension HomeViewModel {
     
     public func refreshUserInfo() {
         self.fetchUserInfo()
+        self.fetchUserGold()
+    }
+    
+    func testAddGold() {
+        networkModel.addGold(completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.fetchUserGold()
+            case .failure(let error):
+                errorLog("충전 안됨")
+            }
+        })
     }
 }

@@ -13,6 +13,12 @@ class CharacterViewModel: ObservableObject {
             guard oldValue != currentShowType else { return }
             
             selectItem = nil
+            
+            if currentShowType == .item {
+                self.fetchCharacterItem()
+            } else {
+                self.fetchShopCharacterItem()
+            }
         }
     }
     
@@ -24,7 +30,7 @@ class CharacterViewModel: ObservableObject {
     
     @Published var isToast: Bool = false
     
-    @Binding var userGold: Int? // 현재 유저가 보유하고 있는 골드
+    @Published var userGold: Int? // 현재 유저가 보유하고 있는 골드
     
     var originalCharacter: CharacterItem?
     
@@ -32,7 +38,7 @@ class CharacterViewModel: ObservableObject {
     
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
-    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil, userGold: Binding<Int?>) {
+    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil, userGold: Int?) {
         if let userItems = userItems { // Preview용
             self.userItems = userItems
         }
@@ -41,7 +47,7 @@ class CharacterViewModel: ObservableObject {
             self.shopItems = shopItems
         }
         
-        self._userGold = userGold
+        self.userGold = userGold
         
         self.fetchCharacterItem()
         self.fetchShopCharacterItem() // TODO: 어처피 초기 화면 진입시엔 보유아이템이 메인이라면 상점 관련된건 상점 탭 눌렀을떄 해도 되지 않을까? -> 하지만 초기에 그냥 다 받아오는것도 나쁘진 않아 보이는데 일단 시점은 고민해보기
@@ -76,7 +82,14 @@ extension CharacterViewModel {
     }
     
     func setSelectItem(item: CharacterItem) {
-        self.selectItem = self.selectItem == item ? nil : item
+        if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
+            self.selectItem = self.selectItem == item ? nil : item
+        } else { // 솔드아웃된경우
+            self.toastMessage = "이미 구매한 아이템입니다."
+            withAnimation(.easeInOut(duration: 0.6)) {
+                self.isToast = true
+            }
+        }
     }
     
     func setCharacterItem() {
