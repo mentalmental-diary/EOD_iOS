@@ -19,4 +19,12 @@ class HomeNetworkModel {
         
         APIRequest.requestDecodable(api: api, completion: completion)
     }
+    
+    func addGold(completion: @escaping (Result<Void, Error>) -> Void) {
+        let api = "/api-external/user/rewards/gold"
+        
+        APIRequest.requestData(api: api, method: .post, requestParameters: ["money": 1000], completion: { result in
+            completion(result.voidMap())
+        })
+    }
 }

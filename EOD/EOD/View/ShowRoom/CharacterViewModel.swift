@@ -8,7 +8,19 @@
 import SwiftUI
 
 class CharacterViewModel: ObservableObject {
-    @Published var currentShowType: ShowType = .item
+    @Published var currentShowType: ShowType = .item {
+        didSet {
+            guard oldValue != currentShowType else { return }
+            
+            selectItem = nil
+            
+            if currentShowType == .item {
+                self.fetchCharacterItem()
+            } else {
+                self.fetchShopCharacterItem()
+            }
+        }
+    }
     
     @Published var userItems: [CharacterItem]? = []
     
@@ -18,13 +30,15 @@ class CharacterViewModel: ObservableObject {
     
     @Published var isToast: Bool = false
     
+    @Published var userGold: Int? // 현재 유저가 보유하고 있는 골드
+    
     var originalCharacter: CharacterItem?
     
     var toastMessage: String = ""
     
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
-    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil) {
+    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil, userGold: Int?) {
         if let userItems = userItems { // Preview용
             self.userItems = userItems
         }
@@ -32,14 +46,17 @@ class CharacterViewModel: ObservableObject {
         if let shopItems = shopItems {
             self.shopItems = shopItems
         }
+        
+        self.userGold = userGold
+        
         self.fetchCharacterItem()
-        self.fetchShopCharacterItem()
+        self.fetchShopCharacterItem() // TODO: 어처피 초기 화면 진입시엔 보유아이템이 메인이라면 상점 관련된건 상점 탭 눌렀을떄 해도 되지 않을까? -> 하지만 초기에 그냥 다 받아오는것도 나쁘진 않아 보이는데 일단 시점은 고민해보기
     }
 }
 
 extension CharacterViewModel {
     func fetchCharacterItem() {
-        networkModel.testFetchCharacterItemList(completion: { [weak self] result in
+        networkModel.fetchCharacterItemList(completion: { [weak self] result in
             debugLog("API 호출 완료 result: \(result)")
             switch result {
             case .success(let list):
@@ -52,7 +69,7 @@ extension CharacterViewModel {
     }
     
     func fetchShopCharacterItem() {
-        networkModel.testFetchShopCharacterItemList(completion: { [weak self] result in
+        networkModel.fetchShopCharacterItemList(completion: { [weak self] result in
             debugLog("상점 API 호출 완료 result: \(result)")
             switch result {
             case .success(let list):
@@ -64,13 +81,49 @@ extension CharacterViewModel {
         })
     }
     
-    func setCharacterItem() {
-        // TODO: 저장 로직 구현
-        
-        self.toastMessage = "대표 캐릭터로 저장되었습니다!"
-        withAnimation(.easeInOut(duration: 0.6)) {
-            self.isToast = true
+    func setSelectItem(item: CharacterItem) {
+        if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
+            self.selectItem = self.selectItem == item ? nil : item
+        } else { // 솔드아웃된경우
+            self.toastMessage = "이미 구매한 아이템입니다."
+            withAnimation(.easeInOut(duration: 0.6)) {
+                self.isToast = true
+            }
         }
+    }
+    
+    func setCharacterItem() {
+        guard let id = selectItem?.id else { errorLog("선택된 아이템이 없습니다."); return }
+        
+        networkModel.setCharacterItem(id: id, completion: { [weak self] result in
+            switch result {
+            case .success:
+                self?.toastMessage = "대표 캐릭터로 저장되었습니다!"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            case .failure(let error):
+                errorLog("대표 캐릭터 저장 실패 error: \(error)")
+                self?.toastMessage = "대표 캐릭터로 저장이 실패하였습니다."
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            }
+        })
+    }
+    
+    func buyCharacterItem() {
+        guard let id = selectItem?.id else { errorLog("선택된 아이템이 없습니다."); return }
+        networkModel.buyCharacterItem(id: id, completion: { [weak self] result in
+            debugLog("캐릭터 아이템 구매 API 호출 완료. result: \(result)")
+            switch result {
+            case .success(_):
+                let resultGold = (self?.userGold ?? 0) - (self?.selectItem?.price ?? 0)
+                self?.userGold = resultGold
+            case .failure(let error):
+                errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
+            }
+        })
     }
 }
 

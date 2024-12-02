@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     @State private var showCharacterView: Bool = false
@@ -17,8 +18,7 @@ struct HomeView: View {
         VStack {
             topView()
             Spacer()
-            Text("메인 홈 화면")
-                .foregroundColor(.black)
+            houseView()
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,7 +32,7 @@ extension HomeView {
             HStack(spacing: 5) {
                 Image("icon_egg")
                 
-                Text(viewModel.userGold.formattedDecimal())
+                Text(viewModel.userGold?.formattedDecimal() ?? "0")
                     .font(size: 20)
                     .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
             }
@@ -41,6 +41,15 @@ extension HomeView {
             .background(Color(red: 239/255, green: 239/255, blue: 228/255))
             .clipShape(Capsule())
            
+            Spacer()
+            
+            Button {
+                viewModel.testAddGold()
+            } label: {
+                Text("임시 골드 1000 충전")
+                    .font(size: 5)
+            }
+
             Spacer()
             
             HStack(spacing: 12) {
@@ -57,7 +66,10 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showCharacterView) {
-                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel()) // TODO: 변수 추가
+                    CharacterView(showCharacterView: $showCharacterView, viewModel: CharacterViewModel(userGold: viewModel.userGold))
+                        .onDisappear {
+                            viewModel.refreshUserInfo()
+                        }
                 }
                 
                 Button {
@@ -73,7 +85,10 @@ extension HomeView {
                         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
                 }
                 .fullScreenCover(isPresented: $showHouseView) {
-                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel())
+                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel(userGold: viewModel.userGold, userThemeList: viewModel.userThemeList ?? []))
+                        .onDisappear {
+                            viewModel.refreshUserInfo()
+                        }
                 }
                 
                 Button {
@@ -100,6 +115,25 @@ extension HomeView {
     
     // 캐릭터 테마 메인 뷰
     private func houseView() -> some View {
+        ZStack {
+            HousePreviewView(themeItemList: viewModel.userThemeList)
+            
+            GeometryReader { geometry in
+                KFImage(viewModel.userCharacterInfo?.imageUrl?.url)
+                    .placeholder {
+                        Image("character_default")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: min(geometry.size.width, 120), height: min(geometry.size.height, 120)) // TODO: 사이즈 확인
+                    .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 40) // TODO: 좌표 확인
+            }
+        }
+    }
+    
+    private func todayTextView() -> some View {
         VStack {
             
         }
@@ -108,6 +142,10 @@ extension HomeView {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        let previewViewModel = HomeViewModel()
+        previewViewModel.userCharacterInfo = CharacterItem(id: 1, imageUrl: "https://yolk-shop-image.kr.object.ncloudstorage.com/1_character/1-2_character1.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20241202T021128Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=9HwjhTcz2kypE8HXSl6d%2F20241202%2Fkr-standard%2Fs3%2Faws4_request&X-Amz-Signature=801f82fec7300abf3fd0302769f50947bc9f3fb53d859f9a96f8cc2a476c7d11", name: "asdf")
+        previewViewModel.userGold = 1000
+        
+        return HomeView(viewModel: previewViewModel)
     }
 }

@@ -5,6 +5,7 @@
 //  Created by JooYoung Kim on 8/26/24.
 //
 
+#if !PREVIEW
 import UnityFramework
 
 class GameManager {
@@ -52,3 +53,5 @@ class GameManager {
         return ufw
     }
 }
+
+#endif

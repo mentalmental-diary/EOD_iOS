@@ -11,6 +11,7 @@ import Kingfisher
 struct CharacterView: View {
     @Binding var showCharacterView: Bool
     @ObservedObject var viewModel: CharacterViewModel
+    @State var showBuyAlert: Bool = false
     
     init(showCharacterView: Binding<Bool>, viewModel: CharacterViewModel) {
         self._showCharacterView = showCharacterView
@@ -18,22 +19,37 @@ struct CharacterView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 0) {
-                topAreaView()
-                bottomAreaView()
+        GeometryReader { proxy in
+            ZStack(alignment: .bottom) {
+                VStack(spacing: 0) {
+                    topAreaView()
+                    bottomAreaView(proxy: proxy)
+                }
+                .edgesIgnoringSafeArea([.top, .bottom])
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+                .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
+                
+                bottomButtonView(proxy: proxy)
+                    .animation(.easeInOut, value: availableBuyArea)
+                
+                if showBuyAlert {
+                    CustomBuyAlert(
+                        showAlert: $showBuyAlert,
+                        imageUrl: viewModel.selectItem?.imageUrl,
+                        itemName: viewModel.selectItem?.name,
+                        itemDescription: viewModel.selectItem?.details,
+                        userGold: viewModel.userGold,
+                        availableBuyButton: availableBuyButton,
+                        acceptAction: {
+                            if availableBuyButton {
+                                viewModel.buyCharacterItem()
+                            }
+                        })
+                }
             }
-            .edgesIgnoringSafeArea([.top, .bottom])
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(red: 251/255, green: 251/255, blue: 244/255))
-            .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
             
-            if viewModel.currentShowType == .shop && viewModel.selectItem != nil {
-                bottomButtonView()
-                    .transition(.move(edge: .bottom))
-            }
         }
-        .animation(.easeInOut, value: viewModel.selectItem)
     }
 }
 
@@ -45,7 +61,12 @@ extension CharacterView {
                     .resizable()
                 
                 GeometryReader { geometry in
-                    KFImage(viewModel.selectItem?.imageUrl.url)
+                    KFImage(viewModel.selectItem?.imageUrl?.url)
+                        .placeholder {
+                            Image("character_default")
+                                .resizable()
+                                .scaledToFit()
+                        }
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
@@ -100,7 +121,7 @@ extension CharacterView {
         
     }
     
-    private func bottomAreaView() -> some View {
+    private func bottomAreaView(proxy: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 tabButton(type: .item)
@@ -112,7 +133,7 @@ extension CharacterView {
                 .frame(minHeight: 1.0)
                 .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
             
-            itemListView()
+            itemListView(proxy: proxy)
                 .padding(.horizontal, 10)
                 .padding(.top, 17)
         }
@@ -140,7 +161,7 @@ extension CharacterView {
 
     }
     
-    private func itemListView() -> some View {
+    private func itemListView(proxy: GeometryProxy) -> some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 10) {
                 
@@ -148,6 +169,8 @@ extension CharacterView {
                     characterDetailView(item: item)
                 }
             }
+            
+            Spacer().frame(height: 54 + proxy.safeAreaInsets.bottom)
         }
     }
     
@@ -179,7 +202,7 @@ extension CharacterView {
         }
     }
     
-    private func bottomButtonView() -> some View {
+    private func bottomButtonView(proxy: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             // 상단 그라데이션
             LinearGradient(
@@ -194,7 +217,9 @@ extension CharacterView {
             
             HStack(spacing: 16) {
                 Button {
-                    viewModel.selectItem = nil
+                    withAnimation { // 버튼 동작에도 애니메이션 적용
+                        viewModel.selectItem = nil
+                    }
                 } label: {
                     Text("선택 취소")
                         .font(size: 20)
@@ -207,7 +232,7 @@ extension CharacterView {
                 
                 
                 Button {
-                    // TODO: 세부 로직 추후 수정
+                    showBuyAlert = true
                 } label: {
                     Text("선택 상품 구매")
                         .font(size: 20)
@@ -221,13 +246,14 @@ extension CharacterView {
             }
             .padding(.horizontal, 24)
             .background(Color(red: 251/255, green: 251/255, blue: 244/255))
+            
         }
-        .padding(.bottom, 15)
+        .offset(y: availableBuyArea ? 0 : 54 + proxy.safeAreaInsets.bottom)
     }
     
     private func characterDetailView(item: CharacterItem) -> some View {
         Button {
-            viewModel.selectItem = item
+            viewModel.setSelectItem(item: item)
         } label: {
             ZStack(alignment: .top) {
                 if viewModel.selectItem == item {
@@ -243,10 +269,10 @@ extension CharacterView {
                 }
                 
                 VStack(spacing: 16) {
-                    KFImage(item.imageUrl.url)
+                    KFImage(item.imageUrl?.url)
                         .resizable()
                         .frame(width: 63, height: 55)
-                        .aspectRatio(contentMode: .fill)
+                        .scaledToFit()
                     
                     Text(item.name)
                         .font(size: 14)
@@ -258,7 +284,18 @@ extension CharacterView {
                 .padding(.vertical, 22)
                 .frame(maxWidth: .infinity)
                 
-               
+                if viewModel.currentShowType == .shop, item.hasItem == true {
+                    ZStack {
+                        // 배경색과 blur 효과
+                        Color(red: 75 / 255, green: 66 / 255, blue: 46 / 255, opacity: 0.7)
+                            .blur(radius: 3) // Blur 효과 적용
+                        
+                        Text("Sold Out")
+                            .font(size: 20)
+                            .foregroundColor(.white)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             .padding(EdgeInsets.init())
             .frame(height: 120)
@@ -282,24 +319,36 @@ extension CharacterView {
     private var availableSaveButton: Bool { // 기존 캐릭터랑 다른 캐릭터가 선택되었을경우 저장버튼 활성화
         return viewModel.selectItem != viewModel.originalCharacter
     }
+    
+    private var availableBuyArea: Bool {
+        return viewModel.currentShowType == .shop && viewModel.selectItem != nil
+    }
+    
+    private var availableBuyButton: Bool {
+        if let userGold = viewModel.userGold, let price = viewModel.selectItem?.price {
+            return (userGold - price) > 0
+        } else {
+            return false
+        }
+    }
 }
 
 #Preview {
-    let a = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf")
+    let a = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf", hasItem: true)
     let b = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
     let c = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
     let d = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
     
     let userItems = [a, b, c, d]
     
-    let shopa = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf")
+    let shopa = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf", hasItem: true)
     let shopb = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
     let shopc = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
-    let shopd = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
+    let shopd = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf", hasItem: true)
     let shope = CharacterItem(id: 5, imageUrl: "asdf", name: "asdf")
     let shopf = CharacterItem(id: 6, imageUrl: "asdf", name: "asdf")
     
     let shopItems = [shopa, shopb, shopc, shopd, shope, shopf]
     
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems))
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: 0))
 }

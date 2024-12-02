@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE02547E2CF351520073C3C5 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */; };
 		CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */; };
 		CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */; };
@@ -129,7 +130,6 @@
 		CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */; };
 		CEB7F0A22AAC6424001C99EA /* Alamofire+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */; };
 		CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A32AAC661D001C99EA /* RegexParser.swift */; };
-		CEC1CFB62CF3466000B2279F /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEC6D7DE2C7C512400FFEC9F /* SwifterSwift+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */; };
 		CEC6D7E02C7C513F00FFEC9F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
 		CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
@@ -138,6 +138,138 @@
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
 		CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
+		CEE63F342CFC4F5D00275C7F /* StandardErrorLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0472AAC61D4001C99EA /* StandardErrorLogRecorder.swift */; };
+		CEE63F352CFC4F5D00275C7F /* OSLogTypeTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04E2AAC61D4001C99EA /* OSLogTypeTranslator.swift */; };
+		CEE63F362CFC4F5D00275C7F /* XcodeLogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0402AAC61D4001C99EA /* XcodeLogConfiguration.swift */; };
+		CEE63F372CFC4F5D00275C7F /* SeverityLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04D2AAC61D4001C99EA /* SeverityLogFormatter.swift */; };
+		CEE63F382CFC4F5D00275C7F /* LogSeverity.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03C2AAC61D4001C99EA /* LogSeverity.swift */; };
+		CEE63F392CFC4F5D00275C7F /* EmotionSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE648B862C05FD7500EBC335 /* EmotionSelectView.swift */; };
+		CEE63F3A2CFC4F5D00275C7F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FD2BE50B3900725E6B /* CalendarView.swift */; };
+		CEE63F3B2CFC4F5D00275C7F /* MonthSelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318192BECC82500880898 /* MonthSelectModalView.swift */; };
+		CEE63F3C2CFC4F5D00275C7F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B52ACAD50D00D9C58B /* HomeView.swift */; };
+		CEE63F3D2CFC4F5D00275C7F /* OutputStreamLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05B2AAC61D4001C99EA /* OutputStreamLogRecorder.swift */; };
+		CEE63F3E2CFC4F5D00275C7F /* DiarySummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */; };
+		CEE63F3F2CFC4F5D00275C7F /* CallSiteLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04A2AAC61D4001C99EA /* CallSiteLogFormatter.swift */; };
+		CEE63F402CFC4F5D00275C7F /* PayloadLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05C2AAC61D4001C99EA /* PayloadLogFormatter.swift */; };
+		CEE63F412CFC4F5D00275C7F /* HomeNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA64F702CE6D19D00FD5627 /* HomeNetworkModel.swift */; };
+		CEE63F422CFC4F5D00275C7F /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99D2AC953AE00D9C58B /* UIApplication+Extension.swift */; };
+		CEE63F432CFC4F5D00275C7F /* Result+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F02F2AAC5594001C99EA /* Result+Extension.swift */; };
+		CEE63F442CFC4F5D00275C7F /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */; };
+		CEE63F452CFC4F5D00275C7F /* PayloadValueLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03D2AAC61D4001C99EA /* PayloadValueLogFormatter.swift */; };
+		CEE63F462CFC4F5D00275C7F /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */; };
+		CEE63F472CFC4F5D00275C7F /* CallingThreadLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0552AAC61D4001C99EA /* CallingThreadLogFormatter.swift */; };
+		CEE63F482CFC4F5D00275C7F /* LogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0452AAC61D4001C99EA /* LogRecorder.swift */; };
+		CEE63F492CFC4F5D00275C7F /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95A6642C6302D000BF33F7 /* SplashView.swift */; };
+		CEE63F4A2CFC4F5D00275C7F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
+		CEE63F4B2CFC4F5D00275C7F /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */; };
+		CEE63F4C2CFC4F5D00275C7F /* ProcessNameLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0572AAC61D4001C99EA /* ProcessNameLogFormatter.swift */; };
+		CEE63F4D2CFC4F5D00275C7F /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A82ACA950500D9C58B /* TokenManager.swift */; };
+		CEE63F4E2CFC4F5D00275C7F /* CalendarNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */; };
+		CEE63F4F2CFC4F5D00275C7F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */; };
+		CEE63F502CFC4F5D00275C7F /* LogFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05A2AAC61D4001C99EA /* LogFilter.swift */; };
+		CEE63F512CFC4F5D00275C7F /* KeyedDecodingContainer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */; };
+		CEE63F522CFC4F5D00275C7F /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA423012BE50D4800725E6B /* CalendarViewModel.swift */; };
+		CEE63F532CFC4F5D00275C7F /* ListNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8032CD78C6600EFBDA9 /* ListNetworkModel.swift */; };
+		CEE63F542CFC4F5D00275C7F /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C22AD29F3600D9C58B /* ToastView.swift */; };
+		CEE63F552CFC4F5D00275C7F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
+		CEE63F562CFC4F5D00275C7F /* BootLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09A2AAC6289001C99EA /* BootLoader.swift */; };
+		CEE63F572CFC4F5D00275C7F /* PayloadMessageLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0612AAC61D4001C99EA /* PayloadMessageLogFormatter.swift */; };
+		CEE63F582CFC4F5D00275C7F /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A32AAC661D001C99EA /* RegexParser.swift */; };
+		CEE63F592CFC4F5D00275C7F /* ReadableLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0462AAC61D4001C99EA /* ReadableLogFormatter.swift */; };
+		CEE63F5A2CFC4F5D00275C7F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */; };
+		CEE63F5B2CFC4F5D00275C7F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
+		CEE63F5C2CFC4F5D00275C7F /* LiteralLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05F2AAC61D4001C99EA /* LiteralLogFormatter.swift */; };
+		CEE63F5D2CFC4F5D00275C7F /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
+		CEE63F5E2CFC4F5D00275C7F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AD2ACA99E700D9C58B /* LoginView.swift */; };
+		CEE63F5F2CFC4F5D00275C7F /* OSLogMimicFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0442AAC61D4001C99EA /* OSLogMimicFormatter.swift */; };
+		CEE63F602CFC4F5D00275C7F /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
+		CEE63F612CFC4F5D00275C7F /* ProcessIDLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05E2AAC61D4001C99EA /* ProcessIDLogFormatter.swift */; };
+		CEE63F622CFC4F5D00275C7F /* LoginBootModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */; };
+		CEE63F632CFC4F5D00275C7F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0312AAC5FBB001C99EA /* String+Extension.swift */; };
+		CEE63F642CFC4F5D00275C7F /* ConsoleLogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0412AAC61D4001C99EA /* ConsoleLogConfiguration.swift */; };
+		CEE63F652CFC4F5D00275C7F /* StandardStreamsLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03E2AAC61D4001C99EA /* StandardStreamsLogRecorder.swift */; };
+		CEE63F662CFC4F5D00275C7F /* HouseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */; };
+		CEE63F672CFC4F5D00275C7F /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B82C12B86300E03B5A /* DiaryView.swift */; };
+		CEE63F682CFC4F5D00275C7F /* HousePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF80D2CD865A200EFBDA9 /* HousePreviewView.swift */; };
+		CEE63F692CFC4F5D00275C7F /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466BC2C167FBA00E03B5A /* Diary.swift */; };
+		CEE63F6A2CFC4F5D00275C7F /* SwifterSwift+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */; };
+		CEE63F6B2CFC4F5D00275C7F /* StackFrameLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0672AAC61D4001C99EA /* StackFrameLogFormatter.swift */; };
+		CEE63F6C2CFC4F5D00275C7F /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C02AD29F1800D9C58B /* View+Extension.swift */; };
+		CEE63F6D2CFC4F5D00275C7F /* LogRecorderBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0602AAC61D4001C99EA /* LogRecorderBase.swift */; };
+		CEE63F6E2CFC4F5D00275C7F /* ConcatenatingLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0532AAC61D4001C99EA /* ConcatenatingLogFormatter.swift */; };
+		CEE63F6F2CFC4F5D00275C7F /* FieldBasedLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03B2AAC61D4001C99EA /* FieldBasedLogFormatter.swift */; };
+		CEE63F702CFC4F5D00275C7F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1972C45F1A800B3D9F9 /* Alert.swift */; };
+		CEE63F712CFC4F5D00275C7F /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0422AAC61D4001C99EA /* Log.swift */; };
+		CEE63F722CFC4F5D00275C7F /* TimestampLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03F2AAC61D4001C99EA /* TimestampLogFormatter.swift */; };
+		CEE63F732CFC4F5D00275C7F /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
+		CEE63F742CFC4F5D00275C7F /* LogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0642AAC61D4001C99EA /* LogConfiguration.swift */; };
+		CEE63F752CFC4F5D00275C7F /* RotatingLogFileConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0632AAC61D4001C99EA /* RotatingLogFileConfiguration.swift */; };
+		CEE63F762CFC4F5D00275C7F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F72BE5022F00725E6B /* MainTabView.swift */; };
+		CEE63F772CFC4F5D00275C7F /* ParsableLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0482AAC61D4001C99EA /* ParsableLogFormatter.swift */; };
+		CEE63F782CFC4F5D00275C7F /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
+		CEE63F792CFC4F5D00275C7F /* RequestRetryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8052CD7909C00EFBDA9 /* RequestRetryHandler.swift */; };
+		CEE63F7A2CFC4F5D00275C7F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
+		CEE63F7B2CFC4F5D00275C7F /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B62C12B77500E03B5A /* LazyView.swift */; };
+		CEE63F7C2CFC4F5D00275C7F /* StandardLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0562AAC61D4001C99EA /* StandardLogFormatter.swift */; };
+		CEE63F7D2CFC4F5D00275C7F /* ShowRoomNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */; };
+		CEE63F7E2CFC4F5D00275C7F /* LoggerBootModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09C2AAC62C1001C99EA /* LoggerBootModule.swift */; };
+		CEE63F7F2CFC4F5D00275C7F /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DE52C79916100D0ED53 /* GameView.swift */; };
+		CEE63F802CFC4F5D00275C7F /* RotatingLogFileRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0622AAC61D4001C99EA /* RotatingLogFileRecorder.swift */; };
+		CEE63F812CFC4F5D00275C7F /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0262AAC5122001C99EA /* URLBuilder.swift */; };
+		CEE63F822CFC4F5D00275C7F /* BasicLogConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0582AAC61D4001C99EA /* BasicLogConfiguration.swift */; };
+		CEE63F832CFC4F5D00275C7F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A99F2AC954AE00D9C58B /* UIViewController+Extension.swift */; };
+		CEE63F842CFC4F5D00275C7F /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0252AAC5122001C99EA /* CommonError.swift */; };
+		CEE63F852CFC4F5D00275C7F /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0272AAC5122001C99EA /* APIRequest.swift */; };
+		CEE63F862CFC4F5D00275C7F /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0512AAC61D4001C99EA /* LogFormatter.swift */; };
+		CEE63F872CFC4F5D00275C7F /* DelimiterLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0492AAC61D4001C99EA /* DelimiterLogFormatter.swift */; };
+		CEE63F882CFC4F5D00275C7F /* LogChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0542AAC61D4001C99EA /* LogChannel.swift */; };
+		CEE63F892CFC4F5D00275C7F /* SwifterSwift+Etc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */; };
+		CEE63F8A2CFC4F5D00275C7F /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */; };
+		CEE63F8B2CFC4F5D00275C7F /* StandardOutputLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F03A2AAC61D4001C99EA /* StandardOutputLogRecorder.swift */; };
+		CEE63F8C2CFC4F5D00275C7F /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43181B2BECD2DC00880898 /* CornerRadius.swift */; };
+		CEE63F8D2CFC4F5D00275C7F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
+		CEE63F8E2CFC4F5D00275C7F /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */; };
+		CEE63F8F2CFC4F5D00275C7F /* FileLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04C2AAC61D4001C99EA /* FileLogRecorder.swift */; };
+		CEE63F902CFC4F5D00275C7F /* LogReceptacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0652AAC61D4001C99EA /* LogReceptacle.swift */; };
+		CEE63F912CFC4F5D00275C7F /* CalendarCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422FF2BE50B4B00725E6B /* CalendarCellView.swift */; };
+		CEE63F922CFC4F5D00275C7F /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
+		CEE63F932CFC4F5D00275C7F /* DiaryEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */; };
+		CEE63F942CFC4F5D00275C7F /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
+		CEE63F952CFC4F5D00275C7F /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */; };
+		CEE63F962CFC4F5D00275C7F /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B12ACAD42D00D9C58B /* IntroView.swift */; };
+		CEE63F972CFC4F5D00275C7F /* PayloadTraceLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0432AAC61D4001C99EA /* PayloadTraceLogFormatter.swift */; };
+		CEE63F982CFC4F5D00275C7F /* BufferedLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05D2AAC61D4001C99EA /* BufferedLogRecorder.swift */; };
+		CEE63F992CFC4F5D00275C7F /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DF52C7C166400D0ED53 /* GameManager.swift */; };
+		CEE63F9A2CFC4F5D00275C7F /* Alamofire+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */; };
+		CEE63F9B2CFC4F5D00275C7F /* RoomThemeEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8012CD7746800EFBDA9 /* RoomThemeEnums.swift */; };
+		CEE63F9C2CFC4F5D00275C7F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0362AAC6194001C99EA /* Logger.swift */; };
+		CEE63F9D2CFC4F5D00275C7F /* XcodeLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0592AAC61D4001C99EA /* XcodeLogFormatter.swift */; };
+		CEE63F9E2CFC4F5D00275C7F /* ErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0962AAC61FD001C99EA /* ErrorCode.swift */; };
+		CEE63F9F2CFC4F5D00275C7F /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */; };
+		CEE63FA02CFC4F5D00275C7F /* EODLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */; };
+		CEE63FA12CFC4F5D00275C7F /* OSLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04F2AAC61D4001C99EA /* OSLogRecorder.swift */; };
+		CEE63FA22CFC4F5D00275C7F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3972CC5E9C70075A9C0 /* HomeViewModel.swift */; };
+		CEE63FA32CFC4F5D00275C7F /* XcodeTraceLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04B2AAC61D4001C99EA /* XcodeTraceLogFormatter.swift */; };
+		CEE63FA42CFC4F5D00275C7F /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
+		CEE63FA52CFC4F5D00275C7F /* OptionalObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */; };
+		CEE63FA62CFC4F5D00275C7F /* LogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0662AAC61D4001C99EA /* LogEntry.swift */; };
+		CEE63FA72CFC4F5D00275C7F /* ThemeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */; };
+		CEE63FA82CFC4F5D00275C7F /* UserNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */; };
+		CEE63FAA2CFC4F5D00275C7F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63F312CFC4F5D00275C7F /* Kingfisher */; };
+		CEE63FAB2CFC4F5D00275C7F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63F2D2CFC4F5D00275C7F /* Alamofire */; };
+		CEE63FAC2CFC4F5D00275C7F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63F2F2CFC4F5D00275C7F /* Lottie */; };
+		CEE63FAE2CFC4F5D00275C7F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CEB7F0502AAC61D4001C99EA /* README.md */; };
+		CEE63FAF2CFC4F5D00275C7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
+		CEE63FB02CFC4F5D00275C7F /* ColorSet.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA422F32BE4FCC600725E6B /* ColorSet.xcassets */; };
+		CEE63FB12CFC4F5D00275C7F /* omyu pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4318132BEBBF5500880898 /* omyu pretty.ttf */; };
+		CEE63FB22CFC4F5D00275C7F /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19C2C46195D00B3D9F9 /* splash.json */; };
+		CEE63FB32CFC4F5D00275C7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
+		CEE63FB42CFC4F5D00275C7F /* short-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19A2C46195D00B3D9F9 /* short-loading.json */; };
+		CEE63FB52CFC4F5D00275C7F /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
+		CEE63FB62CFC4F5D00275C7F /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
+		CEE63FB72CFC4F5D00275C7F /* README-CleanroomLogger.md in Resources */ = {isa = PBXBuildFile; fileRef = CEB7F0522AAC61D4001C99EA /* README-CleanroomLogger.md */; };
+		CEE63FC32CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
+		CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -161,13 +293,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEC1CFB72CF3466000B2279F /* Embed Frameworks */ = {
+		CE02547F2CF351520073C3C5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEC1CFB62CF3466000B2279F /* UnityFramework.framework in Embed Frameworks */,
+				CE02547E2CF351520073C3C5 /* UnityFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +440,9 @@
 		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataViewModel.swift; sourceTree = "<group>"; };
+		CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preview EOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EOD copy-Info.plist"; path = "/Users/user/Desktop/jy/EOD_iOS/EOD/EOD copy-Info.plist"; sourceTree = "<absolute>"; };
+		CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBuyAlert.swift; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -338,12 +473,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEE63FA92CFC4F5D00275C7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE63FAA2CFC4F5D00275C7F /* Kingfisher in Frameworks */,
+				CEE63FAB2CFC4F5D00275C7F /* Alamofire in Frameworks */,
+				CEE63FAC2CFC4F5D00275C7F /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		CE06C3882CC5D2BB0075A9C0 /* ShowRoom */ = {
 			isa = PBXGroup;
 			children = (
+				CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */,
 				CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */,
 				CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */,
 				CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */,
@@ -540,6 +686,7 @@
 				CEB7F0122AAC5027001C99EA /* EODUITests */,
 				CEB7EFF62AAC5025001C99EA /* Products */,
 				CE979DDB2C7990A700D0ED53 /* Frameworks */,
+				CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -549,6 +696,7 @@
 				CEB7EFF52AAC5025001C99EA /* EOD.app */,
 				CEB7F0052AAC5026001C99EA /* EODTests.xctest */,
 				CEB7F00F2AAC5027001C99EA /* EODUITests.xctest */,
+				CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -749,7 +897,7 @@
 				CEB7EFF12AAC5025001C99EA /* Sources */,
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
-				CEC1CFB72CF3466000B2279F /* Embed Frameworks */,
+				CE02547F2CF351520073C3C5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -801,6 +949,28 @@
 			productReference = CEB7F00F2AAC5027001C99EA /* EODUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CEE63F2C2CFC4F5D00275C7F /* Preview EOD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEE63FBA2CFC4F5D00275C7F /* Build configuration list for PBXNativeTarget "Preview EOD" */;
+			buildPhases = (
+				CEE63F332CFC4F5D00275C7F /* Sources */,
+				CEE63FA92CFC4F5D00275C7F /* Frameworks */,
+				CEE63FAD2CFC4F5D00275C7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Preview EOD";
+			packageProductDependencies = (
+				CEE63F2D2CFC4F5D00275C7F /* Alamofire */,
+				CEE63F2F2CFC4F5D00275C7F /* Lottie */,
+				CEE63F312CFC4F5D00275C7F /* Kingfisher */,
+			);
+			productName = EOD;
+			productReference = CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -845,6 +1015,7 @@
 				CEB7EFF42AAC5025001C99EA /* EOD */,
 				CEB7F0042AAC5026001C99EA /* EODTests */,
 				CEB7F00E2AAC5027001C99EA /* EODUITests */,
+				CEE63F2C2CFC4F5D00275C7F /* Preview EOD */,
 			);
 		};
 /* End PBXProject section */
@@ -881,6 +1052,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEE63FAD2CFC4F5D00275C7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE63FAE2CFC4F5D00275C7F /* README.md in Resources */,
+				CEE63FAF2CFC4F5D00275C7F /* Preview Assets.xcassets in Resources */,
+				CEE63FB02CFC4F5D00275C7F /* ColorSet.xcassets in Resources */,
+				CEE63FB12CFC4F5D00275C7F /* omyu pretty.ttf in Resources */,
+				CEE63FB22CFC4F5D00275C7F /* splash.json in Resources */,
+				CEE63FB32CFC4F5D00275C7F /* Assets.xcassets in Resources */,
+				CEE63FB42CFC4F5D00275C7F /* short-loading.json in Resources */,
+				CEE63FB52CFC4F5D00275C7F /* Splash.storyboard in Resources */,
+				CEE63FB62CFC4F5D00275C7F /* game-loading.json in Resources */,
+				CEE63FB72CFC4F5D00275C7F /* README-CleanroomLogger.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -892,6 +1080,7 @@
 				CEB7F07C2AAC61D5001C99EA /* OSLogTypeTranslator.swift in Sources */,
 				CEB7F06E2AAC61D4001C99EA /* XcodeLogConfiguration.swift in Sources */,
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
+				CEE63FC32CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
 				CE648B872C05FD7500EBC335 /* EmotionSelectView.swift in Sources */,
 				CEA422FE2BE50B3900725E6B /* CalendarView.swift in Sources */,
@@ -1022,6 +1211,131 @@
 			files = (
 				CEB7F0142AAC5027001C99EA /* EODUITests.swift in Sources */,
 				CEB7F0162AAC5027001C99EA /* EODUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE63F332CFC4F5D00275C7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE63F342CFC4F5D00275C7F /* StandardErrorLogRecorder.swift in Sources */,
+				CEE63F352CFC4F5D00275C7F /* OSLogTypeTranslator.swift in Sources */,
+				CEE63F362CFC4F5D00275C7F /* XcodeLogConfiguration.swift in Sources */,
+				CEE63F372CFC4F5D00275C7F /* SeverityLogFormatter.swift in Sources */,
+				CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */,
+				CEE63F382CFC4F5D00275C7F /* LogSeverity.swift in Sources */,
+				CEE63F392CFC4F5D00275C7F /* EmotionSelectView.swift in Sources */,
+				CEE63F3A2CFC4F5D00275C7F /* CalendarView.swift in Sources */,
+				CEE63F3B2CFC4F5D00275C7F /* MonthSelectModalView.swift in Sources */,
+				CEE63F3C2CFC4F5D00275C7F /* HomeView.swift in Sources */,
+				CEE63F3D2CFC4F5D00275C7F /* OutputStreamLogRecorder.swift in Sources */,
+				CEE63F3E2CFC4F5D00275C7F /* DiarySummaryModel.swift in Sources */,
+				CEE63F3F2CFC4F5D00275C7F /* CallSiteLogFormatter.swift in Sources */,
+				CEE63F402CFC4F5D00275C7F /* PayloadLogFormatter.swift in Sources */,
+				CEE63F412CFC4F5D00275C7F /* HomeNetworkModel.swift in Sources */,
+				CEE63F422CFC4F5D00275C7F /* UIApplication+Extension.swift in Sources */,
+				CEE63F432CFC4F5D00275C7F /* Result+Extension.swift in Sources */,
+				CEE63F442CFC4F5D00275C7F /* CharacterView.swift in Sources */,
+				CEE63F452CFC4F5D00275C7F /* PayloadValueLogFormatter.swift in Sources */,
+				CEE63F462CFC4F5D00275C7F /* UserInfoModel.swift in Sources */,
+				CEE63F472CFC4F5D00275C7F /* CallingThreadLogFormatter.swift in Sources */,
+				CEE63F482CFC4F5D00275C7F /* LogRecorder.swift in Sources */,
+				CEE63F492CFC4F5D00275C7F /* SplashView.swift in Sources */,
+				CEE63F4A2CFC4F5D00275C7F /* MainView.swift in Sources */,
+				CEE63F4B2CFC4F5D00275C7F /* CharacterItem.swift in Sources */,
+				CEE63F4C2CFC4F5D00275C7F /* ProcessNameLogFormatter.swift in Sources */,
+				CEE63F4D2CFC4F5D00275C7F /* TokenManager.swift in Sources */,
+				CEE63F4E2CFC4F5D00275C7F /* CalendarNetworkModel.swift in Sources */,
+				CEE63F4F2CFC4F5D00275C7F /* SignUpView.swift in Sources */,
+				CEE63F502CFC4F5D00275C7F /* LogFilter.swift in Sources */,
+				CEE63F512CFC4F5D00275C7F /* KeyedDecodingContainer+Extension.swift in Sources */,
+				CEE63F522CFC4F5D00275C7F /* CalendarViewModel.swift in Sources */,
+				CEE63F532CFC4F5D00275C7F /* ListNetworkModel.swift in Sources */,
+				CEE63F542CFC4F5D00275C7F /* ToastView.swift in Sources */,
+				CEE63F552CFC4F5D00275C7F /* SwifterSwift+Double.swift in Sources */,
+				CEE63F562CFC4F5D00275C7F /* BootLoader.swift in Sources */,
+				CEE63F572CFC4F5D00275C7F /* PayloadMessageLogFormatter.swift in Sources */,
+				CEE63F582CFC4F5D00275C7F /* RegexParser.swift in Sources */,
+				CEE63F592CFC4F5D00275C7F /* ReadableLogFormatter.swift in Sources */,
+				CEE63F5A2CFC4F5D00275C7F /* LoginManager.swift in Sources */,
+				CEE63F5B2CFC4F5D00275C7F /* SwifterSwift+Date.swift in Sources */,
+				CEE63F5C2CFC4F5D00275C7F /* LiteralLogFormatter.swift in Sources */,
+				CEE63F5D2CFC4F5D00275C7F /* ColorSet.swift in Sources */,
+				CEE63F5E2CFC4F5D00275C7F /* LoginView.swift in Sources */,
+				CEE63F5F2CFC4F5D00275C7F /* OSLogMimicFormatter.swift in Sources */,
+				CEE63F602CFC4F5D00275C7F /* MyPageView.swift in Sources */,
+				CEE63F612CFC4F5D00275C7F /* ProcessIDLogFormatter.swift in Sources */,
+				CEE63F622CFC4F5D00275C7F /* LoginBootModule.swift in Sources */,
+				CEE63F632CFC4F5D00275C7F /* String+Extension.swift in Sources */,
+				CEE63F642CFC4F5D00275C7F /* ConsoleLogConfiguration.swift in Sources */,
+				CEE63F652CFC4F5D00275C7F /* StandardStreamsLogRecorder.swift in Sources */,
+				CEE63F662CFC4F5D00275C7F /* HouseViewModel.swift in Sources */,
+				CEE63F672CFC4F5D00275C7F /* DiaryView.swift in Sources */,
+				CEE63F682CFC4F5D00275C7F /* HousePreviewView.swift in Sources */,
+				CEE63F692CFC4F5D00275C7F /* Diary.swift in Sources */,
+				CEE63F6A2CFC4F5D00275C7F /* SwifterSwift+String.swift in Sources */,
+				CEE63F6B2CFC4F5D00275C7F /* StackFrameLogFormatter.swift in Sources */,
+				CEE63F6C2CFC4F5D00275C7F /* View+Extension.swift in Sources */,
+				CEE63F6D2CFC4F5D00275C7F /* LogRecorderBase.swift in Sources */,
+				CEE63F6E2CFC4F5D00275C7F /* ConcatenatingLogFormatter.swift in Sources */,
+				CEE63F6F2CFC4F5D00275C7F /* FieldBasedLogFormatter.swift in Sources */,
+				CEE63F702CFC4F5D00275C7F /* Alert.swift in Sources */,
+				CEE63F712CFC4F5D00275C7F /* Log.swift in Sources */,
+				CEE63F722CFC4F5D00275C7F /* TimestampLogFormatter.swift in Sources */,
+				CEE63F732CFC4F5D00275C7F /* GameDataViewModel.swift in Sources */,
+				CEE63F742CFC4F5D00275C7F /* LogConfiguration.swift in Sources */,
+				CEE63F752CFC4F5D00275C7F /* RotatingLogFileConfiguration.swift in Sources */,
+				CEE63F762CFC4F5D00275C7F /* MainTabView.swift in Sources */,
+				CEE63F772CFC4F5D00275C7F /* ParsableLogFormatter.swift in Sources */,
+				CEE63F782CFC4F5D00275C7F /* Int+Extension.swift in Sources */,
+				CEE63F792CFC4F5D00275C7F /* RequestRetryHandler.swift in Sources */,
+				CEE63F7A2CFC4F5D00275C7F /* MainViewModel.swift in Sources */,
+				CEE63F7B2CFC4F5D00275C7F /* LazyView.swift in Sources */,
+				CEE63F7C2CFC4F5D00275C7F /* StandardLogFormatter.swift in Sources */,
+				CEE63F7D2CFC4F5D00275C7F /* ShowRoomNetworkModel.swift in Sources */,
+				CEE63F7E2CFC4F5D00275C7F /* LoggerBootModule.swift in Sources */,
+				CEE63F7F2CFC4F5D00275C7F /* GameView.swift in Sources */,
+				CEE63F802CFC4F5D00275C7F /* RotatingLogFileRecorder.swift in Sources */,
+				CEE63F812CFC4F5D00275C7F /* URLBuilder.swift in Sources */,
+				CEE63F822CFC4F5D00275C7F /* BasicLogConfiguration.swift in Sources */,
+				CEE63F832CFC4F5D00275C7F /* UIViewController+Extension.swift in Sources */,
+				CEE63F842CFC4F5D00275C7F /* CommonError.swift in Sources */,
+				CEE63F852CFC4F5D00275C7F /* APIRequest.swift in Sources */,
+				CEE63F862CFC4F5D00275C7F /* LogFormatter.swift in Sources */,
+				CEE63F872CFC4F5D00275C7F /* DelimiterLogFormatter.swift in Sources */,
+				CEE63F882CFC4F5D00275C7F /* LogChannel.swift in Sources */,
+				CEE63F892CFC4F5D00275C7F /* SwifterSwift+Etc.swift in Sources */,
+				CEE63F8A2CFC4F5D00275C7F /* NavigationBarView.swift in Sources */,
+				CEE63F8B2CFC4F5D00275C7F /* StandardOutputLogRecorder.swift in Sources */,
+				CEE63F8C2CFC4F5D00275C7F /* CornerRadius.swift in Sources */,
+				CEE63F8D2CFC4F5D00275C7F /* LoadingView.swift in Sources */,
+				CEE63F8E2CFC4F5D00275C7F /* CharacterViewModel.swift in Sources */,
+				CEE63F8F2CFC4F5D00275C7F /* FileLogRecorder.swift in Sources */,
+				CEE63F902CFC4F5D00275C7F /* LogReceptacle.swift in Sources */,
+				CEE63F912CFC4F5D00275C7F /* CalendarCellView.swift in Sources */,
+				CEE63F922CFC4F5D00275C7F /* Text+Extension.swift in Sources */,
+				CEE63F932CFC4F5D00275C7F /* DiaryEnums.swift in Sources */,
+				CEE63F942CFC4F5D00275C7F /* EODApp.swift in Sources */,
+				CEE63F952CFC4F5D00275C7F /* HouseView.swift in Sources */,
+				CEE63F962CFC4F5D00275C7F /* IntroView.swift in Sources */,
+				CEE63F972CFC4F5D00275C7F /* PayloadTraceLogFormatter.swift in Sources */,
+				CEE63F982CFC4F5D00275C7F /* BufferedLogRecorder.swift in Sources */,
+				CEE63F992CFC4F5D00275C7F /* GameManager.swift in Sources */,
+				CEE63F9A2CFC4F5D00275C7F /* Alamofire+Extension.swift in Sources */,
+				CEE63F9B2CFC4F5D00275C7F /* RoomThemeEnums.swift in Sources */,
+				CEE63F9C2CFC4F5D00275C7F /* Logger.swift in Sources */,
+				CEE63F9D2CFC4F5D00275C7F /* XcodeLogFormatter.swift in Sources */,
+				CEE63F9E2CFC4F5D00275C7F /* ErrorCode.swift in Sources */,
+				CEE63F9F2CFC4F5D00275C7F /* PageControlView.swift in Sources */,
+				CEE63FA02CFC4F5D00275C7F /* EODLogRecorder.swift in Sources */,
+				CEE63FA12CFC4F5D00275C7F /* OSLogRecorder.swift in Sources */,
+				CEE63FA22CFC4F5D00275C7F /* HomeViewModel.swift in Sources */,
+				CEE63FA32CFC4F5D00275C7F /* XcodeTraceLogFormatter.swift in Sources */,
+				CEE63FA42CFC4F5D00275C7F /* Date+Extension.swift in Sources */,
+				CEE63FA52CFC4F5D00275C7F /* OptionalObject.swift in Sources */,
+				CEE63FA62CFC4F5D00275C7F /* LogEntry.swift in Sources */,
+				CEE63FA72CFC4F5D00275C7F /* ThemeItem.swift in Sources */,
+				CEE63FA82CFC4F5D00275C7F /* UserNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1299,6 +1613,76 @@
 			};
 			name = Release;
 		};
+		CEE63FBB2CFC4F5D00275C7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EOD/Preview Content\"";
+				DEVELOPMENT_TEAM = 37V7VV782Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EOD copy-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eggofdiary.EOD;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PREVIEW;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CEE63FBC2CFC4F5D00275C7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"EOD/Preview Content\"";
+				DEVELOPMENT_TEAM = 37V7VV782Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EOD copy-Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eggofdiary.EOD;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PREVIEW;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1338,6 +1722,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		CEE63FBA2CFC4F5D00275C7F /* Build configuration list for PBXNativeTarget "Preview EOD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEE63FBB2CFC4F5D00275C7F /* Debug */,
+				CEE63FBC2CFC4F5D00275C7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1365,6 +1758,30 @@
 				minimumVersion = 4.5.0;
 			};
 		};
+		CEE63F2E2CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		CEE63F302CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+		CEE63F322CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1382,6 +1799,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CECCDAC52C40EE7F0000DE72 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		CEE63F2D2CFC4F5D00275C7F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE63F2E2CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		CEE63F2F2CFC4F5D00275C7F /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE63F302CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		CEE63F312CFC4F5D00275C7F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE63F322CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
