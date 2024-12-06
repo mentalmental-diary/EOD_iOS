@@ -36,7 +36,7 @@ struct DiaryView: View {
                             .frame(height: 241)
                         
                         Button {
-                            viewModel.uploadDiaryAction()
+                            viewModel.isModify ? viewModel.modifyDiary() : viewModel.uploadDiary()
                         } label: {
                             Text("저장하기")
                                 .font(size: 20)
@@ -63,7 +63,7 @@ struct DiaryView: View {
                 }
             }
             .onDisappear {
-                viewModel.diary = Diary() // TODO: 나중에 확인
+                viewModel.resetData()
             }
             
         })
@@ -177,6 +177,9 @@ private struct CustomTextView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
+        if uiView.text != (text ?? "") {
+            uiView.text = text ?? ""
+        }
     }
     
     func makeCoordinator() -> CustomTextView.Coordinator {
