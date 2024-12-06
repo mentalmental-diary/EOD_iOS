@@ -86,7 +86,7 @@ extension CalendarView {
                 
                 if viewModel.visibleDiaryIcon {
                     Button(action: {
-                        // TODO: 수정 액션 구현
+                        viewModel.modifyDiaryAction()
                     }, label: {
                         Image("icon_edit")
                     })
@@ -94,7 +94,7 @@ extension CalendarView {
                     Spacer().frame(width: 8)
                     
                     Button(action: {
-                        // TODO: 삭제 액션 구현
+                        viewModel.deleteDiary()
                     }, label: {
                         Image("icon_delete")
                     })

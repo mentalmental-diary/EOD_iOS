@@ -24,9 +24,7 @@ class CalendarViewModel: ObservableObject {
     
     private var networkModel: CalendarNetworkModel = CalendarNetworkModel()
     
-    private var uploadDiary: Diary?
-    
-    var original: Diary? // 수정진입이 최초 일기 정보
+    var original: Diary? // 수정진입 최초 일기 정보
     
     var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
     
@@ -76,7 +74,14 @@ extension CalendarViewModel {
     func showDiaryViewAction() {
         self.showDiaryView = true
         self.showEmotionSelectView = self.diary.emotion == nil
-        self.diary.writeDate = self.selectDate
+        if self.diary.writeDate == nil {
+            self.diary.writeDate = self.selectDate
+        }
+    }
+    
+    func resetData() {
+        self.original = nil
+        self.diary = Diary()
     }
     
     func groupEntriesByDay(diarySummaryList: [DiarySummary]) -> [Int: DiarySummary?] { // TODO: 네이밍 변경, 기능 확인
@@ -123,7 +128,32 @@ extension CalendarViewModel {
         })
     }
     
-    func uploadDiaryAction() {
+    func modifyDiaryAction() {
+        self.fetchDayDiary()
+    }
+    
+    /// 특정 날짜 다이어리 정보 받아오기
+    private func fetchDayDiary() {
+        guard let date = self.selectDate, let summary = diarySummaryList[date.day], let id = summary?.id else { errorLog("선택된 날짜에 해당하는 다이어리 정보가 없습니다."); return }
+        
+        networkModel.fetchDayDiary(id: id, completion: { [weak self] result in
+            switch result {
+            case .success(let diary):
+                debugLog("해당 날짜에 해당하는 다이어리 정보 호출 성공 diary: \(diary)")
+                self?.diary = diary
+                self?.original = diary
+                self?.showDiaryViewAction()
+            case .failure(let error):
+                errorLog("해당 날짜에 해당하는 다이어리 정보 호출 실패. error: \(error)")
+                self?.toastMessage = "수정 진입 실패"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            }
+        })
+    }
+    
+    func uploadDiary() {
         networkModel.uploadDiary(uploadDiary: diary, completion: { [weak self] result in
             debugLog("업로드 API완료 result: \(result)")
             guard let error = result.error else {
@@ -142,5 +172,42 @@ extension CalendarViewModel {
             }
         })
         
+    }
+    
+    func modifyDiary() {
+        networkModel.modifyDiary(modifyDiary: diary, completion: { [weak self] result in
+            debugLog("다이어리 수정 API완료 result: \(result)")
+            guard let error = result.error else {
+                self?.showDiaryView = false
+                self?.toastMessage = "일기가 저장되었어요!"
+                self?.fetchMonthDiary()
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+                return
+            }
+            
+            self?.toastMessage = "일기 저장시 오류가 발생했습니다. error: \(error)"
+            withAnimation(.easeInOut(duration: 0.6)) {
+                self?.isToast = true
+            }
+        })
+    }
+    
+    func deleteDiary() {
+        guard let date = self.selectDate, let summary = diarySummaryList[date.day], let id = summary?.id else { errorLog("선택된 날짜에 해당하는 다이어리 정보가 없습니다."); return }
+        
+        networkModel.deleteDiary(id: id, completion: { [weak self] result in
+            switch result {
+            case .success:
+                infoLog("다이어리 삭제 API 성공")
+                self?.toastMessage = "일기가 삭제되었습니다."
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+            case .failure(let error):
+                errorLog("다이어리 삭제 API실패. error: \(error)")
+            }
+        })
     }
 }

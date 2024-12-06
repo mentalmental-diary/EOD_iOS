@@ -10,7 +10,7 @@ import Foundation
 public struct Diary: Decodable {
     var id: Int?
     var userNo: Int?
-    var writeDate: Date? = Date()
+    var writeDate: Date?
     var seq: Int?
     var isCustomEmotion: Bool? = false // TODO: 나중에 바뀔 수 있는 변수
     var emotion: EmotionType?
