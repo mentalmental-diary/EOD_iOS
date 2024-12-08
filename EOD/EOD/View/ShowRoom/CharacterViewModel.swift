@@ -83,7 +83,9 @@ extension CharacterViewModel {
     
     func setSelectItem(item: CharacterItem) {
         if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
-            self.selectItem = self.selectItem == item ? nil : item
+            self.setCharacterItemClicked(item: item, then: {
+                self.selectItem = self.selectItem == item ? nil : item
+            })
         } else { // 솔드아웃된경우
             self.toastMessage = "이미 구매한 아이템입니다."
             withAnimation(.easeInOut(duration: 0.6)) {
@@ -127,13 +129,23 @@ extension CharacterViewModel {
         })
     }
     
-    func setCharacterItemClicked(item: CharacterItem) {
-        guard item.isClicked == false else { return } // 클릭이 안된 아이템인경우
+    func setCharacterItemClicked(item: CharacterItem, then: (() -> Void)?) {
+        guard let userItems = userItems,
+              let targetItem = userItems.first(where: { $0.id == item.id }) else {
+            errorLog("아이템을 리스트에서 찾을 수 없습니다. id: \(item.id)")
+            return
+        }
+        
+        guard item.isClicked == false else { then?(); return } // 클릭이 안된 아이템인경우
         
         networkModel.setCharacterItemClicked(id: item.id, completion: { result in
             switch result {
             case .success:
                 infoLog("아이템 뉴마커 처리 완료되었습니다. 뉴마커 제거된 아이템 : \(item.name)")
+                
+                targetItem.isClicked = true
+                
+                then?()
             case .failure(let error):
                 errorLog("아이템 뉴마커 표시 제거 API실패. error: \(error)")
             }

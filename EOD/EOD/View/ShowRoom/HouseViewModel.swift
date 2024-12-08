@@ -131,17 +131,14 @@ extension HouseViewModel {
         }
     }
     
-    func setSelectThemeItemList(item: ThemeItem) { // TODO: 실제로 되는진 확인해보기
-        debugLog("아이템 선택 item: \(item.id)")
-        debugLog("해당 아이템 인덱스 위치? \(self.selectThemeItemList.firstIndex(where: { $0.id == item.id }))")
-        debugLog(" 리스트? \(self.selectThemeItemList)")
-        
-        if let index = self.selectThemeItemList.firstIndex(where: { $0.id == item.id }) { // 존재하는 아이템인경우 
-            self.selectThemeItemList.remove(at: index)
-        } else {
-            debugLog("여기 들어와서 추가가 되야하는데 왜 안되지?")
-            self.selectThemeItemList.append(item)
-        }
+    func setSelectThemeItemList(item: ThemeItem) {
+        self.setThemeItemClicked(item: item, then: {
+            if let index = self.selectThemeItemList.firstIndex(where: { $0.id == item.id }) { // 존재하는 아이템인경우
+                self.selectThemeItemList.remove(at: index)
+            } else {
+                self.selectThemeItemList.append(item)
+            }
+        })
     }
     
     func isSelectItem(item: ThemeItem) -> Bool {
@@ -194,13 +191,23 @@ extension HouseViewModel {
         })
     }
     
-    func setThemeItemClicked(item: ThemeItem) {
-        guard item.isClicked == false else { return } // 클릭이 안된 아이템인경우
+    func setThemeItemClicked(item: ThemeItem, then: (() -> Void)?) {
+        guard let themeItemList = themeItemList,
+              let targetItem = themeItemList.first(where: { $0.id == item.id }) else {
+            errorLog("아이템을 리스트에서 찾을 수 없습니다. id: \(item.id)")
+            return
+        }
+        
+        guard item.isClicked == false else { then?(); return } // 클릭이 안된 아이템인경우
         
         networkModel.setThemeItemClicked(id: item.id, completion: { result in
             switch result {
             case .success:
                 infoLog("아이템 뉴마커 처리 완료되었습니다. 뉴마커 제거된 아이템 : \(item.name)")
+                
+                targetItem.isClicked = true
+                
+                then?()
             case .failure(let error):
                 errorLog("아이템 뉴마커 표시 제거 API실패. error: \(error)")
             }

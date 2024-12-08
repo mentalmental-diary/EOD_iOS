@@ -8,7 +8,7 @@
 import Foundation
 
 /// 캐릭터 아이템 모델
-struct CharacterItem: Decodable {
+class CharacterItem: Decodable {
     var id: Int
     var imageUrl: String?
     var name: String
@@ -31,7 +31,7 @@ struct CharacterItem: Decodable {
         self.updatedAt = updatedAt
     }
     
-    init(from decoder: Decoder) throws {
+    required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)

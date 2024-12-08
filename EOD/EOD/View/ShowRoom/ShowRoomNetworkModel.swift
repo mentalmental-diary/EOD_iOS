@@ -109,7 +109,7 @@ class ShowRoomNetworkModel: ListNetworkModel {
     }
     
     func setThemeItemClicked(id: Int, completion: @escaping ((Result<Void, Error>) -> Void)) {
-        let api = "/api-external/user/rewards/api-external/user/rewards/theme/\(id)/click"
+        let api = "/api-external/user/rewards/api-external/user/rewards/theme/item/\(id)/click"
         
         APIRequest.requestData(api: api, method: .post, completion: { result in
             completion(result.voidMap())

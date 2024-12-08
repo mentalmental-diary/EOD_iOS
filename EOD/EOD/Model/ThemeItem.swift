@@ -53,7 +53,7 @@ extension Theme: Hashable {
 // MARK: - 룸 테마 아이템 모델
 
 /// 룸 테마 아이템 모델
-struct ThemeItem: Decodable {
+class ThemeItem: Decodable {
     var id: Int
     var type: RoomThemeItemType
     var itemImageUrl: String
@@ -67,7 +67,22 @@ struct ThemeItem: Decodable {
     var createdAt: Date?
     var updatedAt: Date?
     
-    init (from decoder: Decoder) throws {
+    init(id: Int, type: RoomThemeItemType, itemImageUrl: String, homeImageUrl: String, name: String, isClicked: Bool? = false, price: Int? = nil, themeId: Int? = nil, details: String? = nil, hasItem: Bool? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+        self.id = id
+        self.type = type
+        self.itemImageUrl = itemImageUrl
+        self.homeImageUrl = homeImageUrl
+        self.name = name
+        self.isClicked = isClicked
+        self.price = price
+        self.themeId = themeId
+        self.details = details
+        self.hasItem = hasItem
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+    }
+    
+    required init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
         type = try container.decode(RoomThemeItemType.self, forKey: .type)
