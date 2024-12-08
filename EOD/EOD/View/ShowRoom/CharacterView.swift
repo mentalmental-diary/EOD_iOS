@@ -140,24 +140,31 @@ extension CharacterView {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    private func tabButton(type: ShowType) -> some View {
-        Button {
-            viewModel.currentShowType = type
-        } label: {
-            Text(type.description)
-                .font(size: 20)
-                .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
-                .background(
-                    GeometryReader { geometry in
-                        (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
-                            .frame(width: geometry.size.width, height: 9)
-                            .offset(x: 0, y: geometry.size.height - 8)
-                    }
-                )
+    @ViewBuilder private func tabButton(type: ShowType) -> some View {
+        ZStack(alignment: .topTrailing) {
+            Button {
+                viewModel.currentShowType = type
+            } label: {
+                Text(type.description)
+                    .font(size: 20)
+                    .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
+                    .background(
+                        GeometryReader { geometry in
+                            (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
+                                .frame(width: geometry.size.width, height: 9)
+                                .offset(x: 0, y: geometry.size.height - 8)
+                        }
+                    )
+            }
+            .padding(.top, 31)
+            .padding(.bottom, 28)
+            .frame(maxWidth: .infinity)
         }
-        .padding(.top, 31)
-        .padding(.bottom, 28)
-        .frame(maxWidth: .infinity)
+        
+        if type == .item && viewModel.existNewItem {
+            Image("new_mark")
+                .offset(x: -60, y: -9)
+        }
 
     }
     
@@ -274,10 +281,17 @@ extension CharacterView {
                         .frame(width: 63, height: 55)
                         .scaledToFit()
                     
-                    Text(item.name)
-                        .font(size: 14)
-                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
-                        .lineSpacing(2)
+                    ZStack(alignment: .topTrailing) {
+                        Text(item.name)
+                            .font(size: 14)
+                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                            .lineSpacing(2)
+                        
+                        if item.isClicked == false {
+                            Image("new_mark")
+                                .offset(x: 4, y: -2)
+                        }
+                    }
                 }
                 .padding(.top, 28)
                 .padding(.bottom, 12)
@@ -336,7 +350,7 @@ extension CharacterView {
 #Preview {
     let a = CharacterItem(id: 1, imageUrl: "asdf", name: "asdf", hasItem: true)
     let b = CharacterItem(id: 2, imageUrl: "asdf", name: "asdf")
-    let c = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf")
+    let c = CharacterItem(id: 3, imageUrl: "asdf", name: "asdf", isClicked: false)
     let d = CharacterItem(id: 4, imageUrl: "asdf", name: "asdf")
     
     let userItems = [a, b, c, d]

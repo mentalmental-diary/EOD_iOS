@@ -33,7 +33,7 @@ class HouseViewModel: ObservableObject {
         didSet {
             if selectTheme != nil {
                 if currentShowType == .item {
-                    self.fetctThemeItemList(id: selectTheme?.id ?? 0)
+                    self.fetchThemeItemList(id: selectTheme?.id ?? 0)
                 } else {
                     self.fetchShopThemeItemList(id: selectTheme?.id ?? 0)
                 }
@@ -48,6 +48,8 @@ class HouseViewModel: ObservableObject {
     @Published var selectThemeItem: ThemeItem? // 현재 선택된 상점 내 아이템
     
     @Published var userGold: Int? // 현재 유저가 보유하고 있는 골드
+    
+    @Published var showBuyCompleteView: Bool = false
     
     var originalThemeItemList: [ThemeItem] = [] // 최초 유저가 설정해둔 테마 아이템 리스트
     
@@ -69,7 +71,7 @@ class HouseViewModel: ObservableObject {
 // func
 extension HouseViewModel {
     // 보유아이템/상점 둘다 공통으로 사용하는 함수 -> 테마 목록 리스트는 상점 리스트 한번만 호출 (최초 한번)
-    func fetchThemeList() {
+    private func fetchThemeList() {
         networkModel.fetchThemeList { [weak self] result in
             debugLog("테마 리스트 호출 API 완료 result: \(result)")
             
@@ -83,7 +85,7 @@ extension HouseViewModel {
         }
     }
     
-    func fetctThemeItemList(id: Int) {
+    private func fetchThemeItemList(id: Int) {
         networkModel.fetchThemeItemList(id: id, completion: { [weak self] result in
             debugLog("테마 아이템 리스트 호출 API 완료 result: \(result)")
             
@@ -97,7 +99,7 @@ extension HouseViewModel {
         })
     }
     
-    func fetchShopThemeItemList(id: Int) {
+    private func fetchShopThemeItemList(id: Int) {
         networkModel.fetchShopThemeItemList(id: id, completion: { [weak self] result in
             debugLog("테마 상점 아이템 리스트 호출 API 완료 result: \(result)")
             
@@ -110,6 +112,12 @@ extension HouseViewModel {
                 errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
             }
         })
+    }
+    
+    func fetchShopThemeItemList() {
+        guard let id = self.selectTheme?.id else { return }
+        
+        self.fetchShopThemeItemList(id: id)
     }
     
     func setSelectThemeItem(item: ThemeItem) {
@@ -137,7 +145,6 @@ extension HouseViewModel {
     }
     
     func isSelectItem(item: ThemeItem) -> Bool {
-        debugLog("선택된 아이템인지 확인 item : \(item.id), list: \(self.selectThemeItemList)")
         return self.selectThemeItemList.contains(where: { $0.id == item.id }) == true
     }
     
@@ -149,10 +156,20 @@ extension HouseViewModel {
             case .success(_):
                 let resultGold = (self?.userGold ?? 0) - (self?.selectThemeItem?.price ?? 0)
                 self?.userGold = resultGold
+                self?.fetchThemeList()
+                self?.showBuyCompleteView = true
+                self?.selectThemeItem = nil
             case .failure(let error):
                 errorLog("테마 아이템 구매 API 실패. error: \(error)")
             }
         })
+    }
+    
+    func buyCompleteAction() {
+        guard let theme = self.selectTheme else { return }
+        
+        self.currentShowType = .item // 보유아이템 탭으로 변경
+        self.selectTheme = theme
     }
     
     func setThemeItem() {
@@ -195,4 +212,11 @@ extension HouseViewModel {
     var isModify: Bool { return self.originalThemeItemList != self.selectThemeItemList } // 수정여부 확인
     
     var presentItemList: [ThemeItem]? { return self.currentShowType == .item ? self.themeItemList : self.themeShopItemList }
+    
+    /// 뉴마커 표시가 필요한 아이템 존재 여부
+    var existNewItem: Bool {
+        guard let items = self.themeList else { return false }
+        
+        return items.contains { $0.isClicked == false }
+    }
 }

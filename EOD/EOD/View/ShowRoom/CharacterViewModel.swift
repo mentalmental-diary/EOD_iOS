@@ -120,6 +120,7 @@ extension CharacterViewModel {
             case .success(_):
                 let resultGold = (self?.userGold ?? 0) - (self?.selectItem?.price ?? 0)
                 self?.userGold = resultGold
+                self?.refreshData()
             case .failure(let error):
                 errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
             }
@@ -138,12 +139,24 @@ extension CharacterViewModel {
             }
         })
     }
+    
+    func refreshData() {
+        self.fetchCharacterItem()
+        self.fetchShopCharacterItem()
+    }
 }
 
 /// Var
 extension CharacterViewModel {
     var presentItemList: [CharacterItem]? {
         return self.currentShowType == .item ? userItems : shopItems
+    }
+    
+    /// 뉴마커 표시가 필요한 아이템 존재 여부
+    var existNewItem: Bool {
+        guard let items = self.userItems else { return false }
+        
+        return items.contains { $0.isClicked == false }
     }
 }
 

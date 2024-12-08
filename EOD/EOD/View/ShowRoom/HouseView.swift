@@ -13,6 +13,7 @@ struct HouseView: View {
     @ObservedObject var viewModel: HouseViewModel
     @State var showBuyAlert: Bool = false
     
+    
     init(showHouseView: Binding<Bool>, viewModel: HouseViewModel) {
         self._showHouseView = showHouseView
         self.viewModel = viewModel
@@ -45,6 +46,18 @@ struct HouseView: View {
                             if availableBuyButton {
                                 viewModel.buyThemeItem()
                             }
+                        })
+                }
+                
+                if viewModel.showBuyCompleteView {
+                    BuyCompleteView(
+                        showCompleteView: $viewModel.showBuyCompleteView,
+                        imageUrl: viewModel.selectThemeItem?.itemImageUrl,
+                        acceptAction: {
+                            viewModel.buyCompleteAction()
+                        },
+                        cancelAction: {
+                            viewModel.fetchShopThemeItemList()
                         })
                 }
             }
@@ -185,24 +198,31 @@ extension HouseView {
         .padding(.vertical, 22)
     }
     
-    private func tabButton(type: ShowType) -> some View {
-        Button {
-            viewModel.currentShowType = type
-        } label: {
-            Text(type.description)
-                .font(size: 20)
-                .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
-                .background(
-                    GeometryReader { geometry in
-                        (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
-                            .frame(width: geometry.size.width, height: 9)
-                            .offset(x: 0, y: geometry.size.height - 8)
-                    }
-                )
+    @ViewBuilder private func tabButton(type: ShowType) -> some View {
+        ZStack(alignment: .topTrailing) {
+            Button {
+                viewModel.currentShowType = type
+            } label: {
+                Text(type.description)
+                    .font(size: 20)
+                    .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
+                    .background(
+                        GeometryReader { geometry in
+                            (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
+                                .frame(width: geometry.size.width, height: 9)
+                                .offset(x: 0, y: geometry.size.height - 8)
+                        }
+                    )
+            }
+            .padding(.top, 31)
+            .padding(.bottom, 28)
+            .frame(maxWidth: .infinity)
+            
+            if type == .item && viewModel.existNewItem {
+                Image("new_mark")
+                    .offset(x: -60, y: -9)
+            }
         }
-        .padding(.top, 31)
-        .padding(.bottom, 28)
-        .frame(maxWidth: .infinity)
     }
     
     private func bottomAreaView(proxy: GeometryProxy) -> some View {
@@ -268,12 +288,19 @@ extension HouseView {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .aspectRatio(contentMode: .fill)
                 
-                Text(theme.name)
-                    .font(size: 14)
-                    .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
-                    .lineSpacing(2)
-                    .padding(.bottom, 12)
-                    .frame(maxWidth: .infinity)
+                ZStack(alignment: .topTrailing) {
+                    Text(theme.name)
+                        .font(size: 14)
+                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                        .lineSpacing(2)
+                        .padding(.bottom, 12)
+                        .frame(maxWidth: .infinity)
+                    
+                    if theme.isClicked == false {
+                        Image("new_mark")
+                            .offset(x: 4, y: -2)
+                    }
+                }
             }
             .frame(height: 120)
             .background(.white)
@@ -306,11 +333,17 @@ extension HouseView {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .frame(width: 63, height: 55)
                         .aspectRatio(contentMode: .fit)
-                    
-                    Text(item.name)
-                        .font(size: 14)
-                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
-                        .lineSpacing(2)
+                    ZStack(alignment: .topTrailing){
+                        Text(item.name)
+                            .font(size: 14)
+                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                            .lineSpacing(2)
+                        
+                        if item.isClicked == false {
+                            Image("new_mark")
+                                .offset(x: 4, y: -2)
+                        }
+                    }
                 }
                 .padding(.top, 28)
                 .padding(.bottom, 12)

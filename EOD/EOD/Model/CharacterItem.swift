@@ -19,10 +19,11 @@ struct CharacterItem: Decodable {
     var createdAt: Date?
     var updatedAt: Date?
     
-    init(id: Int, imageUrl: String, name: String, details: String? = "", price: Int? = nil, hasItem: Bool? = false, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    init(id: Int, imageUrl: String, name: String, isClicked: Bool = true, details: String? = "", price: Int? = nil, hasItem: Bool? = false, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.id = id
         self.imageUrl = imageUrl
         self.name = name
+        self.isClicked = isClicked
         self.details = details
         self.price = price
         self.hasItem = hasItem
