@@ -83,7 +83,13 @@ extension CharacterViewModel {
     
     func setSelectItem(item: CharacterItem) {
         if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
-            self.selectItem = self.selectItem == item ? nil : item
+            if self.currentShowType == .item {
+                self.setCharacterItemClicked(item: item, then: {
+                    
+                })
+            } else {
+                self.selectItem = self.selectItem == item ? nil : item
+            }
         } else { // 솔드아웃된경우
             self.toastMessage = "이미 구매한 아이템입니다."
             withAnimation(.easeInOut(duration: 0.6)) {
@@ -120,10 +126,39 @@ extension CharacterViewModel {
             case .success(_):
                 let resultGold = (self?.userGold ?? 0) - (self?.selectItem?.price ?? 0)
                 self?.userGold = resultGold
+                self?.refreshData()
             case .failure(let error):
                 errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
             }
         })
+    }
+    
+    func setCharacterItemClicked(item: CharacterItem, then: (() -> Void)?) {
+        guard let userItems = userItems,
+              let targetItem = userItems.first(where: { $0.id == item.id }) else {
+            errorLog("아이템을 리스트에서 찾을 수 없습니다. id: \(item.id)")
+            return
+        }
+        
+        guard item.isClicked == false else { then?(); return } // 클릭이 안된 아이템인경우
+        
+        networkModel.setCharacterItemClicked(id: item.id, completion: { result in
+            switch result {
+            case .success:
+                infoLog("아이템 뉴마커 처리 완료되었습니다. 뉴마커 제거된 아이템 : \(item.name)")
+                
+                targetItem.isClicked = true
+                
+                then?()
+            case .failure(let error):
+                errorLog("아이템 뉴마커 표시 제거 API실패. error: \(error)")
+            }
+        })
+    }
+    
+    func refreshData() {
+        self.fetchCharacterItem()
+        self.fetchShopCharacterItem()
     }
 }
 
@@ -131,6 +166,13 @@ extension CharacterViewModel {
 extension CharacterViewModel {
     var presentItemList: [CharacterItem]? {
         return self.currentShowType == .item ? userItems : shopItems
+    }
+    
+    /// 뉴마커 표시가 필요한 아이템 존재 여부
+    var existNewItem: Bool {
+        guard let items = self.userItems else { return false }
+        
+        return items.contains { $0.isClicked == false }
     }
 }
 

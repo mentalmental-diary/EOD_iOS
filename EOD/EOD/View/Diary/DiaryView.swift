@@ -43,7 +43,7 @@ struct DiaryView: View {
                                 .foregroundColor(Color.white)
                                 .padding(.vertical, 16)
                                 .frame(maxWidth: .infinity)
-                                .background(Color.black)
+                                .background(viewModel.isModified ? Color.black : Color(red: 211/255, green: 210/255, blue: 207/255))
                         }
                         .frame(maxWidth: .infinity)
                         .cornerRadius(8.0)

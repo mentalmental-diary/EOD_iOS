@@ -54,6 +54,12 @@ extension CalendarViewModel {
     
     var isModify: Bool { return original != nil }
     
+    var isModified: Bool {
+        guard isModify else { return true }
+        
+        return original != diary
+    }
+    
     var selectedDiaryInfo: DiarySummary? {
         guard let day = self.selectDate?.day else { return nil }
         
@@ -175,6 +181,7 @@ extension CalendarViewModel {
     }
     
     func modifyDiary() {
+        guard isModified else { return }
         networkModel.modifyDiary(modifyDiary: diary, completion: { [weak self] result in
             debugLog("다이어리 수정 API완료 result: \(result)")
             guard let error = result.error else {
@@ -201,6 +208,7 @@ extension CalendarViewModel {
             switch result {
             case .success:
                 infoLog("다이어리 삭제 API 성공")
+                self?.fetchMonthDiary()
                 self?.toastMessage = "일기가 삭제되었습니다."
                 withAnimation(.easeInOut(duration: 0.6)) {
                     self?.isToast = true

@@ -270,6 +270,8 @@
 		CEE63FB72CFC4F5D00275C7F /* README-CleanroomLogger.md in Resources */ = {isa = PBXBuildFile; fileRef = CEB7F0522AAC61D4001C99EA /* README-CleanroomLogger.md */; };
 		CEE63FC32CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
 		CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
+		CEE63FC62D0595A200275C7F /* BuyCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */; };
+		CEE63FC72D0595A200275C7F /* BuyCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -443,6 +445,7 @@
 		CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preview EOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EOD copy-Info.plist"; path = "/Users/user/Desktop/jy/EOD_iOS/EOD/EOD copy-Info.plist"; sourceTree = "<absolute>"; };
 		CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBuyAlert.swift; sourceTree = "<group>"; };
+		CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCompleteView.swift; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -489,6 +492,7 @@
 		CE06C3882CC5D2BB0075A9C0 /* ShowRoom */ = {
 			isa = PBXGroup;
 			children = (
+				CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */,
 				CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */,
 				CE06C3952CC5DA480075A9C0 /* ShowRoomNetworkModel.swift */,
 				CE06C3932CC5DA3A0075A9C0 /* HouseViewModel.swift */,
@@ -1106,6 +1110,7 @@
 				CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */,
 				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
+				CEE63FC62D0595A200275C7F /* BuyCompleteView.swift in Sources */,
 				CEAAF8082CD792E000EFBDA9 /* KeyedDecodingContainer+Extension.swift in Sources */,
 				CEA423022BE50D4800725E6B /* CalendarViewModel.swift in Sources */,
 				CEAAF8042CD78C6B00EFBDA9 /* ListNetworkModel.swift in Sources */,
@@ -1248,6 +1253,7 @@
 				CEE63F4E2CFC4F5D00275C7F /* CalendarNetworkModel.swift in Sources */,
 				CEE63F4F2CFC4F5D00275C7F /* SignUpView.swift in Sources */,
 				CEE63F502CFC4F5D00275C7F /* LogFilter.swift in Sources */,
+				CEE63FC72D0595A200275C7F /* BuyCompleteView.swift in Sources */,
 				CEE63F512CFC4F5D00275C7F /* KeyedDecodingContainer+Extension.swift in Sources */,
 				CEE63F522CFC4F5D00275C7F /* CalendarViewModel.swift in Sources */,
 				CEE63F532CFC4F5D00275C7F /* ListNetworkModel.swift in Sources */,

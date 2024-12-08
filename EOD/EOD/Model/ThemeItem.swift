@@ -13,6 +13,7 @@ struct Theme: Decodable {
     var imageUrl: String
     var name: String
     var createdAt: Date?
+    var isClicked: Bool?
     
     init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -24,6 +25,7 @@ struct Theme: Decodable {
             guard let dateString = try? container.decode(String.self, forKey: .createdAt) else { return nil }
             return dateString.dateInKoreaTimeZone
         }()
+        isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -31,6 +33,7 @@ struct Theme: Decodable {
         case imageUrl
         case name
         case createdAt
+        case isClicked
     }
 }
 
@@ -50,12 +53,13 @@ extension Theme: Hashable {
 // MARK: - 룸 테마 아이템 모델
 
 /// 룸 테마 아이템 모델
-struct ThemeItem: Decodable {
+class ThemeItem: Decodable {
     var id: Int
     var type: RoomThemeItemType
     var itemImageUrl: String
     var homeImageUrl: String
     var name: String
+    var isClicked: Bool?
     var price: Int?
     var themeId: Int?
     var details: String?
@@ -63,13 +67,29 @@ struct ThemeItem: Decodable {
     var createdAt: Date?
     var updatedAt: Date?
     
-    init (from decoder: Decoder) throws {
+    init(id: Int, type: RoomThemeItemType, itemImageUrl: String, homeImageUrl: String, name: String, isClicked: Bool? = false, price: Int? = nil, themeId: Int? = nil, details: String? = nil, hasItem: Bool? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+        self.id = id
+        self.type = type
+        self.itemImageUrl = itemImageUrl
+        self.homeImageUrl = homeImageUrl
+        self.name = name
+        self.isClicked = isClicked
+        self.price = price
+        self.themeId = themeId
+        self.details = details
+        self.hasItem = hasItem
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+    }
+    
+    required init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
         type = try container.decode(RoomThemeItemType.self, forKey: .type)
         itemImageUrl = try container.decode(String.self, forKey: .itemImageUrl)
         homeImageUrl = try container.decode(String.self, forKey: .homeImageUrl)
         name = try container.decode(String.self, forKey: .name)
+        isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         themeId = try container.decodeIfPresent(Int.self, forKey: .themeId)
         details = try container.decodeIfPresent(String.self, forKey: .details)
@@ -94,6 +114,7 @@ struct ThemeItem: Decodable {
         case itemImageUrl
         case homeImageUrl
         case name
+        case isClicked
         case price
         case themeId
         case details
