@@ -13,6 +13,7 @@ struct Theme: Decodable {
     var imageUrl: String
     var name: String
     var createdAt: Date?
+    var isClicked: Bool?
     
     init (from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -24,6 +25,7 @@ struct Theme: Decodable {
             guard let dateString = try? container.decode(String.self, forKey: .createdAt) else { return nil }
             return dateString.dateInKoreaTimeZone
         }()
+        isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -31,6 +33,7 @@ struct Theme: Decodable {
         case imageUrl
         case name
         case createdAt
+        case isClicked
     }
 }
 
@@ -56,6 +59,7 @@ struct ThemeItem: Decodable {
     var itemImageUrl: String
     var homeImageUrl: String
     var name: String
+    var isClicked: Bool?
     var price: Int?
     var themeId: Int?
     var details: String?
@@ -70,6 +74,7 @@ struct ThemeItem: Decodable {
         itemImageUrl = try container.decode(String.self, forKey: .itemImageUrl)
         homeImageUrl = try container.decode(String.self, forKey: .homeImageUrl)
         name = try container.decode(String.self, forKey: .name)
+        isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         themeId = try container.decodeIfPresent(Int.self, forKey: .themeId)
         details = try container.decodeIfPresent(String.self, forKey: .details)
@@ -94,6 +99,7 @@ struct ThemeItem: Decodable {
         case itemImageUrl
         case homeImageUrl
         case name
+        case isClicked
         case price
         case themeId
         case details

@@ -125,6 +125,19 @@ extension CharacterViewModel {
             }
         })
     }
+    
+    func setCharacterItemClicked(item: CharacterItem) {
+        guard item.isClicked == false else { return } // 클릭이 안된 아이템인경우
+        
+        networkModel.setCharacterItemClicked(id: item.id, completion: { result in
+            switch result {
+            case .success:
+                infoLog("아이템 뉴마커 처리 완료되었습니다. 뉴마커 제거된 아이템 : \(item.name)")
+            case .failure(let error):
+                errorLog("아이템 뉴마커 표시 제거 API실패. error: \(error)")
+            }
+        })
+    }
 }
 
 /// Var

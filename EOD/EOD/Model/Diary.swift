@@ -14,7 +14,6 @@ public struct Diary: Decodable {
     var seq: Int?
     var isCustomEmotion: Bool? = false // TODO: 나중에 바뀔 수 있는 변수
     var emotion: EmotionType?
-    var title: String? = "" // TODO: 추후 삭제 예정
     var content: String? = "" // 일기 내용 (최대 2000자)
     
     enum CodingKeys: String, CodingKey {
@@ -24,7 +23,6 @@ public struct Diary: Decodable {
         case seq
         case isCustomEmotion
         case emotion
-        case title
         case content
     }
     
@@ -40,11 +38,21 @@ public struct Diary: Decodable {
         self.seq = try container.decodeIfPresent(Int.self, forKey: .seq)
         self.isCustomEmotion = try container.decodeIfPresent(Bool.self, forKey: .isCustomEmotion)
         self.emotion = try container.decodeIfPresent(EmotionType.self, forKey: .emotion)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
         self.content = try container.decodeIfPresent(String.self, forKey: .content)
     }
     
     public init() {
         
+    }
+}
+
+extension Diary: Equatable {
+    public static func == (lhs: Diary, rhs: Diary) -> Bool {
+        lhs.id == rhs.id
+        && lhs.userNo == rhs.userNo
+        && lhs.writeDate == rhs.writeDate
+        && lhs.seq == rhs.seq
+        && lhs.emotion == rhs.emotion
+        && lhs.content == rhs.content
     }
 }

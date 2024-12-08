@@ -12,6 +12,7 @@ struct CharacterItem: Decodable {
     var id: Int
     var imageUrl: String?
     var name: String
+    var isClicked: Bool?
     var details: String?
     var price: Int?
     var hasItem: Bool? // 구매여부
@@ -34,6 +35,7 @@ struct CharacterItem: Decodable {
         id = try container.decode(Int.self, forKey: .id)
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
         name = try container.decode(String.self, forKey: .name)
+        isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
         details = try container.decodeIfPresent(String.self, forKey: .details)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         hasItem = try container.decodeIfPresent(Bool.self, forKey: .hasItem)
@@ -54,6 +56,7 @@ struct CharacterItem: Decodable {
         case id
         case imageUrl
         case name
+        case isClicked
         case details
         case price
         case hasItem
