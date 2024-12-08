@@ -83,9 +83,13 @@ extension CharacterViewModel {
     
     func setSelectItem(item: CharacterItem) {
         if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
-            self.setCharacterItemClicked(item: item, then: {
+            if self.currentShowType == .item {
+                self.setCharacterItemClicked(item: item, then: {
+                    
+                })
+            } else {
                 self.selectItem = self.selectItem == item ? nil : item
-            })
+            }
         } else { // 솔드아웃된경우
             self.toastMessage = "이미 구매한 아이템입니다."
             withAnimation(.easeInOut(duration: 0.6)) {
