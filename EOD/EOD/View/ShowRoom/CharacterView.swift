@@ -38,7 +38,7 @@ struct CharacterView: View {
                         showAlert: $showBuyAlert,
                         imageUrl: viewModel.selectItem?.imageUrl,
                         itemName: viewModel.selectItem?.name,
-                        itemDescription: viewModel.selectItem?.details,
+                        itemDescription: viewModel.selectItem?.description,
                         userGold: viewModel.userGold,
                         availableBuyButton: availableBuyButton,
                         acceptAction: {

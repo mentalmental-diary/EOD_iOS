@@ -5,6 +5,10 @@
 //  Created by USER on 2023/10/02.
 //
 
+import AuthenticationServices
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
 import SwiftUI
 
 struct IntroView: View {
@@ -201,19 +205,64 @@ extension IntroView {
     
     private func socialLoginView() -> some View { // TODO: 나중에 소셜로그인 추가되면 그때 작업하기
         VStack(spacing: 16) {
-            NavigationLink(destination: {
-                LazyView(
-                    LoginView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("카카오")
-                    .font(size: 20)
-                    .foregroundColor(Color.white)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .cornerRadius(8.0)
-            })
+            SignInWithAppleButton(
+                .signIn,
+                onRequest: { request in
+                    request.requestedScopes = [.fullName, .email]
+                },
+                onCompletion: { result in
+                    switch result {
+                    case .success(let auth):
+                        if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
+                            // 애플 ID에서 사용자 정보 가져오기
+                            let userIdentifier = appleIDCredential.user
+                            let email = appleIDCredential.email
+                            let fullName = appleIDCredential.fullName
+                            let firstName = fullName?.givenName ?? ""
+                            let lastName = fullName?.familyName ?? ""
+                            
+                            debugLog("애플 로그인 버튼 터치 후 받은 정보들 userIdentifier: \(userIdentifier), email: \(email), fullName: \(fullName), firstname: \(firstName), lastName: \(lastName), auth: \(auth), appleIDCredential: \(appleIDCredential)")
+                            
+                            // 서버로 사용자 정보 전달
+//                            Task {
+//                                await handleServerAuthentication(userIdentifier: userIdentifier, email: email, firstName: firstName, lastName: lastName)
+//                            }
+                        }
+                    case .failure(let error):
+                        errorLog("Error: \(error.localizedDescription)")
+                    }
+                }
+            )
+            .frame(height: 50)
+            
+            Button {
+                if (UserApi.isKakaoTalkLoginAvailable()) {
+                    UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                        if let error = error {
+                            errorLog(error.localizedDescription)
+                        }
+                        if let oauthToken = oauthToken{
+                            debugLog("카카오 로그인 토큰 : \(oauthToken)")
+                        }
+                    }
+                } else {
+                    UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                        if let error = error {
+                            errorLog(error.localizedDescription)
+                        }
+                        if let oauthToken = oauthToken{
+                            print("kakao success")
+                            debugLog("카카오 로그인 토큰 : \(oauthToken)")
+                        }
+                    }
+                }
+            } label: {
+                Image("kakao_login_large_wide")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width : UIScreen.main.bounds.width * 0.9)
+            }
+
             
             NavigationLink(destination: {
                 LazyView(

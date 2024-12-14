@@ -13,18 +13,18 @@ class CharacterItem: Decodable {
     var imageUrl: String?
     var name: String
     var isClicked: Bool?
-    var details: String?
+    var description: String?
     var price: Int?
     var hasItem: Bool? // 구매여부
     var createdAt: Date?
     var updatedAt: Date?
     
-    init(id: Int, imageUrl: String, name: String, isClicked: Bool = true, details: String? = "", price: Int? = nil, hasItem: Bool? = false, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    init(id: Int, imageUrl: String, name: String, isClicked: Bool = true, description: String? = "", price: Int? = nil, hasItem: Bool? = false, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.id = id
         self.imageUrl = imageUrl
         self.name = name
         self.isClicked = isClicked
-        self.details = details
+        self.description = description
         self.price = price
         self.hasItem = hasItem
         self.createdAt = createdAt
@@ -37,7 +37,7 @@ class CharacterItem: Decodable {
         imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
         name = try container.decode(String.self, forKey: .name)
         isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
-        details = try container.decodeIfPresent(String.self, forKey: .details)
+        description = try container.decodeIfPresent(String.self, forKey: .description)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         hasItem = try container.decodeIfPresent(Bool.self, forKey: .hasItem)
         
@@ -58,7 +58,7 @@ class CharacterItem: Decodable {
         case imageUrl
         case name
         case isClicked
-        case details
+        case description
         case price
         case hasItem
         case createdAt

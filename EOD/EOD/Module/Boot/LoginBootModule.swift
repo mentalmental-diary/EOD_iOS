@@ -7,9 +7,13 @@
 
 import Foundation
 import UIKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+
+private let kakaoNativeKey = "4a13f75194f630219ec0382991a34f1b"
 
 class LoginBootModule: BootLoaderProtocol {
     static func loadModule() {
-        // TODO: SSO 로그인에 필요한 정보들 해당 부분에서 핸들링
+        KakaoSDK.initSDK(appKey:kakaoNativeKey)
     }
 }

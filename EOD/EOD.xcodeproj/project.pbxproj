@@ -272,6 +272,7 @@
 		CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
 		CEE63FC62D0595A200275C7F /* BuyCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */; };
 		CEE63FC72D0595A200275C7F /* BuyCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */; };
+		CEE63FCB2D0689DA00275C7F /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63FCA2D0689DA00275C7F /* KakaoSDK */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -446,6 +447,7 @@
 		CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EOD copy-Info.plist"; path = "/Users/user/Desktop/jy/EOD_iOS/EOD/EOD copy-Info.plist"; sourceTree = "<absolute>"; };
 		CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBuyAlert.swift; sourceTree = "<group>"; };
 		CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCompleteView.swift; sourceTree = "<group>"; };
+		CEE63FC82D067D2000275C7F /* EOD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOD.entitlements; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA9D9F52CCE61AD00AA1DC2 /* Kingfisher in Frameworks */,
+				CEE63FCB2D0689DA00275C7F /* KakaoSDK in Frameworks */,
 				CEB7F02D2AAC5371001C99EA /* Alamofire in Frameworks */,
 				CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */,
 			);
@@ -708,6 +711,7 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CEE63FC82D067D2000275C7F /* EOD.entitlements */,
 				CE979DE22C79914800D0ED53 /* Game */,
 				CE4318152BEBBFAD00880898 /* Info.plist */,
 				CE4318122BEBBF3800880898 /* Resource */,
@@ -912,6 +916,7 @@
 				CEB7F02C2AAC5371001C99EA /* Alamofire */,
 				CECCDAC62C40EE7F0000DE72 /* Lottie */,
 				CEA9D9F42CCE61AD00AA1DC2 /* Kingfisher */,
+				CEE63FCA2D0689DA00275C7F /* KakaoSDK */,
 			);
 			productName = EOD;
 			productReference = CEB7EFF52AAC5025001C99EA /* EOD.app */;
@@ -1011,6 +1016,7 @@
 				CEB7F02B2AAC5371001C99EA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CECCDAC52C40EE7F0000DE72 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				CEA9D9F32CCE61AD00AA1DC2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CEE63FC92D0689DA00275C7F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = CEB7EFF62AAC5025001C99EA /* Products */;
 			projectDirPath = "";
@@ -1480,6 +1486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EOD/EOD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EOD/Preview Content\"";
@@ -1514,6 +1521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EOD/EOD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EOD/Preview Content\"";
@@ -1788,6 +1796,14 @@
 				minimumVersion = 8.1.0;
 			};
 		};
+		CEE63FC92D0689DA00275C7F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.23.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1820,6 +1836,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEE63F322CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		CEE63FCA2D0689DA00275C7F /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE63FC92D0689DA00275C7F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

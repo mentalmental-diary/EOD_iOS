@@ -166,12 +166,12 @@ extension HouseViewModel {
         guard let theme = self.selectTheme else { return }
         
         self.currentShowType = .item // 보유아이템 탭으로 변경
-        self.selectTheme = theme
+        DispatchQueue.main.async { // main queue에서 안전하게 처리
+            self.selectTheme = theme
+        }
     }
     
     func setThemeItem() {
-        guard !selectThemeItemList.isEmpty else { errorLog("선택된 테마 아이템들이 없습니다."); return }
-        
         networkModel.setThemeItem(themeList: selectThemeItemList, completion: { [weak self] result in
             switch result {
             case .success:
