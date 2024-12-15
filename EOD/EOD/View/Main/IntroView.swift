@@ -290,23 +290,24 @@ extension IntroView {
                 .cornerRadius(8)
             }
 
-            
-            NavigationLink(destination: {
-                LazyView(
-                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("네이버")
-                    .font(size: 20)
-                    .foregroundColor(Color.black)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 1) // 검정색 테두리
-                    )
-            })
+            Button {
+                LoginManager.shared.login() // TODO: 네이밍 변경
+            } label: {
+                HStack(spacing: 9) {
+                    Spacer()
+                    
+                    Image("naver_logo")
+                    
+                    Text("네이버로 로그인")
+                        .font(size: 20)
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                }
+                .padding(.vertical, 16)
+                .background(Color(red: 3/255, green: 199/255, blue: 90/255))
+                .cornerRadius(8)
+            }
         }
         .padding(.horizontal, 20)
     }

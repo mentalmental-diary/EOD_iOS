@@ -45,8 +45,17 @@ struct EODApp: App {
                     // 여기서 Login여부 판단 후 넘어가야함
                 })
                 .onOpenURL { url in
-                    if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                    debugLog("🔵 콜백 URL호출. url: \(url.absoluteString)")
+                    
+                    // 카카오 로그인 URL 처리
+                    if AuthApi.isKakaoTalkLoginUrl(url) {
                         _ = AuthController.handleOpenUrl(url: url)
+                    }
+                    
+                    
+                    // 네이버 로그인 URL 처리
+                    if url.absoluteString.contains("eodnaverlogin://") {
+                        LoginManager.shared.receiveAccessToken(url)
                     }
                 }
         }
