@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import KakaoSDKAuth
 
 /// AppDelegate  대신해서 완성하기 -> SiwftUI 하고 UIKit 연동하기 위해서?
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -43,8 +44,12 @@ struct EODApp: App {
                 .onAppear(perform: {
                     // 여기서 Login여부 판단 후 넘어가야함
                 })
+                .onOpenURL { url in
+                    if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                        _ = AuthController.handleOpenUrl(url: url)
+                    }
+                }
         }
-        
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {
             case .active:
