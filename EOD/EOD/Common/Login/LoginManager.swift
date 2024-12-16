@@ -7,9 +7,12 @@
 
 import Foundation
 import NaverThirdPartyLogin
+import Combine
 
-public class LoginManager: NSObject {
+public class LoginManager: NSObject, ObservableObject {
     static let shared = LoginManager()
+    
+    @Published var naverLoginResult: Result<String, Error>? = nil
     
     var isLogin: Bool?
     

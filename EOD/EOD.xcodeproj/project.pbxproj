@@ -44,6 +44,8 @@
 		CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C22AD29F3600D9C58B /* ToastView.swift */; };
 		CE7AE2C32D0EB6B400297B7A /* LoginManager+NaverLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */; };
 		CE7AE2C42D0EB6B400297B7A /* LoginManager+NaverLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */; };
+		CE7AE2C62D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */; };
+		CE7AE2C72D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */; };
 		CE8AD1982C45F1A800B3D9F9 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1972C45F1A800B3D9F9 /* Alert.swift */; };
 		CE8AD19D2C46195D00B3D9F9 /* short-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19A2C46195D00B3D9F9 /* short-loading.json */; };
 		CE8AD19E2C46195D00B3D9F9 /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
@@ -357,6 +359,7 @@
 		CE77A9C02AD29F1800D9C58B /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9C22AD29F3600D9C58B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginManager+NaverLogin.swift"; sourceTree = "<group>"; };
+		CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginManager+KakaoLogin.swift"; sourceTree = "<group>"; };
 		CE8AD1972C45F1A800B3D9F9 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		CE8AD19A2C46195D00B3D9F9 /* short-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "short-loading.json"; sourceTree = "<group>"; };
 		CE8AD19B2C46195D00B3D9F9 /* game-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "game-loading.json"; sourceTree = "<group>"; };
@@ -602,6 +605,7 @@
 		CE77A9A22ACA8C9200D9C58B /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */,
 				CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */,
 				CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */,
 			);
@@ -1273,6 +1277,7 @@
 				CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */,
 				CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
+				CE7AE2C72D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */,
 				CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
@@ -1417,6 +1422,7 @@
 				CEE63F3B2CFC4F5D00275C7F /* MonthSelectModalView.swift in Sources */,
 				CEE63F3C2CFC4F5D00275C7F /* HomeView.swift in Sources */,
 				CEE63F3D2CFC4F5D00275C7F /* OutputStreamLogRecorder.swift in Sources */,
+				CE7AE2C62D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */,
 				CEE63F3E2CFC4F5D00275C7F /* DiarySummaryModel.swift in Sources */,
 				CEE63F3F2CFC4F5D00275C7F /* CallSiteLogFormatter.swift in Sources */,
 				CEE63F402CFC4F5D00275C7F /* PayloadLogFormatter.swift in Sources */,

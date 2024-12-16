@@ -6,9 +6,6 @@
 //
 
 import AuthenticationServices
-import KakaoSDKCommon
-import KakaoSDKAuth
-import KakaoSDKUser
 import SwiftUI
 
 struct IntroView: View {
@@ -111,28 +108,7 @@ extension IntroView {
                     .lineSpacing(2)
             }
             
-            Spacer().frame(height: 86)
-            
-            buttonView()
-            
-            Spacer().frame(height: 34)
-            
-            HStack(spacing: 11) {
-                Divider()
-                    .frame(maxWidth: .infinity, maxHeight: 1.0)
-                    .overlay(UIColor.Gray.gray100.color)
-                
-                Text("간편 로그인")
-                    .font(size: 16)
-                    .foregroundColor(UIColor.Gray.gray500.color)
-                
-                Divider()
-                    .frame(maxWidth: .infinity, maxHeight: 1.0)
-                    .overlay(UIColor.Gray.gray100.color)
-            }
-            .padding(.horizontal, 22)
-            
-            Spacer().frame(height: 20)
+            Spacer().frame(height: 140)
             
             socialLoginView()
             
@@ -167,44 +143,46 @@ extension IntroView {
         }
     }
     
-    @ViewBuilder func buttonView() -> some View {
-        VStack(spacing: 16) {
-            NavigationLink(destination: {
-                LazyView(
-                    LoginView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("이메일로 로그인")
-                    .font(size: 20)
-                    .foregroundColor(Color.white)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .cornerRadius(8.0)
-            })
-            
-            NavigationLink(destination: {
-                LazyView(
-                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("회원가입")
-                    .font(size: 20)
-                    .foregroundColor(Color.black)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 1) // 검정색 테두리
-                    )
-            })
-        }
-        .padding(.horizontal, 20)
-    }
-    
     private func socialLoginView() -> some View { // TODO: 나중에 소셜로그인 추가되면 그때 작업하기
         VStack(spacing: 16) {
+            Button {
+                viewModel.kakaoLoginAction()
+            } label: {
+                HStack(spacing: 9) {
+                    Spacer()
+                    
+                    Image("kakao_logo")
+                    
+                    Text("카카오로 로그인")
+                        .font(size: 20)
+                        .foregroundColor(.black)
+                    
+                    Spacer()
+                }
+                .padding(.vertical, 16)
+                .background(Color(red: 254/255, green: 229/255, blue: 0))
+                .cornerRadius(8)
+            }
+
+            Button {
+                LoginManager.shared.login() // TODO: 네이밍 변경
+            } label: {
+                HStack(spacing: 9) {
+                    Spacer()
+                    
+                    Image("naver_logo")
+                    
+                    Text("네이버로 로그인")
+                        .font(size: 20)
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                }
+                .padding(.vertical, 16)
+                .background(Color(red: 3/255, green: 199/255, blue: 90/255))
+                .cornerRadius(8)
+            }
+
             HStack(spacing: 9) {
                 Spacer()
                 
@@ -249,64 +227,6 @@ extension IntroView {
                     }
                 )
                 .blendMode(.overlay)
-            }
-            
-            
-            Button {
-                if (UserApi.isKakaoTalkLoginAvailable()) {
-                    UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-                        if let error = error {
-                            errorLog(error.localizedDescription)
-                        }
-                        if let oauthToken = oauthToken{
-                            debugLog("카카오 로그인 토큰 : \(oauthToken)")
-                        }
-                    }
-                } else {
-                    UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                        if let error = error {
-                            errorLog(error.localizedDescription)
-                        }
-                        if let oauthToken = oauthToken{
-                            print("kakao success")
-                            debugLog("카카오 로그인 토큰 : \(oauthToken)")
-                        }
-                    }
-                }
-            } label: {
-                HStack(spacing: 9) {
-                    Spacer()
-                    
-                    Image("kakao_logo")
-                    
-                    Text("카카오로 로그인")
-                        .font(size: 20)
-                        .foregroundColor(.black)
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 16)
-                .background(Color(red: 254/255, green: 229/255, blue: 0))
-                .cornerRadius(8)
-            }
-
-            Button {
-                LoginManager.shared.login() // TODO: 네이밍 변경
-            } label: {
-                HStack(spacing: 9) {
-                    Spacer()
-                    
-                    Image("naver_logo")
-                    
-                    Text("네이버로 로그인")
-                        .font(size: 20)
-                        .foregroundColor(.white)
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 16)
-                .background(Color(red: 3/255, green: 199/255, blue: 90/255))
-                .cornerRadius(8)
             }
         }
         .padding(.horizontal, 20)

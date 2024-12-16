@@ -9,27 +9,29 @@ import Foundation
 import Alamofire
 
 class UserNetworkModel {
-    func fetchLogin(email: String, password: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
-        let api = "api-external/auth/sign-in"
+    func fetchLogin(Authorization: String, type: LoginType, completion: @escaping ((Result<Void, Error>) -> Void)) {
+        let api = "/api-external/auth/sign-in/oauth2"
         
-        let param = [
-            "email": email,
-            "password": password
+        let headers: HTTPHeaders = [
+            "Authorization": Authorization
         ]
         
-        debugLog("이떄 들어온 값 확인 email: \(email), password: \(password)")
+        let param = [
+            "login-type": type.rawValue
+        ]
         
-        let request = APIRequest.request(api: api, method: .post, requestParameters: param).0
+        let request = APIRequest.request(api: api, method: .post, requestParameters: param, headers: headers).0
         
         request.response(completionHandler: { [weak self] response in
             
             debugLog("로그인 API호출 완료 response: \(response)")
+            
             guard let accessToken = self?.fetchAccessToken(from: response) else {
                 let error = response.parsedError
                 completion(.failure(error))
                 return
             }
-            
+
             self?.setUserInfo(accessToken: accessToken)
             completion(.success(()))
         })
@@ -49,7 +51,7 @@ class UserNetworkModel {
             
             debugLog("회원가입 API가 완료되었습니다. result: \(result)")
             guard let error = result.error else {
-                self?.fetchLogin(email: email, password: password, completion: completion)
+//                self?.fetchLogin(email: email, password: password, completion: completion)
                 
                 return
             }
@@ -74,4 +76,10 @@ class UserNetworkModel {
         UserDefaults.standard.set(accessToken, forKey: "accessToken")
         UserDefaults.standard.set(true, forKey: "isLogin")
     }
+}
+
+public enum LoginType: String {
+    case `self` = "SELF"
+    case kakao = "KAKAO"
+    case naver = "NAVER"
 }

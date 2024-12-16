@@ -64,18 +64,9 @@ private extension LoginManager {
         
         debugLog("정보가 제대로 넘어왔는지 확인 token: \(tokenType), accessToken: \(accessToken)") // TODO: 해당 로그 삭제 예정
         
-        //        Task {
-        //            do {
-        //                var urlRequest = URLRequest(url: URL(string: "https://openapi.naver.com/v1/nid/me")!)
-        //                urlRequest.httpMethod = "GET"
-        //                urlRequest.allHTTPHeaderFields = ["Authorization": "\(tokenType) \(accessToken)"]
-        //                let (data, _) = try await URLSession.shared.data(for: urlRequest)
-        //                let response = try JSONDecoder().decode(NaverLoginResponse.self, from: data)
-        //
-        //            } catch {
-        //                await NaverThirdPartyLoginConnection.getSharedInstance().requestAccessTokenWithRefreshToken()
-        //            }
-        //        }
+        DispatchQueue.main.async {
+            self.naverLoginResult = .success(accessToken)
+        }
     }
 }
 
@@ -99,7 +90,10 @@ extension LoginManager: NaverThirdPartyLoginConnectionDelegate {
     
     public func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
         errorLog("네아로 에러 발생 error: \(error.localizedDescription)")
-        // Error 발생
+        
+        DispatchQueue.main.async {
+            self.naverLoginResult = .failure(error)
+        }
     }
     
     

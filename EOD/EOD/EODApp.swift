@@ -52,7 +52,6 @@ struct EODApp: App {
                         _ = AuthController.handleOpenUrl(url: url)
                     }
                     
-                    
                     // 네이버 로그인 URL 처리
                     if url.absoluteString.contains("eodnaverlogin://") {
                         LoginManager.shared.receiveAccessToken(url)
