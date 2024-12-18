@@ -89,6 +89,12 @@ extension IntroView {
         VStack(spacing: 0.0) {
             
             VStack(spacing: 0) {
+                Button {
+                    viewModel.testLogin()
+                } label: {
+                    Text("테스트 로그인")
+                }
+
                 Spacer()
                 
                 Image("icon_onBoarding")

@@ -165,7 +165,7 @@ extension LoginView {
         VStack(spacing: 20) {
             Button(action: {
                 if availableLoginButton {
-                    viewModel.loginAction(email: inputEmail, password: inputPassWord) // TODO: 로그인 액션 생성
+//                    viewModel.loginAction(email: inputEmail, password: inputPassWord) // TODO: 로그인 액션 생성
                 }
             }, label: {
                 Text("시작하기")

@@ -21,6 +21,6 @@ class LoginBootModule: BootLoaderProtocol {
     
     private class func kakaoInit() {
         debugLog("카카오 네이티브키 등록 된건가? key: \(kakaoNativeKey)")
-        KakaoSDK.initSDK(appKey:kakaoNativeKey)
+        KakaoSDK.initSDK(appKey: kakaoNativeKey)
     }
 }

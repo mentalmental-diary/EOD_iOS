@@ -93,6 +93,20 @@ extension MainViewModel {
             }
             .store(in: &cancellables)
     }
+    
+    func testLogin() {
+        let randomId = UUID().uuidString
+        networkModel.fetchSignUp(email: randomId, password: "1234", completion: { [weak self] result in
+            guard let error = result.error else {
+                self?.presentLoginView = false // 로그인 성공시
+                self?.presentSignUpView = false // 로그인 성공시
+                self?.isLogin = true
+                return
+            }
+            
+            errorLog("테스트용 로그인 실패 error: \(error)")
+        })
+    }
 }
 
 // MARK: - TAB ITEM CASE
