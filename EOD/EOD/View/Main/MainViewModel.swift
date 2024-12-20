@@ -94,6 +94,12 @@ extension MainViewModel {
             .store(in: &cancellables)
     }
     
+    func appleLoginAction(userIdentifier: String) {
+        self.networkModel.fetchLogin(Authorization: userIdentifier, type: .`self`, completion: { result in // TODO: 타입 변경 예정
+            
+        })
+    }
+    
     func testLogin() {
         let randomId = UUID().uuidString
         networkModel.fetchSignUp(email: randomId, password: "1234", completion: { [weak self] result in

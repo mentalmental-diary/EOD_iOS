@@ -85,7 +85,7 @@ extension CharacterViewModel {
         if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
             if self.currentShowType == .item {
                 self.setCharacterItemClicked(item: item, then: {
-                    
+                    self.selectItem = self.selectItem == item ? nil : item
                 })
             } else {
                 self.selectItem = self.selectItem == item ? nil : item

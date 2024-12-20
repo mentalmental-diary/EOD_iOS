@@ -29,8 +29,8 @@ extension LoginManager {
                 }
                 if let oauthToken = oauthToken {
                     debugLog("kakao success")
-                    completion(.success(oauthToken.accessToken))
                     debugLog("카카오 로그인 토큰 : \(oauthToken)")
+                    completion(.success(oauthToken.accessToken))
                 }
             }
         }

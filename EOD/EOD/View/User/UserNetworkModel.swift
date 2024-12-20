@@ -22,7 +22,7 @@ class UserNetworkModel {
         
         debugLog("로그인 API호출에 필요한 파라미터값. headers: \(headers), param: \(param)")
         
-        let request = APIRequest.request(api: api, method: .post, requestParameters: param, headers: headers).0
+        let request = APIRequest.request(api: api, method: .post, parameters: param, headers: headers).0
         
         request.response(completionHandler: { [weak self] response in
             
