@@ -39,7 +39,7 @@ struct HouseView: View {
                         showAlert: $showBuyAlert,
                         imageUrl: viewModel.selectThemeItem?.itemImageUrl,
                         itemName: viewModel.selectThemeItem?.name,
-                        itemDescription: viewModel.selectThemeItem?.details,
+                        itemDescription: viewModel.selectThemeItem?.description,
                         userGold: viewModel.userGold,
                         availableBuyButton: availableBuyButton,
                         acceptAction: {

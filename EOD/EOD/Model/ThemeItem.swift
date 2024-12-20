@@ -62,12 +62,12 @@ class ThemeItem: Decodable {
     var isClicked: Bool?
     var price: Int?
     var themeId: Int?
-    var details: String?
+    var description: String?
     var hasItem: Bool?
     var createdAt: Date?
     var updatedAt: Date?
     
-    init(id: Int, type: RoomThemeItemType, itemImageUrl: String, homeImageUrl: String, name: String, isClicked: Bool? = false, price: Int? = nil, themeId: Int? = nil, details: String? = nil, hasItem: Bool? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+    init(id: Int, type: RoomThemeItemType, itemImageUrl: String, homeImageUrl: String, name: String, isClicked: Bool? = false, price: Int? = nil, themeId: Int? = nil, description: String? = nil, hasItem: Bool? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
         self.id = id
         self.type = type
         self.itemImageUrl = itemImageUrl
@@ -76,7 +76,7 @@ class ThemeItem: Decodable {
         self.isClicked = isClicked
         self.price = price
         self.themeId = themeId
-        self.details = details
+        self.description = description
         self.hasItem = hasItem
         self.createdAt = createdAt
         self.updatedAt = updatedAt
@@ -92,7 +92,7 @@ class ThemeItem: Decodable {
         isClicked = try container.decodeIfPresent(Bool.self, forKey: .isClicked)
         price = try container.decodeIfPresent(Int.self, forKey: .price)
         themeId = try container.decodeIfPresent(Int.self, forKey: .themeId)
-        details = try container.decodeIfPresent(String.self, forKey: .details)
+        description = try container.decodeIfPresent(String.self, forKey: .description)
         hasItem = try container.decodeIfPresent(Bool.self, forKey: .hasItem)
         
         createdAt = {
@@ -117,7 +117,7 @@ class ThemeItem: Decodable {
         case isClicked
         case price
         case themeId
-        case details
+        case description
         case hasItem
         case createdAt
         case updatedAt

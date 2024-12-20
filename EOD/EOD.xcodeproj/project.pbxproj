@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E5FF983794698338F7BEDA3 /* Pods_EODTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 997641CB42D95F5F56B40CD7 /* Pods_EODTests.framework */; };
+		388148A0F05DEB6B8D3F291D /* Pods_EOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176CDCF0635FF30981E64307 /* Pods_EOD.framework */; };
+		9072A816EDC4D63EC7E0DF80 /* Pods_Preview_EOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565878BC7FF730E995B08E7E /* Pods_Preview_EOD.framework */; };
+		A82148BD3DDF880F49A14E39 /* Pods_EOD_EODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */; };
 		CE02547E2CF351520073C3C5 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */; };
 		CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */; };
@@ -38,6 +42,10 @@
 		CE77A9BF2ACD31F700D9C58B /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */; };
 		CE77A9C12AD29F1800D9C58B /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C02AD29F1800D9C58B /* View+Extension.swift */; };
 		CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9C22AD29F3600D9C58B /* ToastView.swift */; };
+		CE7AE2C32D0EB6B400297B7A /* LoginManager+NaverLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */; };
+		CE7AE2C42D0EB6B400297B7A /* LoginManager+NaverLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */; };
+		CE7AE2C62D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */; };
+		CE7AE2C72D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */; };
 		CE8AD1982C45F1A800B3D9F9 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1972C45F1A800B3D9F9 /* Alert.swift */; };
 		CE8AD19D2C46195D00B3D9F9 /* short-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19A2C46195D00B3D9F9 /* short-loading.json */; };
 		CE8AD19E2C46195D00B3D9F9 /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
@@ -272,6 +280,7 @@
 		CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */; };
 		CEE63FC62D0595A200275C7F /* BuyCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */; };
 		CEE63FC72D0595A200275C7F /* BuyCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */; };
+		CEE63FCB2D0689DA00275C7F /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63FCA2D0689DA00275C7F /* KakaoSDK */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
@@ -309,6 +318,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		098C21C59186E83B8218CED4 /* Pods-EODTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EODTests.release.xcconfig"; path = "Target Support Files/Pods-EODTests/Pods-EODTests.release.xcconfig"; sourceTree = "<group>"; };
+		176CDCF0635FF30981E64307 /* Pods_EOD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EOD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F6FD3F00E38366BA21BB9DD /* Pods-EOD-EODUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD-EODUITests.release.xcconfig"; path = "Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5315548995B218B24794E8CA /* Pods-Preview EOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preview EOD.release.xcconfig"; path = "Target Support Files/Pods-Preview EOD/Pods-Preview EOD.release.xcconfig"; sourceTree = "<group>"; };
+		565878BC7FF730E995B08E7E /* Pods_Preview_EOD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Preview_EOD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6594BAB7EDC5F829009A09DA /* Pods-EODTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EODTests.debug.xcconfig"; path = "Target Support Files/Pods-EODTests/Pods-EODTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EOD_EODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		997641CB42D95F5F56B40CD7 /* Pods_EODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C114A94E718200BE820B6363 /* Pods-EOD-EODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD-EODUITests.debug.xcconfig"; path = "Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseView.swift; sourceTree = "<group>"; };
 		CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
@@ -340,6 +358,8 @@
 		CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 		CE77A9C02AD29F1800D9C58B /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		CE77A9C22AD29F3600D9C58B /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginManager+NaverLogin.swift"; sourceTree = "<group>"; };
+		CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginManager+KakaoLogin.swift"; sourceTree = "<group>"; };
 		CE8AD1972C45F1A800B3D9F9 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		CE8AD19A2C46195D00B3D9F9 /* short-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "short-loading.json"; sourceTree = "<group>"; };
 		CE8AD19B2C46195D00B3D9F9 /* game-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "game-loading.json"; sourceTree = "<group>"; };
@@ -446,9 +466,13 @@
 		CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EOD copy-Info.plist"; path = "/Users/user/Desktop/jy/EOD_iOS/EOD/EOD copy-Info.plist"; sourceTree = "<absolute>"; };
 		CEE63FC22CFC5C9400275C7F /* CustomBuyAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBuyAlert.swift; sourceTree = "<group>"; };
 		CEE63FC52D05959A00275C7F /* BuyCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCompleteView.swift; sourceTree = "<group>"; };
+		CEE63FC82D067D2000275C7F /* EOD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOD.entitlements; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.debug.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.debug.xcconfig"; sourceTree = "<group>"; };
+		FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preview EOD.debug.xcconfig"; path = "Target Support Files/Pods-Preview EOD/Pods-Preview EOD.debug.xcconfig"; sourceTree = "<group>"; };
+		FD9F79E43E969F150CA69159 /* Pods-EOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.release.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,8 +481,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA9D9F52CCE61AD00AA1DC2 /* Kingfisher in Frameworks */,
+				CEE63FCB2D0689DA00275C7F /* KakaoSDK in Frameworks */,
 				CEB7F02D2AAC5371001C99EA /* Alamofire in Frameworks */,
 				CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */,
+				388148A0F05DEB6B8D3F291D /* Pods_EOD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +492,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E5FF983794698338F7BEDA3 /* Pods_EODTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +500,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82148BD3DDF880F49A14E39 /* Pods_EOD_EODUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,12 +511,28 @@
 				CEE63FAA2CFC4F5D00275C7F /* Kingfisher in Frameworks */,
 				CEE63FAB2CFC4F5D00275C7F /* Alamofire in Frameworks */,
 				CEE63FAC2CFC4F5D00275C7F /* Lottie in Frameworks */,
+				9072A816EDC4D63EC7E0DF80 /* Pods_Preview_EOD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82179B519C3060AE5D7B400F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */,
+				FD9F79E43E969F150CA69159 /* Pods-EOD.release.xcconfig */,
+				C114A94E718200BE820B6363 /* Pods-EOD-EODUITests.debug.xcconfig */,
+				2F6FD3F00E38366BA21BB9DD /* Pods-EOD-EODUITests.release.xcconfig */,
+				6594BAB7EDC5F829009A09DA /* Pods-EODTests.debug.xcconfig */,
+				098C21C59186E83B8218CED4 /* Pods-EODTests.release.xcconfig */,
+				FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */,
+				5315548995B218B24794E8CA /* Pods-Preview EOD.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CE06C3882CC5D2BB0075A9C0 /* ShowRoom */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +605,8 @@
 		CE77A9A22ACA8C9200D9C58B /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CE7AE2C52D102E4E00297B7A /* LoginManager+KakaoLogin.swift */,
+				CE7AE2C22D0EB6B000297B7A /* LoginManager+NaverLogin.swift */,
 				CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */,
 			);
 			path = Login;
@@ -638,6 +684,10 @@
 			children = (
 				CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */,
 				CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */,
+				176CDCF0635FF30981E64307 /* Pods_EOD.framework */,
+				7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */,
+				997641CB42D95F5F56B40CD7 /* Pods_EODTests.framework */,
+				565878BC7FF730E995B08E7E /* Pods_Preview_EOD.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -691,6 +741,7 @@
 				CEB7EFF62AAC5025001C99EA /* Products */,
 				CE979DDB2C7990A700D0ED53 /* Frameworks */,
 				CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */,
+				82179B519C3060AE5D7B400F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -708,6 +759,7 @@
 		CEB7EFF72AAC5025001C99EA /* EOD */ = {
 			isa = PBXGroup;
 			children = (
+				CEE63FC82D067D2000275C7F /* EOD.entitlements */,
 				CE979DE22C79914800D0ED53 /* Game */,
 				CE4318152BEBBFAD00880898 /* Info.plist */,
 				CE4318122BEBBF3800880898 /* Resource */,
@@ -898,10 +950,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEB7F0192AAC5027001C99EA /* Build configuration list for PBXNativeTarget "EOD" */;
 			buildPhases = (
+				4219E0B9651450000E34A91A /* [CP] Check Pods Manifest.lock */,
 				CEB7EFF12AAC5025001C99EA /* Sources */,
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
 				CE02547F2CF351520073C3C5 /* Embed Frameworks */,
+				E47E20E4CA9C18C1784DD8DD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -912,6 +966,7 @@
 				CEB7F02C2AAC5371001C99EA /* Alamofire */,
 				CECCDAC62C40EE7F0000DE72 /* Lottie */,
 				CEA9D9F42CCE61AD00AA1DC2 /* Kingfisher */,
+				CEE63FCA2D0689DA00275C7F /* KakaoSDK */,
 			);
 			productName = EOD;
 			productReference = CEB7EFF52AAC5025001C99EA /* EOD.app */;
@@ -921,6 +976,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEB7F01C2AAC5027001C99EA /* Build configuration list for PBXNativeTarget "EODTests" */;
 			buildPhases = (
+				637EDE10138A7C19F1226AAF /* [CP] Check Pods Manifest.lock */,
 				CEB7F0012AAC5026001C99EA /* Sources */,
 				CEB7F0022AAC5026001C99EA /* Frameworks */,
 				CEB7F0032AAC5026001C99EA /* Resources */,
@@ -939,9 +995,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEB7F01F2AAC5027001C99EA /* Build configuration list for PBXNativeTarget "EODUITests" */;
 			buildPhases = (
+				3D547B0C2C54B443524E74E9 /* [CP] Check Pods Manifest.lock */,
 				CEB7F00B2AAC5027001C99EA /* Sources */,
 				CEB7F00C2AAC5027001C99EA /* Frameworks */,
 				CEB7F00D2AAC5027001C99EA /* Resources */,
+				4D8C42822FAB3CBCDE22E9F5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -957,6 +1015,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEE63FBA2CFC4F5D00275C7F /* Build configuration list for PBXNativeTarget "Preview EOD" */;
 			buildPhases = (
+				D7CCEC4C98582E788B2C38ED /* [CP] Check Pods Manifest.lock */,
 				CEE63F332CFC4F5D00275C7F /* Sources */,
 				CEE63FA92CFC4F5D00275C7F /* Frameworks */,
 				CEE63FAD2CFC4F5D00275C7F /* Resources */,
@@ -1011,6 +1070,7 @@
 				CEB7F02B2AAC5371001C99EA /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CECCDAC52C40EE7F0000DE72 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				CEA9D9F32CCE61AD00AA1DC2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CEE63FC92D0689DA00275C7F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 			);
 			productRefGroup = CEB7EFF62AAC5025001C99EA /* Products */;
 			projectDirPath = "";
@@ -1075,6 +1135,131 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D547B0C2C54B443524E74E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EOD-EODUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4219E0B9651450000E34A91A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EOD-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D8C42822FAB3CBCDE22E9F5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		637EDE10138A7C19F1226AAF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EODTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7CCEC4C98582E788B2C38ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Preview EOD-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E47E20E4CA9C18C1784DD8DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EOD/Pods-EOD-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EOD/Pods-EOD-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EOD/Pods-EOD-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CEB7EFF12AAC5025001C99EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1084,6 +1269,7 @@
 				CEB7F07C2AAC61D5001C99EA /* OSLogTypeTranslator.swift in Sources */,
 				CEB7F06E2AAC61D4001C99EA /* XcodeLogConfiguration.swift in Sources */,
 				CEB7F07B2AAC61D5001C99EA /* SeverityLogFormatter.swift in Sources */,
+				CE7AE2C42D0EB6B400297B7A /* LoginManager+NaverLogin.swift in Sources */,
 				CEE63FC32CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */,
 				CEB7F06A2AAC61D4001C99EA /* LogSeverity.swift in Sources */,
 				CE648B872C05FD7500EBC335 /* EmotionSelectView.swift in Sources */,
@@ -1091,6 +1277,7 @@
 				CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */,
 				CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */,
 				CEB7F0892AAC61D5001C99EA /* OutputStreamLogRecorder.swift in Sources */,
+				CE7AE2C72D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */,
 				CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
@@ -1227,6 +1414,7 @@
 				CEE63F352CFC4F5D00275C7F /* OSLogTypeTranslator.swift in Sources */,
 				CEE63F362CFC4F5D00275C7F /* XcodeLogConfiguration.swift in Sources */,
 				CEE63F372CFC4F5D00275C7F /* SeverityLogFormatter.swift in Sources */,
+				CE7AE2C32D0EB6B400297B7A /* LoginManager+NaverLogin.swift in Sources */,
 				CEE63FC42CFC5C9900275C7F /* CustomBuyAlert.swift in Sources */,
 				CEE63F382CFC4F5D00275C7F /* LogSeverity.swift in Sources */,
 				CEE63F392CFC4F5D00275C7F /* EmotionSelectView.swift in Sources */,
@@ -1234,6 +1422,7 @@
 				CEE63F3B2CFC4F5D00275C7F /* MonthSelectModalView.swift in Sources */,
 				CEE63F3C2CFC4F5D00275C7F /* HomeView.swift in Sources */,
 				CEE63F3D2CFC4F5D00275C7F /* OutputStreamLogRecorder.swift in Sources */,
+				CE7AE2C62D102E5400297B7A /* LoginManager+KakaoLogin.swift in Sources */,
 				CEE63F3E2CFC4F5D00275C7F /* DiarySummaryModel.swift in Sources */,
 				CEE63F3F2CFC4F5D00275C7F /* CallSiteLogFormatter.swift in Sources */,
 				CEE63F402CFC4F5D00275C7F /* PayloadLogFormatter.swift in Sources */,
@@ -1477,9 +1666,11 @@
 		};
 		CEB7F01A2AAC5027001C99EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EOD/EOD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EOD/Preview Content\"";
@@ -1511,9 +1702,11 @@
 		};
 		CEB7F01B2AAC5027001C99EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD9F79E43E969F150CA69159 /* Pods-EOD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = EOD/EOD.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EOD/Preview Content\"";
@@ -1545,6 +1738,7 @@
 		};
 		CEB7F01D2AAC5027001C99EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6594BAB7EDC5F829009A09DA /* Pods-EODTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1565,6 +1759,7 @@
 		};
 		CEB7F01E2AAC5027001C99EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 098C21C59186E83B8218CED4 /* Pods-EODTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1585,6 +1780,7 @@
 		};
 		CEB7F0202AAC5027001C99EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C114A94E718200BE820B6363 /* Pods-EOD-EODUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1603,6 +1799,7 @@
 		};
 		CEB7F0212AAC5027001C99EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F6FD3F00E38366BA21BB9DD /* Pods-EOD-EODUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1621,6 +1818,7 @@
 		};
 		CEE63FBB2CFC4F5D00275C7F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1656,6 +1854,7 @@
 		};
 		CEE63FBC2CFC4F5D00275C7F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5315548995B218B24794E8CA /* Pods-Preview EOD.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1788,6 +1987,14 @@
 				minimumVersion = 8.1.0;
 			};
 		};
+		CEE63FC92D0689DA00275C7F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.23.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1820,6 +2027,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CEE63F322CFC4F5D00275C7F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		CEE63FCA2D0689DA00275C7F /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEE63FC92D0689DA00275C7F /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

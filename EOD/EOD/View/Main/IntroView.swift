@@ -5,6 +5,7 @@
 //  Created by USER on 2023/10/02.
 //
 
+import AuthenticationServices
 import SwiftUI
 
 struct IntroView: View {
@@ -88,6 +89,12 @@ extension IntroView {
         VStack(spacing: 0.0) {
             
             VStack(spacing: 0) {
+                Button {
+                    viewModel.testLogin()
+                } label: {
+                    Text("테스트 로그인")
+                }
+
                 Spacer()
                 
                 Image("icon_onBoarding")
@@ -107,28 +114,7 @@ extension IntroView {
                     .lineSpacing(2)
             }
             
-            Spacer().frame(height: 86)
-            
-            buttonView()
-            
-            Spacer().frame(height: 34)
-            
-            HStack(spacing: 11) {
-                Divider()
-                    .frame(maxWidth: .infinity, maxHeight: 1.0)
-                    .overlay(UIColor.Gray.gray100.color)
-                
-                Text("간편 로그인")
-                    .font(size: 16)
-                    .foregroundColor(UIColor.Gray.gray500.color)
-                
-                Divider()
-                    .frame(maxWidth: .infinity, maxHeight: 1.0)
-                    .overlay(UIColor.Gray.gray100.color)
-            }
-            .padding(.horizontal, 22)
-            
-            Spacer().frame(height: 20)
+            Spacer().frame(height: 140)
             
             socialLoginView()
             
@@ -163,74 +149,91 @@ extension IntroView {
         }
     }
     
-    @ViewBuilder func buttonView() -> some View {
-        VStack(spacing: 16) {
-            NavigationLink(destination: {
-                LazyView(
-                    LoginView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("이메일로 로그인")
-                    .font(size: 20)
-                    .foregroundColor(Color.white)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .cornerRadius(8.0)
-            })
-            
-            NavigationLink(destination: {
-                LazyView(
-                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("회원가입")
-                    .font(size: 20)
-                    .foregroundColor(Color.black)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 1) // 검정색 테두리
-                    )
-            })
-        }
-        .padding(.horizontal, 20)
-    }
-    
     private func socialLoginView() -> some View { // TODO: 나중에 소셜로그인 추가되면 그때 작업하기
         VStack(spacing: 16) {
-            NavigationLink(destination: {
-                LazyView(
-                    LoginView(viewModel: viewModel).navigationBarHidden(true)
-                )
-            }, label: {
-                Text("카카오")
+            Button {
+                viewModel.kakaoLoginAction()
+            } label: {
+                HStack(spacing: 9) {
+                    Spacer()
+                    
+                    Image("kakao_logo")
+                    
+                    Text("카카오로 로그인")
+                        .font(size: 20)
+                        .foregroundColor(.black)
+                    
+                    Spacer()
+                }
+                .padding(.vertical, 16)
+                .background(Color(red: 254/255, green: 229/255, blue: 0))
+                .cornerRadius(8)
+            }
+
+            Button {
+                LoginManager.shared.login() // TODO: 네이밍 변경
+            } label: {
+                HStack(spacing: 9) {
+                    Spacer()
+                    
+                    Image("naver_logo")
+                    
+                    Text("네이버로 로그인")
+                        .font(size: 20)
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                }
+                .padding(.vertical, 16)
+                .background(Color(red: 3/255, green: 199/255, blue: 90/255))
+                .cornerRadius(8)
+            }
+
+            HStack(spacing: 9) {
+                Spacer()
+                
+                Image(systemName: "applelogo")
+                
+                Text("Apple로 로그인")
                     .font(size: 20)
-                    .foregroundColor(Color.white)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .cornerRadius(8.0)
-            })
-            
-            NavigationLink(destination: {
-                LazyView(
-                    SignUpView(viewModel: viewModel).navigationBarHidden(true)
+                    .foregroundColor(.white)
+                
+                Spacer()
+            }
+            .padding(.vertical, 16)
+            .background(.black)
+            .cornerRadius(8)
+            .overlay {
+                SignInWithAppleButton(
+                    .signIn,
+                    onRequest: { request in
+                        request.requestedScopes = [.fullName, .email]
+                    },
+                    onCompletion: { result in
+                        switch result {
+                        case .success(let auth):
+                            if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
+                                // 애플 ID에서 사용자 정보 가져오기
+                                let userIdentifier = appleIDCredential.user
+                                let email = appleIDCredential.email
+                                let fullName = appleIDCredential.fullName
+                                let firstName = fullName?.givenName ?? ""
+                                let lastName = fullName?.familyName ?? ""
+                                
+                                debugLog("로그인 토큰 정보: \(userIdentifier)")
+                                
+                                // 서버로 사용자 정보 전달
+    //                            Task {
+    //                                await handleServerAuthentication(userIdentifier: userIdentifier, email: email, firstName: firstName, lastName: lastName)
+    //                            }
+                            }
+                        case .failure(let error):
+                            errorLog("Error: \(error.localizedDescription)")
+                        }
+                    }
                 )
-            }, label: {
-                Text("네이버")
-                    .font(size: 20)
-                    .foregroundColor(Color.black)
-                    .padding(.vertical, 16)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 1) // 검정색 테두리
-                    )
-            })
+                .blendMode(.overlay)
+            }
         }
         .padding(.horizontal, 20)
     }

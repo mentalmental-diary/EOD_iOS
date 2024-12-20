@@ -269,7 +269,7 @@ extension SignUpView {
             Spacer().frame(height: 12)
             
             Button(action: {
-                viewModel.signUpAction(email: inputEmail, password: inputPassword) // TODO: 회원가입 액션 생성
+//                viewModel.signUpAction(email: inputEmail, password: inputPassword) // TODO: 회원가입 액션 생성
 //                if availableLoginButton {
 //                    viewModel.signUpAction(email: inputEmail, password: inputPassword) // TODO: 회원가입 액션 생성
 //                }

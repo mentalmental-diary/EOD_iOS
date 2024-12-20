@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class MainViewModel: ObservableObject {
     @Published var isLogin: Bool = false
@@ -18,6 +19,10 @@ class MainViewModel: ObservableObject {
     
     var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
     var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해
+    
+    @Published var naverLoginError: Error? = nil
+    
+    private var cancellables = Set<AnyCancellable>() // Combine 구독 관리
     
     let onboardingItems: [OnboardingItem] = {
         let items = [
@@ -33,54 +38,80 @@ class MainViewModel: ObservableObject {
     
     init() {
         isLogin = LoginManager.shared.isLogin ?? false
+        // LoginManager의 loginResult를 구독하여 처리
+        self.naverLoginAction()
     }
     
 }
 
 /// Func
 extension MainViewModel {
-    func loginAction(email: String, password: String) {
-        networkModel.fetchLogin(email: email, password: password, completion: { [weak self] result in
-            switch result {
-            case .success():
-                self?.presentLoginView = false // 로그인 성공시
-                self?.presentSignUpView = false // 로그인 성공시
-                self?.isLogin = true
-                break
-            case .failure(let error):
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.toastMessage = error.localizedDescription
-                    self?.isToast = true
-                }
-                
-                debugLog("error: \(error)")
-            }
-        })
-    }
-    
-    func signUpAction(email: String, password: String) {
-        networkModel.fetchSignUp(email: email, password: password, completion: { [weak self] result in
-            switch result {
-            case .success():
-                self?.presentLoginView = false // 로그인 성공시
-                self?.presentSignUpView = false // 로그인 성공시
-                self?.isLogin = true
-                break
-            case .failure(let error):
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.toastMessage = error.localizedDescription
-                    self?.isToast = true
-                }
-                
-                debugLog("error: \(error)")
-            }
-        })
-    }
-    
     func logoutAction() {
         UserDefaults.standard.removeObject(forKey: "isLogin")
         UserDefaults.standard.removeObject(forKey: "accessToken")
         self.isLogin = false
+    }
+    
+    func kakaoLoginAction() {
+        LoginManager.shared.getKakaoOathToken(completion: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let token):
+                self.networkModel.fetchLogin(Authorization: token, type: .kakao, completion: { result in
+                    guard let error = result.error else { self.isLogin = true; return }
+                    self.toastMessage = "카카오 로그인 연동 실패했습니다."
+                    withAnimation(.easeInOut(duration: 0.6)) {
+                        self.isToast = true
+                    }
+                    errorLog("🔴 카카오 로그인 연동 후 서버 연동 실패: \(error.localizedDescription)")
+                })
+            case .failure(let error):
+                errorLog("🔴 카카오 로그인 연동 실패: \(error.localizedDescription)")
+            }
+        })
+    }
+    
+    func naverLoginAction() {
+        LoginManager.shared.$naverLoginResult
+            .receive(on: DispatchQueue.main) // UI 업데이트는 메인 스레드에서 처리
+            .sink { [weak self] result in
+                guard let self = self, let result = result else { return }
+                switch result {
+                case .success(let accessToken):
+                    self.networkModel.fetchLogin(Authorization: accessToken, type: .naver, completion: { result in
+                        guard let error = result.error else { self.isLogin = true; return }
+                        self.toastMessage = "네아로 연동 실패했습니다."
+                        withAnimation(.easeInOut(duration: 0.6)) {
+                            self.isToast = true
+                        }
+                        errorLog("🔴 네아로 연동 후 서버 연동 실패: \(error.localizedDescription)")
+                    })
+                case .failure(let error):
+                    self.naverLoginError = error
+                    errorLog("🔴 네이버 로그인 연동 실패: \(error.localizedDescription)")
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    func appleLoginAction(userIdentifier: String) {
+        self.networkModel.fetchLogin(Authorization: userIdentifier, type: .`self`, completion: { result in // TODO: 타입 변경 예정
+            
+        })
+    }
+    
+    func testLogin() {
+        let randomId = UUID().uuidString
+        networkModel.fetchSignUp(email: randomId, password: "1234", completion: { [weak self] result in
+            guard let error = result.error else {
+                self?.presentLoginView = false // 로그인 성공시
+                self?.presentSignUpView = false // 로그인 성공시
+                self?.isLogin = true
+                return
+            }
+            
+            errorLog("테스트용 로그인 실패 error: \(error)")
+        })
     }
 }
 
