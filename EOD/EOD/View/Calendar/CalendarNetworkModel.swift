@@ -46,6 +46,7 @@ class CalendarNetworkModel {
         
         var parameters: [String: Any] = [:]
         
+        parameters["userNo"] = modifyDiary.userNo
         parameters["writeDate"] = modifyDiary.writeDate?.apiParameter
         parameters["seq"] = modifyDiary.seq
         parameters["isCustomEmotion"] = false
