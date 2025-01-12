@@ -40,7 +40,7 @@ class CharacterViewModel: ObservableObject {
     
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
-    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil, userGold: Int?) {
+    init(userItems: [CharacterItem]? = nil, shopItems: [CharacterItem]? = nil, userGold: Int?, originalCharacter: CharacterItem?) {
         if let userItems = userItems { // Preview용
             self.userItems = userItems
         }
@@ -50,6 +50,8 @@ class CharacterViewModel: ObservableObject {
         }
         
         self.userGold = userGold
+        
+        self.originalCharacter = originalCharacter
         
         self.fetchCharacterItem()
         self.fetchShopCharacterItem() // TODO: 어처피 초기 화면 진입시엔 보유아이템이 메인이라면 상점 관련된건 상점 탭 눌렀을떄 해도 되지 않을까? -> 하지만 초기에 그냥 다 받아오는것도 나쁘진 않아 보이는데 일단 시점은 고민해보기
@@ -110,6 +112,7 @@ extension CharacterViewModel {
                 withAnimation(.easeInOut(duration: 0.6)) {
                     self?.isToast = true
                 }
+                self?.originalCharacter = self?.selectItem
             case .failure(let error):
                 errorLog("대표 캐릭터 저장 실패 error: \(error)")
                 self?.toastMessage = "대표 캐릭터로 저장이 실패하였습니다."

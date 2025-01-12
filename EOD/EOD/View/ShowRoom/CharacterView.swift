@@ -74,7 +74,7 @@ extension CharacterView {
                     .resizable()
                 
                 GeometryReader { geometry in
-                    KFImage(viewModel.selectItem?.imageUrl?.url)
+                    KFImage(viewModel.selectItem == nil ? viewModel.originalCharacter?.imageUrl?.url :  viewModel.selectItem?.imageUrl?.url)
                         .placeholder {
                             Image("character_default")
                                 .resizable()
@@ -358,7 +358,7 @@ extension CharacterView {
     }
     
     private var availableSaveButton: Bool { // 기존 캐릭터랑 다른 캐릭터가 선택되었을경우 저장버튼 활성화
-        return viewModel.selectItem != viewModel.originalCharacter
+        return viewModel.selectItem != nil && viewModel.selectItem != viewModel.originalCharacter
     }
     
     private var availableBuyArea: Bool {
@@ -391,5 +391,5 @@ extension CharacterView {
     
     let shopItems = [shopa, shopb, shopc, shopd, shope, shopf]
     
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: 0))
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: 0, originalCharacter: nil))
 }
