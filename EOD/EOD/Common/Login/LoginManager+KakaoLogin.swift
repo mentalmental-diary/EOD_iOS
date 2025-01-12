@@ -4,7 +4,7 @@
 //
 //  Created by JooYoung Kim on 12/16/24.
 //
-
+#if !PREVIEW
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
@@ -36,3 +36,4 @@ extension LoginManager {
         }
     }
 }
+#endif

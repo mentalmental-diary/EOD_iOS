@@ -47,6 +47,19 @@ struct CharacterView: View {
                             }
                         })
                 }
+                
+                
+                if viewModel.showBuyCompleteView {
+                    BuyCompleteView(
+                        showCompleteView: $viewModel.showBuyCompleteView,
+                        imageUrl: viewModel.selectItem?.imageUrl, // 현재 선택된 아이템
+                        acceptAction: {
+                            viewModel.buyCompleteAction()
+                        },
+                        cancelAction: {
+                            viewModel.fetchShopCharacterItem()
+                        })
+                }
             }
             
         }

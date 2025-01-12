@@ -32,6 +32,8 @@ class CharacterViewModel: ObservableObject {
     
     @Published var userGold: Int? // 현재 유저가 보유하고 있는 골드
     
+    @Published var showBuyCompleteView: Bool = false
+    
     var originalCharacter: CharacterItem?
     
     var toastMessage: String = ""
@@ -126,7 +128,8 @@ extension CharacterViewModel {
             case .success(_):
                 let resultGold = (self?.userGold ?? 0) - (self?.selectItem?.price ?? 0)
                 self?.userGold = resultGold
-                self?.refreshData()
+                self?.showBuyCompleteView = true
+                self?.selectItem = nil
             case .failure(let error):
                 errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
             }
@@ -156,9 +159,8 @@ extension CharacterViewModel {
         })
     }
     
-    func refreshData() {
-        self.fetchCharacterItem()
-        self.fetchShopCharacterItem()
+    func buyCompleteAction() {
+        self.currentShowType = .item // 보유아이템 탭으로 변경
     }
 }
 

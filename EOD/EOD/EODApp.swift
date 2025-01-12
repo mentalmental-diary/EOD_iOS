@@ -7,8 +7,9 @@
 
 import SwiftUI
 import UIKit
+#if !PREVIEW
 import KakaoSDKAuth
-
+#endif
 /// AppDelegate  대신해서 완성하기 -> SiwftUI 하고 UIKit 연동하기 위해서?
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -46,7 +47,7 @@ struct EODApp: App {
                 })
                 .onOpenURL { url in
                     debugLog("🔵 콜백 URL호출. url: \(url.absoluteString)")
-                    
+#if !PREVIEW
                     // 카카오 로그인 URL 처리
                     if AuthApi.isKakaoTalkLoginUrl(url) {
                         _ = AuthController.handleOpenUrl(url: url)
@@ -56,6 +57,7 @@ struct EODApp: App {
                     if url.absoluteString.contains("eodnaverlogin://") {
                         LoginManager.shared.receiveAccessToken(url)
                     }
+#endif
                 }
         }
         .onChange(of: scenePhase) { (newScenePhase) in

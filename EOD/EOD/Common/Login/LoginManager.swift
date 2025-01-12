@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if !PREVIEW
 import NaverThirdPartyLogin
+#endif
 import Combine
 
 public class LoginManager: NSObject, ObservableObject {
@@ -21,7 +23,7 @@ public class LoginManager: NSObject, ObservableObject {
         
         self.isLogin = UserDefaults.standard.bool(forKey: "isLogin") == true
     }
-    
+#if !PREVIEW
     static func naverConfigure() {
         NaverThirdPartyLoginConnection.getSharedInstance().isInAppOauthEnable = true
         NaverThirdPartyLoginConnection.getSharedInstance().isNaverAppOauthEnable = true
@@ -32,4 +34,5 @@ public class LoginManager: NSObject, ObservableObject {
         NaverThirdPartyLoginConnection.getSharedInstance().appName = "노른자의 하루"
         NaverThirdPartyLoginConnection.getSharedInstance().delegate = LoginManager.shared
     }
+#endif
 }

@@ -5,6 +5,7 @@
 //  Created by JooYoung Kim on 12/15/24.
 //
 
+#if !PREVIEW
 import NaverThirdPartyLogin
 
 // MARK: - Public method
@@ -105,3 +106,4 @@ extension LoginManager: NaverThirdPartyLoginConnectionDelegate {
         
     }
 }
+#endif
