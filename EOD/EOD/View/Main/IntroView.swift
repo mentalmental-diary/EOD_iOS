@@ -23,6 +23,14 @@ struct IntroView: View {
                 } else {
                     onBoardingView(geometry: geometry)
                 }
+                
+                NavigationLink("", isActive: $viewModel.showUserInfoSetView) {
+                    LazyView(
+                        UserInfoSetView(viewModel: viewModel)
+                            .background(Color.white)
+                            .navigationBarHidden(true)
+                    )
+                }
             }
         })
     }

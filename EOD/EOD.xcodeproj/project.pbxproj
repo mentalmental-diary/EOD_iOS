@@ -24,6 +24,8 @@
 		CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
 		CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318192BECC82500880898 /* MonthSelectModalView.swift */; };
 		CE43181C2BECD2DC00880898 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE43181B2BECD2DC00880898 /* CornerRadius.swift */; };
+		CE55162A2D21486400786BDF /* UserInfoSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5516292D21485900786BDF /* UserInfoSetView.swift */; };
+		CE55162B2D21486400786BDF /* UserInfoSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5516292D21485900786BDF /* UserInfoSetView.swift */; };
 		CE6466B52C0F04B200E03B5A /* DiaryEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */; };
 		CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B62C12B77500E03B5A /* LazyView.swift */; };
 		CE6466B92C12B86300E03B5A /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6466B82C12B86300E03B5A /* DiaryView.swift */; };
@@ -340,6 +342,7 @@
 		CE4318162BEBC2CC00880898 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
 		CE4318192BECC82500880898 /* MonthSelectModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthSelectModalView.swift; sourceTree = "<group>"; };
 		CE43181B2BECD2DC00880898 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
+		CE5516292D21485900786BDF /* UserInfoSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSetView.swift; sourceTree = "<group>"; };
 		CE6466B42C0F04B200E03B5A /* DiaryEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryEnums.swift; sourceTree = "<group>"; };
 		CE6466B62C12B77500E03B5A /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		CE6466B82C12B86300E03B5A /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
@@ -623,6 +626,7 @@
 		CE77A9AA2ACA99C800D9C58B /* User */ = {
 			isa = PBXGroup;
 			children = (
+				CE5516292D21485900786BDF /* UserInfoSetView.swift */,
 				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
 				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
@@ -1385,6 +1389,7 @@
 				CEAAF80A2CD792FD00EFBDA9 /* OptionalObject.swift in Sources */,
 				CEB7F0942AAC61D5001C99EA /* LogEntry.swift in Sources */,
 				CEAAF7FF2CD76F1100EFBDA9 /* ThemeItem.swift in Sources */,
+				CE55162A2D21486400786BDF /* UserInfoSetView.swift in Sources */,
 				CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1530,6 +1535,7 @@
 				CEE63FA52CFC4F5D00275C7F /* OptionalObject.swift in Sources */,
 				CEE63FA62CFC4F5D00275C7F /* LogEntry.swift in Sources */,
 				CEE63FA72CFC4F5D00275C7F /* ThemeItem.swift in Sources */,
+				CE55162B2D21486400786BDF /* UserInfoSetView.swift in Sources */,
 				CEE63FA82CFC4F5D00275C7F /* UserNetworkModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
