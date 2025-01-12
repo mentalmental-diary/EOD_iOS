@@ -53,6 +53,7 @@ extension MainViewModel {
     }
     
     func kakaoLoginAction() {
+#if !PREVIEW
         LoginManager.shared.getKakaoOathToken(completion: { [weak self] result in
             guard let self = self else { return }
             switch result {
@@ -69,6 +70,7 @@ extension MainViewModel {
                 errorLog("🔴 카카오 로그인 연동 실패: \(error.localizedDescription)")
             }
         })
+#endif
     }
     
     func naverLoginAction() {

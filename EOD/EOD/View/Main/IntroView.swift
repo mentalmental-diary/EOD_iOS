@@ -171,7 +171,9 @@ extension IntroView {
             }
 
             Button {
+#if !PREVIEW
                 LoginManager.shared.login() // TODO: 네이밍 변경
+                #endif
             } label: {
                 HStack(spacing: 9) {
                     Spacer()
