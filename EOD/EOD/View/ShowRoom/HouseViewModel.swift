@@ -155,7 +155,6 @@ extension HouseViewModel {
                 self?.userGold = resultGold
                 self?.fetchThemeList()
                 self?.showBuyCompleteView = true
-                self?.selectThemeItem = nil
             case .failure(let error):
                 errorLog("테마 아이템 구매 API 실패. error: \(error)")
             }

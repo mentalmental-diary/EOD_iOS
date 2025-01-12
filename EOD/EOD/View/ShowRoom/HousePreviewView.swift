@@ -23,7 +23,7 @@ struct HousePreviewView: View {
                             if type == .backGround {
                                 KFImage(item.homeImageUrl.url)
                                     .resizable()
-                                    .scaledToFit()
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                                     .ignoresSafeArea()
                             } else {
                                 KFImage(item.homeImageUrl.url)

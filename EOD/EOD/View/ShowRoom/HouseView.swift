@@ -40,7 +40,7 @@ struct HouseView: View {
                         imageUrl: viewModel.selectThemeItem?.itemImageUrl,
                         itemName: viewModel.selectThemeItem?.name,
                         itemDescription: viewModel.selectThemeItem?.description,
-                        userGold: viewModel.userGold,
+                        userGold: viewModel.selectThemeItem?.price,
                         availableBuyButton: availableBuyButton,
                         acceptAction: {
                             if availableBuyButton {
@@ -54,9 +54,11 @@ struct HouseView: View {
                         showCompleteView: $viewModel.showBuyCompleteView,
                         imageUrl: viewModel.selectThemeItem?.itemImageUrl,
                         acceptAction: {
+                            viewModel.selectThemeItem = nil
                             viewModel.buyCompleteAction()
                         },
                         cancelAction: {
+                            viewModel.selectThemeItem = nil
                             viewModel.fetchShopThemeItemList()
                         })
                 }
@@ -103,7 +105,9 @@ extension HouseView {
                 Spacer()
                 
                 HStack {
-                    returnButtonView()
+                    if viewModel.currentShowType == .item {
+                        returnButtonView()
+                    }
                     
                     Spacer()
                     
@@ -150,7 +154,7 @@ extension HouseView {
     
     private func returnButtonView() -> some View {
         Button {
-            // TODO: 되돌리기 로직 확인
+            viewModel.selectThemeItemList = viewModel.originalThemeItemList
         } label: {
             VStack(spacing: -10) {
                 ZStack {
@@ -203,25 +207,27 @@ extension HouseView {
             Button {
                 viewModel.currentShowType = type
             } label: {
-                Text(type.description)
-                    .font(size: 20)
-                    .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
-                    .background(
-                        GeometryReader { geometry in
-                            (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
-                                .frame(width: geometry.size.width, height: 9)
-                                .offset(x: 0, y: geometry.size.height - 8)
-                        }
-                    )
+                ZStack(alignment: .topTrailing) {
+                    Text(type.description)
+                        .font(size: 20)
+                        .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
+                        .background(
+                            GeometryReader { geometry in
+                                (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
+                                    .frame(width: geometry.size.width, height: 9)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    if type == .item && viewModel.existNewItem {
+                        Image("new_mark")
+                            .offset(x: 4, y: -2)
+                    }
+                }
             }
             .padding(.top, 31)
             .padding(.bottom, 28)
             .frame(maxWidth: .infinity)
-            
-            if type == .item && viewModel.existNewItem {
-                Image("new_mark")
-                    .offset(x: -60, y: -9)
-            }
         }
     }
     
@@ -294,7 +300,6 @@ extension HouseView {
                         .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
                         .lineSpacing(2)
                         .padding(.bottom, 12)
-                        .frame(maxWidth: .infinity)
                     
                     if theme.isClicked == false {
                         Image("new_mark")

@@ -39,7 +39,7 @@ struct CharacterView: View {
                         imageUrl: viewModel.selectItem?.imageUrl,
                         itemName: viewModel.selectItem?.name,
                         itemDescription: viewModel.selectItem?.description,
-                        userGold: viewModel.userGold,
+                        userGold: viewModel.selectItem?.price,
                         availableBuyButton: availableBuyButton,
                         acceptAction: {
                             if availableBuyButton {
@@ -54,9 +54,11 @@ struct CharacterView: View {
                         showCompleteView: $viewModel.showBuyCompleteView,
                         imageUrl: viewModel.selectItem?.imageUrl, // 현재 선택된 아이템
                         acceptAction: {
+                            viewModel.selectItem = nil
                             viewModel.buyCompleteAction()
                         },
                         cancelAction: {
+                            viewModel.selectItem = nil
                             viewModel.fetchShopCharacterItem()
                         })
                 }
@@ -95,6 +97,20 @@ extension CharacterView {
                 }
                 
                 Spacer()
+                
+                if viewModel.currentShowType == .shop {
+                    HStack(spacing: 5) {
+                        Image("icon_egg")
+                        
+                        Text(viewModel.userGold?.formattedDecimal() ?? "0")
+                            .font(size: 20)
+                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                    .clipShape(Capsule())
+                }
             }
             .padding(.horizontal, 20)
             .padding(.top, 48)
@@ -158,27 +174,28 @@ extension CharacterView {
             Button {
                 viewModel.currentShowType = type
             } label: {
-                Text(type.description)
-                    .font(size: 20)
-                    .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
-                    .background(
-                        GeometryReader { geometry in
-                            (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
-                                .frame(width: geometry.size.width, height: 9)
-                                .offset(x: 0, y: geometry.size.height - 8)
-                        }
-                    )
+                ZStack(alignment: .topTrailing) {
+                    Text(type.description)
+                        .font(size: 20)
+                        .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
+                        .background(
+                            GeometryReader { geometry in
+                                (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
+                                    .frame(width: geometry.size.width, height: 9)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    if type == .item && viewModel.existNewItem {
+                        Image("new_mark")
+                            .offset(x: 4, y: -2)
+                    }
+                }
             }
             .padding(.top, 31)
             .padding(.bottom, 28)
             .frame(maxWidth: .infinity)
         }
-        
-        if type == .item && viewModel.existNewItem {
-            Image("new_mark")
-                .offset(x: -60, y: -9)
-        }
-
     }
     
     private func itemListView(proxy: GeometryProxy) -> some View {
@@ -377,5 +394,5 @@ extension CharacterView {
     
     let shopItems = [shopa, shopb, shopc, shopd, shope, shopf]
     
-    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: 0))
+    CharacterView(showCharacterView: .constant(false), viewModel: CharacterViewModel(userItems: userItems, shopItems: shopItems, userGold: 0, originalCharacter: nil))
 }
