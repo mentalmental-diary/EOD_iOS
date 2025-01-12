@@ -39,7 +39,7 @@ struct CharacterView: View {
                         imageUrl: viewModel.selectItem?.imageUrl,
                         itemName: viewModel.selectItem?.name,
                         itemDescription: viewModel.selectItem?.description,
-                        userGold: viewModel.userGold,
+                        userGold: viewModel.selectItem?.price,
                         availableBuyButton: availableBuyButton,
                         acceptAction: {
                             if availableBuyButton {
@@ -95,6 +95,20 @@ extension CharacterView {
                 }
                 
                 Spacer()
+                
+                if viewModel.currentShowType == .shop {
+                    HStack(spacing: 5) {
+                        Image("icon_egg")
+                        
+                        Text(viewModel.userGold?.formattedDecimal() ?? "0")
+                            .font(size: 20)
+                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                    .clipShape(Capsule())
+                }
             }
             .padding(.horizontal, 20)
             .padding(.top, 48)

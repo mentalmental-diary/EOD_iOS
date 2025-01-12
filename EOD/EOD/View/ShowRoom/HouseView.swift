@@ -40,7 +40,7 @@ struct HouseView: View {
                         imageUrl: viewModel.selectThemeItem?.itemImageUrl,
                         itemName: viewModel.selectThemeItem?.name,
                         itemDescription: viewModel.selectThemeItem?.description,
-                        userGold: viewModel.userGold,
+                        userGold: viewModel.selectThemeItem?.price,
                         availableBuyButton: availableBuyButton,
                         acceptAction: {
                             if availableBuyButton {
