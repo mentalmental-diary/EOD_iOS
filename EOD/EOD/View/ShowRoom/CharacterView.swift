@@ -74,7 +74,7 @@ extension CharacterView {
                     .resizable()
                 
                 GeometryReader { geometry in
-                    KFImage(viewModel.selectItem == nil ? viewModel.originalCharacter?.imageUrl?.url :  viewModel.selectItem?.imageUrl?.url)
+                    KFImage(viewModel.selectItem?.imageUrl?.url)
                         .placeholder {
                             Image("character_default")
                                 .resizable()
@@ -172,27 +172,28 @@ extension CharacterView {
             Button {
                 viewModel.currentShowType = type
             } label: {
-                Text(type.description)
-                    .font(size: 20)
-                    .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
-                    .background(
-                        GeometryReader { geometry in
-                            (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
-                                .frame(width: geometry.size.width, height: 9)
-                                .offset(x: 0, y: geometry.size.height - 8)
-                        }
-                    )
+                ZStack(alignment: .topTrailing) {
+                    Text(type.description)
+                        .font(size: 20)
+                        .foregroundColor(viewModel.currentShowType == type ? .black : Color(red: 118/255, green: 118/255, blue: 118/255))
+                        .background(
+                            GeometryReader { geometry in
+                                (viewModel.currentShowType == type ? UIColor.Yellow.yellow200.color : .clear)
+                                    .frame(width: geometry.size.width, height: 9)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    if type == .item && viewModel.existNewItem {
+                        Image("new_mark")
+                            .offset(x: 4, y: -2)
+                    }
+                }
             }
             .padding(.top, 31)
             .padding(.bottom, 28)
             .frame(maxWidth: .infinity)
         }
-        
-        if type == .item && viewModel.existNewItem {
-            Image("new_mark")
-                .offset(x: -60, y: -9)
-        }
-
     }
     
     private func itemListView(proxy: GeometryProxy) -> some View {
@@ -358,7 +359,7 @@ extension CharacterView {
     }
     
     private var availableSaveButton: Bool { // 기존 캐릭터랑 다른 캐릭터가 선택되었을경우 저장버튼 활성화
-        return viewModel.selectItem != nil && viewModel.selectItem != viewModel.originalCharacter
+        return viewModel.selectItem != viewModel.originalCharacter
     }
     
     private var availableBuyArea: Bool {

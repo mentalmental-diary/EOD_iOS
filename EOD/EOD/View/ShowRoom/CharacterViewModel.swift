@@ -51,6 +51,7 @@ class CharacterViewModel: ObservableObject {
         
         self.userGold = userGold
         
+        self.selectItem = originalCharacter
         self.originalCharacter = originalCharacter
         
         self.fetchCharacterItem()
