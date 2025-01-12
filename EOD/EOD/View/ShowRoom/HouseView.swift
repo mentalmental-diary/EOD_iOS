@@ -103,7 +103,9 @@ extension HouseView {
                 Spacer()
                 
                 HStack {
-                    returnButtonView()
+                    if viewModel.currentShowType == .item {
+                        returnButtonView()
+                    }
                     
                     Spacer()
                     
