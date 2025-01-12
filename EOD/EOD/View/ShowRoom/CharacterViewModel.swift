@@ -133,7 +133,6 @@ extension CharacterViewModel {
                 let resultGold = (self?.userGold ?? 0) - (self?.selectItem?.price ?? 0)
                 self?.userGold = resultGold
                 self?.showBuyCompleteView = true
-                self?.selectItem = nil
             case .failure(let error):
                 errorLog("캐릭터 아이템 구매 API 실패. error: \(error)")
             }

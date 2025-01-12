@@ -54,9 +54,11 @@ struct HouseView: View {
                         showCompleteView: $viewModel.showBuyCompleteView,
                         imageUrl: viewModel.selectThemeItem?.itemImageUrl,
                         acceptAction: {
+                            viewModel.selectThemeItem = nil
                             viewModel.buyCompleteAction()
                         },
                         cancelAction: {
+                            viewModel.selectThemeItem = nil
                             viewModel.fetchShopThemeItemList()
                         })
                 }
