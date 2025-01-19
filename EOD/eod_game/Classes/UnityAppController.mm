@@ -119,6 +119,7 @@ NSInteger _forceInterfaceOrientationMask = 0;
             @"createViewHierarchy is deprecated and will not be implemented. Use createUI"
         );
     }
+    UnitySendMessage("RecieveData", "ReceiveMessage", "RunYolk_Open_TRUE");
     return self;
 }
 

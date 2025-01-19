@@ -21,11 +21,11 @@ struct GameView: View {
                     .foregroundColor(.black)
             })
             
-            Text("Highest Score: \(gameDataViewModel.score)")
-            Text("Coin Count: \(gameDataViewModel.coinCount)")
+//            Text("Highest Score: \(gameDataViewModel.score)")
+//            Text("Coin Count: \(gameDataViewModel.coinCount)")
         }
         .onAppear {
-            gameDataViewModel.sendHighScoreToUnity()
+//            gameDataViewModel.sendHighScoreToUnity()
         }
     }
 }
