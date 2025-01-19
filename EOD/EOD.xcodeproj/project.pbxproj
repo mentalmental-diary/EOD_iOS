@@ -11,6 +11,8 @@
 		388148A0F05DEB6B8D3F291D /* Pods_EOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176CDCF0635FF30981E64307 /* Pods_EOD.framework */; };
 		9072A816EDC4D63EC7E0DF80 /* Pods_Preview_EOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565878BC7FF730E995B08E7E /* Pods_Preview_EOD.framework */; };
 		A82148BD3DDF880F49A14E39 /* Pods_EOD_EODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */; };
+		CE066D3C2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */; };
+		CE066D3D2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */; };
 		CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */; };
 		CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */; };
 		CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */; };
@@ -349,6 +351,7 @@
 		7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EOD_EODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		997641CB42D95F5F56B40CD7 /* Pods_EODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C114A94E718200BE820B6363 /* Pods-EOD-EODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD-EODUITests.debug.xcconfig"; path = "Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityMessageSender.swift; sourceTree = "<group>"; };
 		CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseView.swift; sourceTree = "<group>"; };
 		CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
@@ -748,6 +751,7 @@
 		CE979DE22C79914800D0ED53 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */,
 				CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */,
 				CE979DE52C79916100D0ED53 /* GameView.swift */,
 				CE979DF52C7C166400D0ED53 /* GameManager.swift */,
@@ -1363,6 +1367,7 @@
 				CEB7F0732AAC61D4001C99EA /* LogRecorder.swift in Sources */,
 				CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */,
 				CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */,
+				CE066D3C2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */,
 				CEA9D9F72CCE698000AA1DC2 /* CharacterItem.swift in Sources */,
 				CEB7F0852AAC61D5001C99EA /* ProcessNameLogFormatter.swift in Sources */,
 				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
@@ -1510,6 +1515,7 @@
 				CEE63F482CFC4F5D00275C7F /* LogRecorder.swift in Sources */,
 				CEE63F492CFC4F5D00275C7F /* SplashView.swift in Sources */,
 				CEE63F4A2CFC4F5D00275C7F /* MainView.swift in Sources */,
+				CE066D3D2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */,
 				CEE63F4B2CFC4F5D00275C7F /* CharacterItem.swift in Sources */,
 				CEE63F4C2CFC4F5D00275C7F /* ProcessNameLogFormatter.swift in Sources */,
 				CEE63F4D2CFC4F5D00275C7F /* TokenManager.swift in Sources */,

@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-import UnityFramework
 
 class GameDataViewModel: ObservableObject {
     // 게임별 데이터를 저장
@@ -63,7 +62,7 @@ class GameDataViewModel: ObservableObject {
         return games[game]?.coinCount ?? 0
     }
     
-    private func processUnityMessage(_ message: String) { // TODO: 데이터 주고받은거 파싱하는거 나중에 확인해야할듯
+    private func processUnityMessage(_ message: String) {
         guard let currentGame = currentGame else {
             debugLog("현재 진입한 게임이 설정되지 않았습니다.")
             return
@@ -89,7 +88,11 @@ class GameDataViewModel: ObservableObject {
         let objectName = "RecieveData"
         let methodName = "ReceiveMessage"
         let message = game.openMessage
-//        UnityMessageSender.shared.sendMessage(to: objectName, methodName: methodName, message: message)
+        UnityMessageSender.shared.sendMessageToUnity(
+            gameObject: objectName,
+            methodName: methodName,
+            message: message
+        )
     }
     
     deinit {
