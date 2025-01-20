@@ -11,7 +11,8 @@
 		388148A0F05DEB6B8D3F291D /* Pods_EOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176CDCF0635FF30981E64307 /* Pods_EOD.framework */; };
 		9072A816EDC4D63EC7E0DF80 /* Pods_Preview_EOD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565878BC7FF730E995B08E7E /* Pods_Preview_EOD.framework */; };
 		A82148BD3DDF880F49A14E39 /* Pods_EOD_EODUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */; };
-		CE02547E2CF351520073C3C5 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CE066D3C2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */; };
+		CE066D3D2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */; };
 		CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */; };
 		CE06C3902CC5D35B0075A9C0 /* HouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */; };
 		CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */; };
@@ -305,6 +306,7 @@
 		CEE63FCB2D0689DA00275C7F /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63FCA2D0689DA00275C7F /* KakaoSDK */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
+		CEEA9CF02D3D196B0067FBB8 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -326,13 +328,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CE02547F2CF351520073C3C5 /* Embed Frameworks */ = {
+		CEEA9CF12D3D196B0067FBB8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CE02547E2CF351520073C3C5 /* UnityFramework.framework in Embed Frameworks */,
+				CEEA9CF02D3D196B0067FBB8 /* UnityFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,6 +351,7 @@
 		7D887AC6C98C1F125C2B70C8 /* Pods_EOD_EODUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EOD_EODUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		997641CB42D95F5F56B40CD7 /* Pods_EODTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EODTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C114A94E718200BE820B6363 /* Pods-EOD-EODUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD-EODUITests.debug.xcconfig"; path = "Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnityMessageSender.swift; sourceTree = "<group>"; };
 		CE06C38D2CC5D3510075A9C0 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
 		CE06C38F2CC5D35B0075A9C0 /* HouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseView.swift; sourceTree = "<group>"; };
 		CE06C3912CC5DA320075A9C0 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
@@ -502,6 +505,7 @@
 		CEE63FC82D067D2000275C7F /* EOD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EOD.entitlements; sourceTree = "<group>"; };
 		CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.debug.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preview EOD.debug.xcconfig"; path = "Target Support Files/Pods-Preview EOD/Pods-Preview EOD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -733,6 +737,7 @@
 		CE979DDB2C7990A700D0ED53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */,
 				CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */,
 				CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */,
 				176CDCF0635FF30981E64307 /* Pods_EOD.framework */,
@@ -746,6 +751,7 @@
 		CE979DE22C79914800D0ED53 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				CE066D3B2D3D258D006D5AA5 /* UnityMessageSender.swift */,
 				CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */,
 				CE979DE52C79916100D0ED53 /* GameView.swift */,
 				CE979DF52C7C166400D0ED53 /* GameManager.swift */,
@@ -1006,8 +1012,8 @@
 				CEB7EFF12AAC5025001C99EA /* Sources */,
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
-				CE02547F2CF351520073C3C5 /* Embed Frameworks */,
 				E47E20E4CA9C18C1784DD8DD /* [CP] Embed Pods Frameworks */,
+				CEEA9CF12D3D196B0067FBB8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1361,6 +1367,7 @@
 				CEB7F0732AAC61D4001C99EA /* LogRecorder.swift in Sources */,
 				CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */,
 				CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */,
+				CE066D3C2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */,
 				CEA9D9F72CCE698000AA1DC2 /* CharacterItem.swift in Sources */,
 				CEB7F0852AAC61D5001C99EA /* ProcessNameLogFormatter.swift in Sources */,
 				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
@@ -1508,6 +1515,7 @@
 				CEE63F482CFC4F5D00275C7F /* LogRecorder.swift in Sources */,
 				CEE63F492CFC4F5D00275C7F /* SplashView.swift in Sources */,
 				CEE63F4A2CFC4F5D00275C7F /* MainView.swift in Sources */,
+				CE066D3D2D3D258E006D5AA5 /* UnityMessageSender.swift in Sources */,
 				CEE63F4B2CFC4F5D00275C7F /* CharacterItem.swift in Sources */,
 				CEE63F4C2CFC4F5D00275C7F /* ProcessNameLogFormatter.swift in Sources */,
 				CEE63F4D2CFC4F5D00275C7F /* TokenManager.swift in Sources */,

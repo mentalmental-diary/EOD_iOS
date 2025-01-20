@@ -50,6 +50,7 @@ extern void MainScene_DataManager_SetIsStory3Open_m331AFF47FD37DEB31C6516FAC952E
 extern void MainScene_DataManager_GetIsStory3Open_m677536A38897C4A9D1C89BE3E3680C56F7C491DB (void);
 extern void MainScene_DataManager__ctor_m31731D800E5F390E5A0023A67AFD29EBE61FBEEB (void);
 extern void MainScene_DataManager__cctor_mF31C74EBB537E18E8AB07F7F7DE7842A55A3CEDD (void);
+extern void ReciveDataFromObjectC_Start_mE2A83FD1CEAD32DE73CF388E476B752B90ED4F4E (void);
 extern void ReciveDataFromObjectC_ReceiveMessage_m9FF6BF72111D0254C20E76AC7644D6EA2B731B0E (void);
 extern void ReciveDataFromObjectC__ctor_mE11D7C2DC6357714F8EF81B9512ED78031BC095D (void);
 extern void SoundSetting_Start_m1718DD18FB40041813C41B2E3069D623A3341817 (void);
@@ -122,8 +123,15 @@ extern void Yolk_Fly_CharacterController_Start_m6004D49ED914B50289EEABCA6EBD577F
 extern void Yolk_Fly_CharacterController_Update_m3975973C5F4DC130D2682D525310AAA9F7F19A56 (void);
 extern void Yolk_Fly_CharacterController_onButtonClick_m02213568F6BFB14CA434A50A3FFA637ECBFF60C5 (void);
 extern void Yolk_Fly_CharacterController_OnCollisionEnter2D_mB413DF812888C7463FCA95059BE63CB4F217BFD6 (void);
+extern void Yolk_Fly_CharacterController_ExecuteAfterTime_mF1B5C34EC91ECF896E271563C3E6142AA270EE07 (void);
 extern void Yolk_Fly_CharacterController_OnTriggerEnter2D_mAEDC5C2BC04A176125D1979E0F5571FF1E649049 (void);
 extern void Yolk_Fly_CharacterController__ctor_m2CB697996785240D03977BCC4DA39FB3B3B912C3 (void);
+extern void U3CExecuteAfterTimeU3Ed__9__ctor_mF93C9F0CD7A917389584F6F77C3109072CC26726 (void);
+extern void U3CExecuteAfterTimeU3Ed__9_System_IDisposable_Dispose_m37708DF5C23F2438A7AD667DF27BF942FBA94DD9 (void);
+extern void U3CExecuteAfterTimeU3Ed__9_MoveNext_m863DAE8BEA3F76F80C326C3202D6AE75A69150ED (void);
+extern void U3CExecuteAfterTimeU3Ed__9_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m00272AE7C0A736E3AC0D547479F981B5897EB24F (void);
+extern void U3CExecuteAfterTimeU3Ed__9_System_Collections_IEnumerator_Reset_m3DF5D8FD1B81A1CF1DD3AAAAAEDFA042CF0132F1 (void);
+extern void U3CExecuteAfterTimeU3Ed__9_System_Collections_IEnumerator_get_Current_m2F21CE064AF96E1CE832AACFA2A4BCCB50063319 (void);
 extern void Yolk_Fly_DataManager_Awake_m2E70E01D48018E7F11D1C6CB600DEF03E2A2AA8D (void);
 extern void Yolk_Fly_DataManager_Start_m75F8BE8E43F03D23491A468FCADFCAB119C72499 (void);
 extern void Yolk_Fly_DataManager_GetInstance_m4A63100C9A1FBFEC95B607D81F2EBB99C426A5FF (void);
@@ -217,7 +225,7 @@ extern void U3CSpawnTimerU3Ed__11_System_Collections_IEnumerator_Reset_m8CE50B0B
 extern void U3CSpawnTimerU3Ed__11_System_Collections_IEnumerator_get_Current_mC00E796554AB0AB74E2F21BA34927CC7220D2616 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1 (void);
-static Il2CppMethodPointer s_methodPointers[205] = 
+static Il2CppMethodPointer s_methodPointers[213] = 
 {
 	GameStartUI_Start_m09E54CF649BD05706D50A012E4CDE0D92EF9246D,
 	GameStartUI_DestroyGameObject_m6A2298C6223A6957A9499FCD68AB31B96751E2D5,
@@ -257,6 +265,7 @@ static Il2CppMethodPointer s_methodPointers[205] =
 	MainScene_DataManager_GetIsStory3Open_m677536A38897C4A9D1C89BE3E3680C56F7C491DB,
 	MainScene_DataManager__ctor_m31731D800E5F390E5A0023A67AFD29EBE61FBEEB,
 	MainScene_DataManager__cctor_mF31C74EBB537E18E8AB07F7F7DE7842A55A3CEDD,
+	ReciveDataFromObjectC_Start_mE2A83FD1CEAD32DE73CF388E476B752B90ED4F4E,
 	ReciveDataFromObjectC_ReceiveMessage_m9FF6BF72111D0254C20E76AC7644D6EA2B731B0E,
 	ReciveDataFromObjectC__ctor_mE11D7C2DC6357714F8EF81B9512ED78031BC095D,
 	SoundSetting_Start_m1718DD18FB40041813C41B2E3069D623A3341817,
@@ -329,8 +338,15 @@ static Il2CppMethodPointer s_methodPointers[205] =
 	Yolk_Fly_CharacterController_Update_m3975973C5F4DC130D2682D525310AAA9F7F19A56,
 	Yolk_Fly_CharacterController_onButtonClick_m02213568F6BFB14CA434A50A3FFA637ECBFF60C5,
 	Yolk_Fly_CharacterController_OnCollisionEnter2D_mB413DF812888C7463FCA95059BE63CB4F217BFD6,
+	Yolk_Fly_CharacterController_ExecuteAfterTime_mF1B5C34EC91ECF896E271563C3E6142AA270EE07,
 	Yolk_Fly_CharacterController_OnTriggerEnter2D_mAEDC5C2BC04A176125D1979E0F5571FF1E649049,
 	Yolk_Fly_CharacterController__ctor_m2CB697996785240D03977BCC4DA39FB3B3B912C3,
+	U3CExecuteAfterTimeU3Ed__9__ctor_mF93C9F0CD7A917389584F6F77C3109072CC26726,
+	U3CExecuteAfterTimeU3Ed__9_System_IDisposable_Dispose_m37708DF5C23F2438A7AD667DF27BF942FBA94DD9,
+	U3CExecuteAfterTimeU3Ed__9_MoveNext_m863DAE8BEA3F76F80C326C3202D6AE75A69150ED,
+	U3CExecuteAfterTimeU3Ed__9_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m00272AE7C0A736E3AC0D547479F981B5897EB24F,
+	U3CExecuteAfterTimeU3Ed__9_System_Collections_IEnumerator_Reset_m3DF5D8FD1B81A1CF1DD3AAAAAEDFA042CF0132F1,
+	U3CExecuteAfterTimeU3Ed__9_System_Collections_IEnumerator_get_Current_m2F21CE064AF96E1CE832AACFA2A4BCCB50063319,
 	Yolk_Fly_DataManager_Awake_m2E70E01D48018E7F11D1C6CB600DEF03E2A2AA8D,
 	Yolk_Fly_DataManager_Start_m75F8BE8E43F03D23491A468FCADFCAB119C72499,
 	Yolk_Fly_DataManager_GetInstance_m4A63100C9A1FBFEC95B607D81F2EBB99C426A5FF,
@@ -425,7 +441,7 @@ static Il2CppMethodPointer s_methodPointers[205] =
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1,
 };
-static const int32_t s_InvokerIndices[205] = 
+static const int32_t s_InvokerIndices[213] = 
 {
 	4846,
 	4846,
@@ -465,6 +481,7 @@ static const int32_t s_InvokerIndices[205] =
 	4657,
 	4846,
 	7259,
+	4846,
 	3930,
 	4846,
 	4846,
@@ -537,8 +554,15 @@ static const int32_t s_InvokerIndices[205] =
 	4846,
 	4846,
 	3930,
+	3453,
 	3930,
 	4846,
+	3905,
+	4846,
+	4657,
+	4738,
+	4846,
+	4738,
 	4846,
 	4846,
 	7225,
@@ -637,7 +661,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	205,
+	213,
 	s_methodPointers,
 	0,
 	NULL,

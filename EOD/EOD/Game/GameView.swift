@@ -12,20 +12,41 @@ struct GameView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
+            Button("이불 덮어주기? 게임 시작") {
 #if !PREVIEW
                 GameManager.shared.launchUnity()
 #endif
-            }, label: {
-                Text("게임시작")
-                    .foregroundColor(.black)
-            })
+                gameDataViewModel.sendGameStartMessage(for: .catchYolk)
+            }
+            .padding()
             
-            Text("Highest Score: \(gameDataViewModel.score)")
-            Text("Coin Count: \(gameDataViewModel.coinCount)")
-        }
-        .onAppear {
-            gameDataViewModel.sendHighScoreToUnity()
+            Text("1번 게임 점수: \(gameDataViewModel.getScore(for: .catchYolk)), 획득 코인 : \(gameDataViewModel.getCoinCount(for: .catchYolk))")
+                .font(size: 16)
+                .foregroundColor(.black)
+            
+            Button("노른자 날아댕김 게임 시작") {
+#if !PREVIEW
+                GameManager.shared.launchUnity()
+#endif
+                gameDataViewModel.sendGameStartMessage(for: .flyYolk)
+            }
+            .padding()
+            
+            Text("2번 게임 점수: \(gameDataViewModel.getScore(for: .flyYolk)), 획득 코인 : \(gameDataViewModel.getCoinCount(for: .flyYolk))")
+                .font(size: 16)
+                .foregroundColor(.black)
+            
+            Button("피하기 게임 시작") {
+#if !PREVIEW
+                GameManager.shared.launchUnity()
+#endif
+                gameDataViewModel.sendGameStartMessage(for: .runYolk)
+            }
+            .padding()
+            
+            Text("3번 게임 점수: \(gameDataViewModel.getScore(for: .runYolk)), 획득 코인 : \(gameDataViewModel.getCoinCount(for: .runYolk))")
+                .font(size: 16)
+                .foregroundColor(.black)
         }
     }
 }
