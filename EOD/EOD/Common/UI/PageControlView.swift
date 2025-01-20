@@ -17,8 +17,7 @@ struct PageControlView: View {
             HStack(spacing: 10) {
                 ForEach(0..<pages, id: \.self) { page in
                     Circle()
-                        .stroke(page == currentPage ? Color.black : Color.gray, lineWidth: 1)
-                        .background(page == currentPage ? Color.black : Color.clear) // 현재 페이지인 경우 채우기
+                        .foregroundColor(page == currentPage ? UIColor.Yellow.yellow500.color : UIColor.Gray.gray100.color) // 현재 페이지인 경우 채우기
                         .frame(width: 10, height: 10)
                         .cornerRadius(5)
                         .animation(.easeInOut(duration: 0.2), value: currentPage)

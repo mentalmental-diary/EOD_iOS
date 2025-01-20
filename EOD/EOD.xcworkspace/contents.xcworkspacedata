@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "container:eod_game/Unity-iPhone.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "container:EOD.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

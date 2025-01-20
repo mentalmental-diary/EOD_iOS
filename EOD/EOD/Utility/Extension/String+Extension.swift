@@ -6,12 +6,19 @@
 //
 
 import Foundation
-import SwifterSwift
 import UIKit
 
 // MARK:- 기타 Util성
 
 extension String {
+    /// SwifterSwift: URL from string (if applicable).
+    ///
+    ///        "https://google.com".url -> URL(string: "https://google.com")
+    ///        "not url".url -> nil
+    ///
+    var url: URL? {
+        return URL(string: self)
+    }
     
     /// 스트링에서 HTML Tag를 추출해서 array로 리턴한다.
     public var htmlTags: [String]? {
@@ -71,59 +78,11 @@ extension String {
         guard let decoded = self.removingPercentEncoding else { return nil }
         let components = decoded.split(separator: "\"").compactMap({ String($0) })
         
-        return components.count == 3 ? components[safe: 1] : nil
+        return components.count == 3 ? components[1] : nil
     }
     
     public var extractNumber: String {
         return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-    }
-    
-    /// 이모지가 제거된 스트링 반환
-    public var emojiRemoved: String {
-        if self.containEmoji {
-            return filter({ !$0.isEmoji })
-        } else {
-            return self
-        }
-    }
-    
-    public var emojiRanges: [NSRange] {
-        return charactersArray.reduce((offset: 0, ranges: [])) { (result, char) -> (offset: Int, ranges: [NSRange]) in
-            let charLength = (String(char) as NSString).length
-            var newRanges = result.ranges
-            
-            if char.isEmoji {
-                newRanges.append(NSRange(location: result.offset, length: charLength))
-            }
-            
-            return (offset: result.offset + charLength, ranges: newRanges)
-        }.ranges
-    }
-    
-    /// 스트링에서 이모지 개수를 리턴한다.
-    public var emojiCount: Int {
-        return self.filter({ $0.isEmoji }).count
-    }
-    
-    /// 스트링에서 이모지를 2글자로 계산한 글자수를 리턴한다.
-    public var countWithDoubleEmoji: Int {
-        return count + emojiCount
-    }
-    
-    /// SELECTIVE-3949 개별 글자의 byte값을 4byte 단위로 계산한 총 byte값
-    public var unicodeBasedBytes: Int {
-        return unicodeArray().count * 4
-    }
-    
-    /// SELECTIVE-8673 이모지 한글자당 8byte로 계산한 총 byte값
-    public var bytesWithEmojiAs8bytes: Int {
-        return countWithDoubleEmoji * 4
-    }
-    
-    /// 한글 url 대응. encoding 후 URL instance를 생성한다.
-    public var encodedUrl: URL? {
-        guard let encoded = self.encoded else { return nil }
-        return URL(string: encoded)
     }
     
     /// url용으로 encoding한 스트링 생성
@@ -144,7 +103,8 @@ extension String {
     /// Length 1당 4Byte로 판단하며.
     /// 이모지는 8Byte로, 한글/영어 등은 4Byte로 일괄 계산한다.
     public func isLengthExceeded(maxLength: Int) -> Bool {
-        return bytesWithEmojiAs8bytes > maxLength * 4
+//        return bytesWithEmojiAs8bytes > maxLength * 4
+        return count > maxLength * 4 // TODO: 잘못된 로직이기 때문에 나중에 사용할 일 있으면 다시 확인해보기
     }
     
     /// 허용 Length보다 긴 텍스트를 허용 범위에 맞게 뒷부분을 자른 후 리턴하는 메소드
@@ -237,6 +197,11 @@ extension String {
     }
     
     var carriageReturns: [String] { return ["\n", "\r"] }
+    
+    /// SwifterSwift: Array of characters of a string.
+    var charactersArray: [Character] {
+        return Array(self)
+    }
 }
 
 extension String {
@@ -340,6 +305,24 @@ public extension String {
 // MARK: - Date
 
 public extension String {
+    /// 한국 서버에서 내려준 시간대를 한국 타임존 기준의 Date instance로 변환한다.
+    /// yyyy-MM-dd 형식
+    var summaryDateInKoreaTimeZone: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.seoul
+        dateFormatter.dateFormat = "yyyy-MM-dd" // 날짜 형식에 맞춰 설정
+        return dateFormatter.date(from: self) // self는 변환하고자 하는 날짜 문자열
+    }
+    
+    /// 한국 서버에서 내려준 시간대를 한국 타임존 기준의 Date instance로 변환한다.
+    /// yyyy-MM-dd'T'HH:mm:ss.SSSZ 형식
+    var dateInKoreaTimeZone: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.seoul
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" // 날짜 형식에 맞춰 설정
+        return dateFormatter.date(from: self) // self는 변환하고자 하는 날짜 문자열
+    }
     
     /// 2020-04-07T10:20:00 / 2020-04-07T10:20:00.000 포맷의 스트링을 Date로 변환한다.
     var presetDate: Date? {

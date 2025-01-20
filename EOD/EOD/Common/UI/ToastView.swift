@@ -9,42 +9,53 @@ import SwiftUI
 
 struct ToastView: View {
     var message: String = ""
+    var visibleIcon: Bool = false
     @Binding var isShowing: Bool
+    
     var body: some View {
         VStack {
-            Spacer()
             if isShowing {
                 Group {
-                    Text(message)
-                        .frame(maxWidth: .infinity)
-                        .padding(EdgeInsets.init(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color.white)
-                        .background(Color.black)
-                        .cornerRadius(8)
+                    HStack(spacing: 8) {
+                        if visibleIcon {
+                            Image("icon_check")
+                        }
+                        Text(message)
+                            .font(size: 16)
+                            .frame(height: 24)
+                            .foregroundColor(Color.white)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 65/255, green: 58/255, blue: 53/255, opacity: 0.7))
+                    .cornerRadius(8)
                 }
+                .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+                .animation(.easeInOut(duration: 0.6), value: isShowing) // TODO: 공통 토스트뷰로 다 동일한 효과로 가는지 확인
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        isShowing = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        withAnimation(.easeInOut(duration: 0.6)) {
+                            isShowing = false
+                        }
                     }
                 }
             }
             Spacer()
         }
-        .padding(.horizontal, 16)
-        .padding(.bottom, 18)
-        .animation(.linear(duration: 0.3), value: isShowing)
-        .transition(.opacity)
+        .padding(.horizontal, 20)
+        .padding(.top, 16)
     }
 }
 
 struct ToastModifier: ViewModifier {
     var message: String
+    var visibleIcon: Bool = false
     @Binding var isShowing: Bool
     func body(content: Content) -> some View {
         ZStack {
             content
-            ToastView(message: message, isShowing: $isShowing)
+            ToastView(message: message, visibleIcon: visibleIcon, isShowing: $isShowing)
         }
     }
 }

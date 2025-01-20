@@ -1,11 +1,3 @@
-//
-//  APIRequest.swift
-//  SelectiveOpenSourceKit
-//
-//  Created by Nakyung Lim on 2020/03/18.
-//  Copyright © 2020 NAVER Corp. All rights reserved.
-//
-
 import UIKit
 import Alamofire
 
@@ -69,6 +61,51 @@ extension APIRequest {
                     completion?(.failure(error))
                 }
             })
+        }
+    
+    /// Concurrency API Request. Decoded된 모델을 반환.
+    ///
+    /// - Remark: response body가 비어있는 API인 경우 204 status code로 내려오면 처리 가능.
+    /// - Parameters:
+    ///   - api: 사용할 API. relative path만 전달하는 경우는 `UrlBuilder`에서 api gateway 주소와 조합해서 full url을 생성합니다. (ex : "members/{memberId}/documents")
+    ///   - apiType: `APIGatewayType`에서 해당되는 타입을 선택한다. 기본값은 `live`
+    ///   - method: `HTTPMethod`. 기본값은 `get`
+    ///   - parameters: API URL에 추가하는 query parameter dictionary
+    ///   - requestParameters: HTTP Request body에 추가하는 parameter dictionary
+    ///   - headers: 헤더
+    ///   - queue: completion handler가 호출될 Queue
+    ///   - retrier: API 실패시 재시도 처리를 해주는 `RequestRetryHandler`
+    /// - Returns: `Decoded Result`
+    public class func requestAsyncDecodable<T: Decodable>(
+        api: String,
+        method: HTTPMethod = .get,
+        parameters queryParameters: [String: Any]? = nil,
+        requestParameters: [String: Any]? = nil,
+        headers: HTTPHeaders? = nil,
+        queue: DispatchQueue = .main,
+        retrier: RequestInterceptor? = nil) async throws -> T {
+            return try await withCheckedThrowingContinuation { continuation in
+                requestData(
+                    api: api,
+                    method: method,
+                    parameters: queryParameters,
+                    requestParameters: requestParameters,
+                    headers: headers,
+                    queue: queue,
+                    retrier: retrier,
+                    completion: { result in
+                        do {
+                            guard let data = result.success else {
+                                throw result.error ?? CommonError.failedToFetch
+                            }
+                            let decoded = try JSONDecoder().decode(T.self, from: data)
+                            
+                            continuation.resume(returning: decoded)
+                        } catch {
+                            continuation.resume(throwing: error)
+                        }
+                    })
+            }
         }
     
     /// data response를 받는 API Request
@@ -161,7 +198,7 @@ extension APIRequest {
 
 extension APIRequest {
     
-    private class var userAccessToken: String { return "User-Agent" } // TODO: accessToken 이름 확인
+    private class var userAccessToken: String { return "Authentication" } // TODO: accessToken 이름 확인
     
     private class func createHeaders(with initialHeaders: HTTPHeaders?) -> HTTPHeaders {
         var headers: HTTPHeaders = initialHeaders ?? [:]

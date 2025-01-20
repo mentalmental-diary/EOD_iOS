@@ -1,4 +1,5 @@
 {
+  "originHash" : "131b14b066c0b9a7c983c957cf10ea5125cd459c433b9609adafbebe877b2f79",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -6,18 +7,36 @@
       "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
         "branch" : "master",
-        "revision" : "41bcbaf24f67efb2befd8abc0f32f0c66d1c78be"
+        "revision" : "9b5bd5be3c2d451006ca16b286cf1ed30f434b9c"
       }
     },
     {
-      "identity" : "swifterswift",
+      "identity" : "kakao-ios-sdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SwifterSwift/SwifterSwift.git",
+      "location" : "https://github.com/kakao/kakao-ios-sdk",
       "state" : {
-        "branch" : "master",
-        "revision" : "8a42ca9c76043c7fb72c820c8a3a5e08d4ae36aa"
+        "revision" : "ab4309c1950550add307046ad1e08024c7514603",
+        "version" : "2.23.0"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "c0940e241945e6378c01fbd45fd3815579d47ef5",
+        "version" : "8.1.0"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios",
+      "state" : {
+        "revision" : "fe4c6fe3a0aa66cdeb51d549623c82ca9704b9a5",
+        "version" : "4.5.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

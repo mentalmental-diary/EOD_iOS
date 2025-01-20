@@ -16,16 +16,17 @@ public extension UIApplication {
     
     /// SwiftUI Preview 상황인지 판단한다.
     static var isPreview: Bool {
-        #if RELEASE
+#if RELEASE
         return false
-        #else
+#else
         ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"]?.int == 1
-        #endif
+#endif
     }
     
     /// 기존의 `keyWindow` 대신 사용할 수 있는 property
     var firstKeyWindow: UIWindow? {
-        windows.first(where: { $0.isKeyWindow })
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        return windowScene?.windows.first(where: { $0.isKeyWindow })
     }
     
     /// 기존의 `statusBarOrientation` 대신 사용할 수 있는 property
@@ -63,7 +64,7 @@ public extension UIApplication {
         }
         
         if let tabbarController = (navigationController as? UINavigationController)?.viewControllers.first as? UITabBarController,
-            let nc = tabbarController.viewControllers?[safe: tabbarController.selectedIndex] as? UINavigationController {
+           let nc = tabbarController.viewControllers?[tabbarController.selectedIndex] as? UINavigationController {
             navigationController = nc
         }
         

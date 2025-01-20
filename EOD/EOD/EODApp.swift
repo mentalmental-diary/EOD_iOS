@@ -7,7 +7,9 @@
 
 import SwiftUI
 import UIKit
-
+#if !PREVIEW
+import KakaoSDKAuth
+#endif
 /// AppDelegate  대신해서 완성하기 -> SiwftUI 하고 UIKit 연동하기 위해서?
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -17,7 +19,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        Thread.sleep(forTimeInterval: 0.1) // TODO: 여기서 최대 3초 핸들링 진행 -> 근데 굳이 그건 필요 없을 것 같고 적당한 시간 런치로 보여준다 느낌으로 진행 -> 짧아도 괜찮을듯
+        Thread.sleep(forTimeInterval: 0.1)
         
         return true
     }
@@ -40,6 +42,23 @@ struct EODApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear(perform: {
+                    // 여기서 Login여부 판단 후 넘어가야함
+                })
+                .onOpenURL { url in
+                    debugLog("🔵 콜백 URL호출. url: \(url.absoluteString)")
+#if !PREVIEW
+                    // 카카오 로그인 URL 처리
+                    if AuthApi.isKakaoTalkLoginUrl(url) {
+                        _ = AuthController.handleOpenUrl(url: url)
+                    }
+                    
+                    // 네이버 로그인 URL 처리
+                    if url.absoluteString.contains("eodnaverlogin://") {
+                        LoginManager.shared.receiveAccessToken(url)
+                    }
+#endif
+                }
         }
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {

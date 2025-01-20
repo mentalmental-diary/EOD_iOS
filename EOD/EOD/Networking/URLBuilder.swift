@@ -26,12 +26,24 @@ public class UrlBuilder {
         
         return url
     }
+    
+    
+    /// next key parameter 생성
+    class func createParameter(nextKey: Int?) -> [String: Any] {
+        var parameters: [String: Any] = ["pageSize": 20]
+        
+        if let nextKey = nextKey {
+            parameters["page"] = nextKey
+        }
+        
+        return parameters
+    }
 }
 
 extension UrlBuilder {
     
     fileprivate class func apiPath() -> String {
-        return "http://13.125.28.166/" // TODO: 향후에 해당 내용 추가해야함
+        return "https://www.doreun.shop/"
     }
     
     // 주소 앞에 /가 붙어있으면 제거한다.
