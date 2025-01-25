@@ -21,6 +21,7 @@ class CalendarViewModel: ObservableObject {
     @Published var isShowAlert: Bool = false
     @Published var showDiaryView: Bool = false
     @Published var showMonthSelectModalView: Bool = false
+    @Published var toastManager = ToastManager.shared
     
     private var networkModel: CalendarNetworkModel = CalendarNetworkModel()
     
@@ -164,11 +165,14 @@ extension CalendarViewModel {
             debugLog("업로드 API완료 result: \(result)")
             guard let error = result.error else {
                 self?.showDiaryView = false
-                self?.toastMessage = "일기가 저장되었어요!"
-                self?.fetchMonthDiary()
                 withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
+                    self?.toastManager.showToast(message: "일기가 저장되었어요!", visibleIcon: true)
                 }
+//                self?.toastMessage = "일기가 저장되었어요!"
+                self?.fetchMonthDiary()
+//                withAnimation(.easeInOut(duration: 0.6)) {
+//                    self?.isToast = true
+//                }
                 return
             }
             
