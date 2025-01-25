@@ -21,6 +21,8 @@ class MainViewModel: ObservableObject {
     
     @Published var showUserInfoSetView: Bool = false
     
+    @Published var showStartAlert: Bool = false // 닉네임 설정 후 최초 진입시에만 노출
+    
     var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
     var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해
     
@@ -156,6 +158,7 @@ extension MainViewModel {
             case .success: // 닉네임 설정 성공
                 self?.isLogin = true
                 self?.showUserInfoSetView = false
+                self?.showStartAlert = true
             case .failure(let error):
                 self?.toastMessage = "닉네임 설정 실패"
                 withAnimation(.easeInOut(duration: 0.6)) {
