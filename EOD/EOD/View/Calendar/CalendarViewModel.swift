@@ -15,7 +15,6 @@ class CalendarViewModel: ObservableObject {
     }
     @Published var selectDate: Date? = nil // 현재 선택된 날짜
     @Published var selectEmotionType: EmotionType?
-    @Published var isToast: Bool = false
     @Published var showEmotionSelectView: Bool = false
     @Published var diary: Diary = Diary()
     @Published var isShowAlert: Bool = false
@@ -30,8 +29,6 @@ class CalendarViewModel: ObservableObject {
     var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
     
     var diarySummaryList: [Int: DiarySummary?] = [:]
-    
-    var toastMessage: String = ""
     
     let calendar = Calendar.current
     
@@ -152,10 +149,7 @@ extension CalendarViewModel {
                 self?.showDiaryViewAction()
             case .failure(let error):
                 errorLog("해당 날짜에 해당하는 다이어리 정보 호출 실패. error: \(error)")
-                self?.toastMessage = "수정 진입 실패"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "수정 진입 실패")
             }
         })
     }
@@ -165,21 +159,12 @@ extension CalendarViewModel {
             debugLog("업로드 API완료 result: \(result)")
             guard let error = result.error else {
                 self?.showDiaryView = false
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.toastManager.showToast(message: "일기가 저장되었어요!", visibleIcon: true)
-                }
-//                self?.toastMessage = "일기가 저장되었어요!"
+                self?.toastManager.showToast(message: "일기가 저장되었어요!", visibleIcon: true)
                 self?.fetchMonthDiary()
-//                withAnimation(.easeInOut(duration: 0.6)) {
-//                    self?.isToast = true
-//                }
                 return
             }
             
-            self?.toastMessage = "일기 저장시 오류가 발생했습니다. error: \(error)"
-            withAnimation(.easeInOut(duration: 0.6)) {
-                self?.isToast = true
-            }
+            self?.toastManager.showToast(message: "일기 저장시 오류가 발생했습니다. error: \(error)")
         })
         
     }
@@ -190,18 +175,12 @@ extension CalendarViewModel {
             debugLog("다이어리 수정 API완료 result: \(result)")
             guard let error = result.error else {
                 self?.showDiaryView = false
-                self?.toastMessage = "일기가 저장되었어요!"
+                self?.toastManager.showToast(message: "일기가 저장되었어요!")
                 self?.fetchMonthDiary()
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
                 return
             }
             
-            self?.toastMessage = "일기 저장시 오류가 발생했습니다. error: \(error)"
-            withAnimation(.easeInOut(duration: 0.6)) {
-                self?.isToast = true
-            }
+            self?.toastManager.showToast(message: "일기 저장시 오류가 발생했습니다. error: \(error)")
         })
     }
     
@@ -213,10 +192,7 @@ extension CalendarViewModel {
             case .success:
                 infoLog("다이어리 삭제 API 성공")
                 self?.fetchMonthDiary()
-                self?.toastMessage = "일기가 삭제되었습니다."
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "일기가 삭제되었습니다.")
             case .failure(let error):
                 errorLog("다이어리 삭제 API실패. error: \(error)")
             }

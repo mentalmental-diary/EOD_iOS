@@ -14,8 +14,8 @@ class MainViewModel: ObservableObject {
     @Published var currentTab: Tab = .Home
     @Published var confirmEmail: Bool = false
     @Published var confirmTerms: Bool = false
-    @Published var isToast: Bool = false
-    var toastMessage: String = ""
+    
+    @Published var toastManager = ToastManager.shared
     
     @Published var initScreen: Bool = true // 초기 웰컴 화면
     
@@ -70,10 +70,7 @@ extension MainViewModel {
                         self.checkNicknameAndAccessLogin()
                         return
                     }
-                    self.toastMessage = "카카오 로그인 연동 실패했습니다."
-                    withAnimation(.easeInOut(duration: 0.6)) {
-                        self.isToast = true
-                    }
+                    self.toastManager.showToast(message: "카카오 로그인 연동 실패했습니다.")
                     errorLog("🔴 카카오 로그인 연동 후 서버 연동 실패: \(error.localizedDescription)")
                 })
             case .failure(let error):
@@ -95,10 +92,7 @@ extension MainViewModel {
                             self.checkNicknameAndAccessLogin()
                             return
                         }
-                        self.toastMessage = "네아로 연동 실패했습니다."
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            self.isToast = true
-                        }
+                        self.toastManager.showToast(message: "네아로 연동 실패했습니다.")
                         errorLog("🔴 네아로 연동 후 서버 연동 실패: \(error.localizedDescription)")
                     })
                 case .failure(let error):
@@ -143,10 +137,7 @@ extension MainViewModel {
                     self?.showUserInfoSetView = true
                 }
             case .failure(let error):
-                self?.toastMessage = "닉네임 여부 판단 실패"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "닉네임 여부 판단 실패")
                 errorLog("🔴 닉네임 존재 여부 판단 API 실패: \(error.localizedDescription)")
             }
         })
@@ -161,10 +152,7 @@ extension MainViewModel {
                 self?.showUserInfoSetView = false
                 self?.showStartAlert = true
             case .failure(let error):
-                self?.toastMessage = "닉네임 설정 실패"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "닉네임 설정 실패")
                 errorLog("🔴 닉네임 설정 API 실패: \(error.localizedDescription)")
             }
         })

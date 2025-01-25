@@ -59,7 +59,8 @@ struct UserInfoSetView: View {
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
                 .padding(.bottom, 12)
-                .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
+                
+                ToastView(toastManager: viewModel.toastManager)
             }
             .ignoresSafeArea(.keyboard)
         }

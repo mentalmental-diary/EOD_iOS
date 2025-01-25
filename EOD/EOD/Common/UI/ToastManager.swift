@@ -20,7 +20,7 @@ final class ToastManager: ObservableObject {
     private init() {}
 
     /// 토스트 메시지 추가
-    func showToast(message: String, visibleIcon: Bool = false) {
+    func showToast(message: String, visibleIcon: Bool = true) {
         // 큐에 추가
         toastQueue.append((message, visibleIcon))
         displayNextToast() // 다음 토스트를 표시
