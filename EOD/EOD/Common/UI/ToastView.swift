@@ -38,17 +38,6 @@ struct ToastView: View {
     }
 }
 
-struct ToastModifier: ViewModifier {
-    var message: String
-    var visibleIcon: Bool = false
-    @Binding var isShowing: Bool
-    func body(content: Content) -> some View {
-        ZStack {
-            content
-//            ToastView(message: message, visibleIcon: visibleIcon, isShowing: $isShowing)
-        }
-    }
-}
 struct ToastView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -88,9 +77,3 @@ struct ToastPreviewWrapper: View {
         }
     }
 }
-
-//struct ToastView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ToastView(message: "Toast메시지 테스트", isShowing: .constant(true))
-//    }
-//}
