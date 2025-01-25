@@ -17,6 +17,8 @@ class MainViewModel: ObservableObject {
     @Published var isToast: Bool = false
     var toastMessage: String = ""
     
+    @Published var initScreen: Bool = true // 초기 웰컴 화면
+    
     @Published var showUserInfoSetView: Bool = false
     
     var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
@@ -153,6 +155,7 @@ extension MainViewModel {
             switch result {
             case .success: // 닉네임 설정 성공
                 self?.isLogin = true
+                self?.showUserInfoSetView = false
             case .failure(let error):
                 self?.toastMessage = "닉네임 설정 실패"
                 withAnimation(.easeInOut(duration: 0.6)) {

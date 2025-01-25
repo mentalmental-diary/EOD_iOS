@@ -111,7 +111,7 @@ extension UserInfoSetView {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
                 Button(action: {
-                    viewModel.confirmTerms.toggle()
+                    viewModel.confirmTerms.toggle() // TODO: 약관 관련 값 변경
                 }, label: {
                     Image(viewModel.confirmTerms ? "btnConfirmOn" : "btnConfirmOff")
                 })
