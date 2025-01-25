@@ -88,6 +88,24 @@ class UserNetworkModel {
         })
     }
     
+    func checkUserNickname(completion: @escaping ((Result<Bool, Error>) -> Void)) {
+        let api = "/api-external/user/check-nickname"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
+    
+    func setUserNickname(nickName: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
+        let api = "/api-external/user/nickname"
+        
+        let param = [
+            "nickName": nickName
+        ]
+        
+        APIRequest.requestData(api: api, method: .put, requestParameters: param, completion: { result in
+            completion(result.voidMap())
+        })
+    }
+    
     private func fetchAccessToken(from response: AFDataResponse<Data?>) -> String? {
         guard let accessToken = response.response?.allHeaderFields["Authentication"] as? String, !accessToken.isBlank else {
             warningLog("로그인 API에서 토큰 획득 실패.")
