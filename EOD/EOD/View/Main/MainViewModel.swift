@@ -17,6 +17,8 @@ class MainViewModel: ObservableObject {
     @Published var isToast: Bool = false
     var toastMessage: String = ""
     
+    @Published var initScreen: Bool = true // 초기 웰컴 화면
+    
     @Published var showUserInfoSetView: Bool = false
     
     var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
@@ -61,7 +63,10 @@ extension MainViewModel {
             switch result {
             case .success(let token):
                 self.networkModel.fetchLogin(Authorization: token, type: .kakao, completion: { result in
-                    guard let error = result.error else { self.isLogin = true; return }
+                    guard let error = result.error else {
+                        self.checkNicknameAndAccessLogin()
+                        return
+                    }
                     self.toastMessage = "카카오 로그인 연동 실패했습니다."
                     withAnimation(.easeInOut(duration: 0.6)) {
                         self.isToast = true
@@ -84,7 +89,7 @@ extension MainViewModel {
                 case .success(let accessToken):
                     self.networkModel.fetchLogin(Authorization: accessToken, type: .naver, completion: { result in
                         guard let error = result.error else {
-                            self.showUserInfoSetView = true
+                            self.checkNicknameAndAccessLogin()
                             return
                         }
                         self.toastMessage = "네아로 연동 실패했습니다."
@@ -113,11 +118,51 @@ extension MainViewModel {
             guard let error = result.error else {
                 self?.presentLoginView = false // 로그인 성공시
                 self?.presentSignUpView = false // 로그인 성공시
-                self?.isLogin = true
+                self?.checkNicknameAndAccessLogin()
                 return
             }
             
             errorLog("테스트용 로그인 실패 error: \(error)")
+        })
+    }
+}
+
+// MARK: - Nickname (User Info)
+extension MainViewModel {
+    /// 현재 유저가 닉네임이 설정되있는지 확인 후 닉네임 화면 진입 또는 메인화면 진입
+    func checkNicknameAndAccessLogin() {
+        networkModel.checkUserNickname(completion: { [weak self] result in
+            switch result {
+            case .success(let check):
+                if check { // 이미 닉네임이 설정되있으면 홈화면으로 진입 -> 로그인 성공
+                    self?.isLogin = true
+                } else {
+                    self?.showUserInfoSetView = true
+                }
+            case .failure(let error):
+                self?.toastMessage = "닉네임 여부 판단 실패"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+                errorLog("🔴 닉네임 존재 여부 판단 API 실패: \(error.localizedDescription)")
+            }
+        })
+    }
+    
+    /// 닉네임 설정
+    func setNickname(nickName: String) {
+        networkModel.setUserNickname(nickName: nickName, completion: { [weak self] result in
+            switch result {
+            case .success: // 닉네임 설정 성공
+                self?.isLogin = true
+                self?.showUserInfoSetView = false
+            case .failure(let error):
+                self?.toastMessage = "닉네임 설정 실패"
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    self?.isToast = true
+                }
+                errorLog("🔴 닉네임 설정 API 실패: \(error.localizedDescription)")
+            }
         })
     }
 }

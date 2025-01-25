@@ -12,25 +12,21 @@ struct IntroView: View {
     @ObservedObject var viewModel: MainViewModel
     @State var currentPage: Int = 0
     
-    @State var initScreen: Bool = true // 초기 웰컴 화면
-    
     var body: some View {
         NavigationView(content: {
             GeometryReader { geometry in
-                if initScreen {
+                if viewModel.initScreen {
                     tutorialView(geometry: geometry)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                 } else {
                     onBoardingView(geometry: geometry)
                 }
                 
-                NavigationLink("", isActive: $viewModel.showUserInfoSetView) {
-                    LazyView(
-                        UserInfoSetView(viewModel: viewModel)
-                            .background(Color.white)
-                            .navigationBarHidden(true)
-                    )
-                }
+            }
+            .fullScreenCover(isPresented: $viewModel.showUserInfoSetView) {
+                UserInfoSetView(viewModel: viewModel)
+                    .background(Color.white)
+                    .navigationBarHidden(true)
             }
         })
     }
@@ -42,7 +38,7 @@ extension IntroView {
         VStack(spacing: 0) {
             if currentPage < 2 {
                 Button {
-                    initScreen = false
+                    viewModel.initScreen = false
                 } label: {
                     Text("Skip")
                         .font(size: 22)
@@ -70,7 +66,7 @@ extension IntroView {
                 if currentPage < 2 {
                     currentPage += 1
                 } else {
-                    initScreen = false
+                    viewModel.initScreen = false
                 }
             }, label: {
                 Text(currentPage < 2 ? "다음" : "시작하기")

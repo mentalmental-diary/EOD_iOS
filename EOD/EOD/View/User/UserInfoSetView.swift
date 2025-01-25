@@ -13,50 +13,57 @@ struct UserInfoSetView: View {
     @State var inputNickname: String = ""
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Spacer()
-                Text("닉네임 설정")
-                    .font(size: 28)
-                    .foregroundColor(.black)
-                Spacer()
+        GeometryReader { proxy in
+            ZStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack {
+                        Spacer()
+                        Text("닉네임 설정")
+                            .font(size: 28)
+                            .foregroundColor(.black)
+                        Spacer()
+                    }
+                    
+                    Spacer().frame(height: 56)
+                    
+                    Text("노른자의 하루에서 사용할")
+                        .font(size: 22)
+                        .foregroundColor(.black)
+                        .background(
+                            GeometryReader { geometry in
+                                UIColor.Yellow.yellow200.color
+                                    .frame(width: geometry.size.width, height: 8)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    Text("닉네임을 알려주세요!")
+                        .font(size: 22)
+                        .foregroundColor(.black)
+                        .background(
+                            GeometryReader { geometry in
+                                UIColor.Yellow.yellow200.color
+                                    .frame(width: geometry.size.width, height: 8)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    Spacer().frame(height: 137)
+                    
+                    nicknameView()
+                    
+                    Spacer().frame(height: 250)
+                    
+                    bottonView()
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                .padding(.bottom, 12)
+                .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
             }
-            
-            Spacer().frame(height: 56)
-            
-            Text("노른자의 하루에서 사용할")
-                .font(size: 22)
-                .foregroundColor(.black)
-                .background(
-                    GeometryReader { geometry in
-                        UIColor.Yellow.yellow200.color
-                            .frame(width: geometry.size.width, height: 8)
-                            .offset(x: 0, y: geometry.size.height - 8)
-                    }
-                )
-            
-            Text("닉네임을 알려주세요!")
-                .font(size: 22)
-                .foregroundColor(.black)
-                .background(
-                    GeometryReader { geometry in
-                        UIColor.Yellow.yellow200.color
-                            .frame(width: geometry.size.width, height: 8)
-                            .offset(x: 0, y: geometry.size.height - 8)
-                    }
-                )
-            
-            Spacer()
-            
-            nicknameView()
-            
-            Spacer()
-            
-            bottonView()
+            .ignoresSafeArea(.keyboard)
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 20)
-        .padding(.bottom, 12)
+        
     }
 }
 
@@ -104,7 +111,7 @@ extension UserInfoSetView {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
                 Button(action: {
-                    viewModel.confirmTerms.toggle()
+                    viewModel.confirmTerms.toggle() // TODO: 약관 관련 값 변경
                 }, label: {
                     Image(viewModel.confirmTerms ? "btnConfirmOn" : "btnConfirmOff")
                 })
@@ -162,7 +169,7 @@ extension UserInfoSetView {
             Spacer().frame(height: 22)
             
             Button(action: {
-                
+                viewModel.setNickname(nickName: inputNickname)
             }, label: {
                 Text("시작하기")
                     .font(size: 20)
