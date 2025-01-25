@@ -52,10 +52,11 @@ class MainViewModel: ObservableObject {
 
 /// Func
 extension MainViewModel {
-    func logoutAction() {
+    func logoutAction() { // TODO: 로그아웃 로직 수정 -> API연결 필요
         UserDefaults.standard.removeObject(forKey: "isLogin")
         UserDefaults.standard.removeObject(forKey: "accessToken")
         self.isLogin = false
+        self.currentTab = .Home
     }
     
     func kakaoLoginAction() {
