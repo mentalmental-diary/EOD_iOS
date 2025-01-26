@@ -61,13 +61,14 @@ struct DiaryView: View {
                 if viewModel.showEmotionSelectView {
                     EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $viewModel.showDiaryView)
                 }
+                
+                ToastView(toastManager: viewModel.toastManager)
             }
             .onDisappear {
                 viewModel.resetData()
             }
             
         })
-        .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
         .ignoresSafeArea(.keyboard)
     }
 }

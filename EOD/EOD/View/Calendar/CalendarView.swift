@@ -9,66 +9,70 @@ import SwiftUI
 
 struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
+    @StateObject private var toastManager = ToastManager.shared
     
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Spacer()
-                Button(action: {
-                    viewModel.showMonthSelectModalView = true
-                }, label: {
-                    HStack(spacing: 4) {
-                        Text(monthYearString(from: viewModel.date))
-                            .font(size: 26)
-                            .foregroundColor(Color.black)
-                        Image("polygon")
-                    }
-                })
-                Spacer()
-            }
-            
-            let daysInMonth = days(for: viewModel.date)
-            let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
-            
-            Spacer().frame(height: 21)
-            
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
-                // 요일 헤더
-                ForEach(daysOfWeek, id: \.self) { day in
-                    Text(day)
-                        .font(size: 16)
-                        .foregroundColor(Color.black)
+        ZStack {
+            VStack(spacing: 0) {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        viewModel.showMonthSelectModalView = true
+                    }, label: {
+                        HStack(spacing: 4) {
+                            Text(monthYearString(from: viewModel.date))
+                                .font(size: 26)
+                                .foregroundColor(Color.black)
+                            Image("polygon")
+                        }
+                    })
+                    Spacer()
                 }
-            }
-            
-            Spacer().frame(height: 12)
-            
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 8 : 12) {
                 
-                // 날짜 그리드
-                ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
-                    CalendarCellView(day: day, calendarDate: $viewModel.date, diaryInfo: viewModel.diarySummaryList[day] ?? nil, selectDay: viewModel.selectDate)
-                        .onTapGesture {
-                            if day != 0 {
-                                if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
-                                    viewModel.selectDate = date
+                let daysInMonth = days(for: viewModel.date)
+                let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+                
+                Spacer().frame(height: 21)
+                
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                    // 요일 헤더
+                    ForEach(daysOfWeek, id: \.self) { day in
+                        Text(day)
+                            .font(size: 16)
+                            .foregroundColor(Color.black)
+                    }
+                }
+                
+                Spacer().frame(height: 12)
+                
+                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 8 : 12) {
+                    
+                    // 날짜 그리드
+                    ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
+                        CalendarCellView(day: day, calendarDate: $viewModel.date, diaryInfo: viewModel.diarySummaryList[day] ?? nil, selectDay: viewModel.selectDate)
+                            .onTapGesture {
+                                if day != 0 {
+                                    if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                        viewModel.selectDate = date
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
+                
+                Spacer().frame(height: 44)
+                
+                diaryView()
+                    .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 44)
+            .padding(.bottom, 12)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background(UIColor.CommonBackground.background.color)
             
-            Spacer().frame(height: 44)
-            
-            diaryView()
-                .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
+            ToastView(toastManager: viewModel.toastManager)
         }
-        .padding(.horizontal, 20)
-        .padding(.top, 44)
-        .padding(.bottom, 12)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
-        .background(UIColor.CommonBackground.background.color)
     }
 }
 

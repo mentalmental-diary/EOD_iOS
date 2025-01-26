@@ -28,15 +28,12 @@ class CharacterViewModel: ObservableObject {
     
     @Published var selectItem: CharacterItem?
     
-    @Published var isToast: Bool = false
-    
     @Published var userGold: Int? // 현재 유저가 보유하고 있는 골드
     
     @Published var showBuyCompleteView: Bool = false
+    @Published var toastManager = ToastManager.shared
     
     var originalCharacter: CharacterItem?
-    
-    var toastMessage: String = ""
     
     private var networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
@@ -96,10 +93,7 @@ extension CharacterViewModel {
                 self.selectItem = self.selectItem == item ? nil : item
             }
         } else { // 솔드아웃된경우
-            self.toastMessage = "이미 구매한 아이템입니다."
-            withAnimation(.easeInOut(duration: 0.6)) {
-                self.isToast = true
-            }
+            self.toastManager.showToast(message: "이미 구매한 아이템입니다.")
         }
     }
     
@@ -109,17 +103,11 @@ extension CharacterViewModel {
         networkModel.setCharacterItem(id: id, completion: { [weak self] result in
             switch result {
             case .success:
-                self?.toastMessage = "대표 캐릭터로 저장되었습니다!"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "대표 캐릭터로 저장되었습니다!")
                 self?.originalCharacter = self?.selectItem
             case .failure(let error):
                 errorLog("대표 캐릭터 저장 실패 error: \(error)")
-                self?.toastMessage = "대표 캐릭터로 저장이 실패하였습니다."
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message:  "대표 캐릭터로 저장이 실패하였습니다.")
             }
         })
     }

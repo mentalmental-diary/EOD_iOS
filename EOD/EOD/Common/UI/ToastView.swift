@@ -8,38 +8,28 @@
 import SwiftUI
 
 struct ToastView: View {
-    var message: String = ""
-    var visibleIcon: Bool = false
-    @Binding var isShowing: Bool
-    
+    @ObservedObject var toastManager: ToastManager
+
     var body: some View {
         VStack {
-            if isShowing {
+            if toastManager.isShowing {
                 Group {
                     HStack(spacing: 8) {
-                        if visibleIcon {
+                        if toastManager.visibleIcon {
                             Image("icon_check")
                         }
-                        Text(message)
+                        Text(toastManager.message)
                             .font(size: 16)
                             .frame(height: 24)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 10)
-                    .background(Color(red: 65/255, green: 58/255, blue: 53/255, opacity: 0.7))
+                    .background(Color(red: 65 / 255, green: 58 / 255, blue: 53 / 255, opacity: 0.7))
                     .cornerRadius(8)
                 }
-                .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
-                .animation(.easeInOut(duration: 0.6), value: isShowing) // TODO: 공통 토스트뷰로 다 동일한 효과로 가는지 확인
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            isShowing = false
-                        }
-                    }
-                }
+                .transition(.move(edge: .top).combined(with: .opacity)) // 위에서 아래로 이동
             }
             Spacer()
         }
@@ -48,20 +38,42 @@ struct ToastView: View {
     }
 }
 
-struct ToastModifier: ViewModifier {
-    var message: String
-    var visibleIcon: Bool = false
-    @Binding var isShowing: Bool
-    func body(content: Content) -> some View {
-        ZStack {
-            content
-            ToastView(message: message, visibleIcon: visibleIcon, isShowing: $isShowing)
+struct ToastView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            // 토스트가 표시되는 상태
+            ToastPreviewWrapper(
+                toastManager: ToastManager.previewInstance(
+                    isShowing: true,
+                    message: "This is a test toast with an icon",
+                    visibleIcon: true
+                )
+            )
+            .previewDisplayName("Toast Visible with Icon")
+
+            // 토스트가 표시되지 않는 상태
+            ToastPreviewWrapper(
+                toastManager: ToastManager.previewInstance(
+                    isShowing: false,
+                    message: "This toast is hidden",
+                    visibleIcon: false
+                )
+            )
+            .previewDisplayName("Toast Hidden")
         }
     }
 }
 
-struct ToastView_Previews: PreviewProvider {
-    static var previews: some View {
-        ToastView(message: "Toast메시지 테스트", isShowing: .constant(true))
+// ToastView를 Preview에서 테스트할 수 있는 Wrapper
+struct ToastPreviewWrapper: View {
+    @StateObject var toastManager: ToastManager
+
+    var body: some View {
+        ZStack {
+            Color.gray.opacity(0.2)
+                .edgesIgnoringSafeArea(.all) // 배경을 보여주기 위한 설정
+
+            ToastView(toastManager: toastManager)
+        }
     }
 }

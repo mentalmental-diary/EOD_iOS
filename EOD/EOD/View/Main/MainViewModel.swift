@@ -14,12 +14,14 @@ class MainViewModel: ObservableObject {
     @Published var currentTab: Tab = .Home
     @Published var confirmEmail: Bool = false
     @Published var confirmTerms: Bool = false
-    @Published var isToast: Bool = false
-    var toastMessage: String = ""
+    
+    @Published var toastManager = ToastManager.shared
     
     @Published var initScreen: Bool = true // 초기 웰컴 화면
     
     @Published var showUserInfoSetView: Bool = false
+    
+    @Published var showStartAlert: Bool = false // 닉네임 설정 후 최초 진입시에만 노출
     
     var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
     var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해
@@ -50,10 +52,11 @@ class MainViewModel: ObservableObject {
 
 /// Func
 extension MainViewModel {
-    func logoutAction() {
+    func logoutAction() { // TODO: 로그아웃 로직 수정 -> API연결 필요
         UserDefaults.standard.removeObject(forKey: "isLogin")
         UserDefaults.standard.removeObject(forKey: "accessToken")
         self.isLogin = false
+        self.currentTab = .Home
     }
     
     func kakaoLoginAction() {
@@ -67,10 +70,7 @@ extension MainViewModel {
                         self.checkNicknameAndAccessLogin()
                         return
                     }
-                    self.toastMessage = "카카오 로그인 연동 실패했습니다."
-                    withAnimation(.easeInOut(duration: 0.6)) {
-                        self.isToast = true
-                    }
+                    self.toastManager.showToast(message: "카카오 로그인 연동 실패했습니다.")
                     errorLog("🔴 카카오 로그인 연동 후 서버 연동 실패: \(error.localizedDescription)")
                 })
             case .failure(let error):
@@ -92,10 +92,7 @@ extension MainViewModel {
                             self.checkNicknameAndAccessLogin()
                             return
                         }
-                        self.toastMessage = "네아로 연동 실패했습니다."
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            self.isToast = true
-                        }
+                        self.toastManager.showToast(message: "네아로 연동 실패했습니다.")
                         errorLog("🔴 네아로 연동 후 서버 연동 실패: \(error.localizedDescription)")
                     })
                 case .failure(let error):
@@ -140,10 +137,7 @@ extension MainViewModel {
                     self?.showUserInfoSetView = true
                 }
             case .failure(let error):
-                self?.toastMessage = "닉네임 여부 판단 실패"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "닉네임 여부 판단 실패")
                 errorLog("🔴 닉네임 존재 여부 판단 API 실패: \(error.localizedDescription)")
             }
         })
@@ -156,11 +150,9 @@ extension MainViewModel {
             case .success: // 닉네임 설정 성공
                 self?.isLogin = true
                 self?.showUserInfoSetView = false
+                self?.showStartAlert = true
             case .failure(let error):
-                self?.toastMessage = "닉네임 설정 실패"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "닉네임 설정 실패")
                 errorLog("🔴 닉네임 설정 API 실패: \(error.localizedDescription)")
             }
         })

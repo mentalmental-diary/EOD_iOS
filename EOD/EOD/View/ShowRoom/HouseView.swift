@@ -29,7 +29,6 @@ struct HouseView: View {
                 .edgesIgnoringSafeArea([.top, .bottom])
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(red: 251/255, green: 251/255, blue: 244/255))
-                .toast(message: viewModel.toastMessage, visibleIcon: true, isShowing: $viewModel.isToast)
                 
                 bottomButtonView(proxy: proxy)
                     .animation(.easeInOut, value: availableBuyArea)
@@ -62,6 +61,8 @@ struct HouseView: View {
                             viewModel.fetchShopThemeItemList()
                         })
                 }
+                
+                ToastView(toastManager: viewModel.toastManager)
             }
         }
         

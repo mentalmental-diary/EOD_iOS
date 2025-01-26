@@ -16,10 +16,6 @@ extension View {
             return AnyView(EmptyView())
         }
     }
-    
-    func toast(message: String, visibleIcon: Bool = false, isShowing: Binding<Bool>) -> some View {
-        self.modifier(ToastModifier(message: message, visibleIcon: visibleIcon, isShowing: isShowing))
-    }
 }
 
 /// ViewBuilder

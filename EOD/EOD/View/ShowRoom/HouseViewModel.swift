@@ -53,9 +53,7 @@ class HouseViewModel: ObservableObject {
     
     var originalThemeItemList: [ThemeItem] = [] // 최초 유저가 설정해둔 테마 아이템 리스트
     
-    @Published var isToast: Bool = false
-    
-    var toastMessage: String = ""
+    @Published var toastManager = ToastManager.shared
     
     private let networkModel: ShowRoomNetworkModel = ShowRoomNetworkModel()
     
@@ -124,10 +122,7 @@ extension HouseViewModel {
         if self.currentShowType == .item || item.hasItem != true { // 보유아이템 탭이거나 솔드아웃되지 않은 아이템인경우
             self.selectThemeItem = self.selectThemeItem == item ? nil : item
         } else { // 솔드아웃된경우
-            self.toastMessage = "이미 구매한 아이템입니다."
-            withAnimation(.easeInOut(duration: 0.6)) {
-                self.isToast = true
-            }
+            self.toastManager.showToast(message: "이미 구매한 아이템입니다.")
         }
     }
     
@@ -174,18 +169,12 @@ extension HouseViewModel {
         networkModel.setThemeItem(themeList: selectThemeItemList, completion: { [weak self] result in
             switch result {
             case .success:
-                self?.toastMessage = "현재 방 상태가 저장되었습니다!"
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "현재 방 상태가 저장되었습니다!")
                 
                 self?.originalThemeItemList = self?.selectThemeItemList ?? []
             case .failure(let error):
                 errorLog("테마 아이템 저장 API 실패 error: \(error)")
-                self?.toastMessage = "방 상태 저장에 실패하였습니다."
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    self?.isToast = true
-                }
+                self?.toastManager.showToast(message: "방 상태 저장에 실패하였습니다.")
             }
         })
     }

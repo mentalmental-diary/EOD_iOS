@@ -38,6 +38,10 @@ struct MainTabView: View {
                     if calendarViewModel.showMonthSelectModalView {
                         MonthSelectModalView(viewModel: calendarViewModel, showModalView: $calendarViewModel.showMonthSelectModalView)
                     }
+                    
+                    if viewModel.showStartAlert {
+                        CustomStartAlert(showAlert: $viewModel.showStartAlert)
+                    }
                 }
                 
                 NavigationLink("", isActive: $calendarViewModel.showDiaryView) {

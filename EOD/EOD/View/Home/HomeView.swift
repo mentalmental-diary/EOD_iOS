@@ -15,14 +15,29 @@ struct HomeView: View {
     @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
     
     var body: some View {
-        VStack {
-            topView()
-            Spacer()
-            houseView()
-            Spacer()
+        ZStack(alignment: .bottom) {
+            VStack {
+                topView()
+                Spacer()
+                houseView()
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(UIColor.CommonBackground.background.color)
+            
+            ZStack {
+                Image("comment_window")
+                    .resizable()
+                    .frame(height: 102)
+                    .frame(maxWidth: .infinity)
+                
+                Text(viewModel.userComment ?? "")
+                    .font(size: 16)
+                    .foregroundColor(.black)
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(UIColor.CommonBackground.background.color)
     }
 }
 

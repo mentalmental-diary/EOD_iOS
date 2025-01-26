@@ -41,6 +41,10 @@
 		CE1228322D366A1300C61E66 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1228302D366A1000C61E66 /* UIFont+Extension.swift */; };
 		CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
+		CE2A46CC2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */; };
+		CE2A46CD2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */; };
+		CE2A46CF2D44AC9000A516C6 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */; };
+		CE2A46D02D44AC9000A516C6 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */; };
 		CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4318132BEBBF5500880898 /* omyu pretty.ttf */; };
 		CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
 		CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318192BECC82500880898 /* MonthSelectModalView.swift */; };
@@ -370,6 +374,8 @@
 		CE1228302D366A1000C61E66 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		CE13E45D2ABE952D00C64EA1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStartAlert.swift; sourceTree = "<group>"; };
+		CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		CE4318132BEBBF5500880898 /* omyu pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu pretty.ttf"; sourceTree = "<group>"; };
 		CE4318152BEBBFAD00880898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CE4318162BEBC2CC00880898 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
@@ -610,6 +616,7 @@
 				CE77A9B12ACAD42D00D9C58B /* IntroView.swift */,
 				CEA422F72BE5022F00725E6B /* MainTabView.swift */,
 				CE95A6642C6302D000BF33F7 /* SplashView.swift */,
+				CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -712,6 +719,7 @@
 		CE77A9B92ACD262E00D9C58B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */,
 				CEA422F22BE4FCA300725E6B /* ColorSet */,
 				CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */,
 				CE77A9BE2ACD31F700D9C58B /* PageControlView.swift */,
@@ -1380,6 +1388,7 @@
 				CEAAF8042CD78C6B00EFBDA9 /* ListNetworkModel.swift in Sources */,
 				CE77A9C32AD29F3600D9C58B /* ToastView.swift in Sources */,
 				CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */,
+				CE2A46CF2D44AC9000A516C6 /* ToastManager.swift in Sources */,
 				CEB7F09B2AAC6289001C99EA /* BootLoader.swift in Sources */,
 				CEB7F08F2AAC61D5001C99EA /* PayloadMessageLogFormatter.swift in Sources */,
 				CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */,
@@ -1439,6 +1448,7 @@
 				CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */,
 				CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */,
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
+				CE2A46CC2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
 				CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */,
 				CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */,
@@ -1528,6 +1538,7 @@
 				CEE63F532CFC4F5D00275C7F /* ListNetworkModel.swift in Sources */,
 				CEE63F542CFC4F5D00275C7F /* ToastView.swift in Sources */,
 				CEE63F552CFC4F5D00275C7F /* SwifterSwift+Double.swift in Sources */,
+				CE2A46D02D44AC9000A516C6 /* ToastManager.swift in Sources */,
 				CEE63F562CFC4F5D00275C7F /* BootLoader.swift in Sources */,
 				CEE63F572CFC4F5D00275C7F /* PayloadMessageLogFormatter.swift in Sources */,
 				CEE63F582CFC4F5D00275C7F /* RegexParser.swift in Sources */,
@@ -1587,6 +1598,7 @@
 				CEE63F8D2CFC4F5D00275C7F /* LoadingView.swift in Sources */,
 				CEE63F8E2CFC4F5D00275C7F /* CharacterViewModel.swift in Sources */,
 				CEE63F8F2CFC4F5D00275C7F /* FileLogRecorder.swift in Sources */,
+				CE2A46CD2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */,
 				CEE63F902CFC4F5D00275C7F /* LogReceptacle.swift in Sources */,
 				CEE63F912CFC4F5D00275C7F /* CalendarCellView.swift in Sources */,
 				CEE63F922CFC4F5D00275C7F /* Text+Extension.swift in Sources */,
