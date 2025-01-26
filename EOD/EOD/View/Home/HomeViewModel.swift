@@ -14,11 +14,14 @@ class HomeViewModel: ObservableObject {
     
     @Published var userThemeList: [ThemeItem]?
     
+    @Published var userComment: String?
+    
     private var networkModel: HomeNetworkModel = HomeNetworkModel()
     
     init() {
         self.fetchUserGold()
         self.fetchUserInfo()
+        self.fetchComment()
     }
 }
 
@@ -47,6 +50,18 @@ extension HomeViewModel {
                 self?.userCharacterInfo = info.characterInfo
             case .failure(let error):
                 errorLog("유저가 설정한 캐릭터 및 테마 조회 API 실패. error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func fetchComment() {
+        networkModel.fetchComment { [weak self] result in
+            switch result {
+            case .success(let comment):
+                debugLog("유저 한줄 메시지 조회 성공: comment: \(comment)")
+                self?.userComment = comment
+            case .failure(let error):
+                errorLog("유저 한줄 메시지 조회 실패. error: \(error.localizedDescription)")
             }
         }
     }
