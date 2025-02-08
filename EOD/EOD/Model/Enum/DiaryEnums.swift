@@ -56,3 +56,41 @@ public enum EmotionType: String, CaseIterable, CustomStringConvertible, Decodabl
         }
     }
 }
+
+public enum diaryBackgroundType: String, CaseIterable {
+    case white
+    case dot
+    case gridBlue
+    case gridBrown
+    case gridRed
+    case clover
+    case checkBrown
+    case checkPurple
+    case ribbonPink
+    case ribbonBlue
+    case pink
+    case yellow
+    case green
+    case blue
+    case purple
+    
+    public var imageName: String {
+        switch self {
+        case .white: return "diary_white"
+        case .dot: return "diary_dot"
+        case .gridBlue: return "diary_grid_blue"
+        case .gridBrown: return "diary_grid_brown"
+        case .gridRed: return "diary_grid_red"
+        case .clover: return "diary_clover"
+        case .checkBrown: return "diary_check_brown"
+        case .checkPurple: return "diary_check_purple"
+        case .ribbonPink: return "diary_ribbon_pink"
+        case .ribbonBlue: return "diary_ribbon_blue"
+        case .pink: return "diary_pink"
+        case .yellow: return "diary_yellow"
+        case .green: return "diary_green"
+        case .blue: return "diary_blue"
+        case .purple: return "diary_purple"
+        }
+    }
+}
