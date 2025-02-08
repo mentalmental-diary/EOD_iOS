@@ -62,10 +62,18 @@ struct DiaryView: View {
                     EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $viewModel.showDiaryView)
                 }
                 
+                if viewModel.showDiaryBackgroundSelectView {
+                    DiaryBackgroundSelectView(viewModel: viewModel, showModalView: $viewModel.showDiaryBackgroundSelectView, height: $viewModel.keyboardHeight)
+                }
+                
                 ToastView(toastManager: viewModel.toastManager)
+            }
+            .onAppear {
+                addKeyboardObservers()
             }
             .onDisappear {
                 viewModel.resetData()
+                removeKeyboardObservers()
             }
             
         })
@@ -110,7 +118,7 @@ extension DiaryView {
                 .padding(.leading, 3)
                 .allowsHitTesting(false)
                 
-                CustomTextView(text: $viewModel.diary.content)
+                CustomTextView(text: $viewModel.diary.content, showBackgroundView: $viewModel.showDiaryBackgroundSelectView)
                     .frame(minHeight: 16)
             }
             
@@ -133,12 +141,27 @@ extension DiaryView {
         
         return dateString
     }
+    
+    // ✅ 키보드 높이 감지
+    func addKeyboardObservers() {
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
+            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                viewModel.keyboardHeight = keyboardFrame.height
+            }
+        }
+    }
+    
+    // ✅ 옵저버 해제
+    func removeKeyboardObservers() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
 }
 
 private struct CustomTextView: UIViewRepresentable {
     typealias UIViewType = UITextView
     
     @Binding var text: String?
+    @Binding var showBackgroundView: Bool
     var maxLength: Int = 2000
     var lineHeight: CGFloat = 19  // 추가된 라인 높이 설정
     
@@ -167,10 +190,15 @@ private struct CustomTextView: UIViewRepresentable {
         toolbar.frame = frame
         toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
         
+        let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: context.coordinator, action: #selector(Coordinator.cancelAction(_:))) // 좌측 버튼 추가
+
         // Adding buttons to the toolbar
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
-        toolbar.items = [UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                         doneButton]
+        toolbar.items = [
+            leftButton,
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            doneButton
+        ]
         
         textView.inputAccessoryView = toolbar
         
@@ -212,6 +240,12 @@ private struct CustomTextView: UIViewRepresentable {
         
         @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        
+        @objc func cancelAction(_ sender: UIBarButtonItem) {
+            // 원하는 기능 추가 (예: 텍스트 리셋)
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            parent.showBackgroundView = true
         }
     }
 }
