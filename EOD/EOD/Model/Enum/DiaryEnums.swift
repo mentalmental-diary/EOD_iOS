@@ -66,7 +66,7 @@ public enum diaryBackgroundType: String, CaseIterable {
     case clover
     case checkBrown
     case checkPurple
-    case ribbonRed
+    case ribbonPink
     case ribbonBlue
     case pink
     case yellow
@@ -84,7 +84,7 @@ public enum diaryBackgroundType: String, CaseIterable {
         case .clover: return "diary_clover"
         case .checkBrown: return "diary_check_brown"
         case .checkPurple: return "diary_check_purple"
-        case .ribbonRed: return "diary_ribbon_red"
+        case .ribbonPink: return "diary_ribbon_pink"
         case .ribbonBlue: return "diary_ribbon_blue"
         case .pink: return "diary_pink"
         case .yellow: return "diary_yellow"

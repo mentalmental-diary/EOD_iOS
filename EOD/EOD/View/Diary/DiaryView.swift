@@ -83,51 +83,57 @@ struct DiaryView: View {
 
 extension DiaryView {
     @ViewBuilder func writeDiaryView() -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            /// 감정 노출 영역
-            HStack { // TODO: 아직 미리보기엔 반영되지 않기 때문에 일단 임시로 하드코딩 진행
-                Image(viewModel.diary.emotion?.imageName ?? "icon_basic")
+        ZStack {
+            VStack(alignment: .leading, spacing: 8) {
+                /// 감정 노출 영역
+                HStack { // TODO: 아직 미리보기엔 반영되지 않기 때문에 일단 임시로 하드코딩 진행
+                    Image(viewModel.diary.emotion?.imageName ?? "icon_basic")
+                    
+                    Text(viewModel.diary.emotion?.description ?? "감정을 선택해주세요.")
+                        .font(size: 20)
+                        .foregroundColor(Color.black)
+                        .background(
+                            GeometryReader { geometry in
+                                (viewModel.diary.emotion?.description == nil ? UIColor.Gray.gray100.color : UIColor.Yellow.yellow200.color)
+                                    .frame(width: geometry.size.width, height: 8)
+                                    .offset(x: 0, y: geometry.size.height - 8)
+                            }
+                        )
+                    
+                    Spacer()
+                }
+                .onTapGesture {
+                    viewModel.showEmotionSelectView = true
+                }
                 
-                Text(viewModel.diary.emotion?.description ?? "감정을 선택해주세요.")
-                    .font(size: 20)
-                    .foregroundColor(Color.black)
-                    .background(
-                        GeometryReader { geometry in
-                            (viewModel.diary.emotion?.description == nil ? UIColor.Gray.gray100.color : UIColor.Yellow.yellow200.color)
-                                .frame(width: geometry.size.width, height: 8)
-                                .offset(x: 0, y: geometry.size.height - 8)
+                ZStack(alignment: .topLeading) {
+                    HStack(spacing: 0) {
+                        if viewModel.diary.content?.count == 0 {
+                            Text("일기를 작성해주세요. (최대 2,000자)")
+                                .font(size: 16)
+                                .foregroundColor(UIColor.Gray.gray500.color)
+                            
                         }
-                    )
+                        Spacer()
+                    }
+                    .padding(.leading, 3)
+                    .allowsHitTesting(false)
+                    
+                    CustomTextView(text: $viewModel.diary.content, showBackgroundView: $viewModel.showDiaryBackgroundSelectView)
+                        .frame(minHeight: 16)
+                }
                 
                 Spacer()
             }
-            .onTapGesture {
-                viewModel.showEmotionSelectView = true
-            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .cornerRadius(17)
             
-            ZStack(alignment: .topLeading) {
-                HStack(spacing: 0) {
-                    if viewModel.diary.content?.count == 0 {
-                        Text("일기를 작성해주세요. (최대 2,000자)")
-                            .font(size: 16)
-                            .foregroundColor(UIColor.Gray.gray500.color)
-                            
-                    }
-                    Spacer()
-                }
-                .padding(.leading, 3)
-                .allowsHitTesting(false)
-                
-                CustomTextView(text: $viewModel.diary.content, showBackgroundView: $viewModel.showDiaryBackgroundSelectView)
-                    .frame(minHeight: 16)
-            }
-            
-            Spacer()
+            Image(viewModel.selectDiaryBackground.imageName)
+                .resizable()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .zIndex(-1)
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 16)
-        .background(Color.white)
-        .cornerRadius(17)
     }
 }
 
@@ -190,7 +196,7 @@ private struct CustomTextView: UIViewRepresentable {
         toolbar.frame = frame
         toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
         
-        let leftButton = UIBarButtonItem(title: "Cancel", style: .plain, target: context.coordinator, action: #selector(Coordinator.cancelAction(_:))) // 좌측 버튼 추가
+        let leftButton = UIBarButtonItem(title: "속지선택", style: .plain, target: context.coordinator, action: #selector(Coordinator.selectBackgroundAction(_:))) // 좌측 버튼 추가
 
         // Adding buttons to the toolbar
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
@@ -233,6 +239,12 @@ private struct CustomTextView: UIViewRepresentable {
             parent.text = textView.text
         }
         
+        func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+            parent.showBackgroundView = false
+            
+            return true
+        }
+        
         /// TextView 정보 업데이트
         func updateTextView(_ textView: UITextView) {
             
@@ -242,7 +254,7 @@ private struct CustomTextView: UIViewRepresentable {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         
-        @objc func cancelAction(_ sender: UIBarButtonItem) {
+        @objc func selectBackgroundAction(_ sender: UIBarButtonItem) {
             // 원하는 기능 추가 (예: 텍스트 리셋)
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             parent.showBackgroundView = true
