@@ -302,7 +302,7 @@ extension HouseView {
                         .lineSpacing(2)
                         .padding(.bottom, 12)
                     
-                    if theme.isClicked == false {
+                    if viewModel.currentShowType == .item && theme.isClicked == false {
                         Image("new_mark")
                             .offset(x: 4, y: -2)
                     }

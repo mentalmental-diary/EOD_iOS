@@ -20,8 +20,15 @@ class ShowRoomNetworkModel: ListNetworkModel {
         APIRequest.requestDecodable(api: api, completion: completion)
     }
     
-    /// 보유아이템/상점 테마 목록은 공통으로 사용
+    /// 보유아이템 테마 목록
     func fetchThemeList(completion: @escaping ((Result<[Theme], Error>) -> Void)) {
+        let api = "/api-external/user/rewards/room/theme"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
+    
+    /// 상점 테마 목록
+    func fetchShopThemeList(completion: @escaping ((Result<[Theme], Error>) -> Void)) {
         let api = "/api-external/shop/room/theme"
         
         APIRequest.requestDecodable(api: api, completion: completion)
