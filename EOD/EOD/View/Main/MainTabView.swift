@@ -54,6 +54,11 @@ struct MainTabView: View {
             }
             .ignoresSafeArea(.keyboard)
             .background(UIColor.CommonBackground.background.color)
+            .onAppearWithCount { count in
+                if count == 1 {
+                    viewModel.registerNotification()
+                }
+            }
         }).navigationBarHidden(true)
         
     }
