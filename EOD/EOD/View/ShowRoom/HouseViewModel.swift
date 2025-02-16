@@ -17,8 +17,10 @@ class HouseViewModel: ObservableObject {
             
             if currentShowType == .item {
                 self.selectThemeItemList = self.originalThemeItemList
+                self.fetchThemeList()
             } else {
                 self.selectThemeItemList = []
+                self.fetchShopThemeList()
             }
         }
     }
@@ -68,14 +70,29 @@ class HouseViewModel: ObservableObject {
 
 // func
 extension HouseViewModel {
-    // 보유아이템/상점 둘다 공통으로 사용하는 함수 -> 테마 목록 리스트는 상점 리스트 한번만 호출 (최초 한번)
+    // 보유아이템 테마 아이템 가져오기
     private func fetchThemeList() {
         networkModel.fetchThemeList { [weak self] result in
-            debugLog("테마 리스트 호출 API 완료 result: \(result)")
+            debugLog("보유아이템 테마 리스트 호출 API 완료 result: \(result)")
             
             switch result {
             case .success(let list):
-                debugLog("테마 리스트 호출 API 성공. 리스트 목록 : \(list)")
+                debugLog("보유아이템 테마 리스트 호출 API 성공. 리스트 목록 : \(list)")
+                self?.themeList = list
+            case .failure(let error):
+                errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
+            }
+        }
+    }
+    
+    // 상점 테마 아이템 가져오기
+    private func fetchShopThemeList() {
+        networkModel.fetchShopThemeList { [weak self] result in
+            debugLog("상점 테마 리스트 호출 API 완료 result: \(result)")
+            
+            switch result {
+            case .success(let list):
+                debugLog("상점 테마 리스트 호출 API 성공. 리스트 목록 : \(list)")
                 self?.themeList = list
             case .failure(let error):
                 errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
