@@ -32,6 +32,7 @@ class CalendarNetworkModel {
         parameters["writeDate"] = uploadDiary.writeDate?.apiParameter
         parameters["seq"] = 0
         parameters["emotion"] = uploadDiary.emotion?.rawValue
+        parameters["diaryBackground"] = uploadDiary.diary_background?.rawValue
         parameters["content"] = uploadDiary.content
         
         debugLog("다이어리 추가 API 파라미터: \(parameters)")
@@ -47,6 +48,7 @@ class CalendarNetworkModel {
         
         parameters["writeDate"] = modifyDiary.writeDate?.apiParameter
         parameters["emotion"] = modifyDiary.emotion?.rawValue
+        parameters["diaryBackground"] = modifyDiary.diary_background?.rawValue
         parameters["content"] = modifyDiary.content
         
         debugLog("다이어리 수정 API 파라미터: \(parameters)")

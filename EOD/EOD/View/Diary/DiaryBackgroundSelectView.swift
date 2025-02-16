@@ -95,20 +95,20 @@ extension DiaryBackgroundSelectView {
                                 .resizable()
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                             
-                            if viewModel.selectDiaryBackground == background {
+                            if viewModel.diary.diary_background == background {
                                 Image("btnConfirmOn")
                                     .padding(.trailing, 4)
                                     .padding(.top, 4)
                             }
                         }
                         .onTapGesture {
-                            viewModel.selectDiaryBackground = background
+                            viewModel.diary.diary_background = background
                         }
                         .frame(width: 105, height: 80)
                         .cornerRadius(14.0)
                         .overlay(
                             RoundedRectangle(cornerRadius: 14)
-                                .stroke(viewModel.selectDiaryBackground == background ? UIColor.Yellow.yellow500.color : Color.clear, lineWidth: 1)
+                                .stroke(viewModel.diary.diary_background == background ? UIColor.Yellow.yellow500.color : Color.clear, lineWidth: 1)
                         )
                     }
                 }

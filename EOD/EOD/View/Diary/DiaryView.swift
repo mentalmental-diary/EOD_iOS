@@ -128,7 +128,7 @@ extension DiaryView {
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
             
-            Image(viewModel.selectDiaryBackground.imageName)
+            Image(viewModel.diary.diary_background?.imageName ?? diaryBackgroundType.white.imageName)
                 .resizable()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .zIndex(-1)
