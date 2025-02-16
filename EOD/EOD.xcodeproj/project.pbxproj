@@ -102,6 +102,14 @@
 		CEAAF80E2CD865A200EFBDA9 /* HousePreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF80D2CD865A200EFBDA9 /* HousePreviewView.swift */; };
 		CEB056AF2D57062500DB007F /* DiaryBackgroundSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056AE2D57062500DB007F /* DiaryBackgroundSelectView.swift */; };
 		CEB056B02D57062500DB007F /* DiaryBackgroundSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056AE2D57062500DB007F /* DiaryBackgroundSelectView.swift */; };
+		CEB056B42D61D58D00DB007F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056B32D61D58A00DB007F /* NotificationManager.swift */; };
+		CEB056B52D61D58D00DB007F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056B32D61D58A00DB007F /* NotificationManager.swift */; };
+		CEB056B72D61D62000DB007F /* NotificationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056B62D61D61D00DB007F /* NotificationNetworkModel.swift */; };
+		CEB056B82D61D62000DB007F /* NotificationNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056B62D61D61D00DB007F /* NotificationNetworkModel.swift */; };
+		CEB056BA2D61E19800DB007F /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056B92D61E19100DB007F /* Dictionary+Extension.swift */; };
+		CEB056BB2D61E19800DB007F /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056B92D61E19100DB007F /* Dictionary+Extension.swift */; };
+		CEB056BD2D61E56F00DB007F /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056BC2D61E56900DB007F /* NotificationType.swift */; };
+		CEB056BE2D61E56F00DB007F /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB056BC2D61E56900DB007F /* NotificationType.swift */; };
 		CEB7EFF92AAC5025001C99EA /* EODApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7EFF82AAC5025001C99EA /* EODApp.swift */; };
 		CEB7EFFD2AAC5026001C99EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */; };
 		CEB7F0002AAC5026001C99EA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB7EFFF2AAC5026001C99EA /* Preview Assets.xcassets */; };
@@ -433,6 +441,10 @@
 		CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalObject.swift; sourceTree = "<group>"; };
 		CEAAF80D2CD865A200EFBDA9 /* HousePreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HousePreviewView.swift; sourceTree = "<group>"; };
 		CEB056AE2D57062500DB007F /* DiaryBackgroundSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryBackgroundSelectView.swift; sourceTree = "<group>"; };
+		CEB056B32D61D58A00DB007F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		CEB056B62D61D61D00DB007F /* NotificationNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNetworkModel.swift; sourceTree = "<group>"; };
+		CEB056B92D61E19100DB007F /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		CEB056BC2D61E56900DB007F /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		CEB7EFF52AAC5025001C99EA /* EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EOD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB7EFF82AAC5025001C99EA /* EODApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODApp.swift; sourceTree = "<group>"; };
 		CEB7EFFC2AAC5026001C99EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -801,6 +813,16 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		CEB056B22D61D58300DB007F /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CEB056BC2D61E56900DB007F /* NotificationType.swift */,
+				CEB056B62D61D61D00DB007F /* NotificationNetworkModel.swift */,
+				CEB056B32D61D58A00DB007F /* NotificationManager.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		CEB7EFEC2AAC5025001C99EA = {
 			isa = PBXGroup;
 			children = (
@@ -886,6 +908,7 @@
 		CEB7F02E2AAC5585001C99EA /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CEB056B22D61D58300DB007F /* Notification */,
 				CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */,
 				CEC6D7DC2C7C511300FFEC9F /* SwifterSwift */,
 				CEB7F0A02AAC6418001C99EA /* Extension */,
@@ -979,6 +1002,7 @@
 		CEB7F0A02AAC6418001C99EA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				CEB056B92D61E19100DB007F /* Dictionary+Extension.swift */,
 				CE1228302D366A1000C61E66 /* UIFont+Extension.swift */,
 				CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */,
 				CEE906012CAEB35B00C69077 /* Int+Extension.swift */,
@@ -1373,8 +1397,10 @@
 				CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */,
 				CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */,
 				CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */,
+				CEB056BE2D61E56F00DB007F /* NotificationType.swift in Sources */,
 				CEB7F06B2AAC61D4001C99EA /* PayloadValueLogFormatter.swift in Sources */,
 				CE8F1E7E2CE829EA00173B1F /* UserInfoModel.swift in Sources */,
+				CEB056B42D61D58D00DB007F /* NotificationManager.swift in Sources */,
 				CEB7F0832AAC61D5001C99EA /* CallingThreadLogFormatter.swift in Sources */,
 				CEB7F0732AAC61D4001C99EA /* LogRecorder.swift in Sources */,
 				CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */,
@@ -1421,12 +1447,14 @@
 				CEB7F0692AAC61D4001C99EA /* FieldBasedLogFormatter.swift in Sources */,
 				CE8AD1982C45F1A800B3D9F9 /* Alert.swift in Sources */,
 				CEB7F0702AAC61D4001C99EA /* Log.swift in Sources */,
+				CEB056BB2D61E19800DB007F /* Dictionary+Extension.swift in Sources */,
 				CEB7F06D2AAC61D4001C99EA /* TimestampLogFormatter.swift in Sources */,
 				CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */,
 				CEB7F0922AAC61D5001C99EA /* LogConfiguration.swift in Sources */,
 				CEB7F0912AAC61D5001C99EA /* RotatingLogFileConfiguration.swift in Sources */,
 				CEA422F82BE5022F00725E6B /* MainTabView.swift in Sources */,
 				CEB7F0762AAC61D5001C99EA /* ParsableLogFormatter.swift in Sources */,
+				CEB056B82D61D62000DB007F /* NotificationNetworkModel.swift in Sources */,
 				CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */,
 				CEAAF8062CD7909D00EFBDA9 /* RequestRetryHandler.swift in Sources */,
 				CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */,
@@ -1524,8 +1552,10 @@
 				CEE63F422CFC4F5D00275C7F /* UIApplication+Extension.swift in Sources */,
 				CEE63F432CFC4F5D00275C7F /* Result+Extension.swift in Sources */,
 				CEE63F442CFC4F5D00275C7F /* CharacterView.swift in Sources */,
+				CEB056BD2D61E56F00DB007F /* NotificationType.swift in Sources */,
 				CEE63F452CFC4F5D00275C7F /* PayloadValueLogFormatter.swift in Sources */,
 				CEE63F462CFC4F5D00275C7F /* UserInfoModel.swift in Sources */,
+				CEB056B52D61D58D00DB007F /* NotificationManager.swift in Sources */,
 				CEE63F472CFC4F5D00275C7F /* CallingThreadLogFormatter.swift in Sources */,
 				CEE63F482CFC4F5D00275C7F /* LogRecorder.swift in Sources */,
 				CEE63F492CFC4F5D00275C7F /* SplashView.swift in Sources */,
@@ -1572,12 +1602,14 @@
 				CEE63F6F2CFC4F5D00275C7F /* FieldBasedLogFormatter.swift in Sources */,
 				CEE63F702CFC4F5D00275C7F /* Alert.swift in Sources */,
 				CEE63F712CFC4F5D00275C7F /* Log.swift in Sources */,
+				CEB056BA2D61E19800DB007F /* Dictionary+Extension.swift in Sources */,
 				CEE63F722CFC4F5D00275C7F /* TimestampLogFormatter.swift in Sources */,
 				CEE63F732CFC4F5D00275C7F /* GameDataViewModel.swift in Sources */,
 				CEE63F742CFC4F5D00275C7F /* LogConfiguration.swift in Sources */,
 				CEE63F752CFC4F5D00275C7F /* RotatingLogFileConfiguration.swift in Sources */,
 				CEE63F762CFC4F5D00275C7F /* MainTabView.swift in Sources */,
 				CEE63F772CFC4F5D00275C7F /* ParsableLogFormatter.swift in Sources */,
+				CEB056B72D61D62000DB007F /* NotificationNetworkModel.swift in Sources */,
 				CEE63F782CFC4F5D00275C7F /* Int+Extension.swift in Sources */,
 				CEE63F792CFC4F5D00275C7F /* RequestRetryHandler.swift in Sources */,
 				CEE63F7A2CFC4F5D00275C7F /* MainViewModel.swift in Sources */,
