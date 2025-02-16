@@ -124,6 +124,16 @@ extension MainViewModel {
     }
 }
 
+// MARK: - Notification
+extension MainViewModel {
+    func registerNotification() {
+        NotificationManager.shared.registerNotificationIfNeeded { isAccept in
+            guard isAccept else { return }
+            debugLog("알림 수신 동의?")
+        }
+    }
+}
+
 // MARK: - Nickname (User Info)
 extension MainViewModel {
     /// 현재 유저가 닉네임이 설정되있는지 확인 후 닉네임 화면 진입 또는 메인화면 진입

@@ -68,6 +68,15 @@ extension View {
             action()
         }
     }
+    
+    // MARK: View Cycle
+    func onAppearWithCount(_ action: @escaping ((Int) -> Void)) -> some View {
+        modifier(AppearCount(action: action))
+    }
+    
+    func onFirstAppear(_ action: @escaping (() -> Void)) -> some View {
+        modifier(FirstAppear(action: action))
+    }
 }
 
 struct EmptyViewModifier: ViewModifier {
@@ -99,5 +108,33 @@ public struct GetHeightModifier: ViewModifier {
                 return Color.clear
             }
         )
+    }
+}
+
+private struct AppearCount: ViewModifier {
+    let action: (Int) -> Void
+    
+    @State private var appearCount: Int = 0
+    
+    func body(content: Content) -> some View {
+        content.onAppear {
+            appearCount += 1
+            action(appearCount)
+        }
+    }
+}
+
+private struct FirstAppear: ViewModifier {
+    let action: () -> Void
+    
+    @State private var hasAppeared = false
+    
+    func body(content: Content) -> some View {
+        content.onAppear {
+            guard !hasAppeared else { return }
+            
+            hasAppeared = true
+            action()
+        }
     }
 }
