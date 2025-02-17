@@ -9,8 +9,7 @@ import SwiftUI
 import Combine
 
 class GameDataViewModel: ObservableObject {
-    // 게임별 데이터를 저장
-    @Published private(set) var games: [GameType: GameData] = [:]
+    @Published private(set) var games: [GameData] = []
     
     // 현재 진입한 게임
     @Published var currentGame: GameType? {
@@ -31,9 +30,7 @@ class GameDataViewModel: ObservableObject {
     
     // 초기화 시 모든 게임 데이터 설정
     private func setupGames() {
-        GameType.allCases.forEach { game in
-            games[game] = GameData(game: game)
-        }
+        games = GameType.allCases.map { GameData(game: $0) }
     }
     
     private func setupNotificationObserver() {
@@ -46,20 +43,22 @@ class GameDataViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    
+    
     func updateScore(for game: GameType, score: Int) {
-        games[game]?.score = score
+        if let index = games.firstIndex(where: { $0.game == game }) {
+            var newGameData = games[index]
+            newGameData.updateScore(score) // ✅ UserDefaults에 저장 포함
+            games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
+        }
     }
-
+    
     func updateCoinCount(for game: GameType, coinCount: Int) {
-        games[game]?.coinCount = coinCount
-    }
-
-    func getScore(for game: GameType) -> Int {
-        return games[game]?.score ?? 0
-    }
-
-    func getCoinCount(for game: GameType) -> Int {
-        return games[game]?.coinCount ?? 0
+        if let index = games.firstIndex(where: { $0.game == game }) {
+            var newGameData = games[index]
+            newGameData.updateCoinCount(coinCount) // ✅ UserDefaults에 저장 포함
+            games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
+        }
     }
     
     private func processUnityMessage(_ message: String) {
@@ -78,6 +77,8 @@ class GameDataViewModel: ObservableObject {
                 updateCoinCount(for: currentGame, coinCount: coinCount)
                 debugLog("\(currentGame.rawValue)의 새로운 코인 수: \(coinCount)")
             }
+        } else if message.hasPrefix("EndGame") {
+            GameManager.shared.finishUnity()
         } else {
             debugLog("메시지가 현재 게임과 일치하지 않습니다: \(message)")
         }
@@ -118,20 +119,11 @@ enum GameType: String, CaseIterable {
     }
 }
 
-class GameData: ObservableObject {
-    private let game: GameType
-    
-    @Published var score: Int {
-        didSet {
-            saveScore()
-        }
-    }
-    
-    @Published var coinCount: Int {
-        didSet {
-            saveCoinCount()
-        }
-    }
+struct GameData: Identifiable {
+    let id = UUID()
+    let game: GameType
+    var score: Int
+    var coinCount: Int
     
     init(game: GameType) {
         self.game = game
@@ -139,10 +131,24 @@ class GameData: ObservableObject {
         self.coinCount = UserDefaults.standard.integer(forKey: game.coinKey)
     }
     
+    // ✅ 점수 저장
+    mutating func updateScore(_ newScore: Int) {
+        self.score = newScore
+        saveScore()
+    }
+    
+    // ✅ 코인 저장
+    mutating func updateCoinCount(_ newCoinCount: Int) {
+        self.coinCount = newCoinCount
+        saveCoinCount()
+    }
+    
+    // ✅ UserDefaults에 점수 저장
     private func saveScore() {
         UserDefaults.standard.set(score, forKey: game.scoreKey)
     }
     
+    // ✅ UserDefaults에 코인 저장
     private func saveCoinCount() {
         UserDefaults.standard.set(coinCount, forKey: game.coinKey)
     }

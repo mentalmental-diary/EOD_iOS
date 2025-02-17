@@ -12,41 +12,22 @@ struct GameView: View {
     
     var body: some View {
         VStack {
-            Button("이불 덮어주기? 게임 시작") {
+            ForEach(gameDataViewModel.games) { gameData in
+                VStack {
+                    Button("\(gameData.game.rawValue) 게임 시작") {
 #if !PREVIEW
-                GameManager.shared.launchUnity()
+                        GameManager.shared.launchUnity()
+                        gameDataViewModel.sendGameStartMessage(for: gameData.game)
 #endif
-                gameDataViewModel.sendGameStartMessage(for: .catchYolk)
+                    }
+                    .padding()
+                    
+                    // ✅ @Published 값을 직접 바인딩하여 변경 즉시 UI 업데이트
+                    Text("\(gameData.game.rawValue) 점수: \(gameData.score), 코인: \(gameData.coinCount)")
+                        .font(.system(size: 16))
+                        .foregroundColor(.black)
+                }
             }
-            .padding()
-            
-            Text("1번 게임 점수: \(gameDataViewModel.getScore(for: .catchYolk)), 획득 코인 : \(gameDataViewModel.getCoinCount(for: .catchYolk))")
-                .font(size: 16)
-                .foregroundColor(.black)
-            
-            Button("노른자 날아댕김 게임 시작") {
-#if !PREVIEW
-                GameManager.shared.launchUnity()
-#endif
-                gameDataViewModel.sendGameStartMessage(for: .flyYolk)
-            }
-            .padding()
-            
-            Text("2번 게임 점수: \(gameDataViewModel.getScore(for: .flyYolk)), 획득 코인 : \(gameDataViewModel.getCoinCount(for: .flyYolk))")
-                .font(size: 16)
-                .foregroundColor(.black)
-            
-            Button("피하기 게임 시작") {
-#if !PREVIEW
-                GameManager.shared.launchUnity()
-#endif
-                gameDataViewModel.sendGameStartMessage(for: .runYolk)
-            }
-            .padding()
-            
-            Text("3번 게임 점수: \(gameDataViewModel.getScore(for: .runYolk)), 획득 코인 : \(gameDataViewModel.getCoinCount(for: .runYolk))")
-                .font(size: 16)
-                .foregroundColor(.black)
         }
     }
 }
@@ -54,3 +35,4 @@ struct GameView: View {
 #Preview {
     GameView()
 }
+

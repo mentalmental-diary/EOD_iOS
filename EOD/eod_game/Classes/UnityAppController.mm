@@ -108,7 +108,7 @@ NSInteger _forceInterfaceOrientationMask = 0;
     {
         // due to clang issues with generating warning for overriding deprecated methods
         // we will simply assert if deprecated methods are present
-        // NB: methods table is initied at load (before this call), so it is ok to check for override
+        // NB: methods table is initied at load (before this call), so it is ok to checkfor override
         NSAssert(![self respondsToSelector: @selector(createUnityViewImpl)],
             @"createUnityViewImpl is deprecated and will not be called. Override createUnityView"
         );
@@ -118,23 +118,22 @@ NSInteger _forceInterfaceOrientationMask = 0;
         NSAssert(![self respondsToSelector: @selector(createViewHierarchy)],
             @"createViewHierarchy is deprecated and will not be implemented. Use createUI"
         );
-        
+
         // NotificationCenter 구독 설정
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleMessageFromiOS:)
-                                                     name:@"SendMessageToUnity"
-                                                   object:nil];
-    }
-    return self;
+                                                selector:@selector(handleMessageFromiOS:)
+                                                name:@"SendMessageToUnity"
+                                                object:nil];
+        }
+        return self;
 }
-
 // iOS에서 보낸 메시지 처리
 - (void)handleMessageFromiOS:(NSNotification *)notification {
-    NSLog(@"iOS에서 Unity로 보낸 메시지: 오긴옴?");
-    NSDictionary *userInfo = notification.userInfo;
-    NSString *message = userInfo[@"message"];
-    NSString *gameObject = userInfo[@"gameObject"];
-    NSString *methodName = userInfo[@"methodName"];
+  NSLog(@"iOS에서 Unity로 보낸 메시지: 오긴옴?");
+  NSDictionary *userInfo = notification.userInfo;
+  NSString *message = userInfo[@"message"];
+  NSString *gameObject = userInfo[@"gameObject"];
+  NSString *methodName = userInfo[@"methodName"];
 
     if (message && gameObject && methodName) {
         NSLog(@"iOS에서 Unity로 보낸 메시지: %@, GameObject: %@, Method: %@", message, gameObject, methodName);
