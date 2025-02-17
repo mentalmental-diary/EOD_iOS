@@ -78,6 +78,8 @@ class GameDataViewModel: ObservableObject {
                 updateCoinCount(for: currentGame, coinCount: coinCount)
                 debugLog("\(currentGame.rawValue)의 새로운 코인 수: \(coinCount)")
             }
+        } else if message.hasPrefix("EndGame") {
+            GameManager.shared.finishUnity()
         } else {
             debugLog("메시지가 현재 게임과 일치하지 않습니다: \(message)")
         }

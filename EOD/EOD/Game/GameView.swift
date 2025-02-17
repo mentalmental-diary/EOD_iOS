@@ -15,8 +15,8 @@ struct GameView: View {
             Button("이불 덮어주기? 게임 시작") {
 #if !PREVIEW
                 GameManager.shared.launchUnity()
-#endif
                 gameDataViewModel.sendGameStartMessage(for: .catchYolk)
+#endif
             }
             .padding()
             
@@ -27,8 +27,8 @@ struct GameView: View {
             Button("노른자 날아댕김 게임 시작") {
 #if !PREVIEW
                 GameManager.shared.launchUnity()
-#endif
                 gameDataViewModel.sendGameStartMessage(for: .flyYolk)
+#endif
             }
             .padding()
             
@@ -39,8 +39,8 @@ struct GameView: View {
             Button("피하기 게임 시작") {
 #if !PREVIEW
                 GameManager.shared.launchUnity()
-#endif
                 gameDataViewModel.sendGameStartMessage(for: .runYolk)
+#endif
             }
             .padding()
             
@@ -54,3 +54,4 @@ struct GameView: View {
 #Preview {
     GameView()
 }
+
