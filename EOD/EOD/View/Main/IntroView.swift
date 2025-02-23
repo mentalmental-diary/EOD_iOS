@@ -27,7 +27,7 @@ struct IntroView: View {
             }
             .fullScreenCover(isPresented: $viewModel.showUserInfoSetView) {
                 UserInfoSetView(viewModel: viewModel)
-                    .background(Color.white)
+                    .background(UIColor.CommonBackground.background.color)
                     .navigationBarHidden(true)
             }
         })
@@ -39,18 +39,16 @@ extension IntroView {
     @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             if showSkipButton {
-                VStack {
-                    Button {
-                        viewModel.initScreen = false
-                    } label: {
-                        Text("Skip")
-                            .font(size: 22)
-                            .foregroundColor(UIColor.Gray.gray800.color)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.top, 20)
-                    .transition(.opacity) // 사라질 때 애니메이션 효과 적용
+                Button {
+                    viewModel.initScreen = false
+                } label: {
+                    Text("Skip")
+                        .font(size: 22)
+                        .foregroundColor(UIColor.Gray.gray800.color)
                 }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(.top, 20)
+                .transition(.opacity) // 사라질 때 애니메이션 효과 적용
                 .animation(.easeInOut(duration: 0.3), value: currentPage) // 애니메이션 적용
             }
             
@@ -62,7 +60,7 @@ extension IntroView {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .onChange(of: currentPage) { newValue in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // TabView 이동 후 실행
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // TabView 이동 후 실행
                     withAnimation {
                         showSkipButton = (newValue < 2) // 2가 되면 Skip 버튼 숨기기
                         showHighlightedButton = (newValue == 2) // 2가 되면 하단 버튼 강조
@@ -217,6 +215,7 @@ extension IntroView {
                 Spacer()
                 
                 Image(systemName: "applelogo")
+                    .foregroundColor(.white)
                 
                 Text("Apple로 로그인")
                     .font(size: 20)
