@@ -62,9 +62,6 @@ struct UserInfoSetView: View {
                 
                 ToastView(toastManager: viewModel.toastManager)
             }
-            .onTapGesture {
-                dismissKeyboard()
-            }
             .background(UIColor.CommonBackground.background.color)
             .ignoresSafeArea(.keyboard)
         }
