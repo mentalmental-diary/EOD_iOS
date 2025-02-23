@@ -183,7 +183,7 @@ enum Tab: String {
         case .Calender: return "캘린더"
         case .Game: return "게임"
 //        case .Shop: return "상점"
-        case .My: return "마이페이지"
+        case .My: return "설정"
         }
     }
     

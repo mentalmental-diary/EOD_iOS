@@ -37,8 +37,6 @@
 		CE12282D2D3668F800C61E66 /* Pretendard-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1228172D3668F800C61E66 /* Pretendard-ExtraBold.ttf */; };
 		CE12282E2D3668F800C61E66 /* Pretendard-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1228192D3668F800C61E66 /* Pretendard-Light.ttf */; };
 		CE12282F2D3668F800C61E66 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1228162D3668F800C61E66 /* Pretendard-Bold.ttf */; };
-		CE1228312D366A1300C61E66 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1228302D366A1000C61E66 /* UIFont+Extension.swift */; };
-		CE1228322D366A1300C61E66 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1228302D366A1000C61E66 /* UIFont+Extension.swift */; };
 		CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
 		CE2A46CC2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */; };
@@ -180,6 +178,8 @@
 		CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
 		CEC6D7E42C7C51BE00FFEC9F /* SwifterSwift+Etc.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */; };
 		CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */; };
+		CECC14402D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */; };
+		CECC14412D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
 		CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
@@ -381,7 +381,6 @@
 		CE12281B2D3668F800C61E66 /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
 		CE12281C2D3668F800C61E66 /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
 		CE12281D2D3668F800C61E66 /* Pretendard-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.ttf"; sourceTree = "<group>"; };
-		CE1228302D366A1000C61E66 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		CE13E45D2ABE952D00C64EA1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStartAlert.swift; sourceTree = "<group>"; };
@@ -517,6 +516,7 @@
 		CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Double.swift"; sourceTree = "<group>"; };
 		CEC6D7E32C7C51BE00FFEC9F /* SwifterSwift+Etc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Etc.swift"; sourceTree = "<group>"; };
 		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
+		CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24Ssurround.ttf; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataViewModel.swift; sourceTree = "<group>"; };
 		CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preview EOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -619,6 +619,7 @@
 				CE12281C2D3668F800C61E66 /* Pretendard-SemiBold.ttf */,
 				CE12281D2D3668F800C61E66 /* Pretendard-Thin.ttf */,
 				CE4318132BEBBF5500880898 /* omyu pretty.ttf */,
+				CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1003,7 +1004,6 @@
 			isa = PBXGroup;
 			children = (
 				CEB056B92D61E19100DB007F /* Dictionary+Extension.swift */,
-				CE1228302D366A1000C61E66 /* UIFont+Extension.swift */,
 				CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */,
 				CEE906012CAEB35B00C69077 /* Int+Extension.swift */,
 				CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */,
@@ -1196,6 +1196,7 @@
 				CE1228212D3668F800C61E66 /* Pretendard-Black.ttf in Resources */,
 				CE1228222D3668F800C61E66 /* Pretendard-ExtraLight.ttf in Resources */,
 				CE1228232D3668F800C61E66 /* Pretendard-Medium.ttf in Resources */,
+				CECC14412D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */,
 				CE1228242D3668F800C61E66 /* Pretendard-ExtraBold.ttf in Resources */,
 				CE1228252D3668F800C61E66 /* Pretendard-Light.ttf in Resources */,
 				CE1228262D3668F800C61E66 /* Pretendard-Bold.ttf in Resources */,
@@ -1236,6 +1237,7 @@
 				CE12282A2D3668F800C61E66 /* Pretendard-Black.ttf in Resources */,
 				CE12282B2D3668F800C61E66 /* Pretendard-ExtraLight.ttf in Resources */,
 				CE12282C2D3668F800C61E66 /* Pretendard-Medium.ttf in Resources */,
+				CECC14402D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */,
 				CE12282D2D3668F800C61E66 /* Pretendard-ExtraBold.ttf in Resources */,
 				CE12282E2D3668F800C61E66 /* Pretendard-Light.ttf in Resources */,
 				CE12282F2D3668F800C61E66 /* Pretendard-Bold.ttf in Resources */,
@@ -1461,7 +1463,6 @@
 				CE6466B72C12B77500E03B5A /* LazyView.swift in Sources */,
 				CEB7F0842AAC61D5001C99EA /* StandardLogFormatter.swift in Sources */,
 				CE06C3962CC5DA4C0075A9C0 /* ShowRoomNetworkModel.swift in Sources */,
-				CE1228312D366A1300C61E66 /* UIFont+Extension.swift in Sources */,
 				CEB7F09D2AAC62C1001C99EA /* LoggerBootModule.swift in Sources */,
 				CE979DE62C79916100D0ED53 /* GameView.swift in Sources */,
 				CEB7F0902AAC61D5001C99EA /* RotatingLogFileRecorder.swift in Sources */,
@@ -1616,7 +1617,6 @@
 				CEE63F7B2CFC4F5D00275C7F /* LazyView.swift in Sources */,
 				CEE63F7C2CFC4F5D00275C7F /* StandardLogFormatter.swift in Sources */,
 				CEE63F7D2CFC4F5D00275C7F /* ShowRoomNetworkModel.swift in Sources */,
-				CE1228322D366A1300C61E66 /* UIFont+Extension.swift in Sources */,
 				CEE63F7E2CFC4F5D00275C7F /* LoggerBootModule.swift in Sources */,
 				CEE63F7F2CFC4F5D00275C7F /* GameView.swift in Sources */,
 				CEE63F802CFC4F5D00275C7F /* RotatingLogFileRecorder.swift in Sources */,

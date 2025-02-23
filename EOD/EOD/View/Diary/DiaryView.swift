@@ -198,12 +198,18 @@ private struct CustomTextView: UIViewRepresentable {
         
         let leftButton = UIBarButtonItem(title: "속지선택", style: .plain, target: context.coordinator, action: #selector(Coordinator.selectBackgroundAction(_:))) // 좌측 버튼 추가
 
-        // Adding buttons to the toolbar
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
+        
+        let doneButton = UIButton(type: .system)
+        doneButton.setImage(UIImage(named: "keyboard_close"), for: .normal)
+        doneButton.tintColor = UIColor.black
+        doneButton.addTarget(context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:)), for: .touchUpInside)
+        
+        let doneBarButton = UIBarButtonItem(customView: doneButton)
+        
         toolbar.items = [
             leftButton,
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            doneButton
+            doneBarButton
         ]
         
         textView.inputAccessoryView = toolbar

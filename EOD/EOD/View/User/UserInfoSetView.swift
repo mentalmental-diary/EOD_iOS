@@ -62,6 +62,7 @@ struct UserInfoSetView: View {
                 
                 ToastView(toastManager: viewModel.toastManager)
             }
+            .background(UIColor.CommonBackground.background.color)
             .ignoresSafeArea(.keyboard)
         }
         
@@ -72,27 +73,13 @@ extension UserInfoSetView {
     private func nicknameView() -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("닉네임")
-                .font(size: 20)
+                .font(type: .omyu, size: 20)
                 .foregroundColor(.black)
             
             Spacer().frame(height: 20)
             
-            ZStack(alignment: .leading) {
-                if inputNickname.isEmpty {
-                    Text("닉네임을 입력해주세요.")
-                        .font(.system(size: 16))
-                        .foregroundColor(UIColor.Gray.gray500.color)
-                        .frame(height: 16)
-                }
-                
-                TextField("", text: $inputNickname)
-                    .background(Color.clear)
-                    .font(.system(size: 16))
-                    .foregroundColor(Color.black)
-                    .frame(height: 16)
-                
-            }
-            .padding(.bottom, 1)
+            CustomTextField(text: $inputNickname, placeholder: "닉네임을 입력해주세요.")
+                .frame(height: 16)
             
             Spacer().frame(height: 16)
             
@@ -153,6 +140,8 @@ extension UserInfoSetView {
                 }
             }
             
+            Spacer().frame(height: 6)
+            
             HStack(spacing: 0) {
                 Button(action: {
                     viewModel.confirmTerms.toggle()
@@ -181,6 +170,97 @@ extension UserInfoSetView {
                     .cornerRadius(8.0)
                     .contentShape(Rectangle()) // 전체 영역이 터치 가능하도록 설정
             })
+        }
+    }
+}
+
+private struct CustomTextField: UIViewRepresentable {
+    typealias UIViewType = UITextField
+    
+    @Binding var text: String
+    var placeholder: String
+    var placeholderColor: UIColor = UIColor.Gray.gray500.uiColor ?? UIColor.gray
+    var placeholderFont: UIFont = UIFont(name: "Pretendard-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
+    
+    func makeUIView(context: Context) -> UITextField {
+        let textField = UITextField()
+        textField.delegate = context.coordinator
+        textField.font = UIFont(name: "Pretendard-Medium", size: 16)
+        textField.backgroundColor = UIColor.clear
+        textField.returnKeyType = .done
+        // Placeholder 스타일 적용
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: placeholderColor,
+            .font: placeholderFont
+        ]
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
+
+        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        
+        textField.textColor = UIColor.black
+        
+        // Adding the toolbar
+        let toolbar = ShadowToolbar()
+        toolbar.sizeToFit()
+        
+        // Setting the toolbar height
+        let customToolbarHeight: CGFloat = 36
+        var frame = toolbar.frame
+        frame.size.height = customToolbarHeight
+        toolbar.frame = frame
+        toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
+        
+        // Adding buttons to the toolbar
+        
+        let doneButton = UIButton(type: .system)
+        doneButton.setImage(UIImage(named: "keyboard_close"), for: .normal)
+        doneButton.tintColor = UIColor.black
+        doneButton.addTarget(context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:)), for: .touchUpInside)
+        
+        let doneBarButton = UIBarButtonItem(customView: doneButton)
+        
+        toolbar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            doneBarButton
+        ]
+        
+        textField.inputAccessoryView = toolbar
+        
+        return textField
+    }
+    
+    func updateUIView(_ uiView: UITextField, context: Context) {
+        if uiView.text != text {
+            uiView.text = text
+        }
+    }
+    
+    func makeCoordinator() -> CustomTextField.Coordinator {
+        Coordinator(parent: self)
+    }
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        var parent: CustomTextField
+        
+        init(parent: CustomTextField) {
+            self.parent = parent
+        }
+        
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            return true
+        }
+        
+        /// TextView 정보 업데이트
+        func updateTextView(_ textView: UITextView) {
+            
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+        }
+        
+        @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
 }
