@@ -11,6 +11,8 @@ import SwiftUI
 struct IntroView: View {
     @ObservedObject var viewModel: MainViewModel
     @State var currentPage: Int = 0
+    @State private var showSkipButton: Bool = true // Skip 버튼 표시 여부
+    @State private var showHighlightedButton: Bool = false // 하단 버튼 강조 여부
     
     var body: some View {
         NavigationView(content: {
@@ -36,25 +38,37 @@ struct IntroView: View {
 extension IntroView {
     @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
-            if currentPage < 2 {
-                Button {
-                    viewModel.initScreen = false
-                } label: {
-                    Text("Skip")
-                        .font(size: 22)
-                        .foregroundColor(UIColor.Gray.gray800.color)
+            if showSkipButton {
+                VStack {
+                    Button {
+                        viewModel.initScreen = false
+                    } label: {
+                        Text("Skip")
+                            .font(size: 22)
+                            .foregroundColor(UIColor.Gray.gray800.color)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.top, 20)
+                    .transition(.opacity) // 사라질 때 애니메이션 효과 적용
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.top, 20)
+                .animation(.easeInOut(duration: 0.3), value: currentPage) // 애니메이션 적용
             }
             
             TabView(selection: $currentPage) {
-                ForEach(viewModel.onboardingItems) { item in
+                ForEach(Array(viewModel.onboardingItems.enumerated()), id: \.element.id) { index, item in
                     onBoadingDetailView(item: item)
-                        .tag(viewModel.onboardingItems.firstIndex(of: item) ?? 0)
+                        .tag(index) // 명확하게 index 사용
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onChange(of: currentPage) { newValue in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { // TabView 이동 후 실행
+                    withAnimation {
+                        showSkipButton = (newValue < 2) // 2가 되면 Skip 버튼 숨기기
+                        showHighlightedButton = (newValue == 2) // 2가 되면 하단 버튼 강조
+                    }
+                }
+            }
             
             Spacer().frame(height: 36)
             
@@ -63,23 +77,27 @@ extension IntroView {
             Spacer().frame(height: 84)
             
             Button(action: {
-                if currentPage < 2 {
-                    currentPage += 1
-                } else {
-                    viewModel.initScreen = false
+                withAnimation {
+                    if currentPage < 2 {
+                        currentPage += 1
+                    } else {
+                        viewModel.initScreen = false
+                    }
                 }
             }, label: {
-                Text(currentPage < 2 ? "다음" : "시작하기")
+                Text(showHighlightedButton ? "시작하기" : "다음")
                     .font(size: 20)
                     .foregroundColor(Color.black)
                     .padding(.vertical, 16)
                     .frame(maxWidth: .infinity)
-                    .background(currentPage < 2 ? .clear : UIColor.Yellow.yellow500.color)
+                    .background(showHighlightedButton ? UIColor.Yellow.yellow500.color : .clear)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(currentPage < 2 ? .gray : .clear, lineWidth: 1)
+                            .stroke(showHighlightedButton ? .clear : .black, lineWidth: 1)
+                            .animation(.easeInOut(duration: 0.3), value: currentPage)
                     )
             })
+            .animation(.easeInOut(duration: 0.3), value: currentPage) // currentPage 변화에 애니메이션 적용
             .frame(maxWidth: .infinity)
             .cornerRadius(8.0)
         }
@@ -106,7 +124,7 @@ extension IntroView {
                 Spacer().frame(height: 37)
                 
                 Text("노른자의 하루")
-                    .font(size: 32) // TODO: 나중에 해당 폰트 확인
+                    .font(type: .cafe24Ssurround, size: 32)
                     .foregroundColor(UIColor.Yellow.yellow500.color)
                     .lineSpacing(6)
                 
