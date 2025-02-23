@@ -18,9 +18,6 @@ struct CustomStartAlert: View {
             VStack(spacing: 0) {
                 VStack(spacing: 0) {
                     Image("welcome")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 105, height: 91)
                     
                     Spacer().frame(height: 42)
                     
