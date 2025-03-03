@@ -15,6 +15,12 @@ struct UserInfoSetView: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        dismissKeyboard()
+                    }
+                
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Spacer()
@@ -212,16 +218,18 @@ private struct CustomTextField: UIViewRepresentable {
         
         // Adding buttons to the toolbar
         
-        let doneButton = UIButton(type: .system)
-        doneButton.setImage(UIImage(named: "keyboard_close"), for: .normal)
-        doneButton.tintColor = UIColor.black
-        doneButton.addTarget(context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:)), for: .touchUpInside)
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
         
-        let doneBarButton = UIBarButtonItem(customView: doneButton)
+        let doneButtonAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name: "omyu pretty", size: 22)!,
+            .foregroundColor: UIColor.black
+        ]
+        
+        doneButton.setTitleTextAttributes(doneButtonAttributes, for: .normal)
         
         toolbar.items = [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            doneBarButton
+            doneButton
         ]
         
         textField.inputAccessoryView = toolbar

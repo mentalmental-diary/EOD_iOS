@@ -76,7 +76,7 @@
 		CE8AD19E2C46195D00B3D9F9 /* game-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19B2C46195D00B3D9F9 /* game-loading.json */; };
 		CE8AD19F2C46195D00B3D9F9 /* splash.json in Resources */ = {isa = PBXBuildFile; fileRef = CE8AD19C2C46195D00B3D9F9 /* splash.json */; };
 		CE8AD1A32C5395A700B3D9F9 /* UserNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */; };
-		CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
+		CE8AD1A52C54D05000B3D9F9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */; };
 		CE8F1E7E2CE829EA00173B1F /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */; };
 		CE95A6652C6302D000BF33F7 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95A6642C6302D000BF33F7 /* SplashView.swift */; };
 		CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */; };
@@ -227,7 +227,7 @@
 		CEE63F5D2CFC4F5D00275C7F /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
 		CEE63F5E2CFC4F5D00275C7F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AD2ACA99E700D9C58B /* LoginView.swift */; };
 		CEE63F5F2CFC4F5D00275C7F /* OSLogMimicFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0442AAC61D4001C99EA /* OSLogMimicFormatter.swift */; };
-		CEE63F602CFC4F5D00275C7F /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */; };
+		CEE63F602CFC4F5D00275C7F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */; };
 		CEE63F612CFC4F5D00275C7F /* ProcessIDLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05E2AAC61D4001C99EA /* ProcessIDLogFormatter.swift */; };
 		CEE63F622CFC4F5D00275C7F /* LoginBootModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */; };
 		CEE63F632CFC4F5D00275C7F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0312AAC5FBB001C99EA /* String+Extension.swift */; };
@@ -416,7 +416,7 @@
 		CE8AD19B2C46195D00B3D9F9 /* game-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "game-loading.json"; sourceTree = "<group>"; };
 		CE8AD19C2C46195D00B3D9F9 /* splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = splash.json; sourceTree = "<group>"; };
 		CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkModel.swift; sourceTree = "<group>"; };
-		CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		CE95A6642C6302D000BF33F7 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNetworkModel.swift; sourceTree = "<group>"; };
@@ -705,7 +705,7 @@
 				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
 				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
-				CE8AD1A42C54D05000B3D9F9 /* MyPageView.swift */,
+				CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1431,7 +1431,7 @@
 				CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */,
 				CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */,
 				CEB7F0722AAC61D4001C99EA /* OSLogMimicFormatter.swift in Sources */,
-				CE8AD1A52C54D05000B3D9F9 /* MyPageView.swift in Sources */,
+				CE8AD1A52C54D05000B3D9F9 /* SettingView.swift in Sources */,
 				CEB7F08C2AAC61D5001C99EA /* ProcessIDLogFormatter.swift in Sources */,
 				CE77A9A62ACA929D00D9C58B /* LoginBootModule.swift in Sources */,
 				CEB7F0322AAC5FBB001C99EA /* String+Extension.swift in Sources */,
@@ -1585,7 +1585,7 @@
 				CEE63F5D2CFC4F5D00275C7F /* ColorSet.swift in Sources */,
 				CEE63F5E2CFC4F5D00275C7F /* LoginView.swift in Sources */,
 				CEE63F5F2CFC4F5D00275C7F /* OSLogMimicFormatter.swift in Sources */,
-				CEE63F602CFC4F5D00275C7F /* MyPageView.swift in Sources */,
+				CEE63F602CFC4F5D00275C7F /* SettingView.swift in Sources */,
 				CEE63F612CFC4F5D00275C7F /* ProcessIDLogFormatter.swift in Sources */,
 				CEE63F622CFC4F5D00275C7F /* LoginBootModule.swift in Sources */,
 				CEE63F632CFC4F5D00275C7F /* String+Extension.swift in Sources */,
