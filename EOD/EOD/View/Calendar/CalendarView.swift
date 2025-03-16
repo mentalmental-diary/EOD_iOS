@@ -145,39 +145,48 @@ extension CalendarView {
                 }
                 Spacer()
             } else {
-                HStack(spacing: 0) {
-                    Image(viewModel.selectedDiaryInfo?.emotion.imageName ?? "")
+                ZStack {
+                    VStack(spacing: 0) {
+                        HStack(spacing: 0) {
+                            Image(viewModel.selectedDiaryInfo?.emotion.imageName ?? "")
+                            
+                            Spacer().frame(width: 14)
+                            
+                            Text(viewModel.selectedDiaryInfo?.emotion.description ?? "")
+                                .font(size: 20)
+                                .foregroundColor(Color.black)
+                                .padding(EdgeInsets.init())
+                                .background(
+                                    GeometryReader { geometry in
+                                        UIColor.Yellow.yellow200.color
+                                            .frame(width: geometry.size.width, height: 8)
+                                            .offset(x: 0, y: geometry.size.height - 8)
+                                    }
+                                )
+                            
+                            Spacer()
+                        }
+                        
+                        Spacer().frame(height: 12)
+                        
+                        Text(viewModel.selectedDiaryInfo?.content ?? "")
+                            .font(size: 18)
+                            .foregroundColor(Color.black)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                    .padding(.bottom, 16)
                     
-                    Spacer().frame(width: 14)
-                    
-                    Text(viewModel.selectedDiaryInfo?.emotion.description ?? "")
-                        .font(size: 20)
-                        .foregroundColor(Color.black)
-                        .padding(EdgeInsets.init())
-                        .background(
-                            GeometryReader { geometry in
-                                UIColor.Yellow.yellow200.color
-                                    .frame(width: geometry.size.width, height: 8)
-                                    .offset(x: 0, y: geometry.size.height - 8)
-                            }
-                        )
-                    
-                    Spacer()
+                    Image(viewModel.selectedDiaryInfo?.diary_background?.imageName ?? diaryBackgroundType.white.imageName)
+                        .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .zIndex(-1)
                 }
-                
-                Spacer().frame(height: 12)
-                
-                Text(viewModel.selectedDiaryInfo?.content ?? "")
-                    .font(size: 18)
-                    .foregroundColor(Color.black)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 16)
-        .padding(.top, 8)
-        .padding(.bottom, 16)
         .background(Color.white)
         .cornerRadius(17.0)
     }
