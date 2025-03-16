@@ -22,7 +22,8 @@ class CalendarViewModel: ObservableObject {
     @Published var showMonthSelectModalView: Bool = false
     @Published var showDiaryBackgroundSelectView: Bool = false
     @Published var toastManager = ToastManager.shared
-    @Published var keyboardHeight: CGFloat = 0
+    @Published var keyboardHeight: CGFloat = 291
+    @Published var bottomAreaHeight: CGFloat = 2
     @Published var selectDiaryBackground: diaryBackgroundType = .white
     
     private var networkModel: CalendarNetworkModel = CalendarNetworkModel()
