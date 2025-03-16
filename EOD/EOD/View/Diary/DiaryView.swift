@@ -10,11 +10,15 @@ import SwiftUI
 struct DiaryView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
+    @State var visibleKeyboard: Bool = false
+    
     var body: some View {
         GeometryReader(content: { geometry in
-            ZStack {
+            ZStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 0) {
-                    NavigationBarView()
+                    NavigationBarView(availableButton: true, saveAction: {
+                        viewModel.isModify ? viewModel.modifyDiary() : viewModel.uploadDiary()
+                    })
                     
                     VStack(alignment: .leading, spacing: 0) {
                         Text("오늘 하루는 어땠나요?")
@@ -23,7 +27,7 @@ struct DiaryView: View {
                         
                         Spacer().frame(height: 16)
                         
-                        Text("\(currentDiaryDay) 오늘 기분은")
+                        Text("\(currentDiaryDay), 오늘 기분은")
                             .font(size: 24)
                             .foregroundColor(Color.black)
                         
@@ -33,20 +37,7 @@ struct DiaryView: View {
                             .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
                         
                         Spacer()
-                            .frame(height: 241)
-                        
-                        Button {
-                            viewModel.isModify ? viewModel.modifyDiary() : viewModel.uploadDiary()
-                        } label: {
-                            Text("저장하기")
-                                .font(size: 20)
-                                .foregroundColor(Color.white)
-                                .padding(.vertical, 16)
-                                .frame(maxWidth: .infinity)
-                                .background(viewModel.isModified ? Color.black : Color(red: 211/255, green: 210/255, blue: 207/255))
-                        }
-                        .frame(maxWidth: .infinity)
-                        .cornerRadius(8.0)
+                            .frame(height: 305)
                         
                     }
                     .frame(maxHeight: .infinity)
@@ -57,6 +48,8 @@ struct DiaryView: View {
                 .padding(.bottom, geometry.safeAreaInsets.bottom)
                 .edgesIgnoringSafeArea(.bottom)
                 .background(UIColor.CommonBackground.background.color)
+                
+                bottomButtonArea()
                 
                 if viewModel.showEmotionSelectView {
                     EmotionSelectView(viewModel: viewModel, showModalView: $viewModel.showEmotionSelectView, isShowDiaryView: $viewModel.showDiaryView)
@@ -135,6 +128,57 @@ extension DiaryView {
         }
         .cornerRadius(17)
     }
+    
+    private func bottomButtonArea() -> some View {
+        VStack(spacing: 0) {
+            Divider()
+                .frame(minHeight: 1.0)
+                .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
+            
+            Spacer().frame(height: 6)
+            
+            if !viewModel.showDiaryBackgroundSelectView {
+                HStack {
+                    Button {
+                        dismissKeyboard()
+                        viewModel.showDiaryBackgroundSelectView = true
+                    } label: {
+                        HStack(spacing: 2) {
+                            Image("icon_inner_paper")
+                            
+                            Text("속지")
+                                .font(type: .omyu, size: 18)
+                                .foregroundColor(.black)
+                        }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 13)
+                        .background(.white)
+                        .cornerRadius(8)
+                    }
+                    
+                    Spacer()
+                    
+                    if visibleKeyboard {
+                        Button {
+                            dismissKeyboard()
+                        } label: {
+                            HStack(spacing: 2) {
+                                Text("닫기")
+                                    .font(type: .omyu, size: 18)
+                                    .foregroundColor(.black)
+                                
+                                Image("icon_keyboard_close")
+                            }
+                        }
+                    }
+                    
+                }
+                .padding(.horizontal, 20)
+            }
+        }
+        .padding(.bottom, viewModel.bottomAreaHeight) // ✅ 키보드 높이만큼 패딩 추가
+        .animation(.easeInOut(duration: 0.3), value: viewModel.bottomAreaHeight) // 애니메이션 적용
+    }
 }
 
 extension DiaryView {
@@ -151,9 +195,16 @@ extension DiaryView {
     // ✅ 키보드 높이 감지
     func addKeyboardObservers() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
+            visibleKeyboard = true
             if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
                 viewModel.keyboardHeight = keyboardFrame.height
+                viewModel.bottomAreaHeight = keyboardFrame.height + 2 - 34 // safeArea까지 빼기
             }
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { _ in
+            visibleKeyboard = false
+            viewModel.bottomAreaHeight = 2
         }
     }
     
@@ -185,35 +236,6 @@ private struct CustomTextView: UIViewRepresentable {
         
         textView.textColor = UIColor.black
         
-        // Adding the toolbar
-        let toolbar = ShadowToolbar()
-        toolbar.sizeToFit()
-        
-        // Setting the toolbar height
-        let customToolbarHeight: CGFloat = 36
-        var frame = toolbar.frame
-        frame.size.height = customToolbarHeight
-        toolbar.frame = frame
-        toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
-        
-        let leftButton = UIBarButtonItem(title: "속지선택", style: .plain, target: context.coordinator, action: #selector(Coordinator.selectBackgroundAction(_:))) // 좌측 버튼 추가
-
-        
-        let doneButton = UIButton(type: .system)
-        doneButton.setImage(UIImage(named: "keyboard_close"), for: .normal)
-        doneButton.tintColor = UIColor.black
-        doneButton.addTarget(context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:)), for: .touchUpInside)
-        
-        let doneBarButton = UIBarButtonItem(customView: doneButton)
-        
-        toolbar.items = [
-            leftButton,
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            doneBarButton
-        ]
-        
-        textView.inputAccessoryView = toolbar
-        
         return textView
     }
     
@@ -237,7 +259,7 @@ private struct CustomTextView: UIViewRepresentable {
         func textViewDidEndEditing(_ textView: UITextView) {
             parent.text = textView.text
         }
-
+        
         func textViewDidChange(_ textView: UITextView) {
             if textView.text.count > parent.maxLength {
                 textView.text = String(textView.text.prefix(parent.maxLength))
@@ -259,17 +281,11 @@ private struct CustomTextView: UIViewRepresentable {
         @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
-        
-        @objc func selectBackgroundAction(_ sender: UIBarButtonItem) {
-            // 원하는 기능 추가 (예: 텍스트 리셋)
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            parent.showBackgroundView = true
-        }
     }
 }
 
 class ShadowToolbar: UIToolbar {
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

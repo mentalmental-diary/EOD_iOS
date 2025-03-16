@@ -22,7 +22,8 @@ class CalendarViewModel: ObservableObject {
     @Published var showMonthSelectModalView: Bool = false
     @Published var showDiaryBackgroundSelectView: Bool = false
     @Published var toastManager = ToastManager.shared
-    @Published var keyboardHeight: CGFloat = 0
+    @Published var keyboardHeight: CGFloat = 291
+    @Published var bottomAreaHeight: CGFloat = 2
     @Published var selectDiaryBackground: diaryBackgroundType = .white
     
     private var networkModel: CalendarNetworkModel = CalendarNetworkModel()
@@ -31,7 +32,7 @@ class CalendarViewModel: ObservableObject {
     
     var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
     
-    var diarySummaryList: [Int: DiarySummary?] = [:]
+    @Published var diarySummaryList: [Int: DiarySummary?] = [:]
     
     let calendar = Calendar.current
     
