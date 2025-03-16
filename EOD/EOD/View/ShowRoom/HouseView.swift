@@ -126,23 +126,7 @@ extension HouseView {
                                 .background(availableSaveButton ? Color.black : Color(red: 210/255, green: 210/255, blue: 188/255))
                                 .cornerRadius(6.0)
                         }
-                    } else {
-                        if viewModel.selectTheme != nil { // 테마 진입시 전체 구매 버튼 노출
-                            Button {
-                                // TODO: 전체 구매 프로세스 확인 후 구현
-                            } label: {
-                                Text("전체 구매")
-                                    .font(size: 14)
-                                    .foregroundColor(.black)
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 24)
-                                    .background(.white)
-                                    .cornerRadius(6.0)
-                            }
-                        }
                     }
-                    
-                    
                 }
                 .frame(maxWidth: .infinity, alignment: .bottom)
             }

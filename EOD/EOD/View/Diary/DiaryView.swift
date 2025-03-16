@@ -10,13 +10,18 @@ import SwiftUI
 struct DiaryView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @State var visibleKeyboard: Bool = false
     
     var body: some View {
         GeometryReader(content: { geometry in
             ZStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 0) {
-                    NavigationBarView(availableButton: true, saveAction: {
+                    NavigationBarView(dismissAction: {
+                        viewModel.showDiaryBackgroundSelectView = false
+                        presentationMode.wrappedValue.dismiss()
+                    }, availableButton: true, saveAction: {
                         viewModel.isModify ? viewModel.modifyDiary() : viewModel.uploadDiary()
                     })
                     
