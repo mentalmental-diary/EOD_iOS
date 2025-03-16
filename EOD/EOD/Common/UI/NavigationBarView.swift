@@ -22,36 +22,39 @@ struct NavigationBarView: View {
     
     var body: some View {
         ZStack(alignment: .leading) {
-            Button(action: {
-                if dismissAction != nil {
-                    dismissAction?()
-                } else {
-                    withAnimation {
-                        presentationMode.wrappedValue.dismiss()
+            HStack {
+                Button(action: {
+                    if dismissAction != nil {
+                        dismissAction?()
+                    } else {
+                        withAnimation {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
-                }
-            }, label: {
-                Image("icon_back")
-                    .frame(maxHeight: .infinity, alignment: .leading)
-                    .padding(EdgeInsets(top: 0.0, leading: 13.0, bottom: 2.0, trailing: 16.0))
-                    .foregroundColor(Color.black)
-            })
-            
-            if availableButton {
-                Button {
-                    saveAction?()
-                } label: {
-                    HStack(spacing: 2) {
-                        Spacer()
-                        Image("icon_save_check")
-                        Text("저장")
-                            .font(type: .omyu, size: 20)
-                            .foregroundColor(.black)
+                }, label: {
+                    Image("icon_back")
+                        .frame(maxHeight: .infinity, alignment: .leading)
+                        .padding(EdgeInsets(top: 0.0, leading: 13.0, bottom: 2.0, trailing: 16.0))
+                        .foregroundColor(Color.black)
+                })
+                
+                Spacer()
+                
+                if availableButton {
+                    Button {
+                        saveAction?()
+                    } label: {
+                        HStack(spacing: 2) {
+                            Image("icon_save_check")
+                            Text("저장")
+                                .font(type: .omyu, size: 20)
+                                .foregroundColor(.black)
+                        }
+                        .padding(.trailing, 28)
+                        .frame(alignment: .trailing)
                     }
-                    .padding(.trailing, 28)
                 }
             }
-
             
             HStack(spacing: 0) {
                 Spacer()

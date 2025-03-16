@@ -10,8 +10,6 @@ import SwiftUI
 struct UserInfoSetView: View {
     @ObservedObject var viewModel: MainViewModel
     
-    @State var inputNickname: String = ""
-    
     var body: some View {
         GeometryReader { proxy in
             ZStack {
@@ -84,14 +82,14 @@ extension UserInfoSetView {
             
             Spacer().frame(height: 20)
             
-            CustomTextField(text: $inputNickname, placeholder: "닉네임을 입력해주세요.")
+            CustomTextField(text: $viewModel.inputNickname, placeholder: "닉네임을 입력해주세요.")
                 .frame(height: 16)
             
             Spacer().frame(height: 16)
             
             Divider()
                 .frame(minHeight: 1.0)
-                .overlay(inputNickname.isEmpty ? UIColor.Gray.gray500.color : Color.black)
+                .overlay(viewModel.inputNickname.isEmpty ? UIColor.Gray.gray500.color : Color.black)
             
             Spacer().frame(height: 14)
             
@@ -165,7 +163,7 @@ extension UserInfoSetView {
             Spacer().frame(height: 22)
             
             Button(action: {
-                viewModel.setNickname(nickName: inputNickname)
+                viewModel.setNickname()
             }, label: {
                 Text("시작하기")
                     .font(size: 20)
@@ -234,6 +232,9 @@ private struct CustomTextField: UIViewRepresentable {
         
         textField.inputAccessoryView = toolbar
         
+        // 텍스트 변경 감지를 위한 target 추가
+        textField.addTarget(context.coordinator, action: #selector(Coordinator.textFieldDidChange(_:)), for: .editingChanged)
+        
         return textField
     }
     
@@ -269,6 +270,11 @@ private struct CustomTextField: UIViewRepresentable {
         
         @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        
+        @objc func textFieldDidChange(_ textField: UITextField) {
+            // Binding 업데이트
+            parent.text = textField.text ?? ""
         }
     }
 }

@@ -14,6 +14,7 @@ class MainViewModel: ObservableObject {
     @Published var currentTab: Tab = .Home
     @Published var confirmEmail: Bool = false
     @Published var confirmTerms: Bool = false
+    @Published var inputNickname: String = ""
     
     @Published var toastManager = ToastManager.shared
     
@@ -154,8 +155,9 @@ extension MainViewModel {
     }
     
     /// 닉네임 설정
-    func setNickname(nickName: String) {
-        networkModel.setUserNickname(nickName: nickName, completion: { [weak self] result in
+    func setNickname() {
+        guard !self.inputNickname.isEmpty else { return }
+        networkModel.setUserNickname(nickName: inputNickname, completion: { [weak self] result in
             switch result {
             case .success: // 닉네임 설정 성공
                 self?.isLogin = true
