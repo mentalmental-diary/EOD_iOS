@@ -16,6 +16,10 @@ struct NavigationBarView: View {
     
     var dismissAction: (() -> Void)?
     
+    var availableButton: Bool = false
+    
+    var saveAction: (() -> Void)?
+    
     var body: some View {
         ZStack(alignment: .leading) {
             Button(action: {
@@ -32,6 +36,23 @@ struct NavigationBarView: View {
                     .padding(EdgeInsets(top: 0.0, leading: 13.0, bottom: 2.0, trailing: 16.0))
                     .foregroundColor(Color.black)
             })
+            
+            if availableButton {
+                Button {
+                    saveAction?()
+                } label: {
+                    HStack(spacing: 2) {
+                        Spacer()
+                        Image("icon_save_check")
+                        Text("저장")
+                            .font(type: .omyu, size: 20)
+                            .foregroundColor(.black)
+                    }
+                    .padding(.trailing, 28)
+                }
+            }
+
+            
             HStack(spacing: 0) {
                 Spacer()
                 Text(title)
@@ -40,6 +61,8 @@ struct NavigationBarView: View {
                     .foregroundColor(Color.black)
                 Spacer()
             }
+            
+            
         }
         .frame(height: 48)
         .frame(maxWidth: .infinity, alignment: .leading)
