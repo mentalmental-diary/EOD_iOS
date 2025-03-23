@@ -38,6 +38,8 @@ class MainViewModel: ObservableObject {
             guard oldValue != diaryNotificationEnabled else { return }
             
             UserDefaults.standard.set(diaryNotificationEnabled, forKey: "diaryNotificationEnabled")
+            
+            self.toastManager.showToast(message: "알림 설정을 저장했어요.")
         }
     }
     
@@ -46,6 +48,8 @@ class MainViewModel: ObservableObject {
             guard oldValue != gameNotificationEnabled else { return }
             
             UserDefaults.standard.set(gameNotificationEnabled, forKey: "gameNotificationEnabled")
+            
+            self.toastManager.showToast(message: "알림 설정을 저장했어요.")
         }
     }
     
@@ -101,7 +105,7 @@ class MainViewModel: ObservableObject {
         if let gameNotificationTime = UserDefaults.standard.object(forKey: "gameNotificationTime") as? Date {
             self.gameNotificationTime = gameNotificationTime
         } else {
-            self.gameNotificationTime = Calendar.current.date(from: DateComponents(hour: 22, minute: 0))
+            self.gameNotificationTime = Calendar.current.date(from: DateComponents(hour: 24, minute: 0))
         }
         
         // LoginManager의 loginResult를 구독하여 처리
@@ -115,6 +119,11 @@ extension MainViewModel {
     func logoutAction() { // TODO: 로그아웃 로직 수정 -> API연결 필요
         UserDefaults.standard.removeObject(forKey: "isLogin")
         UserDefaults.standard.removeObject(forKey: "accessToken")
+        UserDefaults.standard.removeObject(forKey: "diaryNotificationEnabled")
+        UserDefaults.standard.removeObject(forKey: "gameNotificationEnabled")
+        UserDefaults.standard.removeObject(forKey: "marketingNotificationEnabled")
+        UserDefaults.standard.removeObject(forKey: "diaryNotificationTime")
+        UserDefaults.standard.removeObject(forKey: "gameNotificationTime")
         self.isLogin = false
         self.currentTab = .Home
     }

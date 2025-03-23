@@ -49,7 +49,7 @@ struct AlarmSettingView: View {
                         notificationDateSelectView(date: viewModel.diaryNotificationTime ?? Date(),
                                                    showPicker: {
                             togglePicker(.diary)
-                        })
+                        }, type: .diary)
                         
                         Spacer().frame(height: 8)
                     }
@@ -62,7 +62,7 @@ struct AlarmSettingView: View {
                         notificationDateSelectView(date: viewModel.gameNotificationTime ?? Date(),
                                                    showPicker: {
                             togglePicker(.game)
-                        })
+                        }, type: .game)
                     }
                     
                     Spacer().frame(height: 22)
@@ -127,10 +127,12 @@ struct AlarmSettingView: View {
                 .shadow(radius: 5)
                 .transition(.opacity)
                 .position(
-                    x: anchorFrame.maxX - 100, // X: 버튼 우측으로 약간 이동 (조절 가능)
-                    y: anchorFrame.minY + (pickerType == .diary ? 80 : 220)   // Y: 버튼 바로 위에 위치하도록 조정
+                    x: anchorFrame.maxX - 120,
+                    y: anchorFrame.minY + 80
                 )
             }
+            
+            ToastView(toastManager: viewModel.toastManager)
         }
     }
 }
@@ -155,7 +157,7 @@ extension AlarmSettingView {
         
     }
     
-    private func notificationDateSelectView(date: Date, showPicker: @escaping (() -> Void)) -> some View {
+    private func notificationDateSelectView(date: Date, showPicker: @escaping (() -> Void), type: PickerType) -> some View {
         HStack(spacing: 0) {
             Image("icon_clock")
             
@@ -167,27 +169,22 @@ extension AlarmSettingView {
             
             Spacer()
             
-            Button {
-                showPicker()
-            } label: {
-                Text(formattedTime(date))
-                    .font(type: .omyu, size: 18)
-                    .foregroundColor(Color(red: 107/255, green: 88/255, blue: 23/255))
-                    .padding(10)
-                    .background(expandedPicker == nil ? UIColor.Yellow.yellow100.color : UIColor.Gray.gray50.color)
-                    .cornerRadius(6)
-                    .background(
-                        GeometryReader { geo in
-                            Color.clear
-                                .onAppear {
-                                    anchorFrame = geo.frame(in: .global)
-                                }
-                        }
-                    )
+            GeometryReader { geo in
+                Button {
+                    anchorFrame = geo.frame(in: .global)
+                    showPicker()
+                } label: {
+                    Text(formattedTime(date))
+                        .font(type: .omyu, size: 18)
+                        .foregroundColor(Color(red: 107/255, green: 88/255, blue: 23/255))
+                        .padding(10)
+                        .background(expandedPicker == nil ? UIColor.Yellow.yellow100.color : UIColor.Gray.gray50.color)
+                        .cornerRadius(6)
+                }
             }
-            
+            .frame(width: 90, height: 40) // GeometryReader 고정 크기 필요!
         }
-        .padding(.horizontal, 16)
+        .padding(.leading, 16)
         .padding(.vertical, 12)
         .background(.white)
         .cornerRadius(10)
