@@ -31,6 +31,40 @@ class MainViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>() // Combine 구독 관리
     
+    // MARK: - alarm
+    
+    @Published var diaryNotificationEnabled: Bool = false { // 일기 쓰기 알림 설정 여부
+        didSet {
+            guard oldValue != diaryNotificationEnabled else { return }
+            
+            UserDefaults.standard.set(diaryNotificationEnabled, forKey: "diaryNotificationEnabled")
+        }
+    }
+    
+    @Published var gameNotificationEnabled: Bool = false { // 게임 알림 설정 여부
+        didSet {
+            guard oldValue != gameNotificationEnabled else { return }
+            
+            UserDefaults.standard.set(gameNotificationEnabled, forKey: "gameNotificationEnabled")
+        }
+    }
+    
+    @Published var diaryNotificationTime: Date? {
+        didSet {
+            guard oldValue != diaryNotificationTime else { return }
+            
+            UserDefaults.standard.set(diaryNotificationTime, forKey: "diaryNotificationTime")
+        }
+    }
+    
+    @Published var gameNotificationTime: Date? {
+        didSet {
+            guard oldValue != gameNotificationTime else { return }
+            
+            UserDefaults.standard.set(gameNotificationTime, forKey: "gameNotificationTime")
+        }
+    }
+    
     let onboardingItems: [OnboardingItem] = {
         let items = [
             OnboardingItem(imageName: "onBoardingImage_1", title: "노른자와 함께 \n나의 하루를 순간 포착", description: "나만의 귀여운 노른자에게 \n생각, 감정, 일상을 공유해주세요."),
@@ -45,6 +79,22 @@ class MainViewModel: ObservableObject {
     
     init() {
         isLogin = LoginManager.shared.isLogin ?? false
+        
+        diaryNotificationEnabled = UserDefaults.standard.bool(forKey: "diaryNotificationEnabled")
+        gameNotificationEnabled = UserDefaults.standard.bool(forKey: "gameNotificationEnabled")
+        
+        if let diaryNotificationTime = UserDefaults.standard.object(forKey: "diaryNotificationTime") as? Date {
+            self.diaryNotificationTime = diaryNotificationTime
+        } else {
+            self.diaryNotificationTime = Calendar.current.date(from: DateComponents(hour: 22, minute: 0))
+        }
+        
+        if let gameNotificationTime = UserDefaults.standard.object(forKey: "gameNotificationTime") as? Date {
+            self.gameNotificationTime = gameNotificationTime
+        } else {
+            self.gameNotificationTime = Calendar.current.date(from: DateComponents(hour: 22, minute: 0))
+        }
+        
         // LoginManager의 loginResult를 구독하여 처리
         self.naverLoginAction()
     }
@@ -122,6 +172,11 @@ extension MainViewModel {
             
             errorLog("테스트용 로그인 실패 error: \(error)")
         })
+    }
+    
+    private func setUserInfo(accessToken: String) {
+        UserDefaults.standard.set(accessToken, forKey: "accessToken")
+        UserDefaults.standard.set(true, forKey: "isLogin")
     }
 }
 

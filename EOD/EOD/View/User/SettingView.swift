@@ -83,9 +83,11 @@ extension SettingView {
                 .font(type: .omyu, size: 22)
                 .foregroundColor(.black)
             
-            Button {
-                
-            } label: {
+            NavigationLink(destination:
+                            AlarmSettingView(viewModel: viewModel)
+                    .background(Color.white)
+                    .navigationBarHidden(true)
+            ) {
                 HStack {
                     Text("알림 설정")
                         .font(type: .omyu, size: 18)
