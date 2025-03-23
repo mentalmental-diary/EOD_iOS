@@ -58,6 +58,16 @@ class MainViewModel: ObservableObject {
             guard oldValue != marketingNotificationEnabled else { return }
             
             UserDefaults.standard.set(marketingNotificationEnabled, forKey: "marketingNotificationEnabled")
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy.MM.dd"
+            let dateString = formatter.string(from: Date())
+            
+            if marketingNotificationEnabled {
+                self.toastManager.showToast(message: "마케팅 정보 수신에 동의했어요. \n(동의일: \(dateString)")
+            } else {
+                self.toastManager.showToast(message: "마케팅 정보 수신에 동의를 철회했어요. \n(철회일: \(dateString)")
+            }
         }
     }
     
