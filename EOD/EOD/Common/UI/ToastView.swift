@@ -20,7 +20,7 @@ struct ToastView: View {
                         }
                         Text(toastManager.message)
                             .font(size: 16)
-                            .frame(height: 24)
+                            .frame(minHeight: 24)
                             .foregroundColor(.white)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)

@@ -13,6 +13,7 @@ public struct DiarySummary: Decodable {
     var writeDate: Date?
     var emotion: EmotionType
     var content: String
+    var diary_background: diaryBackgroundType? = .white
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -20,6 +21,7 @@ public struct DiarySummary: Decodable {
         case writeDate
         case emotion
         case content
+        case diary_background = "diaryBackground"
     }
     
     public init(from decoder: Decoder) throws {
@@ -33,6 +35,7 @@ public struct DiarySummary: Decodable {
             return dateString.summaryDateInKoreaTimeZone
         }()
         emotion = try container.decode(EmotionType.self, forKey: .emotion)
+        diary_background = try container.decodeIfPresent(diaryBackgroundType.self, forKey: .diary_background)
         content = try container.decode(String.self, forKey: .content)
     }
 }

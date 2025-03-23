@@ -182,6 +182,8 @@
 		CECC14412D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
+		CEDFA1E62D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
+		CEDFA1E72D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
 		CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
 		CEE63F342CFC4F5D00275C7F /* StandardErrorLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0472AAC61D4001C99EA /* StandardErrorLogRecorder.swift */; };
 		CEE63F352CFC4F5D00275C7F /* OSLogTypeTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F04E2AAC61D4001C99EA /* OSLogTypeTranslator.swift */; };
@@ -518,6 +520,7 @@
 		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
 		CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24Ssurround.ttf; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataViewModel.swift; sourceTree = "<group>"; };
 		CEE63FBD2CFC4F5D00275C7F /* Preview EOD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Preview EOD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE63FBE2CFC4F5D00275C7F /* EOD copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EOD copy-Info.plist"; path = "/Users/user/Desktop/jy/EOD_iOS/EOD/EOD copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -706,6 +709,7 @@
 				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
 				CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */,
+				CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1478,6 +1482,7 @@
 				CE77A9BD2ACD269B00D9C58B /* NavigationBarView.swift in Sources */,
 				CEB7F0682AAC61D4001C99EA /* StandardOutputLogRecorder.swift in Sources */,
 				CE43181C2BECD2DC00880898 /* CornerRadius.swift in Sources */,
+				CEDFA1E62D90219800BD3309 /* AlarmSettingView.swift in Sources */,
 				CEB056B02D57062500DB007F /* DiaryBackgroundSelectView.swift in Sources */,
 				CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */,
 				CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */,
@@ -1632,6 +1637,7 @@
 				CEE63F8A2CFC4F5D00275C7F /* NavigationBarView.swift in Sources */,
 				CEE63F8B2CFC4F5D00275C7F /* StandardOutputLogRecorder.swift in Sources */,
 				CEE63F8C2CFC4F5D00275C7F /* CornerRadius.swift in Sources */,
+				CEDFA1E72D90219800BD3309 /* AlarmSettingView.swift in Sources */,
 				CEB056AF2D57062500DB007F /* DiaryBackgroundSelectView.swift in Sources */,
 				CEE63F8D2CFC4F5D00275C7F /* LoadingView.swift in Sources */,
 				CEE63F8E2CFC4F5D00275C7F /* CharacterViewModel.swift in Sources */,
