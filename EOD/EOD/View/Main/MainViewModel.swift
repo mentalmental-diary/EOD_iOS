@@ -49,6 +49,14 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    @Published var marketingNotificationEnabled: Bool = false { // 마케팅 알림 설정 여부
+        didSet {
+            guard oldValue != marketingNotificationEnabled else { return }
+            
+            UserDefaults.standard.set(marketingNotificationEnabled, forKey: "marketingNotificationEnabled")
+        }
+    }
+    
     @Published var diaryNotificationTime: Date? {
         didSet {
             guard oldValue != diaryNotificationTime else { return }
@@ -82,6 +90,7 @@ class MainViewModel: ObservableObject {
         
         diaryNotificationEnabled = UserDefaults.standard.bool(forKey: "diaryNotificationEnabled")
         gameNotificationEnabled = UserDefaults.standard.bool(forKey: "gameNotificationEnabled")
+        marketingNotificationEnabled = UserDefaults.standard.bool(forKey: "marketingNotificationEnabled")
         
         if let diaryNotificationTime = UserDefaults.standard.object(forKey: "diaryNotificationTime") as? Date {
             self.diaryNotificationTime = diaryNotificationTime

@@ -22,60 +22,116 @@ struct AlarmSettingView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            NavigationBarView(title: "알림 설정")
-            
-            Spacer().frame(height: 28)
-            
+        ZStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text("서비스 알림 설정")
-                    .font(type: .omyu, size: 22)
-                    .foregroundColor(.black)
+                NavigationBarView(title: "알림 설정")
                 
-                Spacer().frame(height: 14)
+                Spacer().frame(height: 28)
                 
-                Text("받고 싶은 알림만 선택해서 푸시로 받을 수 있어요.")
-                    .font(type: .omyu, size: 18)
-                    .foregroundColor(UIColor.Gray.gray500.color)
-                
-                Spacer().frame(height: 14)
-                
-                notificationToggleView(title: "일기 쓰기 알림", isOn: $viewModel.diaryNotificationEnabled)
-                
-                Spacer().frame(height: 8)
-                
-                if viewModel.diaryNotificationEnabled {
-                    ZStack {
-                        notificationDateSelectView(date: viewModel.diaryNotificationTime ?? Date(), showPicker: {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("서비스 알림 설정")
+                        .font(type: .omyu, size: 22)
+                        .foregroundColor(.black)
+                    
+                    Spacer().frame(height: 14)
+                    
+                    Text("받고 싶은 알림만 선택해서 푸시로 받을 수 있어요.")
+                        .font(type: .omyu, size: 18)
+                        .foregroundColor(UIColor.Gray.gray500.color)
+                    
+                    Spacer().frame(height: 14)
+                    
+                    notificationToggleView(title: "일기 쓰기 알림", isOn: $viewModel.diaryNotificationEnabled)
+                    
+                    Spacer().frame(height: 8)
+                    
+                    if viewModel.diaryNotificationEnabled {
+                        notificationDateSelectView(date: viewModel.diaryNotificationTime ?? Date(),
+                                                   showPicker: {
                             togglePicker(.diary)
                         })
                         
-                        if expandedPicker == .diary {
-                            datePickerView(selection: $viewModel.diaryNotificationTime, position: anchorFrame)
-                        }
-                        
+                        Spacer().frame(height: 8)
                     }
                     
+                    notificationToggleView(title: "게임 플레이 알림", isOn: $viewModel.gameNotificationEnabled)
+                    
                     Spacer().frame(height: 8)
+                    
+                    if viewModel.gameNotificationEnabled {
+                        notificationDateSelectView(date: viewModel.gameNotificationTime ?? Date(),
+                                                   showPicker: {
+                            togglePicker(.game)
+                        })
+                    }
+                    
+                    Spacer().frame(height: 22)
+                    
+                    Text("보안 및 개인 정보 보호")
+                        .font(type: .omyu, size: 22)
+                        .foregroundColor(.black)
+                    
+                    Spacer().frame(height: 14)
+                    
+                    Text("새로운 기능이나 아이템이 나오면 알려드려요.")
+                        .font(type: .omyu, size: 18)
+                        .foregroundColor(UIColor.Gray.gray500.color)
+                    
+                    Spacer().frame(height: 14)
+                    
+                    notificationToggleView(title: "마케팅 정보 알림 수선", isOn: $viewModel.marketingNotificationEnabled)
+                    
+                    Spacer()
+                    
                 }
-                
-                notificationToggleView(title: "게임 플레이 알림", isOn: $viewModel.gameNotificationEnabled)
-                
-                Spacer().frame(height: 8)
-                
-                if viewModel.gameNotificationEnabled {
-                    notificationDateSelectView(date: viewModel.gameNotificationTime ?? Date(), showPicker: {
-                        togglePicker(.game)
-                    })
-                    Spacer().frame(height: 8)
-                }
-                
-                Spacer()
-                
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
+            .background(UIColor.CommonBackground.background.color)
+            
+            // DatePicker 오버레이 추가
+            if let pickerType = expandedPicker {
+                Color.black.opacity(0.01) // 투명 클릭 가능 배경
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation {
+                            expandedPicker = nil
+                        }
+                    }
+                
+                DatePicker(
+                    "",
+                    selection: Binding(
+                        get: {
+                            if pickerType == .diary {
+                                return viewModel.diaryNotificationTime ?? Date()
+                            } else {
+                                return viewModel.gameNotificationTime ?? Date()
+                            }
+                        },
+                        set: { newValue in
+                            if pickerType == .diary {
+                                viewModel.diaryNotificationTime = newValue
+                            } else {
+                                viewModel.gameNotificationTime = newValue
+                            }
+                        }
+                    ),
+                    displayedComponents: .hourAndMinute
+                )
+                .datePickerStyle(.wheel)
+                .labelsHidden()
+                .environment(\.locale, Locale(identifier: "ko_KR"))
+                .frame(width: 221, height: 196)
+                .background(Color.white)
+                .cornerRadius(12)
+                .shadow(radius: 5)
+                .transition(.opacity)
+                .position(
+                    x: anchorFrame.maxX - 100, // X: 버튼 우측으로 약간 이동 (조절 가능)
+                    y: anchorFrame.minY + (pickerType == .diary ? 80 : 220)   // Y: 버튼 바로 위에 위치하도록 조정
+                )
+            }
         }
-        .background(UIColor.CommonBackground.background.color)
     }
 }
 
@@ -118,9 +174,9 @@ extension AlarmSettingView {
                     .font(type: .omyu, size: 18)
                     .foregroundColor(Color(red: 107/255, green: 88/255, blue: 23/255))
                     .padding(10)
-                    .background(UIColor.Yellow.yellow100.color)
+                    .background(expandedPicker == nil ? UIColor.Yellow.yellow100.color : UIColor.Gray.gray50.color)
                     .cornerRadius(6)
-                    .overlay(
+                    .background(
                         GeometryReader { geo in
                             Color.clear
                                 .onAppear {
@@ -129,29 +185,12 @@ extension AlarmSettingView {
                         }
                     )
             }
-
+            
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
         .background(.white)
         .cornerRadius(10)
-    }
-    
-    private func datePickerView(selection: Binding<Date?>, position: CGRect) -> some View {
-        VStack {
-            DatePicker("", selection: Binding(
-                get: { selection.wrappedValue ?? Date() },
-                set: { newValue in selection.wrappedValue = newValue }
-            ), displayedComponents: .hourAndMinute)
-            .datePickerStyle(.wheel)
-            .labelsHidden()
-            .environment(\.locale, Locale(identifier: "ko_KR"))
-            .frame(width: 221, height: 196)
-            .background(Color.white)
-            .clipped()
-        }
-        .position(x: position.midX, y: position.minY - 98) // 98은 height의 절반 (위에 뜨도록)
-        .transition(.opacity)
     }
 }
 
@@ -169,6 +208,15 @@ extension AlarmSettingView {
         formatter.dateFormat = "a h:mm"
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter.string(from: date)
+    }
+    
+    private func pickerPositionY(for type: PickerType) -> CGFloat {
+        switch type {
+        case .diary:
+            return 120
+        case .game:
+            return 200
+        }
     }
 }
 
