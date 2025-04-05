@@ -324,6 +324,8 @@
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
 		CEEA9CF02D3D196B0067FBB8 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
+		CEFF45FA2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
+		CEFF45FB2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -531,6 +533,7 @@
 		CEE906012CAEB35B00C69077 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.debug.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preview EOD.debug.xcconfig"; path = "Target Support Files/Pods-Preview EOD/Pods-Preview EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FD9F79E43E969F150CA69159 /* Pods-EOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.release.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.release.xcconfig"; sourceTree = "<group>"; };
@@ -710,6 +713,7 @@
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
 				CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */,
 				CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */,
+				CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1402,6 +1406,7 @@
 				CEA64F712CE6D1A200FD5627 /* HomeNetworkModel.swift in Sources */,
 				CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */,
 				CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */,
+				CEFF45FB2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */,
 				CE06C38E2CC5D3510075A9C0 /* CharacterView.swift in Sources */,
 				CEB056BE2D61E56F00DB007F /* NotificationType.swift in Sources */,
 				CEB7F06B2AAC61D4001C99EA /* PayloadValueLogFormatter.swift in Sources */,
@@ -1557,6 +1562,7 @@
 				CEE63F412CFC4F5D00275C7F /* HomeNetworkModel.swift in Sources */,
 				CEE63F422CFC4F5D00275C7F /* UIApplication+Extension.swift in Sources */,
 				CEE63F432CFC4F5D00275C7F /* Result+Extension.swift in Sources */,
+				CEFF45FA2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */,
 				CEE63F442CFC4F5D00275C7F /* CharacterView.swift in Sources */,
 				CEB056BD2D61E56F00DB007F /* NotificationType.swift in Sources */,
 				CEE63F452CFC4F5D00275C7F /* PayloadValueLogFormatter.swift in Sources */,

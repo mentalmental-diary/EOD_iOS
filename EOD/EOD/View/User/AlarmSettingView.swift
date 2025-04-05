@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlarmSettingView: View {
-    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: SettingViewModel
     @Environment(\.presentationMode) var presentationMode
     
     @State private var showDiaryTimePicker = false
@@ -125,6 +125,7 @@ struct AlarmSettingView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .shadow(radius: 5)
+                .colorScheme(.light)
                 .transition(.opacity)
                 .position(
                     x: anchorFrame.maxX - 120,
@@ -218,5 +219,5 @@ extension AlarmSettingView {
 }
 
 #Preview {
-    AlarmSettingView(viewModel: MainViewModel())
+    AlarmSettingView(viewModel: SettingViewModel())
 }
