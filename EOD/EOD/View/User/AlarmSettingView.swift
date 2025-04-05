@@ -125,6 +125,7 @@ struct AlarmSettingView: View {
                 .background(Color.white)
                 .cornerRadius(12)
                 .shadow(radius: 5)
+                .colorScheme(.light)
                 .transition(.opacity)
                 .position(
                     x: anchorFrame.maxX - 120,
