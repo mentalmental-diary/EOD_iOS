@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingView: View {
-    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var settingViewModel: SettingViewModel = SettingViewModel()
+    @ObservedObject var mainViewModel: MainViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -84,7 +85,7 @@ extension SettingView {
                 .foregroundColor(.black)
             
             NavigationLink(destination:
-                            AlarmSettingView(viewModel: viewModel)
+                            AlarmSettingView(viewModel: settingViewModel)
                     .background(Color.white)
                     .navigationBarHidden(true)
             ) {
@@ -183,7 +184,7 @@ extension SettingView {
                 }
                 
                 Button {
-                    viewModel.logoutAction()
+                    mainViewModel.logoutAction()
                 } label: {
                     HStack {
                         Text("로그아웃")
@@ -205,5 +206,5 @@ extension SettingView {
 }
 
 #Preview {
-    SettingView(viewModel: MainViewModel())
+    SettingView(mainViewModel: MainViewModel())
 }

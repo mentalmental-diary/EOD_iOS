@@ -75,7 +75,7 @@ extension MainTabView {
         case .Game:
             GameView()
         case .Setting:
-            SettingView(viewModel: viewModel)
+            SettingView(mainViewModel: viewModel)
         }
     }
 }

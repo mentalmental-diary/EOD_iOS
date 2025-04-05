@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AlarmSettingView: View {
-    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: SettingViewModel
     @Environment(\.presentationMode) var presentationMode
     
     @State private var showDiaryTimePicker = false
@@ -218,5 +218,5 @@ extension AlarmSettingView {
 }
 
 #Preview {
-    AlarmSettingView(viewModel: MainViewModel())
+    AlarmSettingView(viewModel: SettingViewModel())
 }
