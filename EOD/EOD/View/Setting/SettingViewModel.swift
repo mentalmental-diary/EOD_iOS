@@ -75,13 +75,18 @@ class SettingViewModel: ObservableObject {
             
             if lockEnable {
                 visiblePwSettingView = true
+            } else {
+                appPassWord = []
+                changePassWord = []
             }
         }
     }
     
     @Published var visiblePwSettingView: Bool = false
+    @Published var changePwSettingView: Bool = false
     
     @Published var appPassWord: [Int] = []
+    @Published var changePassWord: [Int] = []
     
     private var checkInit: Bool = false
     
@@ -115,12 +120,34 @@ extension SettingViewModel {
         
         if appPassWord.count == 4 {
             visiblePwSettingView = false
+            debugLog("설정된 비밀번호 확인 : \(appPassWord)")
+            self.toastManager.showToast(message: "비밀번호를 설정했어요.")
+        }
+    }
+    
+    func changePassWord(number: Int) {
+        guard changePassWord.count < 4 else { return }
+        
+        changePassWord.append(number)
+        
+        if changePassWord.count == 4 {
+            changePwSettingView = false
+            appPassWord = changePassWord
+            debugLog("변경된 비밀번호 확인 : \(changePassWord)")
+            changePassWord = []
+            self.toastManager.showToast(message: "비밀번호를 변경했어요.")
         }
     }
     
     func removePassWord() {
-        if !appPassWord.isEmpty {
-            appPassWord.removeLast()
+        if changePwSettingView {
+            if !changePassWord.isEmpty {
+                changePassWord.removeLast()
+            }
+        } else {
+            if !appPassWord.isEmpty {
+                appPassWord.removeLast()
+            }
         }
     }
 }

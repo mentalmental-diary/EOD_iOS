@@ -15,8 +15,9 @@ struct LockSettingView: View {
         ZStack {
             VStack(alignment: .leading, spacing: 0) {
                 NavigationBarView(title: "앱 잠금 설정", dismissAction: {
-                    if viewModel.visiblePwSettingView {
+                    if viewModel.visiblePwSettingView || viewModel.changePwSettingView {
                         viewModel.visiblePwSettingView = false
+                        viewModel.changePwSettingView = false
                     } else {
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -24,9 +25,13 @@ struct LockSettingView: View {
                 
                 Spacer()
                 
-                if viewModel.visiblePwSettingView {
-                    PasswordInputView(password: $viewModel.appPassWord, appendAction: { number in
-                        viewModel.addPassWord(number: number)
+                if viewModel.visiblePwSettingView || viewModel.changePwSettingView {
+                    PasswordInputView(password: viewModel.changePwSettingView ? $viewModel.changePassWord : $viewModel.appPassWord, appendAction: { number in
+                        if viewModel.changePwSettingView {
+                            viewModel.changePassWord(number: number)
+                        } else {
+                            viewModel.addPassWord(number: number)
+                        }
                     }, removeAction: {
                         viewModel.removePassWord()
                     })
@@ -56,7 +61,7 @@ struct LockSettingView: View {
                         
                         if viewModel.lockEnable {
                             Button {
-                                viewModel.visiblePwSettingView = true
+                                viewModel.changePwSettingView = true
                             } label: {
                                 HStack {
                                     Text("비밀번호 변경")
