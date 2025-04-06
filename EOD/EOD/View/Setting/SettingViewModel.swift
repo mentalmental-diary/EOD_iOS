@@ -15,7 +15,7 @@ class SettingViewModel: ObservableObject {
     
     @Published var diaryNotificationEnabled: Bool = false { // 일기 쓰기 알림 설정 여부
         didSet {
-            guard oldValue != diaryNotificationEnabled else { return }
+            guard oldValue != diaryNotificationEnabled, checkInit == true else { return }
             
             UserDefaults.standard.set(diaryNotificationEnabled, forKey: "diaryNotificationEnabled")
             
@@ -25,7 +25,7 @@ class SettingViewModel: ObservableObject {
     
     @Published var gameNotificationEnabled: Bool = false { // 게임 알림 설정 여부
         didSet {
-            guard oldValue != gameNotificationEnabled else { return }
+            guard oldValue != gameNotificationEnabled, checkInit == true else { return }
             
             UserDefaults.standard.set(gameNotificationEnabled, forKey: "gameNotificationEnabled")
             
@@ -35,7 +35,7 @@ class SettingViewModel: ObservableObject {
     
     @Published var marketingNotificationEnabled: Bool = false { // 마케팅 알림 설정 여부
         didSet {
-            guard oldValue != marketingNotificationEnabled else { return }
+            guard oldValue != marketingNotificationEnabled, checkInit == true else { return }
             
             UserDefaults.standard.set(marketingNotificationEnabled, forKey: "marketingNotificationEnabled")
             
@@ -69,7 +69,7 @@ class SettingViewModel: ObservableObject {
     
     @Published var lockEnable: Bool = false { // 앱 잠금 여부
         didSet {
-            guard oldValue != lockEnable else { return }
+            guard oldValue != lockEnable, checkInit == true else { return }
             
             UserDefaults.standard.set(lockEnable, forKey: "lockEnable")
             
@@ -82,6 +82,8 @@ class SettingViewModel: ObservableObject {
     @Published var visiblePwSettingView: Bool = false
     
     @Published var appPassWord: [Int] = []
+    
+    private var checkInit: Bool = false
     
     init() {
         diaryNotificationEnabled = UserDefaults.standard.bool(forKey: "diaryNotificationEnabled")
@@ -101,6 +103,8 @@ class SettingViewModel: ObservableObject {
         }
         
         lockEnable = UserDefaults.standard.bool(forKey: "lockEnable")
+        
+        checkInit = true
     }
 }
 
