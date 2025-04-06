@@ -113,9 +113,11 @@ extension SettingView {
                 .foregroundColor(.black)
             
             VStack(spacing: 0) {
-                Button {
-                    
-                } label: {
+                NavigationLink(destination:
+                                LockSettingView(viewModel: settingViewModel)
+                        .background(Color.white)
+                        .navigationBarHidden(true)
+                ) {
                     HStack {
                         Text("앱 잠금 설정")
                             .font(type: .omyu, size: 18)

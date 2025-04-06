@@ -67,6 +67,22 @@ class SettingViewModel: ObservableObject {
         }
     }
     
+    @Published var lockEnable: Bool = false { // 앱 잠금 여부
+        didSet {
+            guard oldValue != lockEnable else { return }
+            
+            UserDefaults.standard.set(lockEnable, forKey: "lockEnable")
+            
+            if lockEnable {
+                visiblePwSettingView = true
+            }
+        }
+    }
+    
+    @Published var visiblePwSettingView: Bool = false
+    
+    @Published var appPassWord: [Int] = []
+    
     init() {
         diaryNotificationEnabled = UserDefaults.standard.bool(forKey: "diaryNotificationEnabled")
         gameNotificationEnabled = UserDefaults.standard.bool(forKey: "gameNotificationEnabled")
@@ -82,6 +98,25 @@ class SettingViewModel: ObservableObject {
             self.gameNotificationTime = gameNotificationTime
         } else {
             self.gameNotificationTime = Calendar.current.date(from: DateComponents(hour: 24, minute: 0))
+        }
+        
+        lockEnable = UserDefaults.standard.bool(forKey: "lockEnable")
+    }
+}
+
+extension SettingViewModel {
+    func addPassWord(number: Int) {
+        guard appPassWord.count < 4 else { return }
+        appPassWord.append(number)
+        
+        if appPassWord.count == 4 {
+            visiblePwSettingView = false
+        }
+    }
+    
+    func removePassWord() {
+        if !appPassWord.isEmpty {
+            appPassWord.removeLast()
         }
     }
 }

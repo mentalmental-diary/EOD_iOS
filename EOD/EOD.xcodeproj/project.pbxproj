@@ -326,6 +326,8 @@
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
 		CEFF45FA2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
 		CEFF45FB2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
+		CEFF45FE2DA0F38D002CEF00 /* LockSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */; };
+		CEFF45FF2DA0F38D002CEF00 /* LockSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -534,6 +536,7 @@
 		CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockSettingView.swift; sourceTree = "<group>"; };
 		E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.debug.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preview EOD.debug.xcconfig"; path = "Target Support Files/Pods-Preview EOD/Pods-Preview EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FD9F79E43E969F150CA69159 /* Pods-EOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.release.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.release.xcconfig"; sourceTree = "<group>"; };
@@ -711,9 +714,6 @@
 				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
 				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
-				CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */,
-				CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */,
-				CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -725,6 +725,7 @@
 				CE648B852C05FD6100EBC335 /* Diary */,
 				CEA422FC2BE50B1E00725E6B /* Calendar */,
 				CE77A9AA2ACA99C800D9C58B /* User */,
+				CEFF45FC2DA0F36C002CEF00 /* Setting */,
 				CE77A9B42ACAD50200D9C58B /* Home */,
 				CE13E45C2ABE952200C64EA1 /* Main */,
 			);
@@ -1043,6 +1044,17 @@
 				CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		CEFF45FC2DA0F36C002CEF00 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */,
+				CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */,
+				CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */,
+				CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1491,6 +1503,7 @@
 				CEB056B02D57062500DB007F /* DiaryBackgroundSelectView.swift in Sources */,
 				CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */,
 				CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */,
+				CEFF45FF2DA0F38D002CEF00 /* LockSettingView.swift in Sources */,
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
 				CE2A46CC2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
@@ -1647,6 +1660,7 @@
 				CEB056AF2D57062500DB007F /* DiaryBackgroundSelectView.swift in Sources */,
 				CEE63F8D2CFC4F5D00275C7F /* LoadingView.swift in Sources */,
 				CEE63F8E2CFC4F5D00275C7F /* CharacterViewModel.swift in Sources */,
+				CEFF45FE2DA0F38D002CEF00 /* LockSettingView.swift in Sources */,
 				CEE63F8F2CFC4F5D00275C7F /* FileLogRecorder.swift in Sources */,
 				CE2A46CD2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */,
 				CEE63F902CFC4F5D00275C7F /* LogReceptacle.swift in Sources */,
