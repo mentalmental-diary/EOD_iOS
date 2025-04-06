@@ -328,6 +328,8 @@
 		CEFF45FB2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
 		CEFF45FE2DA0F38D002CEF00 /* LockSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */; };
 		CEFF45FF2DA0F38D002CEF00 /* LockSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */; };
+		CEFF46012DA2865F002CEF00 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF46002DA2865F002CEF00 /* PasswordInputView.swift */; };
+		CEFF46022DA2865F002CEF00 /* PasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF46002DA2865F002CEF00 /* PasswordInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -537,6 +539,7 @@
 		CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockSettingView.swift; sourceTree = "<group>"; };
+		CEFF46002DA2865F002CEF00 /* PasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordInputView.swift; sourceTree = "<group>"; };
 		E8A7B8FBF0BBAE0D64D5C8BE /* Pods-EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.debug.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FBAB0B34D519E41F27CA1259 /* Pods-Preview EOD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Preview EOD.debug.xcconfig"; path = "Target Support Files/Pods-Preview EOD/Pods-Preview EOD.debug.xcconfig"; sourceTree = "<group>"; };
 		FD9F79E43E969F150CA69159 /* Pods-EOD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EOD.release.xcconfig"; path = "Target Support Files/Pods-EOD/Pods-EOD.release.xcconfig"; sourceTree = "<group>"; };
@@ -1053,6 +1056,7 @@
 				CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */,
 				CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */,
 				CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */,
+				CEFF46002DA2865F002CEF00 /* PasswordInputView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1505,6 +1509,7 @@
 				CE06C3922CC5DA370075A9C0 /* CharacterViewModel.swift in Sources */,
 				CEFF45FF2DA0F38D002CEF00 /* LockSettingView.swift in Sources */,
 				CEB7F07A2AAC61D5001C99EA /* FileLogRecorder.swift in Sources */,
+				CEFF46012DA2865F002CEF00 /* PasswordInputView.swift in Sources */,
 				CE2A46CC2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */,
 				CEB7F0932AAC61D5001C99EA /* LogReceptacle.swift in Sources */,
 				CEA423002BE50B4B00725E6B /* CalendarCellView.swift in Sources */,
@@ -1662,6 +1667,7 @@
 				CEE63F8E2CFC4F5D00275C7F /* CharacterViewModel.swift in Sources */,
 				CEFF45FE2DA0F38D002CEF00 /* LockSettingView.swift in Sources */,
 				CEE63F8F2CFC4F5D00275C7F /* FileLogRecorder.swift in Sources */,
+				CEFF46022DA2865F002CEF00 /* PasswordInputView.swift in Sources */,
 				CE2A46CD2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */,
 				CEE63F902CFC4F5D00275C7F /* LogReceptacle.swift in Sources */,
 				CEE63F912CFC4F5D00275C7F /* CalendarCellView.swift in Sources */,
