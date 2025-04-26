@@ -8,6 +8,13 @@
 import Combine
 import SwiftUI
 
+private enum PasswordMessages {
+    static let initial = "비밀번호를 입력해주세요!"
+    static let confirm = "다시 한 번 입력해주세요!"
+    static let retry = "비밀번호를 다시 입력해주세요!"
+    static let changeNew = "변경할 비밀번호를 입력해주세요!"
+}
+
 class SettingViewModel: ObservableObject {
     @Published var toastManager = ToastManager.shared
     
@@ -83,20 +90,16 @@ class SettingViewModel: ObservableObject {
     }
     
     @Published var visiblePwSettingView: Bool = false
-    @Published var changePwSettingView: Bool = false
     
     @Published var appPassWord: [Int] = []
     
-    @Published var confirmPassword: [Int] = []  // 이중 확인용
     @Published var inputViewTitle: String = ""
     @Published var visibleWarningMessage: Bool = false
     private var checkInit: Bool = false
     
     // 상태 플래그
-    var isSettingNewPassword: Bool = false
+    private var isSettingNewPassword: Bool = false
     private var firstInputPassword: [Int]? = nil
-    
-    // 상태 플래그
     private var isChangingPassword: Bool = false
     private var isCheckingCurrentPassword: Bool = false
     private var isConfirmingNewPassword: Bool = false
@@ -121,14 +124,11 @@ class SettingViewModel: ObservableObject {
         lockEnable = UserDefaults.standard.bool(forKey: "lockEnable")
         
         checkInit = true
-        self.inputViewTitle = initTitle
+        self.inputViewTitle = PasswordMessages.initial
     }
 }
 
-extension SettingViewModel {
-    private var initTitle: String { return "비밀번호를 입력해주세요!" }
-}
-
+// MARK: - AppPassword Setting
 extension SettingViewModel {
     func addPassWord(number: Int) {
         guard appPassWord.count < 4 else { return }
@@ -164,19 +164,17 @@ extension SettingViewModel {
             // 첫 입력
             firstInputPassword = appPassWord
             appPassWord = []
-            inputViewTitle = "다시 한 번 입력해주세요!"
+            inputViewTitle = PasswordMessages.confirm
             visibleWarningMessage = false
         } else {
             // 두 번째 입력
             if firstInputPassword == appPassWord {
                 savePassword(appPassWord)
                 toastManager.showToast(message: "비밀번호를 설정했어요.")
+                resetPasswordInput()
                 visiblePwSettingView = false
-                isSettingNewPassword = false
-                inputViewTitle = initTitle
-                visibleWarningMessage = false
             } else {
-                inputViewTitle = "비밀번호를 다시 입력해주세요!"
+                inputViewTitle = PasswordMessages.retry
                 visibleWarningMessage = true
                 firstInputPassword = nil
             }
@@ -188,10 +186,9 @@ extension SettingViewModel {
         if appPassWord == (loadStoredPassword() ?? []) {
             visiblePwSettingView = false
             visibleWarningMessage = false
-            visibleWarningMessage = false
-            inputViewTitle = "비밀번호를 입력해주세요!"
+            inputViewTitle = PasswordMessages.initial
         } else {
-            inputViewTitle = "비밀번호를 다시 입력해주세요!"
+            inputViewTitle = PasswordMessages.retry
             visibleWarningMessage = true
         }
         appPassWord = []
@@ -204,9 +201,9 @@ extension SettingViewModel {
             isCheckingCurrentPassword = false
             isConfirmingNewPassword = false
             visibleWarningMessage = false
-            inputViewTitle = "변경할 비밀번호를 입력해주세요!"
+            inputViewTitle = PasswordMessages.changeNew
         } else {
-            inputViewTitle = "비밀번호를 다시 입력해주세요!"
+            inputViewTitle = PasswordMessages.retry
             visibleWarningMessage = true
         }
         appPassWord = []
@@ -217,7 +214,7 @@ extension SettingViewModel {
         firstInputPassword = appPassWord
         appPassWord = []
         isConfirmingNewPassword = true
-        inputViewTitle = "다시 한 번 입력해주세요!"
+        inputViewTitle = PasswordMessages.confirm
         visibleWarningMessage = false
     }
     
@@ -227,13 +224,9 @@ extension SettingViewModel {
             savePassword(appPassWord)
             toastManager.showToast(message: "비밀번호가 변경됐어요.")
             resetPasswordInput()
-            changePwSettingView = false
             visiblePwSettingView = false
-            isChangingPassword = false
-            visibleWarningMessage = false
-            inputViewTitle = initTitle
         } else {
-            inputViewTitle = "비밀번호를 다시 입력해주세요!"
+            inputViewTitle = PasswordMessages.retry
             visibleWarningMessage = true
             appPassWord = []
             firstInputPassword = nil
@@ -242,7 +235,7 @@ extension SettingViewModel {
     }
         
     private func clearStoredPassword() {
-        appPassWord = []
+        resetPasswordInput()
         UserDefaults.standard.removeObject(forKey: "appPassword")
     }
     
@@ -260,11 +253,11 @@ extension SettingViewModel {
     func resetPasswordInput() {
         appPassWord = []
         firstInputPassword = nil
+        isSettingNewPassword = false
         isCheckingCurrentPassword = false
         isConfirmingNewPassword = false
         isChangingPassword = false
-        isSettingNewPassword = false
-        inputViewTitle = initTitle
+        inputViewTitle = PasswordMessages.initial
         visibleWarningMessage = false
         if lockEnable && loadStoredPassword() == nil { // 잠금 설정 최초 진입에서 뒤로가는 경우(기존에 저장된 내용이 없음)
             lockEnable = false
