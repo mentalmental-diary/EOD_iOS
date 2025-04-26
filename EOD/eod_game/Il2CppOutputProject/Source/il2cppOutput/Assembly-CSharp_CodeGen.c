@@ -53,6 +53,9 @@ extern void MainScene_DataManager__cctor_mF31C74EBB537E18E8AB07F7F7DE7842A55A3CE
 extern void ReciveDataFromObjectC_Start_mE2A83FD1CEAD32DE73CF388E476B752B90ED4F4E (void);
 extern void ReciveDataFromObjectC_ReceiveMessage_m9FF6BF72111D0254C20E76AC7644D6EA2B731B0E (void);
 extern void ReciveDataFromObjectC__ctor_mE11D7C2DC6357714F8EF81B9512ED78031BC095D (void);
+extern void ScreenScaler_Start_m5FF87CB94AE56F648CE5B5B183E2177CB3057F6C (void);
+extern void ScreenScaler_Update_m6F696E84DE69A8B390B564D2EF82F6935C0993E7 (void);
+extern void ScreenScaler__ctor_mD8A552F81E5E131600A5ACC4AE12452FDC3EF14A (void);
 extern void SoundSetting_Start_m1718DD18FB40041813C41B2E3069D623A3341817 (void);
 extern void SoundSetting_OnSoundButtonClick_mE3374ED9078845714DA9B66843E7504822EC099C (void);
 extern void SoundSetting__ctor_m3E1D85EC866344AC327F0381F2C52AB38BB3B2C1 (void);
@@ -225,7 +228,7 @@ extern void U3CSpawnTimerU3Ed__11_System_Collections_IEnumerator_Reset_m8CE50B0B
 extern void U3CSpawnTimerU3Ed__11_System_Collections_IEnumerator_get_Current_mC00E796554AB0AB74E2F21BA34927CC7220D2616 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033 (void);
 extern void UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1 (void);
-static Il2CppMethodPointer s_methodPointers[213] = 
+static Il2CppMethodPointer s_methodPointers[216] = 
 {
 	GameStartUI_Start_m09E54CF649BD05706D50A012E4CDE0D92EF9246D,
 	GameStartUI_DestroyGameObject_m6A2298C6223A6957A9499FCD68AB31B96751E2D5,
@@ -268,6 +271,9 @@ static Il2CppMethodPointer s_methodPointers[213] =
 	ReciveDataFromObjectC_Start_mE2A83FD1CEAD32DE73CF388E476B752B90ED4F4E,
 	ReciveDataFromObjectC_ReceiveMessage_m9FF6BF72111D0254C20E76AC7644D6EA2B731B0E,
 	ReciveDataFromObjectC__ctor_mE11D7C2DC6357714F8EF81B9512ED78031BC095D,
+	ScreenScaler_Start_m5FF87CB94AE56F648CE5B5B183E2177CB3057F6C,
+	ScreenScaler_Update_m6F696E84DE69A8B390B564D2EF82F6935C0993E7,
+	ScreenScaler__ctor_mD8A552F81E5E131600A5ACC4AE12452FDC3EF14A,
 	SoundSetting_Start_m1718DD18FB40041813C41B2E3069D623A3341817,
 	SoundSetting_OnSoundButtonClick_mE3374ED9078845714DA9B66843E7504822EC099C,
 	SoundSetting__ctor_m3E1D85EC866344AC327F0381F2C52AB38BB3B2C1,
@@ -441,7 +447,7 @@ static Il2CppMethodPointer s_methodPointers[213] =
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1_Get_mBEB95BEB954BB63E9710BBC7AD5E78C4CB0A0033,
 	UnitySourceGeneratedAssemblyMonoScriptTypes_v1__ctor_mE70FB23ACC1EA12ABC948AA22C2E78B2D0AA39B1,
 };
-static const int32_t s_InvokerIndices[213] = 
+static const int32_t s_InvokerIndices[216] = 
 {
 	4846,
 	4846,
@@ -483,6 +489,9 @@ static const int32_t s_InvokerIndices[213] =
 	7259,
 	4846,
 	3930,
+	4846,
+	4846,
+	4846,
 	4846,
 	4846,
 	4846,
@@ -661,7 +670,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule;
 const Il2CppCodeGenModule g_AssemblyU2DCSharp_CodeGenModule = 
 {
 	"Assembly-CSharp.dll",
-	213,
+	216,
 	s_methodPointers,
 	0,
 	NULL,
