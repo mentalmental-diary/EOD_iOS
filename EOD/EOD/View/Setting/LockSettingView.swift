@@ -18,6 +18,7 @@ struct LockSettingView: View {
                     if viewModel.visiblePwSettingView || viewModel.changePwSettingView {
                         viewModel.visiblePwSettingView = false
                         viewModel.changePwSettingView = false
+                        viewModel.resetPasswordInput()
                     } else {
                         presentationMode.wrappedValue.dismiss()
                     }
@@ -26,12 +27,11 @@ struct LockSettingView: View {
                 Spacer()
                 
                 if viewModel.visiblePwSettingView || viewModel.changePwSettingView {
-                    PasswordInputView(password: viewModel.changePwSettingView ? $viewModel.changePassWord : $viewModel.appPassWord, appendAction: { number in
-                        if viewModel.changePwSettingView {
-                            viewModel.changePassWord(number: number)
-                        } else {
-                            viewModel.addPassWord(number: number)
-                        }
+                    PasswordInputView(password: $viewModel.appPassWord,
+                                      title: $viewModel.inputViewTitle,
+                                      visibleWarningMessage: $viewModel.visibleWarningMessage,
+                                      appendAction: { number in
+                        viewModel.addPassWord(number: number)
                     }, removeAction: {
                         viewModel.removePassWord()
                     })
@@ -61,7 +61,7 @@ struct LockSettingView: View {
                         
                         if viewModel.lockEnable {
                             Button {
-                                viewModel.changePwSettingView = true
+                                viewModel.startPasswordChange()
                             } label: {
                                 HStack {
                                     Text("비밀번호 변경")
