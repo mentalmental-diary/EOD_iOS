@@ -17,7 +17,6 @@ class CalendarViewModel: ObservableObject {
     @Published var selectEmotionType: EmotionType?
     @Published var showEmotionSelectView: Bool = false
     @Published var diary: Diary = Diary()
-    @Published var isShowAlert: Bool = false
     @Published var showDiaryView: Bool = false
     @Published var showMonthSelectModalView: Bool = false
     @Published var showDiaryBackgroundSelectView: Bool = false
@@ -90,6 +89,7 @@ extension CalendarViewModel {
     func resetData() {
         self.original = nil
         self.diary = Diary()
+        self.showDiaryBackgroundSelectView = false
     }
     
     func groupEntriesByDay(diarySummaryList: [DiarySummary]) -> [Int: DiarySummary?] { // TODO: 네이밍 변경, 기능 확인
