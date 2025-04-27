@@ -110,8 +110,8 @@ extension MainViewModel {
             .store(in: &cancellables)
     }
     
-    func appleLoginAction(userIdentifier: String) {
-        self.networkModel.fetchLogin(Authorization: userIdentifier, type: .`self`, completion: { result in // TODO: 타입 변경 예정
+    func appleLoginAction(token: String) {
+        self.networkModel.fetchLogin(Authorization: token, type: .apple, completion: { result in // TODO: 타입 변경 예정
             
         })
     }
