@@ -105,23 +105,6 @@ extension HomeView {
                             viewModel.refreshUserInfo()
                         }
                 }
-                
-                Button {
-                    // TODO: 알림 나중에 확인
-                } label: {
-                    Image("icon_alarm")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                        .padding(8)
-                        .background(.white)
-                        .clipShape(Circle())
-                        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
-                }
-//                .fullScreenCover(isPresented: $showHouseView) { // TODO: 알림화면 구현시 해당 버튼 사용
-//                    HouseView(showHouseView: $showHouseView, viewModel: HouseViewModel())
-//                }
-
             }
         }
         .padding(.horizontal, 20)

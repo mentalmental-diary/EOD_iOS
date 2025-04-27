@@ -127,4 +127,5 @@ public enum LoginType: String {
     case `self` = "SELF"
     case kakao = "KAKAO"
     case naver = "NAVER"
+    case apple = "APPLE"
 }

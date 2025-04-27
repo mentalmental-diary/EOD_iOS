@@ -79,7 +79,7 @@ struct AlarmSettingView: View {
                     
                     Spacer().frame(height: 14)
                     
-                    notificationToggleView(title: "마케팅 정보 알림 수선", isOn: $viewModel.marketingNotificationEnabled)
+                    notificationToggleView(title: "마케팅 정보 알림 수신", isOn: $viewModel.marketingNotificationEnabled)
                     
                     Spacer()
                     

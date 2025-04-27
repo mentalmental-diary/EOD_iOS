@@ -10,13 +10,15 @@ import SwiftUI
 struct PasswordInputView: View {
     
     @Binding var password: [Int]
+    @Binding var title: String
+    @Binding var visibleWarningMessage: Bool
     
     var appendAction: ((_ number: Int) -> Void)
     var removeAction: (() -> Void)
     
     var body: some View {
         VStack {
-            Text("비밀번호를 입력해주세요!")
+            Text(title)
                 .font(type: .omyu, size: 20)
                 .foregroundColor(.black)
             
@@ -24,7 +26,18 @@ struct PasswordInputView: View {
             
             inputPasswordView()
             
-            Spacer().frame(height: 100)
+            if visibleWarningMessage {
+                Spacer().frame(height: 20)
+                
+                Text("비밀번호가 일치하지 않아요.")
+                    .font(type: .omyu, size: 18)
+                    .foregroundColor(Color(red: 255/255, green: 64/255, blue: 64/255))
+                
+                Spacer().frame(height: 69)
+                
+            } else {
+                Spacer().frame(height: 100)
+            }
             
             numberPadView()
             
@@ -82,8 +95,7 @@ extension PasswordInputView {
                 Button {
                     removeAction()
                 } label: {
-                    Image("btn_close_B")
-                        .frame(width: 56)
+                    Image("btn_remove")
                 }
                 
                 Spacer().frame(width: 16)
@@ -105,7 +117,7 @@ extension PasswordInputView {
 }
 
 #Preview {
-    PasswordInputView(password: .constant([]), appendAction: { number in
+    PasswordInputView(password: .constant([]), title: .constant("비밀번호를 입력해주세요."), visibleWarningMessage: .constant(false), appendAction: { number in
         
     }, removeAction: {
         

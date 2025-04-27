@@ -243,7 +243,16 @@ extension IntroView {
                                 let firstName = fullName?.givenName ?? ""
                                 let lastName = fullName?.familyName ?? ""
                                 
-                                debugLog("로그인 토큰 정보: \(userIdentifier)")
+                                let authorizationCode = appleIDCredential.authorizationCode
+                                
+                                if let token = appleIDCredential.identityToken,
+                                   let identityTokenString = String(data: token, encoding: .utf8) {
+                                    
+                                    debugLog("로그인 토큰값 : \(token)")
+                                    viewModel.appleLoginAction(token: identityTokenString)
+                                }
+                                
+                                debugLog("로그인 토큰 정보: \(userIdentifier), email: \(email), authorizationCode: \(authorizationCode)")
                                 
                                 // 서버로 사용자 정보 전달
     //                            Task {
