@@ -15,6 +15,11 @@ struct GameView: View {
             ForEach(gameDataViewModel.games) { gameData in
                 VStack {
                     Button("\(gameData.game.rawValue) 게임 시작") {
+                        guard let accessData = gameDataViewModel.dailyLimits[gameData.game],
+                              accessData.accessCount < 3 else {
+                            print("오늘은 진입 불가")
+                            return
+                        }
 #if !PREVIEW
                         GameManager.shared.launchUnity()
                         gameDataViewModel.sendGameStartMessage(for: gameData.game)
@@ -26,6 +31,18 @@ struct GameView: View {
                     Text("\(gameData.game.rawValue) 점수: \(gameData.score), 코인: \(gameData.coinCount)")
                         .font(.system(size: 16))
                         .foregroundColor(.black)
+                    
+                    if let accessData = gameDataViewModel.dailyLimits[gameData.game] {
+                        if accessData.accessCount >= 3 {
+                            Text("\(gameData.game) 금일 진입 횟수 종료")
+                                .foregroundColor(.red)
+                                .font(.caption)
+                        } else {
+                            Text("\(gameData.game) 금일 진입 가능 횟수: \(3 - accessData.accessCount)회")
+                                .foregroundColor(.gray)
+                                .font(.caption)
+                        }
+                    }
                 }
             }
         }

@@ -5,6 +5,7 @@
 //  Created by JooYoung Kim on 11/10/24.
 //
 
+import Foundation
 import SwiftUI
 import Combine
 
@@ -22,15 +23,22 @@ class GameDataViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
+    @Published var dailyLimits: [GameType: GameDailyAccessData] = [:]
+    
     init() {
         setupGames()
         setupNotificationObserver()
     }
     
-    
+    func refreshAll() {
+        GameType.allCases.forEach { game in
+            dailyLimits[game] = Self.getDailyAccessData(for: game)
+        }
+    }
     // 초기화 시 모든 게임 데이터 설정
     private func setupGames() {
         games = GameType.allCases.map { GameData(game: $0) }
+        refreshAll()
     }
     
     private func setupNotificationObserver() {
@@ -78,6 +86,7 @@ class GameDataViewModel: ObservableObject {
                 debugLog("\(currentGame.rawValue)의 새로운 코인 수: \(coinCount)")
             }
         } else if message.hasPrefix("EndGame") {
+            self.incrementAccessCount(for: currentGame)
 #if !PREVIEW
             GameManager.shared.finishUnity()
 #endif
@@ -103,6 +112,53 @@ class GameDataViewModel: ObservableObject {
     }
 }
 
+// MARK: - 횟수 관리
+extension GameDataViewModel {
+    var dateString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: Date())
+    }
+    
+    static func getDailyAccessData(for game: GameType) -> GameDailyAccessData {
+        let key = game.dailyAccessKey
+        let today = Self.currentDateString()
+        if let data = UserDefaults.standard.data(forKey: key),
+           let decoded = try? JSONDecoder().decode(GameDailyAccessData.self, from: data),
+           decoded.date == today {
+            return decoded
+        } else {
+            return GameDailyAccessData(date: today, accessCount: 0, earnedCoins: 0)
+        }
+    }
+
+    static func currentDateString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: Date())
+    }
+    
+    func incrementAccessCount(for game: GameType) {
+        var data = Self.getDailyAccessData(for: game)
+        let today = Self.currentDateString()
+
+        // 날짜가 다르면 리셋
+        if data.date != today {
+            data = GameDailyAccessData(date: today, accessCount: 0, earnedCoins: 0)
+        }
+
+        data.accessCount += 1
+        save(data, for: game)
+        refreshAll()
+    }
+
+    private func save(_ data: GameDailyAccessData, for game: GameType) {
+        if let encoded = try? JSONEncoder().encode(data) {
+            UserDefaults.standard.set(encoded, forKey: game.dailyAccessKey)
+        }
+    }
+}
+
 enum GameType: String, CaseIterable {
     case catchYolk = "CatchYolk"
     case runYolk = "RunYolk"
@@ -118,6 +174,10 @@ enum GameType: String, CaseIterable {
     
     var coinKey: String {
         return "\(self.rawValue)_Coin"
+    }
+    
+    var dailyAccessKey: String {
+        return "\(self.rawValue)_DailyAccessData"
     }
 }
 
@@ -154,4 +214,10 @@ struct GameData: Identifiable {
     private func saveCoinCount() {
         UserDefaults.standard.set(coinCount, forKey: game.coinKey)
     }
+}
+
+struct GameDailyAccessData: Codable {
+    var date: String
+    var accessCount: Int
+    var earnedCoins: Int
 }

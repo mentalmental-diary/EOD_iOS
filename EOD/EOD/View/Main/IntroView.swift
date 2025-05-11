@@ -243,21 +243,12 @@ extension IntroView {
                                 let firstName = fullName?.givenName ?? ""
                                 let lastName = fullName?.familyName ?? ""
                                 
-                                let authorizationCode = appleIDCredential.authorizationCode
-                                
-                                if let token = appleIDCredential.identityToken,
+                                if let token = appleIDCredential.authorizationCode,
                                    let identityTokenString = String(data: token, encoding: .utf8) {
                                     
                                     debugLog("로그인 토큰값 : \(token)")
                                     viewModel.appleLoginAction(token: identityTokenString)
                                 }
-                                
-                                debugLog("로그인 토큰 정보: \(userIdentifier), email: \(email), authorizationCode: \(authorizationCode)")
-                                
-                                // 서버로 사용자 정보 전달
-    //                            Task {
-    //                                await handleServerAuthentication(userIdentifier: userIdentifier, email: email, firstName: firstName, lastName: lastName)
-    //                            }
                             }
                         case .failure(let error):
                             errorLog("Error: \(error.localizedDescription)")
