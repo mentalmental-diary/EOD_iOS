@@ -179,6 +179,54 @@ enum GameType: String, CaseIterable {
     var dailyAccessKey: String {
         return "\(self.rawValue)_DailyAccessData"
     }
+    
+    var title: String {
+        switch self {
+        case .catchYolk: return "노른자 이불 덮어주기"
+        case .runYolk: return "주방에서 살아남기"
+        case .flyYolk: return "노른자와 비행하기"
+        }
+    }
+    
+    var limitTime: Int {
+        switch self {
+        case .catchYolk: return 0
+        case .runYolk: return 0
+        case .flyYolk: return 0
+        }
+    }
+    
+    var mainDescription: String {
+        switch self {
+        case .catchYolk: return ""
+        case .runYolk: return ""
+        case .flyYolk: return ""
+        }
+    }
+    
+    var mainImageName: String {
+        switch self {
+        case .catchYolk: return ""
+        case .runYolk: return ""
+        case .flyYolk: return ""
+        }
+    }
+    
+    var infoDescription: String {
+        switch self {
+        case .catchYolk: return ""
+        case .runYolk: return ""
+        case .flyYolk: return ""
+        }
+    }
+    
+    var infoImageName: String {
+        switch self {
+        case .catchYolk: return ""
+        case .runYolk: return ""
+        case .flyYolk: return ""
+        }
+    }
 }
 
 struct GameData: Identifiable {
