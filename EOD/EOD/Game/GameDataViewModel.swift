@@ -22,9 +22,14 @@ class GameDataViewModel: ObservableObject {
     }
     
     private var cancellables = Set<AnyCancellable>()
+    private let networkModel: GameNetworkModel = GameNetworkModel()
     
     @Published var dailyLimits: [GameType: GameDailyAccessData] = [:]
     
+    @Published var selectedIndex: Int = 0
+    @Published var gameDataList: [GameData] = GameType.allCases.map { GameData(game: $0) }
+    @Published var userGold: Int? = 0
+
     init() {
         setupGames()
         setupNotificationObserver()
@@ -109,6 +114,41 @@ class GameDataViewModel: ObservableObject {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension GameDataViewModel {
+    var selectedGame: GameData {
+        gameDataList[selectedIndex]
+    }
+    
+    var gameLimitText: String {
+        guard let accessData = dailyLimits[selectedGame.game] else { return "" }
+        
+        let maxAccess = 3
+        let remaining = max(0, maxAccess - accessData.accessCount)
+        
+        return "오늘 \(remaining)번 가능"
+    }
+    
+    var checkGameLimit: Bool {
+        guard let accessData = dailyLimits[selectedGame.game] else { return false }
+        
+        return accessData.accessCount < 3
+    }
+}
+
+extension GameDataViewModel {
+    private func fetchUserGold() {
+        networkModel.fetchUserGold { result in
+            debugLog("보유 Gold 조회 API 호출 완료 result: \(result)")
+            switch result {
+            case .success(let gold):
+                self.userGold = gold["gold"] ?? 0
+            case .failure(let error):
+                errorLog("보유 Gold 조회 API 실패. error: \(error)")
+            }
+        }
     }
 }
 
@@ -198,25 +238,25 @@ enum GameType: String, CaseIterable {
     
     var mainDescription: String {
         switch self {
-        case .catchYolk: return ""
-        case .runYolk: return ""
-        case .flyYolk: return ""
+        case .catchYolk: return "갑자기 사라진 친구를 찾으러\n여행을 떠난 노른자!\n\n걷다 보니 너무 추운 곳에 도착했다!"
+        case .runYolk: return "알고 보니 사라진 친구가\n위험한 주방에 잡혀 있다.\n\n떨어지는 함정을 피해 친구를 찾으러 가자!"
+        case .flyYolk: return "친구를 납치한 쿠킹 마마가\n비행선을 타고 도망친다.\n\n장애물을 피해 끝까지 쫓아 가자!"
         }
     }
     
-    var mainImageName: String {
+    var thumbnailImageName: String {
         switch self {
-        case .catchYolk: return ""
-        case .runYolk: return ""
-        case .flyYolk: return ""
+        case .catchYolk: return "game_thumbnail"
+        case .runYolk: return "game_thumbnail"
+        case .flyYolk: return "game_thumbnail"
         }
     }
     
     var infoDescription: String {
         switch self {
-        case .catchYolk: return ""
-        case .runYolk: return ""
-        case .flyYolk: return ""
+        case .catchYolk: return "추워하는 노른자가 나타나면,\n재빠르게 터치해서 이불을 덮어주세요."
+        case .runYolk: return "노른자를 좌우로 움직여\n떨어지는 함정을 피합니다."
+        case .flyYolk: return "떨어지는 노른자를 터치해서\n장애물을 피해 날아갑니다."
         }
     }
     
