@@ -16,6 +16,14 @@ extension View {
             return AnyView(EmptyView())
         }
     }
+    
+    func underlinedBackground(
+        color: Color = UIColor.Yellow.yellow200.color,
+        height: CGFloat = 9,
+        offsetY: CGFloat = 8
+    ) -> some View {
+        self.modifier(UnderlinedBackground(color: color, height: height, offsetY: offsetY))
+    }
 }
 
 /// ViewBuilder
@@ -136,5 +144,22 @@ private struct FirstAppear: ViewModifier {
             hasAppeared = true
             action()
         }
+    }
+}
+
+struct UnderlinedBackground: ViewModifier {
+    var color: Color
+    var height: CGFloat
+    var offsetY: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .background(
+                GeometryReader { geometry in
+                    color
+                        .frame(width: geometry.size.width, height: height)
+                        .offset(x: 0, y: geometry.size.height - offsetY)
+                }
+            )
     }
 }

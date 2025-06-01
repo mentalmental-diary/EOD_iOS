@@ -13,7 +13,6 @@ struct HouseView: View {
     @ObservedObject var viewModel: HouseViewModel
     @State var showBuyAlert: Bool = false
     
-    
     init(showHouseView: Binding<Bool>, viewModel: HouseViewModel) {
         self._showHouseView = showHouseView
         self.viewModel = viewModel

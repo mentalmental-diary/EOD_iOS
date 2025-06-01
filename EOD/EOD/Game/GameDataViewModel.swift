@@ -233,7 +233,7 @@ enum GameType: String, CaseIterable {
     
     var limitTime: Int {
         switch self {
-        case .catchYolk: return 0
+        case .catchYolk: return 0 // TODO: 추후 변경
         case .runYolk: return 0
         case .flyYolk: return 0
         }
@@ -265,9 +265,9 @@ enum GameType: String, CaseIterable {
     
     var infoImageName: String {
         switch self {
-        case .catchYolk: return ""
-        case .runYolk: return ""
-        case .flyYolk: return ""
+        case .catchYolk: return "catchyolk_game_info"
+        case .runYolk: return "catchyolk_game_info" // TODO: 추후 변경
+        case .flyYolk: return "catchyolk_game_info"
         }
     }
 }

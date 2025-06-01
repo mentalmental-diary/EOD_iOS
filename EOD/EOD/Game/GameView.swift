@@ -10,65 +10,67 @@ import SwiftUI
 struct GameView: View {
     @StateObject private var gameDataViewModel: GameDataViewModel = GameDataViewModel()
     
+    @State var showInfoAlert: Bool = false
+    
     var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Spacer()
-                
-                HStack(spacing: 5) {
-                    Image("icon_egg")
+        ZStack {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
+                    Spacer()
                     
-                    Text(gameDataViewModel.userGold?.formattedDecimal() ?? "0")
-                        .font(size: 20)
-                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                    HStack(spacing: 5) {
+                        Image("icon_egg")
+                        
+                        Text(gameDataViewModel.userGold?.formattedDecimal() ?? "0")
+                            .font(size: 20)
+                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                    .clipShape(Capsule())
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(Color(red: 239/255, green: 239/255, blue: 228/255))
-                .clipShape(Capsule())
-            }
-            
-            Spacer().frame(height: 16)
-            
-            TabView(selection: $gameDataViewModel.selectedIndex) {
-                ForEach(gameDataViewModel.gameDataList.indices, id: \.self) { index in
-                    GamePageView(gameData: gameDataViewModel.gameDataList[index])
-                        .tag(index)
-                }
-            }
-            .frame(height: 220)
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            
-            Spacer().frame(height: 16)
-            
-            PageControlView(currentPage: $gameDataViewModel.selectedIndex, pages: gameDataViewModel.gameDataList.count)
-            
-            Spacer().frame(height: 16)
-            
-            HStack(spacing: 2) {
-                Text(gameDataViewModel.selectedGame.game.title)
-                    .font(size: 28)
-                    .background(
-                        GeometryReader { geometry in
-                            (UIColor.Yellow.yellow200.color)
-                                .frame(width: geometry.size.width, height: 9)
-                                .offset(x: 0, y: geometry.size.height - 8)
-                        }
-                    )
                 
-                Button {
-                    // TODO: Info Alert노출해야함
-                } label: {
-                    Image("icon_question")
+                Spacer().frame(height: 16)
+                
+                TabView(selection: $gameDataViewModel.selectedIndex) {
+                    ForEach(gameDataViewModel.gameDataList.indices, id: \.self) { index in
+                        GamePageView(gameData: gameDataViewModel.gameDataList[index])
+                            .tag(index)
+                    }
                 }
-
+                .frame(height: 220)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+                Spacer().frame(height: 16)
+                
+                PageControlView(currentPage: $gameDataViewModel.selectedIndex, pages: gameDataViewModel.gameDataList.count)
+                
+                Spacer().frame(height: 16)
+                
+                HStack(spacing: 2) {
+                    Text(gameDataViewModel.selectedGame.game.title)
+                        .font(size: 28)
+                        .underlinedBackground()
+                    
+                    Button {
+                        showInfoAlert = true
+                    } label: {
+                        Image("icon_question")
+                    }
+                    
+                }
+                
+                Spacer().frame(height: 14)
+                
+                GameDescriptionView(gameData: gameDataViewModel.selectedGame)
             }
+            .padding(.horizontal, 20)
             
-            Spacer().frame(height: 14)
-            
-            GameDescriptionView(gameData: gameDataViewModel.selectedGame)
+            if showInfoAlert {
+                GameInfoAlertView(isShow: $showInfoAlert, imageName: gameDataViewModel.selectedGame.game.infoImageName, limitTime: gameDataViewModel.selectedGame.game.limitTime, gameDescription: gameDataViewModel.selectedGame.game.infoDescription)
+            }
         }
-        .padding(.horizontal, 20)
     }
 }
 
@@ -133,7 +135,7 @@ extension GameView {
         VStack(spacing: 0) {
             Text(text)
                 .font(type: .omyu, size: 16)
-                .foregroundColor(UIColor.Gray.gray800.color)
+                .foregroundColor(gameDataViewModel.checkGameLimit ? UIColor.Gray.gray800.color : UIColor.Gray.gray500.color)
                 .padding(.vertical, 12.5)
                 .padding(.horizontal, 19)
                 .background(Color(red: 239/255, green: 239/255, blue: 228/255))
@@ -158,10 +160,10 @@ extension GameView {
             VStack(spacing: 0) {
                 Text("게임 시작")
                     .font(type: .omyu, size: 20)
-                    .foregroundColor(.black)
+                    .foregroundColor(gameDataViewModel.checkGameLimit ? .black : .white)
                     .padding(.vertical, 16)
                     .padding(.horizontal, 41.5)
-                    .background(Color(red: 255/255, green: 241/255, blue: 193/255))
+                    .background(gameDataViewModel.checkGameLimit ? Color(red: 255/255, green: 241/255, blue: 193/255) : Color(red: 211/255, green: 210/255, blue: 207/255))
                     .cornerRadius(8)
             }
         }
