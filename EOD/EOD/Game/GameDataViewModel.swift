@@ -63,6 +63,9 @@ class GameDataViewModel: ObservableObject {
             var newGameData = games[index]
             newGameData.updateScore(score) // ✅ UserDefaults에 저장 포함
             games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
+            
+            // ✅ gameDataList도 갱신
+            gameDataList = games
         }
     }
     

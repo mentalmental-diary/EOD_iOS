@@ -77,7 +77,6 @@ extension GameView {
         ZStack(alignment: .top) {
             Image(gameData.game.thumbnailImageName)
                 .resizable()
-                .scaledToFit()
                 .clipped()
             
             HStack(spacing: 4) {
