@@ -39,6 +39,8 @@
 		CE12282F2D3668F800C61E66 /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1228162D3668F800C61E66 /* Pretendard-Bold.ttf */; };
 		CE13E45E2ABE952D00C64EA1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45D2ABE952D00C64EA1 /* MainView.swift */; };
 		CE13E4602ABE962A00C64EA1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */; };
+		CE1A10F22DF455DC009B5F3B /* GoldInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A10F12DF455DC009B5F3B /* GoldInfoView.swift */; };
+		CE1A10F32DF455DC009B5F3B /* GoldInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A10F12DF455DC009B5F3B /* GoldInfoView.swift */; };
 		CE2A46CC2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */; };
 		CE2A46CD2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */; };
 		CE2A46CF2D44AC9000A516C6 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */; };
@@ -395,6 +397,7 @@
 		CE12281D2D3668F800C61E66 /* Pretendard-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.ttf"; sourceTree = "<group>"; };
 		CE13E45D2ABE952D00C64EA1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CE13E45F2ABE962A00C64EA1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CE1A10F12DF455DC009B5F3B /* GoldInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldInfoView.swift; sourceTree = "<group>"; };
 		CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStartAlert.swift; sourceTree = "<group>"; };
 		CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		CE4318132BEBBF5500880898 /* omyu pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu pretty.ttf"; sourceTree = "<group>"; };
@@ -747,6 +750,7 @@
 				CEA64F702CE6D19D00FD5627 /* HomeNetworkModel.swift */,
 				CE06C3972CC5E9C70075A9C0 /* HomeViewModel.swift */,
 				CE77A9B52ACAD50D00D9C58B /* HomeView.swift */,
+				CE1A10F12DF455DC009B5F3B /* GoldInfoView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1334,9 +1338,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EOD-EODUITests/Pods-EOD-EODUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1395,9 +1403,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EOD/Pods-EOD-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-EOD/Pods-EOD-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1427,6 +1439,7 @@
 				CEC6D7E62C7D5A9100FFEC9F /* DiarySummaryModel.swift in Sources */,
 				CEB7F0782AAC61D5001C99EA /* CallSiteLogFormatter.swift in Sources */,
 				CEB7F08A2AAC61D5001C99EA /* PayloadLogFormatter.swift in Sources */,
+				CE1A10F32DF455DC009B5F3B /* GoldInfoView.swift in Sources */,
 				CEA64F712CE6D1A200FD5627 /* HomeNetworkModel.swift in Sources */,
 				CE77A99E2AC953AE00D9C58B /* UIApplication+Extension.swift in Sources */,
 				CEB7F0302AAC5594001C99EA /* Result+Extension.swift in Sources */,
@@ -1587,6 +1600,7 @@
 				CEE63F3E2CFC4F5D00275C7F /* DiarySummaryModel.swift in Sources */,
 				CEE63F3F2CFC4F5D00275C7F /* CallSiteLogFormatter.swift in Sources */,
 				CEE63F402CFC4F5D00275C7F /* PayloadLogFormatter.swift in Sources */,
+				CE1A10F22DF455DC009B5F3B /* GoldInfoView.swift in Sources */,
 				CEE63F412CFC4F5D00275C7F /* HomeNetworkModel.swift in Sources */,
 				CEE63F422CFC4F5D00275C7F /* UIApplication+Extension.swift in Sources */,
 				CEE63F432CFC4F5D00275C7F /* Result+Extension.swift in Sources */,

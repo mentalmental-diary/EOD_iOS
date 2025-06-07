@@ -10,6 +10,7 @@ import SwiftUI
 struct MainTabView: View {
     @ObservedObject var viewModel: MainViewModel
     @StateObject private var calendarViewModel = CalendarViewModel()
+    @StateObject var homeViewModel = HomeViewModel()
     
     var body: some View {
         NavigationView(content: {
@@ -50,6 +51,14 @@ struct MainTabView: View {
                             .navigationBarHidden(true)
                     )
                 }
+                
+                NavigationLink("", isActive: $homeViewModel.showGoldInfoView) {
+                    LazyView(
+                        GoldInfoView(viewModel: homeViewModel)
+                            .background(Color.white)
+                            .navigationBarHidden(true)
+                    )
+                }
             }
             .ignoresSafeArea(.keyboard)
             .background(UIColor.CommonBackground.background.color)
@@ -69,7 +78,7 @@ extension MainTabView {
     func TabView() -> some View {
         switch viewModel.currentTab {
         case .Home:
-            HomeView()
+            HomeView(viewModel: homeViewModel)
         case .Calender:
             CalendarView(viewModel: calendarViewModel)
         case .Game:

@@ -16,6 +16,10 @@ class HomeViewModel: ObservableObject {
     
     @Published var userComment: String?
     
+    @Published var showGoldInfoView: Bool = false
+    
+    @Published var currentInfoTab: GoldInfoType = .all
+    
     private var networkModel: HomeNetworkModel = HomeNetworkModel()
     
     init() {
@@ -80,5 +84,19 @@ extension HomeViewModel {
                 errorLog("충전 안됨 error: \(error)")
             }
         })
+    }
+}
+
+public enum GoldInfoType {
+    case all
+    case earn
+    case use
+    
+    public var title: String {
+        switch self {
+        case .all: return "전체"
+        case .earn: return "적립"
+        case .use: return "사용"
+        }
     }
 }

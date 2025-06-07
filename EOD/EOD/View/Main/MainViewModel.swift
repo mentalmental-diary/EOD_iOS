@@ -24,8 +24,8 @@ class MainViewModel: ObservableObject {
     
     @Published var showStartAlert: Bool = false // 닉네임 설정 후 최초 진입시에만 노출
     
-    var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해
-    var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해
+    var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해 // TODO: 삭제 예정
+    var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해 // TODO: 삭제 예정
     
     @Published var naverLoginError: Error? = nil
     
