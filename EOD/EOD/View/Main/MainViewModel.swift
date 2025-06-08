@@ -29,6 +29,8 @@ class MainViewModel: ObservableObject {
     
     @Published var naverLoginError: Error? = nil
     
+    var currentUserNickname: String = ""
+    
     private var cancellables = Set<AnyCancellable>() // Combine 구독 관리
     
     let onboardingItems: [OnboardingItem] = {
@@ -64,6 +66,8 @@ extension MainViewModel {
         UserDefaults.standard.removeObject(forKey: "gameNotificationTime")
         self.isLogin = false
         self.currentTab = .Home
+        self.inputNickname = ""
+        self.currentUserNickname = ""
     }
     
     func kakaoLoginAction() {
@@ -166,20 +170,29 @@ extension MainViewModel {
     }
     
     /// 닉네임 설정
-    func setNickname() {
+    func setNickname(completion: (() -> Void)? = nil) {
         guard !self.inputNickname.isEmpty else { return }
         networkModel.setUserNickname(nickName: inputNickname, completion: { [weak self] result in
             switch result {
             case .success: // 닉네임 설정 성공
-                self?.isLogin = true
-                self?.showUserInfoSetView = false
-                self?.showStartAlert = true
+                DispatchQueue.main.async {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    if self?.isLogin == false {
+                        self?.isLogin = true
+                        self?.showUserInfoSetView = false
+                        self?.showStartAlert = true
+                    }
+                    self?.currentUserNickname = self?.inputNickname ?? ""
+                    completion?()
+                }
             case .failure(let error):
                 self?.toastManager.showToast(message: "닉네임 설정 실패")
                 errorLog("🔴 닉네임 설정 API 실패: \(error.localizedDescription)")
             }
         })
     }
+    
+    var changeNickname: Bool { return inputNickname != currentUserNickname }
 }
 
 // MARK: - TAB ITEM CASE

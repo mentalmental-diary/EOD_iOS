@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserInfoSetView: View {
     @ObservedObject var viewModel: MainViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         GeometryReader { proxy in
@@ -16,16 +17,58 @@ struct UserInfoSetView: View {
                 Color.clear
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        dismissKeyboard()
+                        if !viewModel.isLogin {
+                            dismissKeyboard()
+                        }
                     }
                 
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
+                        if viewModel.isLogin {
+                            Button(action: {
+                                dismissKeyboard()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    withAnimation {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                }
+                            }, label: {
+                                Image("icon_back")
+                                    .foregroundColor(Color.black)
+                            })
+                        }
+                        
                         Spacer()
-                        Text("닉네임 설정")
-                            .font(size: 28)
-                            .foregroundColor(.black)
+                        
+                        if !viewModel.isLogin {
+                            Text("닉네임 설정")
+                                .font(size: 28)
+                                .foregroundColor(.black)
+                        }
+                        
                         Spacer()
+                        
+                        if viewModel.isLogin {
+                            Button {
+                                if viewModel.changeNickname {
+                                    viewModel.setNickname(completion: {
+                                        presentationMode.wrappedValue.dismiss()
+                                    })
+                                }
+                            } label: {
+                                HStack(spacing: 2) {
+                                    Image("icon_check")
+                                        .renderingMode(.template)
+                                        .foregroundColor(viewModel.changeNickname ? .black : UIColor.Gray.gray500.color)
+                                    
+                                    Text("저장")
+                                        .font(type: .omyu, size: 20)
+                                        .foregroundColor(viewModel.changeNickname ? .black : UIColor.Gray.gray500.color)
+                                }
+                                .padding(.horizontal, 8)
+                            }
+
+                        }
                     }
                     
                     Spacer().frame(height: 56)
@@ -56,15 +99,27 @@ struct UserInfoSetView: View {
                     
                     nicknameView()
                     
-                    Spacer().frame(height: 250)
-                    
-                    bottonView()
+                    if !viewModel.isLogin {
+                        Spacer().frame(height: 250)
+                        
+                        bottonView()
+                    } else {
+                        Spacer()
+                    }
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
                 .padding(.bottom, 12)
                 
                 ToastView(toastManager: viewModel.toastManager)
+            }
+            .onAppear {
+                if viewModel.isLogin {
+                    viewModel.inputNickname = viewModel.currentUserNickname
+                }
+            }
+            .onDisappear {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
             .background(UIColor.CommonBackground.background.color)
             .ignoresSafeArea(.keyboard)
@@ -82,7 +137,7 @@ extension UserInfoSetView {
             
             Spacer().frame(height: 20)
             
-            CustomTextField(text: $viewModel.inputNickname, placeholder: "닉네임을 입력해주세요.")
+            CustomTextField(text: $viewModel.inputNickname, placeholder: "닉네임을 입력해주세요.", forceFocus: viewModel.isLogin)
                 .frame(height: 16)
             
             Spacer().frame(height: 16)
@@ -93,9 +148,11 @@ extension UserInfoSetView {
             
             Spacer().frame(height: 14)
             
-            Text("닉네임은 설정 > 시스템 설정 > 프로필 관리에서 변경할 수 있어요.")
-                .font(size: 14)
-                .foregroundColor(UIColor.Gray.gray700.color)
+            if !viewModel.isLogin {
+                Text("닉네임은 설정 > 시스템 설정 > 프로필 관리에서 변경할 수 있어요.")
+                    .font(size: 14)
+                    .foregroundColor(UIColor.Gray.gray700.color)
+            }
         }
     }
     
@@ -185,13 +242,13 @@ private struct CustomTextField: UIViewRepresentable {
     var placeholder: String
     var placeholderColor: UIColor = UIColor.Gray.gray500.uiColor ?? UIColor.gray
     var placeholderFont: UIFont = UIFont(name: "Pretendard-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
+    var forceFocus: Bool = false
     
     func makeUIView(context: Context) -> UITextField {
         let textField = UITextField()
         textField.delegate = context.coordinator
         textField.font = UIFont(name: "Pretendard-Medium", size: 16)
         textField.backgroundColor = UIColor.clear
-        textField.returnKeyType = .done
         // Placeholder 스타일 적용
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: placeholderColor,
@@ -203,34 +260,37 @@ private struct CustomTextField: UIViewRepresentable {
         
         textField.textColor = UIColor.black
         
-        // Adding the toolbar
-        let toolbar = ShadowToolbar()
-        toolbar.sizeToFit()
-        
-        // Setting the toolbar height
-        let customToolbarHeight: CGFloat = 36
-        var frame = toolbar.frame
-        frame.size.height = customToolbarHeight
-        toolbar.frame = frame
-        toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
-        
-        // Adding buttons to the toolbar
-        
-        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
-        
-        let doneButtonAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont(name: "omyu pretty", size: 22)!,
-            .foregroundColor: UIColor.black
-        ]
-        
-        doneButton.setTitleTextAttributes(doneButtonAttributes, for: .normal)
-        
-        toolbar.items = [
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            doneButton
-        ]
-        
-        textField.inputAccessoryView = toolbar
+        if !forceFocus {
+            textField.returnKeyType = .done
+            // Adding the toolbar
+            let toolbar = ShadowToolbar()
+            toolbar.sizeToFit()
+            
+            // Setting the toolbar height
+            let customToolbarHeight: CGFloat = 36
+            var frame = toolbar.frame
+            frame.size.height = customToolbarHeight
+            toolbar.frame = frame
+            toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
+            
+            // Adding buttons to the toolbar
+            
+            let doneButton = UIBarButtonItem(title: "완료", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
+            
+            let doneButtonAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont(name: "omyu pretty", size: 22)!,
+                .foregroundColor: UIColor.black
+            ]
+            
+            doneButton.setTitleTextAttributes(doneButtonAttributes, for: .normal)
+            
+            toolbar.items = [
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                doneButton
+            ]
+            
+            textField.inputAccessoryView = toolbar
+        }
         
         // 텍스트 변경 감지를 위한 target 추가
         textField.addTarget(context.coordinator, action: #selector(Coordinator.textFieldDidChange(_:)), for: .editingChanged)
@@ -241,6 +301,10 @@ private struct CustomTextField: UIViewRepresentable {
     func updateUIView(_ uiView: UITextField, context: Context) {
         if uiView.text != text {
             uiView.text = text
+        }
+        
+        if forceFocus && !uiView.isFirstResponder {
+            uiView.becomeFirstResponder()
         }
     }
     
@@ -265,7 +329,12 @@ private struct CustomTextField: UIViewRepresentable {
         }
         
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
+            if !parent.forceFocus {
+                textField.resignFirstResponder()
+                return true
+            } else {
+                return true
+            }
         }
         
         @objc func dismissKeyboard(_ sender: UIBarButtonItem) {

@@ -58,9 +58,11 @@ extension SettingView {
                 .font(type: .omyu, size: 22)
                 .foregroundColor(.black)
             
-            Button {
-                
-            } label: {
+            NavigationLink(destination:
+                            UserInfoSetView(viewModel: mainViewModel)
+                .background(Color.white)
+                .navigationBarHidden(true)
+            ) {
                 HStack {
                     Text("닉네임 변경")
                         .font(type: .omyu, size: 18)
