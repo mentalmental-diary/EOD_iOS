@@ -29,6 +29,8 @@ class MainViewModel: ObservableObject {
     
     @Published var naverLoginError: Error? = nil
     
+    var currentUserNickname: String = ""
+    
     private var cancellables = Set<AnyCancellable>() // Combine 구독 관리
     
     let onboardingItems: [OnboardingItem] = {
@@ -174,12 +176,15 @@ extension MainViewModel {
                 self?.isLogin = true
                 self?.showUserInfoSetView = false
                 self?.showStartAlert = true
+                self?.currentUserNickname = self?.inputNickname ?? ""
             case .failure(let error):
                 self?.toastManager.showToast(message: "닉네임 설정 실패")
                 errorLog("🔴 닉네임 설정 API 실패: \(error.localizedDescription)")
             }
         })
     }
+    
+    var changeNickname: Bool { return inputNickname != currentUserNickname }
 }
 
 // MARK: - TAB ITEM CASE
