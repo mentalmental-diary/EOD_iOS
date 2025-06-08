@@ -59,7 +59,7 @@ struct NavigationBarView: View {
             HStack(spacing: 0) {
                 Spacer()
                 Text(title)
-                    .font(size: 28)
+                    .font(size: 22)
                     .kerning(0.0)
                     .foregroundColor(Color.black)
                 Spacer()

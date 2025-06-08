@@ -12,7 +12,7 @@ struct HomeView: View {
     @State private var showCharacterView: Bool = false
     @State private var showHouseView: Bool = false
     
-    @ObservedObject var viewModel: HomeViewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -44,17 +44,21 @@ struct HomeView: View {
 extension HomeView {
     private func topView() -> some View {
         HStack(spacing: 0) {
-            HStack(spacing: 5) {
-                Image("icon_egg")
-                
-                Text(viewModel.userGold?.formattedDecimal() ?? "0")
-                    .font(size: 20)
-                    .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+            Button {
+                viewModel.showGoldInfoView = true
+            } label: {
+                HStack(spacing: 5) {
+                    Image("icon_egg")
+                    
+                    Text(viewModel.userGold?.formattedDecimal() ?? "0")
+                        .font(size: 20)
+                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                .clipShape(Capsule())
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 10)
-            .background(Color(red: 239/255, green: 239/255, blue: 228/255))
-            .clipShape(Capsule())
            
             Spacer()
             
