@@ -179,6 +179,8 @@
 		CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */; };
 		CEB7F0A22AAC6424001C99EA /* Alamofire+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */; };
 		CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A32AAC661D001C99EA /* RegexParser.swift */; };
+		CEBF2B6A2DFEC7D900300404 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */; };
+		CEBF2B6B2DFEC7D900300404 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */; };
 		CEC6D7DE2C7C512400FFEC9F /* SwifterSwift+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */; };
 		CEC6D7E02C7C513F00FFEC9F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
 		CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
@@ -528,6 +530,7 @@
 		CEB7F09E2AAC6336001C99EA /* EODLogRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EODLogRecorder.swift; sourceTree = "<group>"; };
 		CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Extension.swift"; sourceTree = "<group>"; };
 		CEB7F0A32AAC661D001C99EA /* RegexParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
+		CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
 		CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+String.swift"; sourceTree = "<group>"; };
 		CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Date.swift"; sourceTree = "<group>"; };
 		CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Double.swift"; sourceTree = "<group>"; };
@@ -694,6 +697,7 @@
 		CE77A9A12ACA8C8400D9C58B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */,
 				CE77A9B92ACD262E00D9C58B /* UI */,
 				CE77A9A72ACA94F900D9C58B /* Token */,
 				CE77A9A22ACA8C9200D9C58B /* Login */,
@@ -1522,6 +1526,7 @@
 				CEB7F0772AAC61D5001C99EA /* DelimiterLogFormatter.swift in Sources */,
 				CEA4AEC02DE1447400641A82 /* GameInfoAlertView.swift in Sources */,
 				CEB7F0822AAC61D5001C99EA /* LogChannel.swift in Sources */,
+				CEBF2B6B2DFEC7D900300404 /* KeyboardHeightHelper.swift in Sources */,
 				CEC6D7E42C7C51BE00FFEC9F /* SwifterSwift+Etc.swift in Sources */,
 				CE77A9BD2ACD269B00D9C58B /* NavigationBarView.swift in Sources */,
 				CEB7F0682AAC61D4001C99EA /* StandardOutputLogRecorder.swift in Sources */,
@@ -1683,6 +1688,7 @@
 				CEE63F872CFC4F5D00275C7F /* DelimiterLogFormatter.swift in Sources */,
 				CEA4AEC12DE1447400641A82 /* GameInfoAlertView.swift in Sources */,
 				CEE63F882CFC4F5D00275C7F /* LogChannel.swift in Sources */,
+				CEBF2B6A2DFEC7D900300404 /* KeyboardHeightHelper.swift in Sources */,
 				CEE63F892CFC4F5D00275C7F /* SwifterSwift+Etc.swift in Sources */,
 				CEE63F8A2CFC4F5D00275C7F /* NavigationBarView.swift in Sources */,
 				CEE63F8B2CFC4F5D00275C7F /* StandardOutputLogRecorder.swift in Sources */,
@@ -1790,7 +1796,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1844,7 +1850,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1873,7 +1879,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1909,7 +1915,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2024,7 +2030,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2060,7 +2066,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Splash.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

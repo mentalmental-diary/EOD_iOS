@@ -10,6 +10,10 @@ import SwiftUI
 struct UserInfoSetView: View {
     @ObservedObject var viewModel: MainViewModel
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var keyboard = KeyboardObserver()
+    @State private var shouldShowKeyboardToolbar = false
+    
+    @FocusState private var nicknameFieldFocused: Bool
     
     var body: some View {
         GeometryReader { proxy in
@@ -112,17 +116,67 @@ struct UserInfoSetView: View {
                 .padding(.bottom, 12)
                 
                 ToastView(toastManager: viewModel.toastManager)
+                
+                if !viewModel.isLogin && shouldShowKeyboardToolbar {
+                    VStack {
+                        Spacer()
+                        
+                        VStack {
+                            // 상단 Border
+                            Rectangle()
+                                .fill(Color(red: 235/255, green: 235/255, blue: 227/255))
+                                .frame(height: 1)
+                            
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    nicknameFieldFocused = false
+                                }) {
+                                    Text("완료")
+                                        .font(.custom("omyu pretty", size: 20))
+                                        .foregroundColor(.black)
+                                        .padding(.top, 8)
+                                        .padding(.bottom, 12)
+                                }
+                                .padding(.trailing, 20)
+                            }
+                            .frame(height: 35)
+                        }
+                        .transition(.move(edge: .bottom))
+                        .animation(.easeInOut(duration: 0.25), value: shouldShowKeyboardToolbar)
+                        .background(Color.clear)
+                    }
+                    .padding(.bottom, keyboard.keyboardHeight)
+                    .ignoresSafeArea(edges: .bottom)
+                }
+            }
+            .onReceive(keyboard.$keyboardHeight) { newHeight in
+                if newHeight > 0 {
+                    // 키보드 올라올 때는 약간 지연 후 보여주기
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        withAnimation {
+                            shouldShowKeyboardToolbar = true
+                        }
+                    }
+                } else {
+                    // 키보드 내려갈 땐 즉시 숨김
+                    withAnimation {
+                        shouldShowKeyboardToolbar = false
+                    }
+                }
             }
             .onAppear {
                 if viewModel.isLogin {
                     viewModel.inputNickname = viewModel.currentUserNickname
+                    nicknameFieldFocused = true
                 }
             }
             .onDisappear {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                nicknameFieldFocused = false
             }
             .background(UIColor.CommonBackground.background.color)
             .ignoresSafeArea(.keyboard)
+            
         }
         
     }
@@ -137,8 +191,24 @@ extension UserInfoSetView {
             
             Spacer().frame(height: 20)
             
-            CustomTextField(text: $viewModel.inputNickname, placeholder: "닉네임을 입력해주세요.", forceFocus: viewModel.isLogin)
-                .frame(height: 16)
+            if viewModel.isLogin {
+                TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname, axis: .vertical)
+                    .font(.custom("Pretendard-Medium", size: 16))
+                    .foregroundColor(.black)
+                    .focused($nicknameFieldFocused)
+                    .submitLabel(.continue)
+                    .onChange(of: viewModel.inputNickname, { oldValue, newValue in
+                        if newValue.contains("\n") {
+                            viewModel.inputNickname = oldValue
+                        }
+                    })
+            } else {
+                TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname)
+                    .font(.custom("Pretendard-Medium", size: 16))
+                    .foregroundColor(.black)
+                    .focused($nicknameFieldFocused)
+                    .submitLabel(.done)
+            }
             
             Spacer().frame(height: 16)
             
@@ -231,119 +301,6 @@ extension UserInfoSetView {
                     .cornerRadius(8.0)
                     .contentShape(Rectangle()) // 전체 영역이 터치 가능하도록 설정
             })
-        }
-    }
-}
-
-private struct CustomTextField: UIViewRepresentable {
-    typealias UIViewType = UITextField
-    
-    @Binding var text: String
-    var placeholder: String
-    var placeholderColor: UIColor = UIColor.Gray.gray500.uiColor ?? UIColor.gray
-    var placeholderFont: UIFont = UIFont(name: "Pretendard-Medium", size: 16) ?? UIFont.systemFont(ofSize: 16)
-    var forceFocus: Bool = false
-    
-    func makeUIView(context: Context) -> UITextField {
-        let textField = UITextField()
-        textField.delegate = context.coordinator
-        textField.font = UIFont(name: "Pretendard-Medium", size: 16)
-        textField.backgroundColor = UIColor.clear
-        // Placeholder 스타일 적용
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: placeholderColor,
-            .font: placeholderFont
-        ]
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
-
-        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        
-        textField.textColor = UIColor.black
-        
-        if !forceFocus {
-            textField.returnKeyType = .done
-            // Adding the toolbar
-            let toolbar = ShadowToolbar()
-            toolbar.sizeToFit()
-            
-            // Setting the toolbar height
-            let customToolbarHeight: CGFloat = 36
-            var frame = toolbar.frame
-            frame.size.height = customToolbarHeight
-            toolbar.frame = frame
-            toolbar.barTintColor = UIColor(red: 251/255, green: 251/255, blue: 244/255, alpha: 1.0)
-            
-            // Adding buttons to the toolbar
-            
-            let doneButton = UIBarButtonItem(title: "완료", style: .done, target: context.coordinator, action: #selector(Coordinator.dismissKeyboard(_:))) // TODO: 나중에 이미지로 변경
-            
-            let doneButtonAttributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont(name: "omyu pretty", size: 22)!,
-                .foregroundColor: UIColor.black
-            ]
-            
-            doneButton.setTitleTextAttributes(doneButtonAttributes, for: .normal)
-            
-            toolbar.items = [
-                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-                doneButton
-            ]
-            
-            textField.inputAccessoryView = toolbar
-        }
-        
-        // 텍스트 변경 감지를 위한 target 추가
-        textField.addTarget(context.coordinator, action: #selector(Coordinator.textFieldDidChange(_:)), for: .editingChanged)
-        
-        return textField
-    }
-    
-    func updateUIView(_ uiView: UITextField, context: Context) {
-        if uiView.text != text {
-            uiView.text = text
-        }
-        
-        if forceFocus && !uiView.isFirstResponder {
-            uiView.becomeFirstResponder()
-        }
-    }
-    
-    func makeCoordinator() -> CustomTextField.Coordinator {
-        Coordinator(parent: self)
-    }
-    
-    class Coordinator: NSObject, UITextFieldDelegate {
-        var parent: CustomTextField
-        
-        init(parent: CustomTextField) {
-            self.parent = parent
-        }
-        
-        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-            return true
-        }
-        
-        /// TextView 정보 업데이트
-        func updateTextView(_ textView: UITextView) {
-            
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            if !parent.forceFocus {
-                textField.resignFirstResponder()
-                return true
-            } else {
-                return true
-            }
-        }
-        
-        @objc func dismissKeyboard(_ sender: UIBarButtonItem) {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        }
-        
-        @objc func textFieldDidChange(_ textField: UITextField) {
-            // Binding 업데이트
-            parent.text = textField.text ?? ""
         }
     }
 }
