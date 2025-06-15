@@ -11,6 +11,10 @@ struct MainTabView: View {
     @ObservedObject var viewModel: MainViewModel
     @StateObject private var calendarViewModel = CalendarViewModel()
     @StateObject var homeViewModel = HomeViewModel()
+    @StateObject var settingViewModel: SettingViewModel = SettingViewModel()
+    
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var showPasswordInputView = true
     
     var body: some View {
         NavigationView(content: {
@@ -42,6 +46,24 @@ struct MainTabView: View {
                     if viewModel.showStartAlert {
                         CustomStartAlert(showAlert: $viewModel.showStartAlert)
                     }
+                    
+                    if settingViewModel.visiblePwSettingView && (viewModel.currentTab == .Home || viewModel.currentTab == .Calender) {
+                        PasswordInputView(
+                            password: $settingViewModel.appPassWord,
+                            title: $settingViewModel.inputViewTitle,
+                            visibleWarningMessage: $settingViewModel.visibleWarningMessage,
+                            appendAction: { number in
+                                settingViewModel.addPassWord(number: number)
+                            },
+                            removeAction: {
+                                settingViewModel.removePassWord()
+                            }
+                        )
+                        .frame(width: geo.size.width, height: geo.size.height)
+                        .background(UIColor.CommonBackground.background.color)
+                        .transition(.opacity)
+                        .zIndex(999) // 다른 뷰보다 위에 오도록 설정
+                    }
                 }
                 
                 NavigationLink("", isActive: $calendarViewModel.showDiaryView) {
@@ -67,7 +89,15 @@ struct MainTabView: View {
                     viewModel.registerNotification()
                 }
             }
-        }).navigationBarHidden(true)
+        })
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                if settingViewModel.lockEnable && (viewModel.currentTab == .Home || viewModel.currentTab == .Calender) && !settingViewModel.visiblePwSettingView {
+                    settingViewModel.startPasswordValidation()
+                }
+            }
+        }
+        .navigationBarHidden(true)
         
     }
 }
@@ -84,7 +114,7 @@ extension MainTabView {
         case .Game:
             GameView()
         case .Setting:
-            SettingView(mainViewModel: viewModel)
+            SettingView(settingViewModel: settingViewModel, mainViewModel: viewModel)
         }
     }
 }

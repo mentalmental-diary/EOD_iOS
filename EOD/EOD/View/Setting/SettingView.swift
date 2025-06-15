@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @ObservedObject var settingViewModel: SettingViewModel = SettingViewModel()
+    @ObservedObject var settingViewModel: SettingViewModel
     @ObservedObject var mainViewModel: MainViewModel
     
     var body: some View {
@@ -210,5 +210,5 @@ extension SettingView {
 }
 
 #Preview {
-    SettingView(mainViewModel: MainViewModel())
+    SettingView(settingViewModel: SettingViewModel(), mainViewModel: MainViewModel())
 }

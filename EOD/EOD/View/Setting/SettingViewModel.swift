@@ -126,6 +126,14 @@ class SettingViewModel: ObservableObject {
         checkInit = true
         self.inputViewTitle = PasswordMessages.initial
     }
+    
+    func startPasswordValidation() {
+        guard lockEnable else { return } // 잠금 설정 안 돼 있으면 무시
+        visiblePwSettingView = true
+        appPassWord = []
+        visibleWarningMessage = false
+        inputViewTitle = PasswordMessages.initial
+    }
 }
 
 // MARK: - AppPassword Setting
