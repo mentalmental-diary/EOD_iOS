@@ -237,7 +237,7 @@ extension IntroView {
                         switch result {
                         case .success(let auth):
                             if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
-                                if let identityToken = appleIDCredential.identityToken,
+                                if let identityToken = appleIDCredential.authorizationCode,
                                    let identityTokenString = String(data: identityToken, encoding: .utf8) {
                                     debugLog("로그인 토큰값 : \(identityTokenString)")
                                     
