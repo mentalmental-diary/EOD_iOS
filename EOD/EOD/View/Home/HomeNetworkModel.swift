@@ -46,4 +46,10 @@ class HomeNetworkModel {
             }
         })
     }
+    
+    func fetchGoldTransaction(completion: @escaping (Result<[GoldInfoModel], Error>) -> Void) {
+        let api = "/api-external/user/rewards/gold/transaction"
+        
+        APIRequest.requestDecodable(api: api, completion: completion)
+    }
 }

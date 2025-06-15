@@ -69,6 +69,10 @@ extension Date {
         dateFormatter.timeZone = timeZone
         return dateFormatter.string(from: self)
     }
+    
+    public var formattedYYMMDD: String {
+        string(withFormat: "yy.MM.dd", timeZone: TimeZone.seoul)
+    }
 }
 
 extension String {

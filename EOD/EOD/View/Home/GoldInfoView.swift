@@ -47,6 +47,16 @@ struct GoldInfoView: View {
                         .frame(minHeight: 1.0)
                         .overlay(Color(red: 235/255, green: 235/255, blue: 227/255))
                     
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 24) {
+                            ForEach(filteredGoldList(), id: \.id) { item in
+                                goldRow(item: item)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 24)
+                    }
+                    
                     Spacer()
                 }
                 .padding(.bottom, geometry.safeAreaInsets.bottom)
@@ -82,8 +92,45 @@ extension GoldInfoView {
                 .underlinedBackground(color: type == viewModel.currentInfoTab ? UIColor.Yellow.yellow200.color : .clear)
         }
     }
+    
+    private func goldRow(item: GoldInfoModel) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(item.createdAt?.formattedYYMMDD ?? "")
+                    .font(type: .omyu, size: 14)
+                    .foregroundColor(UIColor.Gray.gray500.color)
+                
+                Text(item.transactionType.displayTitle)
+                    .font(type: .omyu, size: 18)
+                    .foregroundColor(.black)
+            }
+            
+            Spacer()
+            
+            Text(item.amountString)
+                .font(type: .omyu, size: 16)
+                .foregroundColor(item.transactionType == .purchaseItem ? UIColor.Gray.gray700.color : .black)
+        }
+    }
+}
+
+extension GoldInfoView {
+    private func filteredGoldList() -> [GoldInfoModel] {
+            switch viewModel.currentInfoTab {
+            case .all:
+                return viewModel.goldInfoList
+            case .earn:
+                return viewModel.goldInfoList.filter {
+                    $0.transactionType == .gameCharge || $0.transactionType == .diaryCharge
+                }
+            case .use:
+                return viewModel.goldInfoList.filter {
+                    $0.transactionType == .purchaseItem
+                }
+            }
+        }
 }
 
 #Preview {
-    GoldInfoView(viewModel: HomeViewModel())
+    GoldInfoView(viewModel: MockHomeViewModel())
 }
