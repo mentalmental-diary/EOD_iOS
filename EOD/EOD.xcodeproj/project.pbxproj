@@ -181,6 +181,8 @@
 		CEB7F0A42AAC661D001C99EA /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0A32AAC661D001C99EA /* RegexParser.swift */; };
 		CEBF2B6A2DFEC7D900300404 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */; };
 		CEBF2B6B2DFEC7D900300404 /* KeyboardHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */; };
+		CEBF2B6D2DFEDF5300300404 /* GoldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF2B6C2DFEDF4700300404 /* GoldInfoModel.swift */; };
+		CEBF2B6E2DFEDF5300300404 /* GoldInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF2B6C2DFEDF4700300404 /* GoldInfoModel.swift */; };
 		CEC6D7DE2C7C512400FFEC9F /* SwifterSwift+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */; };
 		CEC6D7E02C7C513F00FFEC9F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
 		CEC6D7E22C7C519D00FFEC9F /* SwifterSwift+Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */; };
@@ -531,6 +533,7 @@
 		CEB7F0A12AAC6424001C99EA /* Alamofire+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alamofire+Extension.swift"; sourceTree = "<group>"; };
 		CEB7F0A32AAC661D001C99EA /* RegexParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
 		CEBF2B692DFEC7D200300404 /* KeyboardHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightHelper.swift; sourceTree = "<group>"; };
+		CEBF2B6C2DFEDF4700300404 /* GoldInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldInfoModel.swift; sourceTree = "<group>"; };
 		CEC6D7DD2C7C512400FFEC9F /* SwifterSwift+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+String.swift"; sourceTree = "<group>"; };
 		CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Date.swift"; sourceTree = "<group>"; };
 		CEC6D7E12C7C519D00FFEC9F /* SwifterSwift+Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwifterSwift+Double.swift"; sourceTree = "<group>"; };
@@ -674,6 +677,7 @@
 		CE6466B32C0F048B00E03B5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF2B6C2DFEDF4700300404 /* GoldInfoModel.swift */,
 				CE8F1E7D2CE829E300173B1F /* UserInfoModel.swift */,
 				CEAAF8002CD7745E00EFBDA9 /* Enum */,
 				CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */,
@@ -1554,6 +1558,7 @@
 				CEB7F0372AAC6194001C99EA /* Logger.swift in Sources */,
 				CEB7F0872AAC61D5001C99EA /* XcodeLogFormatter.swift in Sources */,
 				CEB7F0972AAC61FD001C99EA /* ErrorCode.swift in Sources */,
+				CEBF2B6E2DFEDF5300300404 /* GoldInfoModel.swift in Sources */,
 				CE77A9BF2ACD31F700D9C58B /* PageControlView.swift in Sources */,
 				CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */,
 				CEB7F07D2AAC61D5001C99EA /* OSLogRecorder.swift in Sources */,
@@ -1716,6 +1721,7 @@
 				CEE63F9C2CFC4F5D00275C7F /* Logger.swift in Sources */,
 				CEE63F9D2CFC4F5D00275C7F /* XcodeLogFormatter.swift in Sources */,
 				CEE63F9E2CFC4F5D00275C7F /* ErrorCode.swift in Sources */,
+				CEBF2B6D2DFEDF5300300404 /* GoldInfoModel.swift in Sources */,
 				CEE63F9F2CFC4F5D00275C7F /* PageControlView.swift in Sources */,
 				CEE63FA02CFC4F5D00275C7F /* EODLogRecorder.swift in Sources */,
 				CEE63FA12CFC4F5D00275C7F /* OSLogRecorder.swift in Sources */,
