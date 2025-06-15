@@ -195,7 +195,7 @@ extension UserInfoSetView {
             
             if viewModel.isLogin {
                 TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname, axis: .vertical)
-                    .font(type: .pretendard, weight: .medium, size: 16)
+                    .font(.custom("Pretendard-Medium", size: 16))
                     .foregroundColor(.black)
                     .focused($nicknameFieldFocused)
                     .submitLabel(.continue)
@@ -206,7 +206,7 @@ extension UserInfoSetView {
                     })
             } else {
                 TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname)
-                    .font(type: .pretendard, weight: .medium, size: 16)
+                    .font(.custom("Pretendard-Medium", size: 16))
                     .foregroundColor(.black)
                     .focused($nicknameFieldFocused)
                     .submitLabel(.done)
