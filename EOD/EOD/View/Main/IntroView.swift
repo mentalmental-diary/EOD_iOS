@@ -75,13 +75,14 @@ extension IntroView {
             Spacer().frame(height: 84)
             
             Button(action: {
-                withAnimation {
-                    if currentPage < 2 {
+                if currentPage < 2 {
+                    withAnimation {
                         currentPage += 1
-                    } else {
-                        viewModel.initScreen = false
                     }
+                } else {
+                    viewModel.initScreen = false
                 }
+                
             }, label: {
                 Text(showHighlightedButton ? "시작하기" : "다음")
                     .font(size: 20)
@@ -236,17 +237,10 @@ extension IntroView {
                         switch result {
                         case .success(let auth):
                             if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
-                                // 애플 ID에서 사용자 정보 가져오기
-                                let userIdentifier = appleIDCredential.user
-                                let email = appleIDCredential.email
-                                let fullName = appleIDCredential.fullName
-                                let firstName = fullName?.givenName ?? ""
-                                let lastName = fullName?.familyName ?? ""
-                                
-                                if let token = appleIDCredential.authorizationCode,
-                                   let identityTokenString = String(data: token, encoding: .utf8) {
+                                if let identityToken = appleIDCredential.authorizationCode,
+                                   let identityTokenString = String(data: identityToken, encoding: .utf8) {
+                                    debugLog("로그인 토큰값 : \(identityTokenString)")
                                     
-                                    debugLog("로그인 토큰값 : \(token)")
                                     viewModel.appleLoginAction(token: identityTokenString)
                                 }
                             }

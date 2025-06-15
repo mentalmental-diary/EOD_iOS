@@ -118,8 +118,13 @@ extension MainViewModel {
     }
     
     func appleLoginAction(token: String) {
-        self.networkModel.fetchLogin(Authorization: token, type: .apple, completion: { result in // TODO: 타입 변경 예정
-            
+        self.networkModel.fetchLogin(Authorization: token, type: .apple, completion: { result in
+            guard let error = result.error else {
+                self.checkNicknameAndAccessLogin()
+                return
+            }
+            self.toastManager.showToast(message: "애플 로그인 연동 실패했습니다.")
+            errorLog("🔴 애플 연동 후 서버 연동 실패: \(error.localizedDescription)")
         })
     }
     
