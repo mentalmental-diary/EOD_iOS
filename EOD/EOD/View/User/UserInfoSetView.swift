@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct UserInfoSetView: View {
     @ObservedObject var viewModel: MainViewModel
@@ -14,6 +15,7 @@ struct UserInfoSetView: View {
     @State private var shouldShowKeyboardToolbar = false
     
     @FocusState private var nicknameFieldFocused: Bool
+    @State private var isShowingSafari = false
     
     var body: some View {
         GeometryReader { proxy in
@@ -193,7 +195,7 @@ extension UserInfoSetView {
             
             if viewModel.isLogin {
                 TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname, axis: .vertical)
-                    .font(.custom("Pretendard-Medium", size: 16))
+                    .font(type: .pretendard, weight: .medium, size: 16)
                     .foregroundColor(.black)
                     .focused($nicknameFieldFocused)
                     .submitLabel(.continue)
@@ -204,7 +206,7 @@ extension UserInfoSetView {
                     })
             } else {
                 TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname)
-                    .font(.custom("Pretendard-Medium", size: 16))
+                    .font(type: .pretendard, weight: .medium, size: 16)
                     .foregroundColor(.black)
                     .focused($nicknameFieldFocused)
                     .submitLabel(.done)
@@ -230,7 +232,7 @@ extension UserInfoSetView {
         VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 0) {
                 Button(action: {
-                    viewModel.confirmTerms.toggle() // TODO: 약관 관련 값 변경
+                    viewModel.confirmTerms.toggle()
                 }, label: {
                     Image(viewModel.confirmTerms ? "btnConfirmOn" : "btnConfirmOff")
                 })
@@ -239,69 +241,82 @@ extension UserInfoSetView {
                 
                 HStack(spacing: 0) {
                     Text("(필수) ")
-                        .font(.system(size: 13))
+                        .font(type: .pretendard, weight: .bold, size: 13)
                         .foregroundColor(.black)
                     
                     Button {
-                        
+                        isShowingSafari = true
                     } label: {
-                        Text("개인 정보 처리 방침")
+                        Text("이용약관")
+                            .font(type: .pretendard, weight: .medium, size: 13)
                             .underline()
-                            .font(.system(size: 13))
                             .foregroundColor(.black)
+                    }
+                    .sheet(isPresented: $isShowingSafari) {
+                        if let url = URL(string: viewModel.termsURL) {
+                            SafariView(url: url)
+                        }
                     }
                     
                     Text(" 및 ")
-                        .font(.system(size: 13))
+                        .font(type: .pretendard, weight: .medium, size: 13)
                         .foregroundColor(.black)
                     
                     Button {
-                        
+                        isShowingSafari = true
                     } label: {
-                        Text("서비스 이용 약관")
+                        Text("개인정보 수집 및 이용")
+                            .font(type: .pretendard, weight: .medium, size: 13)
                             .underline()
-                            .font(.system(size: 13))
                             .foregroundColor(.black)
+                    }
+                    .sheet(isPresented: $isShowingSafari) {
+                        if let url = URL(string: viewModel.personalInfomationURL) {
+                            SafariView(url: url)
+                        }
                     }
                     
                     Text("에 동의합니다.")
-                        .font(.system(size: 13))
+                        .font(type: .pretendard, weight: .medium, size: 13)
                         .foregroundColor(.black)
 
                 }
+                .frame(height: 19)
             }
             
-            Spacer().frame(height: 6)
-            
-            HStack(spacing: 0) {
-                Button(action: {
-                    viewModel.confirmTerms.toggle()
-                }, label: {
-                    Image(viewModel.confirmTerms ? "btnConfirmOn" : "btnConfirmOff")
-                })
-                
-                Spacer().frame(width: 4)
-                
-                Text("(선택) 이벤트 및 광고성 알림 수신에 동의합니다.")
-                    .font(.system(size: 13))
-                    .foregroundColor(.black)
-            }
-            
-            Spacer().frame(height: 22)
+            Spacer().frame(height: 12)
             
             Button(action: {
-                viewModel.setNickname()
+                if availableStartButton {
+                    viewModel.setNickname()
+                }
             }, label: {
                 Text("시작하기")
                     .font(size: 20)
                     .foregroundColor(Color.white)
                     .padding(.vertical, 16)
                     .frame(maxWidth: .infinity)
-                    .background(viewModel.confirmTerms ? Color.black : Color(red: 211/255, green: 210/255, blue: 207/255))
+                    .background(availableStartButton ? Color.black : Color(red: 211/255, green: 210/255, blue: 207/255))
                     .cornerRadius(8.0)
                     .contentShape(Rectangle()) // 전체 영역이 터치 가능하도록 설정
             })
         }
+    }
+}
+
+extension UserInfoSetView {
+    private var availableStartButton: Bool { return viewModel.confirmTerms && viewModel.inputNickname.count > 0 }
+}
+
+struct SafariView: UIViewControllerRepresentable {
+    let url: URL
+
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+    }
+
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
+        // Nothing to update
     }
 }
 

@@ -33,6 +33,9 @@ class MainViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>() // Combine 구독 관리
     
+    let termsURL: String = "https://maple-drive-c5a.notion.site/25-04-01-1a32d71232c680eea608c75c01f9a06a?pvs=4"
+    let personalInfomationURL: String = "https://maple-drive-c5a.notion.site/1a32d71232c680bd8e58e12ade5026cd?pvs=4"
+    
     let onboardingItems: [OnboardingItem] = {
         let items = [
             OnboardingItem(imageName: "onBoardingImage_1", title: "노른자와 함께 \n나의 하루를 순간 포착", description: "나만의 귀여운 노른자에게 \n생각, 감정, 일상을 공유해주세요."),
