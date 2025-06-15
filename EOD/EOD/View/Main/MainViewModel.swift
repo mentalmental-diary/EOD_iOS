@@ -190,7 +190,6 @@ extension MainViewModel {
                         self?.showUserInfoSetView = false
                         self?.showStartAlert = true
                     }
-                    self?.currentUserNickname = self?.inputNickname ?? ""
                     completion?()
                 }
             case .failure(let error):
@@ -198,6 +197,20 @@ extension MainViewModel {
                 errorLog("🔴 닉네임 설정 API 실패: \(error.localizedDescription)")
             }
         })
+    }
+    
+    func getNickname() {
+        networkModel.getUserNickname { [weak self] result in
+            switch result {
+            case .success(let nickname):
+                debugLog("닉네임 조회 성공: 서버에서 내려온 닉네임 : \(nickname)")
+                self?.currentUserNickname = nickname ?? ""
+                self?.inputNickname = nickname ?? ""
+            case .failure(let error):
+                self?.toastManager.showToast(message: "닉네임 조회 실패")
+                errorLog("🔴 닉네임 조회 API 실패: \(error.localizedDescription)")
+            }
+        }
     }
     
     var changeNickname: Bool { return inputNickname != currentUserNickname }

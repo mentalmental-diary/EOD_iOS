@@ -60,6 +60,9 @@ extension SettingView {
             
             NavigationLink(destination:
                             UserInfoSetView(viewModel: mainViewModel)
+                .onAppear(perform: {
+                    mainViewModel.getNickname()
+                })
                 .background(Color.white)
                 .navigationBarHidden(true)
             ) {

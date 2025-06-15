@@ -121,6 +121,20 @@ class UserNetworkModel {
         UserDefaults.standard.set(accessToken, forKey: "accessToken")
         UserDefaults.standard.set(true, forKey: "isLogin")
     }
+    
+    func getUserNickname(completion: @escaping ((Result<String?, Error>) -> Void)) {
+        let api = "/api-external/user/nickname"
+        
+        APIRequest.requestData(api: api) { result in
+            switch result {
+            case .success(let data):
+                let nickname = String(data: data, encoding: .utf8)
+                completion(.success(nickname))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
 
 public enum LoginType: String {
