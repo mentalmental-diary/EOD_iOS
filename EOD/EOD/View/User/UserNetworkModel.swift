@@ -135,6 +135,14 @@ class UserNetworkModel {
             }
         }
     }
+    
+    func postLeaveUser(completion: @escaping ((Result<Void, Error>) -> Void)) {
+        let api = "/api-external/auth/leave"
+        
+        APIRequest.requestData(api: api, method: .post, completion: { result in
+            completion(result.voidMap())
+        })
+    }
 }
 
 public enum LoginType: String {

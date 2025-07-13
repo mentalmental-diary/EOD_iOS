@@ -136,7 +136,7 @@ extension SettingView {
                 }
                 
                 Button {
-                    
+                    mainViewModel.userLeaveAction()
                 } label: {
                     HStack {
                         Text("회원 탈퇴")

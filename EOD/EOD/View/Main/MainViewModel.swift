@@ -216,6 +216,21 @@ extension MainViewModel {
     var changeNickname: Bool { return inputNickname != currentUserNickname }
 }
 
+// MARK: - 회원탈퇴
+extension MainViewModel {
+    func userLeaveAction() {
+        networkModel.postLeaveUser { [weak self] result in
+            switch result {
+            case .success:
+                self?.logoutAction()
+            case .failure(let error):
+                self?.toastManager.showToast(message: "회원 탈퇴 실패")
+                errorLog("🔴 회원 탈퇴 API 실패: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
 // MARK: - TAB ITEM CASE
 enum Tab: String {
     case Home = "home"
