@@ -27,6 +27,8 @@ public enum CommonError: Error, LocalizedError {
     case failedToFetch
     case failedToApply
     
+    case tokenExpired
+    
     /// 서버 API에서 의도적으로 내려주는 에러 코드와 메세지
     case server(Int?, String)
     
@@ -50,6 +52,8 @@ public enum CommonError: Error, LocalizedError {
         case .offline:       return "오프라인"
         case .failedToFetch:    return "일시적인 오류로 서비스에 접속 할 수 없습니다."
         case .failedToApply:    return "일시적 오류입니다. 잠시 후 다시 시도해 주세요."
+            
+        case .tokenExpired: return "토큰이 만료되었습니다."
             
         case .server(_, let message): return message
         case .custom(let message): return message
