@@ -12,6 +12,12 @@ import KakaoSDKAuth
 #endif
 /// AppDelegate  대신해서 완성하기 -> SiwftUI 하고 UIKit 연동하기 위해서?
 class AppDelegate: NSObject, UIApplicationDelegate {
+    static var orientationLock = UIInterfaceOrientationMask.portrait
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return AppDelegate.orientationLock
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         
         return true
@@ -33,11 +39,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         infoLog("fail to register for remote notifications. error : \(error)")
     }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        debugLog("[Push] didReceiveNotification - app running")
-        NotificationManager.shared.didReceiveRemoteNotification(application: application, userInfo: userInfo)
-    }
 }
 
 @main
@@ -51,6 +52,9 @@ struct EODApp: App {
     /// 앱에서 처음에 기본 세팅해야하는 부분에 대해서 이곳에서 처리 , UIKit에서 Appdelegate 가 이부분이라고 생각하면됨
     /// 기본 configuration들을 여기서 관리하자 -> 모듈화 좋은 생각
     init() {
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        AppDelegate.orientationLock = .portrait
+        
         BootLoader.runBootLoaderModules()
     }
     
