@@ -1,5 +1,6 @@
 import UIKit
 import Alamofire
+import Foundation
 
 open class APIRequest {
     
@@ -131,24 +132,35 @@ extension APIRequest {
         queue: DispatchQueue? = nil,
         retrier: RequestInterceptor? = nil,
         completion: ((Result<Data, Error>) -> Void)? = nil) -> DataRequest {
-        let (dataRequest, sessionManagerID) = request(api: api, method: method, parameters: queryParameters, requestParameters: requestParameters, headers: headers, queue: queue, retrier: retrier)
-        
-        dataRequest.response(queue: queue ?? .main) { (response: AFDataResponse<Data?>) -> Void in
-            logDurationTime(api: api, duration: response.metrics?.taskInterval.duration)
+            let uuid = UUID()
             
-            if let data = response.value, response.error == nil {
-                completion?(.success(data ?? Data()))
-            } else {
-                let error = response.parsedError
-                recordError(response: response, method: method, queryParameters: queryParameters, requestParameters: requestParameters)
-                completion?(.failure(error))
+            let (dataRequest, sessionManagerID) = request(api: api, method: method, parameters: queryParameters, requestParameters: requestParameters, headers: headers, queue: queue, retrier: retrier)
+            
+            dataRequest.task?.taskDescription = uuid.uuidString // ✅ 요청에 UUID 주입
+            
+            
+            dataRequest.response(queue: queue ?? .main) { (response: AFDataResponse<Data?>) -> Void in
+                if let data = response.data {
+                    RequestCache.shared.set(data: data, for: uuid)
+                }
+                
+                logDurationTime(api: api, duration: response.metrics?.taskInterval.duration)
+                
+                if let data = response.value, response.error == nil {
+                    completion?(.success(data ?? Data()))
+                } else {
+                    let error = response.parsedError
+                    recordError(response: response, method: method, queryParameters: queryParameters, requestParameters: requestParameters)
+                    completion?(.failure(error))
+                }
+                
+                shared.removeSessionManager(id: sessionManagerID)
+                
+                RequestCache.shared.remove(id: uuid)
             }
             
-            shared.removeSessionManager(id: sessionManagerID)
+            return dataRequest
         }
-        
-        return dataRequest
-    }
     
     /// Alamofire DataRequest 생성
     ///
@@ -173,7 +185,7 @@ extension APIRequest {
             let url = api.isValidUrlHeader ? api : UrlBuilder.createUrl(relativePath: api, parameters: queryParameters)
             debugLog("API Request :: url = \(url)")
             
-            let sessionManager = Session.createInstance(retrier: retrier)
+            let sessionManager = Session.createInstance(retrier: retrier ?? TokenInterceptor())
             let sessionManagerID = UUID().uuidString
             shared.add(sessionManager: sessionManager, id: sessionManagerID)
             
@@ -298,8 +310,8 @@ public extension DataResponse {
     
     private var isOfflineError: Bool {
         return error?.asAFError?.original?.code.isOfflineErrorCode == true
-            || error?.asAFError?.retry?.code.isOfflineErrorCode == true
-            || response?.statusCode.isOfflineErrorCode == true
+        || error?.asAFError?.retry?.code.isOfflineErrorCode == true
+        || response?.statusCode.isOfflineErrorCode == true
     }
     
     
