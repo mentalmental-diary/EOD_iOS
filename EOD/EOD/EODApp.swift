@@ -39,11 +39,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         infoLog("fail to register for remote notifications. error : \(error)")
     }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        debugLog("[Push] didReceiveNotification - app running")
-        NotificationManager.shared.didReceiveRemoteNotification(application: application, userInfo: userInfo)
-    }
 }
 
 @main
