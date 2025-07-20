@@ -28,13 +28,13 @@ class UserNetworkModel {
             
             debugLog("로그인 API호출 완료 response: \(response)")
             
-            guard let accessToken = self?.fetchAccessToken(from: response) else {
+            guard let tokens = self?.fetchAccessToken(from: response) else {
                 let error = response.parsedError
                 completion(.failure(error))
                 return
             }
 
-            self?.setUserInfo(accessToken: accessToken)
+            self?.setUserInfo(accessToken: tokens.accessToken, refreshToken: tokens.refreshToken)
             completion(.success(()))
         })
     }
@@ -53,13 +53,13 @@ class UserNetworkModel {
             
             debugLog("로그인 API호출 완료 response: \(response)")
             
-            guard let accessToken = self?.fetchAccessToken(from: response) else {
+            guard let tokens = self?.fetchAccessToken(from: response) else {
                 let error = response.parsedError
                 completion(.failure(error))
                 return
             }
 
-            self?.setUserInfo(accessToken: accessToken)
+            self?.setUserInfo(accessToken: tokens.accessToken, refreshToken: tokens.refreshToken)
             completion(.success(()))
         })
     }
@@ -106,19 +106,21 @@ class UserNetworkModel {
         })
     }
     
-    private func fetchAccessToken(from response: AFDataResponse<Data?>) -> String? {
-        guard let accessToken = response.response?.allHeaderFields["Authentication"] as? String, !accessToken.isBlank else {
+    private func fetchAccessToken(from response: AFDataResponse<Data?>) -> (accessToken: String, refreshToken: String)? {
+        guard let accessToken = response.response?.allHeaderFields["Authentication"] as? String, !accessToken.isBlank,
+              let refreshToken = response.response?.allHeaderFields["RefreshToken"] as? String, !refreshToken.isBlank else {
             warningLog("로그인 API에서 토큰 획득 실패.")
             return nil
         }
         
-        debugLog("accessToken확인 : \(accessToken)") // TODO: 나중에 삭제
+        debugLog("accessToken확인 : \(accessToken), refreshToken: \(refreshToken)") // TODO: 나중에 삭제
         
-        return accessToken
+        return (accessToken, refreshToken)
     }
     
-    private func setUserInfo(accessToken: String) {
+    private func setUserInfo(accessToken: String, refreshToken: String) {
         UserDefaults.standard.set(accessToken, forKey: "accessToken")
+        UserDefaults.standard.set(refreshToken, forKey: "refreshToken")
         UserDefaults.standard.set(true, forKey: "isLogin")
     }
     

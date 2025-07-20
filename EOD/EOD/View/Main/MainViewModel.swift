@@ -53,12 +53,21 @@ class MainViewModel: ObservableObject {
         
         // LoginManager의 loginResult를 구독하여 처리
         self.naverLoginAction()
+        self.bindDetectToken()
     }
     
 }
 
 /// Func
 extension MainViewModel {
+    func bindDetectToken() {
+        NotificationCenter.default.publisher(for: .tokenExpiredNotification)
+            .sink { [weak self] _ in
+                self?.logoutAction()
+            }
+            .store(in: &cancellables)
+    }
+    
     func logoutAction() { // TODO: 로그아웃 로직 수정 -> API연결 필요
         UserDefaults.standard.removeObject(forKey: "isLogin")
         UserDefaults.standard.removeObject(forKey: "accessToken")
