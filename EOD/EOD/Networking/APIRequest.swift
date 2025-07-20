@@ -282,8 +282,6 @@ public extension DataResponse {
     var parsedError: Error {
         if isOfflineError {
             return CommonError.offline
-        } else if let error = checkTokenExpiredIfNeeded() {
-            return error
         } else {
             return serverError ?? error?.asAFError?.underlyingError ?? error ?? CommonError.failedToFetch
         }
@@ -312,21 +310,6 @@ public extension DataResponse {
         return error?.asAFError?.original?.code.isOfflineErrorCode == true
         || error?.asAFError?.retry?.code.isOfflineErrorCode == true
         || response?.statusCode.isOfflineErrorCode == true
-    }
-    
-    
-    // 토큰 만료 체크
-    private func checkTokenExpiredIfNeeded() -> Error? {
-        guard let httpCode = self.response?.statusCode, httpCode == 401 else { return nil }
-        
-        if let message = try? JSONDecoder().decode(ServerErrorMessage.self, from: self.data ?? Data()),
-           message.errorCode == 40102 {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .tokenExpiredNotification, object: nil)
-            }
-            return CommonError.tokenExpired // Custom 에러로 하나 정의
-        }
-        return nil
     }
     
     /// 서버에서 내려주는 에러 메세지 parsing용 모델
