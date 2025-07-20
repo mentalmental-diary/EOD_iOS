@@ -27,6 +27,8 @@ class SettingViewModel: ObservableObject {
             UserDefaults.standard.set(diaryNotificationEnabled, forKey: "diaryNotificationEnabled")
             
             self.toastManager.showToast(message: "알림 설정을 저장했어요.")
+            
+            scheduleNotificationIfNeeded()
         }
     }
     
@@ -37,6 +39,8 @@ class SettingViewModel: ObservableObject {
             UserDefaults.standard.set(gameNotificationEnabled, forKey: "gameNotificationEnabled")
             
             self.toastManager.showToast(message: "알림 설정을 저장했어요.")
+            
+            scheduleNotificationIfNeeded()
         }
     }
     
@@ -63,6 +67,8 @@ class SettingViewModel: ObservableObject {
             guard oldValue != diaryNotificationTime else { return }
             
             UserDefaults.standard.set(diaryNotificationTime, forKey: "diaryNotificationTime")
+            
+            scheduleNotificationIfNeeded()
         }
     }
     
@@ -71,6 +77,8 @@ class SettingViewModel: ObservableObject {
             guard oldValue != gameNotificationTime else { return }
             
             UserDefaults.standard.set(gameNotificationTime, forKey: "gameNotificationTime")
+            
+            scheduleNotificationIfNeeded()
         }
     }
     
@@ -103,6 +111,9 @@ class SettingViewModel: ObservableObject {
     private var isChangingPassword: Bool = false
     private var isCheckingCurrentPassword: Bool = false
     private var isConfirmingNewPassword: Bool = false
+    
+    private var lastScheduledDiaryTime: DateComponents?
+    private var lastScheduledGameTime: DateComponents?
     
     init() {
         diaryNotificationEnabled = UserDefaults.standard.bool(forKey: "diaryNotificationEnabled")
@@ -278,5 +289,51 @@ extension SettingViewModel {
         visiblePwSettingView = true
         visibleWarningMessage = false
         appPassWord = []
+    }
+}
+
+// MARK: - Alarm
+
+extension SettingViewModel {
+    func scheduleNotificationIfNeeded() {
+        NotificationManager.shared.registerNotificationIfNeeded { granted in
+            guard granted else { return }
+            
+            // Diary 알림 처리
+            if self.diaryNotificationEnabled, let time = self.diaryNotificationTime {
+                let components = Calendar.current.dateComponents([.hour, .minute], from: time)
+                if components != self.lastScheduledDiaryTime {
+                    NotificationManager.shared.scheduleDailyLocalNotification(
+                        id: "diaryReminder",
+                        title: "일기 쓰기 알림 📝",
+                        body: "오늘 하루를 노른자에게 공유해주세요!",
+                        hour: components.hour ?? 22,
+                        minute: components.minute ?? 0
+                    )
+                    self.lastScheduledDiaryTime = components
+                }
+            } else {
+                NotificationManager.shared.removeLocalNotification(id: "diaryReminder")
+                self.lastScheduledDiaryTime = nil
+            }
+            
+            // Game 알림 처리
+            if self.gameNotificationEnabled, let time = self.gameNotificationTime {
+                let components = Calendar.current.dateComponents([.hour, .minute], from: time)
+                if components != self.lastScheduledGameTime {
+                    NotificationManager.shared.scheduleDailyLocalNotification(
+                        id: "gameReminder",
+                        title: "노른자와 게임하자 🎮",
+                        body: "보상 놓치지 마세요!",
+                        hour: components.hour ?? 20,
+                        minute: components.minute ?? 0
+                    )
+                    self.lastScheduledGameTime = components
+                }
+            } else {
+                NotificationManager.shared.removeLocalNotification(id: "gameReminder")
+                self.lastScheduledGameTime = nil
+            }
+        }
     }
 }
