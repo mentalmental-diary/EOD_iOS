@@ -250,9 +250,9 @@ enum GameType: String, CaseIterable {
     
     var thumbnailImageName: String {
         switch self {
-        case .catchYolk: return "game_thumbnail"
-        case .runYolk: return "game_thumbnail"
-        case .flyYolk: return "game_thumbnail"
+        case .catchYolk: return "catchyolk_thumbnail"
+        case .runYolk: return "runyolk_thumbnail"
+        case .flyYolk: return "flyyolk_thumbnail"
         }
     }
     
@@ -267,8 +267,8 @@ enum GameType: String, CaseIterable {
     var infoImageName: String {
         switch self {
         case .catchYolk: return "catchyolk_game_info"
-        case .runYolk: return "catchyolk_game_info" // TODO: 추후 변경
-        case .flyYolk: return "catchyolk_game_info"
+        case .runYolk: return "runyolk_game_info"
+        case .flyYolk: return "flyyolk_game_info"
         }
     }
 }
