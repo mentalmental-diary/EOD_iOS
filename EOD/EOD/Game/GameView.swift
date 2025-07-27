@@ -51,6 +51,7 @@ struct GameView: View {
                 HStack(spacing: 2) {
                     Text(gameDataViewModel.selectedGame.game.title)
                         .font(size: 28)
+                        .foregroundColor(.black)
                         .underlinedBackground()
                     
                     Button {
