@@ -44,6 +44,7 @@ class GameDataViewModel: ObservableObject {
     private func setupGames() {
         games = GameType.allCases.map { GameData(game: $0) }
         refreshAll()
+        fetchUserGold()
     }
     
     private func setupNotificationObserver() {

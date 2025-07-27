@@ -305,8 +305,8 @@ extension SettingViewModel {
                 if components != self.lastScheduledDiaryTime {
                     NotificationManager.shared.scheduleDailyLocalNotification(
                         id: "diaryReminder",
-                        title: "일기 쓰기 알림 📝",
-                        body: "오늘 하루를 노른자에게 공유해주세요!",
+                        title: "일기 쓸 시간",
+                        body: "당신의 하루를 노른자에게 들려주세요!",
                         hour: components.hour ?? 22,
                         minute: components.minute ?? 0
                     )
@@ -323,8 +323,8 @@ extension SettingViewModel {
                 if components != self.lastScheduledGameTime {
                     NotificationManager.shared.scheduleDailyLocalNotification(
                         id: "gameReminder",
-                        title: "노른자와 게임하자 🎮",
-                        body: "보상 놓치지 마세요!",
+                        title: "오늘도 잊지 않았죠?",
+                        body: "노른자 돕고 골드도 획득해요!",
                         hour: components.hour ?? 20,
                         minute: components.minute ?? 0
                     )
