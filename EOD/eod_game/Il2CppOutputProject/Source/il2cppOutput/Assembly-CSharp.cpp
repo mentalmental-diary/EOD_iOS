@@ -780,7 +780,6 @@ struct GameObject_t76FEDD663AB33C991A9C9A23129337651094216F  : public Object_tC1
 };
 struct Motion_tBCD49FBF5608AD21FC03B63C8182FABCEF2707AC  : public Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C
 {
-	bool ___U3CisAnimatorMotionU3Ek__BackingField;
 };
 struct MulticastDelegate_t  : public Delegate_t
 {
