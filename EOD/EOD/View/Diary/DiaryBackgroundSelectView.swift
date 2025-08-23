@@ -12,11 +12,13 @@ struct DiaryBackgroundSelectView: View {
     @ObservedObject var viewModel: CalendarViewModel
     @Binding var showModalView: Bool
     @Binding var height: CGFloat
+    let onDismiss: (() -> Void)?
     
-    init(viewModel: CalendarViewModel, showModalView: Binding<Bool>, height: Binding<CGFloat>) {
+    init(viewModel: CalendarViewModel, showModalView: Binding<Bool>, height: Binding<CGFloat>, onDismiss: (() -> Void)? = nil) {
         self.viewModel = viewModel
         self._showModalView = showModalView
         self._height = height
+        self.onDismiss = onDismiss
     }
     
     var body: some View {
@@ -126,9 +128,17 @@ extension DiaryBackgroundSelectView {
             appearAnimation = false
             showModalView = false
         }
+        
+        // 키보드가 이전에 노출되어 있었다면 다시 활성화
+        if viewModel.wasKeyboardVisibleBeforeModal {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                onDismiss?()
+                viewModel.wasKeyboardVisibleBeforeModal = false
+            }
+        }
     }
 }
 
 #Preview {
-    DiaryBackgroundSelectView(viewModel: CalendarViewModel(), showModalView: .constant(true), height: .constant(150))
+    DiaryBackgroundSelectView(viewModel: CalendarViewModel(), showModalView: .constant(true), height: .constant(150), onDismiss: nil)
 }

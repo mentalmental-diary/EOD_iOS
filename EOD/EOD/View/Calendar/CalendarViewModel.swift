@@ -24,6 +24,7 @@ class CalendarViewModel: ObservableObject {
     @Published var keyboardHeight: CGFloat = 291
     @Published var bottomAreaHeight: CGFloat = 2
     @Published var selectDiaryBackground: diaryBackgroundType = .white
+    @Published var wasKeyboardVisibleBeforeModal: Bool = false
     
     private var networkModel: CalendarNetworkModel = CalendarNetworkModel()
     
