@@ -66,6 +66,19 @@ extension CalendarViewModel {
         
         return diarySummaryList[day] ?? nil
     }
+    
+    /// 저장 버튼 활성화 여부
+    var canSaveDiary: Bool {
+        if isModify {
+            // 수정 모드: 내용이 변경되었을 때만 저장 가능
+            return isModified
+        } else {
+            // 업로드 모드: 내용이 있고 감정이 선택되었을 때만 저장 가능
+            let hasContent = diary.content?.isEmpty == false
+            let hasEmotion = diary.emotion != nil
+            return hasContent && hasEmotion
+        }
+    }
 }
 
 /// Func

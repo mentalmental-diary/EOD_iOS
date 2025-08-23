@@ -21,7 +21,7 @@ struct DiaryView: View {
                     NavigationBarView(dismissAction: {
                         viewModel.showDiaryBackgroundSelectView = false
                         presentationMode.wrappedValue.dismiss()
-                    }, availableButton: true, saveAction: {
+                    }, availableButton: true, disableSaveButton: !viewModel.canSaveDiary, saveAction: {
                         viewModel.isModify ? viewModel.modifyDiary() : viewModel.uploadDiary()
                     })
                     
