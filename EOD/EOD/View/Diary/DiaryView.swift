@@ -280,13 +280,12 @@ private struct CustomTextView: UIViewRepresentable {
     @Binding var text: String?
     @Binding var showBackgroundView: Bool
     var maxLength: Int = 2000
-    var lineHeight: CGFloat = 19  // 추가된 라인 높이 설정
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
         context.coordinator.textView = textView
-        textView.font = UIFont(name: "omyu pretty", size: 16)
+        textView.font = UIFont(name: "omyu pretty", size: 18)
         textView.isScrollEnabled = true
         textView.showsVerticalScrollIndicator = false
         textView.backgroundColor = UIColor.clear
