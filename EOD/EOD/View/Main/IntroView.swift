@@ -49,7 +49,6 @@ extension IntroView {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.top, 20)
                 .transition(.opacity) // 사라질 때 애니메이션 효과 적용
-                .animation(.easeInOut(duration: 0.3), value: currentPage) // 애니메이션 적용
             }
             
             TabView(selection: $currentPage) {
@@ -60,10 +59,11 @@ extension IntroView {
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .onChange(of: currentPage) { newValue in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { // TabView 이동 후 실행
-                    withAnimation {
-                        showSkipButton = (newValue < 2) // 2가 되면 Skip 버튼 숨기기
-                        showHighlightedButton = (newValue == 2) // 2가 되면 하단 버튼 강조
+                // TabView 슬라이딩 완료 후 UI 변경 (모든 전환에 적용)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        showSkipButton = (newValue < 2)
+                        showHighlightedButton = (newValue == 2)
                     }
                 }
             }
@@ -93,10 +93,8 @@ extension IntroView {
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(showHighlightedButton ? .clear : .black, lineWidth: 1)
-                            .animation(.easeInOut(duration: 0.3), value: currentPage)
                     )
             })
-            .animation(.easeInOut(duration: 0.3), value: currentPage) // currentPage 변화에 애니메이션 적용
             .frame(maxWidth: .infinity)
             .cornerRadius(8.0)
         }
