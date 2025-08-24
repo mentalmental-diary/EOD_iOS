@@ -50,6 +50,8 @@ struct NavigationBarView: View {
                     } label: {
                         HStack(spacing: 2) {
                             Image("icon_save_check")
+                                .renderingMode(.template)
+                                .foregroundColor(disableSaveButton ? UIColor.Gray.gray500.color : .black)
                             Text("저장")
                                 .font(type: .omyu, size: 20)
                                 .foregroundColor(disableSaveButton ? UIColor.Gray.gray500.color : .black)

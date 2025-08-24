@@ -156,7 +156,8 @@ extension DiaryView {
                                 .font(type: .omyu, size: 18)
                                 .foregroundColor(.black)
                         }
-                        .padding(.vertical, 4)
+                        .padding(.top, 4)
+                        .padding(.bottom, 8)
                         .padding(.horizontal, 13)
                         .background(.white)
                         .cornerRadius(8)
