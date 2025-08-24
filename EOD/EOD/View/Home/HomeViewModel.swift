@@ -39,71 +39,96 @@ class HomeViewModel: ObservableObject {
     }
 }
 
-/// Func
+// MARK: - API 호출 함수들
 extension HomeViewModel {
-    private func fetchUserGold() {
-        networkModel.fetchUserGold { result in
-            debugLog("보유 Gold 조회 API 호출 완료 result: \(result)")
-            switch result {
-            case .success(let gold):
-                self.userGold = gold["gold"] ?? 0
-            case .failure(let error):
-                errorLog("보유 Gold 조회 API 실패. error: \(error)")
+    /// 사용자 골드 정보 조회
+    public func fetchUserGold() {
+        networkModel.fetchUserGold { [weak self] result in
+            DispatchQueue.main.async {
+                debugLog("보유 Gold 조회 API 호출 완료 result: \(result)")
+                switch result {
+                case .success(let gold):
+                    self?.userGold = gold["gold"] ?? 0
+                case .failure(let error):
+                    errorLog("보유 Gold 조회 API 실패. error: \(error)")
+                }
             }
         }
     }
     
-    private func fetchUserInfo() {
+    /// 사용자 캐릭터 및 테마 정보 조회
+    public func fetchUserInfo() {
         networkModel.fetchUserInfo { [weak self] result in
-            debugLog("유저 정보 조회 API 호출 완료 result: \(result)")
-            switch result {
-            case .success(let info):
-                debugLog("현재 설정된 정보 : \(info.characterInfo), \(info.roomItems)")
-                
-                self?.userThemeList = Array(info.roomItems.values)
-                self?.userCharacterInfo = info.characterInfo
-            case .failure(let error):
-                errorLog("유저가 설정한 캐릭터 및 테마 조회 API 실패. error: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                debugLog("유저 정보 조회 API 호출 완료 result: \(result)")
+                switch result {
+                case .success(let info):
+                    debugLog("현재 설정된 정보 : \(info.characterInfo), \(info.roomItems)")
+                    
+                    self?.userThemeList = Array(info.roomItems.values)
+                    self?.userCharacterInfo = info.characterInfo
+                case .failure(let error):
+                    errorLog("유저가 설정한 캐릭터 및 테마 조회 API 실패. error: \(error.localizedDescription)")
+                }
             }
         }
     }
     
-    private func fetchComment() {
+    /// 사용자 한줄 메시지 조회
+    public func fetchComment() {
         networkModel.fetchComment { [weak self] result in
-            switch result {
-            case .success(let comment):
-                debugLog("유저 한줄 메시지 조회 성공: comment: \(comment)")
-                self?.userComment = comment
-            case .failure(let error):
-                errorLog("유저 한줄 메시지 조회 실패. error: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let comment):
+                    debugLog("유저 한줄 메시지 조회 성공: comment: \(comment)")
+                    self?.userComment = comment
+                case .failure(let error):
+                    errorLog("유저 한줄 메시지 조회 실패. error: \(error.localizedDescription)")
+                }
             }
         }
     }
     
+    /// 골드 사용내역 조회
     public func fetchGoldTransaction() {
         networkModel.fetchGoldTransaction { [weak self] result in
-            switch result {
-            case .success(let model):
-                debugLog("골드 사용내역 조회 model: \(model)")
-                self?.goldInfoList = model
-            case .failure(let error):
-                errorLog("유저 골드 사용내역 조회 실패. error: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let model):
+                    debugLog("골드 사용내역 조회 model: \(model)")
+                    self?.goldInfoList = model
+                case .failure(let error):
+                    errorLog("유저 골드 사용내역 조회 실패. error: \(error.localizedDescription)")
+                }
             }
         }
     }
     
-    public func refreshUserInfo() {
-        self.fetchUserInfo()
-        self.fetchUserGold()
+    /// 모든 홈 데이터 새로고침 (홈 탭 진입 시 호출)
+    public func refreshAllData() {
+        debugLog("홈 탭 데이터 새로고침 시작")
+        fetchUserGold()
+        fetchUserInfo()
+        fetchComment()
     }
     
+    /// 캐릭터/테마 변경 후 정보 갱신
+    public func refreshUserInfo() {
+        fetchUserInfo()
+        fetchUserGold()
+    }
+    
+    /// 테스트용 골드 1000 충전 (개발용)
     func testAddGold() {
         networkModel.addGold(completion: { [weak self] result in
-            switch result {
-            case .success:
-                self?.fetchUserGold()
-            case .failure(let error):
-                errorLog("충전 안됨 error: \(error)")
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    debugLog("테스트 골드 충전 성공")
+                    self?.fetchUserGold()
+                case .failure(let error):
+                    errorLog("테스트 골드 충전 실패. error: \(error)")
+                }
             }
         })
     }

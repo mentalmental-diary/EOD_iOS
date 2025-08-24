@@ -97,6 +97,12 @@ struct MainTabView: View {
                 }
             }
         }
+        .onChange(of: viewModel.currentTab) { newTab in
+            // 홈 탭 선택 시 데이터 새로고침
+            if newTab == .Home {
+                homeViewModel.refreshAllData()
+            }
+        }
         .navigationBarHidden(true)
         
     }
