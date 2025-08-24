@@ -96,6 +96,7 @@ class GameDataViewModel: ObservableObject {
             }
         } else if message.hasPrefix("EndGame") {
             self.incrementAccessCount(for: currentGame)
+            self.sendGameRewardToServer(for: currentGame)
 #if !PREVIEW
             GameManager.shared.finishUnity()
 #endif
@@ -151,6 +152,33 @@ extension GameDataViewModel {
                 self.userGold = gold["gold"] ?? 0
             case .failure(let error):
                 errorLog("보유 Gold 조회 API 실패. error: \(error)")
+            }
+        }
+    }
+    
+    /// 게임 종료 시 획득한 보상을 서버로 전송
+    private func sendGameRewardToServer(for gameType: GameType) {
+        guard let gameData = games.first(where: { $0.game == gameType }) else {
+            errorLog("게임 데이터를 찾을 수 없습니다: \(gameType.rawValue)")
+            return
+        }
+        
+        let earnedGold = gameData.coinCount
+        let score = gameData.score
+        
+        debugLog("게임 보상 서버 전송 시작 - gameType: \(gameType.rawValue), earnedGold: \(earnedGold), score: \(score)")
+        
+        networkModel.sendGameReward(earnedGold: earnedGold) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    debugLog("게임 보상 전송 성공")
+                    // 서버 전송 성공 후 사용자 골드 다시 조회
+                    self?.fetchUserGold()
+                case .failure(let error):
+                    errorLog("게임 보상 전송 실패: \(error)")
+                    // 실패 시 재시도 로직을 추가할 수 있음
+                }
             }
         }
     }
