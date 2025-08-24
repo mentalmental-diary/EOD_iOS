@@ -18,6 +18,8 @@ struct NavigationBarView: View {
     
     var availableButton: Bool = false
     
+    var disableSaveButton: Bool = false
+    
     var saveAction: (() -> Void)?
     
     var body: some View {
@@ -42,17 +44,22 @@ struct NavigationBarView: View {
                 
                 if availableButton {
                     Button {
-                        saveAction?()
+                        if !disableSaveButton {
+                            saveAction?()
+                        }
                     } label: {
                         HStack(spacing: 2) {
                             Image("icon_save_check")
+                                .renderingMode(.template)
+                                .foregroundColor(disableSaveButton ? UIColor.Gray.gray500.color : .black)
                             Text("저장")
                                 .font(type: .omyu, size: 20)
-                                .foregroundColor(.black)
+                                .foregroundColor(disableSaveButton ? UIColor.Gray.gray500.color : .black)
                         }
                         .padding(.trailing, 28)
                         .frame(alignment: .trailing)
                     }
+                    .disabled(disableSaveButton)
                 }
             }
             

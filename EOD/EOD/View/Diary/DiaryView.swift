@@ -21,7 +21,7 @@ struct DiaryView: View {
                     NavigationBarView(dismissAction: {
                         viewModel.showDiaryBackgroundSelectView = false
                         presentationMode.wrappedValue.dismiss()
-                    }, availableButton: true, saveAction: {
+                    }, availableButton: true, disableSaveButton: !viewModel.canSaveDiary, saveAction: {
                         viewModel.isModify ? viewModel.modifyDiary() : viewModel.uploadDiary()
                     })
                     
@@ -61,7 +61,7 @@ struct DiaryView: View {
                 }
                 
                 if viewModel.showDiaryBackgroundSelectView {
-                    DiaryBackgroundSelectView(viewModel: viewModel, showModalView: $viewModel.showDiaryBackgroundSelectView, height: $viewModel.keyboardHeight)
+                    DiaryBackgroundSelectView(viewModel: viewModel, showModalView: $viewModel.showDiaryBackgroundSelectView, height: $viewModel.keyboardHeight, onDismiss: restoreKeyboardFocus)
                 }
                 
                 ToastView(toastManager: viewModel.toastManager)
@@ -145,6 +145,7 @@ extension DiaryView {
             if !viewModel.showDiaryBackgroundSelectView {
                 HStack {
                     Button {
+                        viewModel.wasKeyboardVisibleBeforeModal = visibleKeyboard
                         dismissKeyboard()
                         viewModel.showDiaryBackgroundSelectView = true
                     } label: {
@@ -155,7 +156,8 @@ extension DiaryView {
                                 .font(type: .omyu, size: 18)
                                 .foregroundColor(.black)
                         }
-                        .padding(.vertical, 4)
+                        .padding(.top, 4)
+                        .padding(.bottom, 8)
                         .padding(.horizontal, 13)
                         .background(.white)
                         .cornerRadius(8)
@@ -182,7 +184,6 @@ extension DiaryView {
             }
         }
         .padding(.bottom, viewModel.bottomAreaHeight) // ✅ 키보드 높이만큼 패딩 추가
-        .animation(.easeInOut(duration: 0.3), value: viewModel.bottomAreaHeight) // 애니메이션 적용
     }
 }
 
@@ -201,21 +202,76 @@ extension DiaryView {
     func addKeyboardObservers() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { notification in
             visibleKeyboard = true
-            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-                viewModel.keyboardHeight = keyboardFrame.height
-                viewModel.bottomAreaHeight = keyboardFrame.height + 2 - 34 // safeArea까지 빼기
+            if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+               let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+               let curveRawValue = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int {
+                
+                let curve = UIView.AnimationCurve(rawValue: curveRawValue) ?? .easeInOut
+                let animationCurve: Animation = {
+                    switch curve {
+                    case .easeInOut:
+                        return .easeInOut(duration: duration)
+                    case .easeIn:
+                        return .easeIn(duration: duration)
+                    case .easeOut:
+                        return .easeOut(duration: duration)
+                    case .linear:
+                        return .linear(duration: duration)
+                    @unknown default:
+                        return .easeInOut(duration: duration)
+                    }
+                }()
+                
+                withAnimation(animationCurve) {
+                    viewModel.keyboardHeight = keyboardFrame.height
+                    viewModel.bottomAreaHeight = keyboardFrame.height + 2 - 34 // safeArea까지 빼기
+                }
             }
         }
         
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { _ in
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { notification in
             visibleKeyboard = false
-            viewModel.bottomAreaHeight = 2
+            
+            if let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+               let curveRawValue = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int {
+                
+                let curve = UIView.AnimationCurve(rawValue: curveRawValue) ?? .easeInOut
+                let animationCurve: Animation = {
+                    switch curve {
+                    case .easeInOut:
+                        return .easeInOut(duration: duration)
+                    case .easeIn:
+                        return .easeIn(duration: duration)
+                    case .easeOut:
+                        return .easeOut(duration: duration)
+                    case .linear:
+                        return .linear(duration: duration)
+                    @unknown default:
+                        return .easeInOut(duration: duration)
+                    }
+                }()
+                
+                withAnimation(animationCurve) {
+                    viewModel.bottomAreaHeight = 2
+                }
+            } else {
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    viewModel.bottomAreaHeight = 2
+                }
+            }
         }
     }
     
     // ✅ 옵저버 해제
     func removeKeyboardObservers() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    // ✅ 키보드 복원
+    func restoreKeyboardFocus() {
+        // CustomTextView가 첫 번째 응답자가 되도록 알림 전송
+        NotificationCenter.default.post(name: NSNotification.Name("RestoreKeyboardFocus"), object: nil)
     }
 }
 
@@ -225,12 +281,12 @@ private struct CustomTextView: UIViewRepresentable {
     @Binding var text: String?
     @Binding var showBackgroundView: Bool
     var maxLength: Int = 2000
-    var lineHeight: CGFloat = 19  // 추가된 라인 높이 설정
     
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.delegate = context.coordinator
-        textView.font = UIFont(name: "omyu pretty", size: 16)
+        context.coordinator.textView = textView
+        textView.font = UIFont(name: "omyu pretty", size: 18)
         textView.isScrollEnabled = true
         textView.showsVerticalScrollIndicator = false
         textView.backgroundColor = UIColor.clear
@@ -256,9 +312,26 @@ private struct CustomTextView: UIViewRepresentable {
     
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: CustomTextView
+        weak var textView: UITextView?
         
         init(parent: CustomTextView) {
             self.parent = parent
+            super.init()
+            
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(restoreKeyboardFocus),
+                name: NSNotification.Name("RestoreKeyboardFocus"),
+                object: nil
+            )
+        }
+        
+        deinit {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name("RestoreKeyboardFocus"), object: nil)
+        }
+        
+        @objc private func restoreKeyboardFocus() {
+            textView?.becomeFirstResponder()
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {

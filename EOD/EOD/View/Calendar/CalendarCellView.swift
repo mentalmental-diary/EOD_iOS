@@ -31,7 +31,8 @@ struct CalendarCellView: View {
                     .font(size: 12)
                     .foregroundColor(dayColor)
                     .padding(.horizontal, 8)
-                    .frame(width: 26, height: 12)
+                    .frame(minWidth: 26)
+                    .frame(height: 12)
                     .background(dayBGColor)
                     .cornerRadius(20)
             }
