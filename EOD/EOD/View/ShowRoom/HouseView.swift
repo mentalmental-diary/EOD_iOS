@@ -71,7 +71,7 @@ struct HouseView: View {
 extension HouseView {
     private func topAreaView() -> some View {
         ZStack(alignment: .topLeading) {
-            HousePreviewView(themeItemList: viewModel.selectThemeItemList)
+            HousePreviewView(themeItemList: viewModel.selectThemeItemList, viewType: .house)
                 .padding(.top, 53)
             
             HStack {

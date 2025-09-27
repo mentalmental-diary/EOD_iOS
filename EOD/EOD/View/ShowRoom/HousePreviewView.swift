@@ -8,8 +8,14 @@
 import SwiftUI
 import Kingfisher
 
+public enum HousePreviewViewType {
+    case home
+    case house
+}
+
 struct HousePreviewView: View {
     var themeItemList: [ThemeItem]?
+    var viewType: HousePreviewViewType = .house
     
     var body: some View {
         GeometryReader { geometry in
@@ -18,31 +24,30 @@ struct HousePreviewView: View {
             
             ZStack {
                 ForEach(RoomThemeItemType.allCases, id: \.rawValue) { type in
-                    if let coordinates = themeCoordinates[type] {
+                    if type == .backGround {
+                        // 배경은 전체 화면을 채우므로 좌표 없이 처리
                         if let item = themeItemList?.first(where: { $0.type == type }) {
-                            if type == .backGround {
-                                KFImage(item.homeImageUrl.url)
-                                    .resizable()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .ignoresSafeArea()
-                            } else {
-                                KFImage(item.homeImageUrl.url)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: type.frameSize?.width, height: type.frameSize?.height)
-                                    .position(coordinates)
-                                
-                            }
-                        } else if [.backGround, .wallpaper, .flooring].contains(type) {
-                            if type == .backGround {
-                                Image(type.imageName)
-                                    .resizable()
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .ignoresSafeArea()
-                            } else {
-                                Image(type.imageName)
-                                    .position(coordinates)
-                            }
+                            KFImage(item.homeImageUrl.url)
+                                .resizable()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .ignoresSafeArea()
+                        } else {
+                            Image(type.imageName)
+                                .resizable()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .ignoresSafeArea()
+                        }
+                    } else if let coordinates = themeCoordinates[type] {
+                        // 배경이 아닌 다른 아이템들은 좌표를 사용
+                        if let item = themeItemList?.first(where: { $0.type == type }) {
+                            KFImage(item.homeImageUrl.url)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: type.frameSize(for: viewType)?.width, height: type.frameSize(for: viewType)?.height)
+                                .position(coordinates)
+                        } else if [.wallpaper, .flooring].contains(type) {
+                            Image(type.imageName)
+                                .position(coordinates)
                         }
                     }
                 }
@@ -54,7 +59,6 @@ struct HousePreviewView: View {
 extension HousePreviewView {
     private func calculateThemeCoordinates(center: CGPoint) -> [RoomThemeItemType: CGPoint] {
         return [
-            .backGround: center,
             .wallpaper: CGPoint(x: center.x, y: center.y - 80),
             .flooring: CGPoint(x: center.x, y: center.y + 70),
             .parts1: CGPoint(x: center.x - 50, y: center.y - 80),
@@ -69,5 +73,5 @@ extension HousePreviewView {
 }
 
 #Preview {
-    HousePreviewView()
+    HousePreviewView(viewType: .house)
 }
