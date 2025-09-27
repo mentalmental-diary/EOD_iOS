@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct SettingView: View {
     @ObservedObject var settingViewModel: SettingViewModel
     @ObservedObject var mainViewModel: MainViewModel
+    @State private var isShowingSafari = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -180,7 +182,7 @@ extension SettingView {
                 
                 
                 Button {
-                    
+                    isShowingSafari = true
                 } label: {
                     HStack {
                         Text("개인정보 보호 정책")
@@ -190,6 +192,11 @@ extension SettingView {
                         Spacer()
                     }
                     .padding(.vertical, 18.5)
+                }
+                .sheet(isPresented: $isShowingSafari) {
+                    if let url = URL(string: mainViewModel.termsURL) {
+                        SafariView(url: url)
+                    }
                 }
                 
                 Button {
