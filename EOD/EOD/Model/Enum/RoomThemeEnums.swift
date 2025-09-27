@@ -42,4 +42,27 @@ public enum RoomThemeItemType: String, CaseIterable, Decodable {
         default: return nil
         }
     }
+    
+    public func frameSize(for viewType: HousePreviewViewType) -> CGSize? {
+        switch self {
+        case .wallpaper:
+            switch viewType {
+            case .home: return CGSize(width: 336, height: 306)
+            case .house: return CGSize(width: 252, height: 230)
+            }
+        case .flooring:
+            switch viewType {
+            case .home: return CGSize(width: 358, height: 150)
+            case .house: return CGSize(width: 269, height: 113)
+            }
+        case .parts1: return CGSize(width: 90, height: 68)
+        case .parts2: return CGSize(width: 90, height: 68)
+        case .parts3: return CGSize(width: 90, height: 90)
+        case .parts4: return CGSize(width: 90, height: 90)
+        case .parts5: return CGSize(width: 90, height: 90)
+        case .parts6: return CGSize(width: 90, height: 90)
+        case .parts7: return CGSize(width: 90, height: 90)
+        default: return nil
+        }
+    }
 }

@@ -71,7 +71,7 @@ struct HouseView: View {
 extension HouseView {
     private func topAreaView() -> some View {
         ZStack(alignment: .topLeading) {
-            HousePreviewView(themeItemList: viewModel.selectThemeItemList)
+            HousePreviewView(themeItemList: viewModel.selectThemeItemList, viewType: .house)
                 .padding(.top, 53)
             
             HStack {
@@ -304,6 +304,13 @@ extension HouseView {
             viewModel.setSelectThemeItemList(item: item)
         } label: {
             ZStack(alignment: .top) {
+                // 배경 이미지
+                KFImage(item.itemImageUrl.url)
+                    .resizable()
+                    .frame(width: 105, height: 120)
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+                
                 if viewModel.isSelectItem(item: item) {
                     HStack {
                         Spacer()
@@ -313,43 +320,38 @@ extension HouseView {
                     }
                     .padding([.top, .trailing], 5.0)
                     .frame(maxWidth: .infinity)
-                    .offset(x: 0, y: 25) // 위치 조정을 위해 offset 사용
                 }
                 
-                VStack(spacing: 16) {
-                    KFImage(item.itemImageUrl.url)
-                        .resizable()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .frame(width: 63, height: 55)
-                        .aspectRatio(contentMode: .fit)
-                    ZStack(alignment: .topTrailing){
+                // 아이템 이름 (하단에 배치)
+                VStack {
+                    Spacer()
+                    
+                    ZStack(alignment: .topTrailing) {
                         Text(item.name)
                             .font(size: 14)
                             .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
                             .lineSpacing(2)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 4)
                         
                         if item.isClicked == false {
                             Image("new_mark")
                                 .offset(x: 4, y: -2)
                         }
                     }
+                    .padding(.bottom, 8)
+                    .background(Color.white.opacity(0.9))
                 }
-                .padding(.top, 28)
-                .padding(.bottom, 12)
-                .padding(.vertical, 22)
-                .frame(maxWidth: .infinity)
             }
-            .padding(EdgeInsets.init())
-            .frame(height: 120)
-            .background(.white) // 배경색을 흰색으로 설정
+            .frame(width: 105, height: 120)
+            .background(.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(viewModel.isSelectItem(item: item) ? Color.yellow : .clear, lineWidth: 2) // 테두리 색상과 두께 설정
+                    .stroke(viewModel.isSelectItem(item: item) ? Color.yellow : .clear, lineWidth: 2)
             )
-            .cornerRadius(16) // 모서리를 둥글게 설정
+            .cornerRadius(16)
         }
-        .buttonStyle(PlainButtonStyle()) // 기본 스타일 제거
-        .padding(EdgeInsets.init())
+        .buttonStyle(PlainButtonStyle())
     }
     
     private func roomThemeShopItemDetailView(item: ThemeItem) -> some View {
@@ -358,6 +360,13 @@ extension HouseView {
             
         } label: {
             ZStack(alignment: .top) {
+                // 배경 이미지
+                KFImage(item.itemImageUrl.url)
+                    .resizable()
+                    .frame(width: 105, height: 120)
+                    .aspectRatio(contentMode: .fill)
+                    .clipped()
+                
                 if viewModel.selectThemeItem == item {
                     HStack {
                         Spacer()
@@ -367,25 +376,21 @@ extension HouseView {
                     }
                     .padding([.top, .trailing], 5.0)
                     .frame(maxWidth: .infinity)
-                    .offset(x: 0, y: 25) // 위치 조정을 위해 offset 사용
                 }
                 
-                VStack(spacing: 16) {
-                    KFImage(item.itemImageUrl.url)
-                        .resizable()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .frame(width: 63, height: 55)
-                        .aspectRatio(contentMode: .fit)
+                // 아이템 이름 (하단에 배치)
+                VStack {
+                    Spacer()
                     
                     Text(item.name)
                         .font(size: 14)
                         .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
                         .lineSpacing(2)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 4)
+                        .padding(.bottom, 8)
+                        .background(Color.white.opacity(0.9))
                 }
-                .padding(.top, 28)
-                .padding(.bottom, 12)
-                .padding(.vertical, 22)
-                .frame(maxWidth: .infinity)
                 
                 if viewModel.currentShowType == .shop, item.hasItem == true {
                     ZStack {
@@ -397,20 +402,18 @@ extension HouseView {
                             .font(size: 20)
                             .foregroundColor(.white)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(width: 105, height: 120)
                 }
             }
-            .padding(EdgeInsets.init())
-            .frame(height: 120)
-            .background(.white) // 배경색을 흰색으로 설정
+            .frame(width: 105, height: 120)
+            .background(.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(viewModel.selectThemeItem == item ? Color.yellow : .clear, lineWidth: 2) // 테두리 색상과 두께 설정
+                    .stroke(viewModel.selectThemeItem == item ? Color.yellow : .clear, lineWidth: 2)
             )
-            .cornerRadius(16) // 모서리를 둥글게 설정
+            .cornerRadius(16)
         }
-        .buttonStyle(PlainButtonStyle()) // 기본 스타일 제거
-        .padding(EdgeInsets.init())
+        .buttonStyle(PlainButtonStyle())
     }
     
     private func bottomButtonView(proxy: GeometryProxy) -> some View {

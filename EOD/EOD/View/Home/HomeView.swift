@@ -20,7 +20,6 @@ struct HomeView: View {
                 topView()
                 Spacer()
                 houseView()
-                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(UIColor.CommonBackground.background.color)
@@ -34,6 +33,7 @@ struct HomeView: View {
                 Text(viewModel.userComment ?? "")
                     .font(size: 16)
                     .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 20)
@@ -118,7 +118,7 @@ extension HomeView {
     // 캐릭터 테마 메인 뷰
     private func houseView() -> some View {
         ZStack {
-            HousePreviewView(themeItemList: viewModel.userThemeList)
+            HousePreviewView(themeItemList: viewModel.userThemeList, viewType: .home)
             
             GeometryReader { geometry in
                 KFImage(viewModel.userCharacterInfo?.imageUrl?.url)
