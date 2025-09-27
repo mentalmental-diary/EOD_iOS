@@ -193,6 +193,8 @@
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
 		CEDCF2B92E87C388003AB996 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CEDCF2C02E87C54B003AB996 /* UserLeaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCF2BF2E87C54B003AB996 /* UserLeaveView.swift */; };
+		CEDCF2C12E87C54B003AB996 /* UserLeaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCF2BF2E87C54B003AB996 /* UserLeaveView.swift */; };
 		CEDFA1E62D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
 		CEDFA1E72D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
 		CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
@@ -547,6 +549,7 @@
 		CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24Ssurround.ttf; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CEDCF2B42E87C042003AB996 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEDCF2BF2E87C54B003AB996 /* UserLeaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLeaveView.swift; sourceTree = "<group>"; };
 		CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataViewModel.swift; sourceTree = "<group>"; };
 		CEE0E9AB2E2CD944007B0626 /* TokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInterceptor.swift; sourceTree = "<group>"; };
@@ -1089,6 +1092,7 @@
 				CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */,
 				CEFF45FD2DA0F38D002CEF00 /* LockSettingView.swift */,
 				CEFF46002DA2865F002CEF00 /* PasswordInputView.swift */,
+				CEDCF2BF2E87C54B003AB996 /* UserLeaveView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1514,6 +1518,7 @@
 				CEB7F08E2AAC61D5001C99EA /* LogRecorderBase.swift in Sources */,
 				CEB7F0812AAC61D5001C99EA /* ConcatenatingLogFormatter.swift in Sources */,
 				CEB7F0692AAC61D4001C99EA /* FieldBasedLogFormatter.swift in Sources */,
+				CEDCF2C02E87C54B003AB996 /* UserLeaveView.swift in Sources */,
 				CE8AD1982C45F1A800B3D9F9 /* Alert.swift in Sources */,
 				CEB7F0702AAC61D4001C99EA /* Log.swift in Sources */,
 				CEB056BB2D61E19800DB007F /* Dictionary+Extension.swift in Sources */,
@@ -1679,6 +1684,7 @@
 				CEE63F6D2CFC4F5D00275C7F /* LogRecorderBase.swift in Sources */,
 				CEE63F6E2CFC4F5D00275C7F /* ConcatenatingLogFormatter.swift in Sources */,
 				CEE63F6F2CFC4F5D00275C7F /* FieldBasedLogFormatter.swift in Sources */,
+				CEDCF2C12E87C54B003AB996 /* UserLeaveView.swift in Sources */,
 				CEE63F702CFC4F5D00275C7F /* Alert.swift in Sources */,
 				CEE63F712CFC4F5D00275C7F /* Log.swift in Sources */,
 				CEB056BA2D61E19800DB007F /* Dictionary+Extension.swift in Sources */,

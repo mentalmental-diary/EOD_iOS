@@ -135,9 +135,11 @@ extension SettingView {
                     .padding(.vertical, 12)
                 }
                 
-                Button {
-                    mainViewModel.userLeaveAction()
-                } label: {
+                NavigationLink(destination:
+                                UserLeaveView(mainViewModel: mainViewModel)
+                        .background(Color.white)
+                        .navigationBarHidden(true)
+                ) {
                     HStack {
                         Text("회원 탈퇴")
                             .font(type: .omyu, size: 18)
