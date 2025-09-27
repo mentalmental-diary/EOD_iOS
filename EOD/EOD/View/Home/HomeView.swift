@@ -34,6 +34,7 @@ struct HomeView: View {
                 Text(viewModel.userComment ?? "")
                     .font(size: 16)
                     .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 20)

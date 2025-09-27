@@ -55,8 +55,8 @@ extension SettingView {
     private func accountSettingView() -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("계정 설정")
-                .font(type: .omyu, size: 22)
-                .foregroundColor(.black)
+                .font(type: .omyu, size: 18)
+                .foregroundColor(UIColor.Gray.gray900.color)
             
             NavigationLink(destination:
                             UserInfoSetView(viewModel: mainViewModel)
@@ -86,8 +86,8 @@ extension SettingView {
     private func alarmSettingView() -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("알림 설정")
-                .font(type: .omyu, size: 22)
-                .foregroundColor(.black)
+                .font(type: .omyu, size: 18)
+                .foregroundColor(UIColor.Gray.gray900.color)
             
             NavigationLink(destination:
                             AlarmSettingView(viewModel: settingViewModel)
@@ -114,8 +114,8 @@ extension SettingView {
     private func securitySettingView() -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("보안 및 개인 정보 보호")
-                .font(type: .omyu, size: 22)
-                .foregroundColor(.black)
+                .font(type: .omyu, size: 18)
+                .foregroundColor(UIColor.Gray.gray900.color)
             
             VStack(spacing: 0) {
                 NavigationLink(destination:
@@ -161,8 +161,8 @@ extension SettingView {
     private func etcSettingView() -> some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("기타")
-                .font(type: .omyu, size: 22)
-                .foregroundColor(.black)
+                .font(type: .omyu, size: 18)
+                .foregroundColor(UIColor.Gray.gray900.color)
             
             VStack(spacing: 0) {
                 HStack {

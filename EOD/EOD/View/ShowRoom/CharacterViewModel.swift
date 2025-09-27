@@ -12,7 +12,8 @@ class CharacterViewModel: ObservableObject {
         didSet {
             guard oldValue != currentShowType else { return }
             
-            selectItem = nil
+            // 탭 전환 시 현재 설정된 캐릭터(originalCharacter)로 selectItem 설정
+            selectItem = originalCharacter
             
             if currentShowType == .item {
                 self.fetchCharacterItem()

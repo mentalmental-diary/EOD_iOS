@@ -85,8 +85,8 @@ extension CharacterView {
                         }
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: min(geometry.size.width, 200), height: min(geometry.size.height, 200)) // TODO: 사이즈 확인
-                        .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 40) // TODO: 좌표 확인
+                        .frame(width: min(geometry.size.width, 174), height: min(geometry.size.height, 174))
+                        .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 20)
                 }
             }
             
@@ -117,15 +117,15 @@ extension CharacterView {
             .padding(.top, 48)
             .frame(maxWidth: .infinity, alignment: .topLeading)
             
-            if viewModel.currentShowType == .item {
-                VStack {
+            VStack {
+                Spacer()
+                
+                HStack {
+                    returnButtonView()
+                    
                     Spacer()
                     
-                    HStack {
-                        returnButtonView()
-                        
-                        Spacer()
-                        
+                    if viewModel.currentShowType == .item {
                         Button {
                             if availableSaveButton {
                                 viewModel.setCharacterItem()
@@ -140,12 +140,12 @@ extension CharacterView {
                                 .background(availableSaveButton ? Color.black : Color(red: 210/255, green: 210/255, blue: 188/255))
                                 .cornerRadius(6.0)
                         }
-                        
-                    }.frame(maxWidth: .infinity, alignment: .bottom)
-                }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 16)
+                    }
+                    
+                }.frame(maxWidth: .infinity, alignment: .bottom)
             }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 16)
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
         
@@ -303,13 +303,12 @@ extension CharacterView {
                     }
                     .padding([.top, .trailing], 5.0)
                     .frame(maxWidth: .infinity)
-                    .offset(x: 0, y: 25) // 위치 조정을 위해 offset 사용
                 }
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 8) { // 이미지와 이름 사이 간격을 8로 변경
                     KFImage(item.imageUrl?.url)
                         .resizable()
-                        .frame(width: 63, height: 55)
+                        .frame(width: 84, height: 84)
                         .scaledToFit()
                     
                     ZStack(alignment: .topTrailing) {
@@ -324,10 +323,9 @@ extension CharacterView {
                         }
                     }
                 }
-                .padding(.top, 28)
-                .padding(.bottom, 12)
-                .padding(.vertical, 22)
-                .frame(maxWidth: .infinity)
+                .padding(.top, 4) // 상단 패딩을 4로 변경
+                .padding(.horizontal, 10) // 좌우 패딩을 10으로 변경
+                .frame(width: 105, height: 120) // 전체 사이즈를 105*120으로 설정
                 
                 if viewModel.currentShowType == .shop, item.hasItem == true {
                     ZStack {
