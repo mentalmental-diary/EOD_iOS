@@ -192,6 +192,7 @@
 		CECC14412D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
+		CEDCF2B92E87C388003AB996 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEDFA1E62D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
 		CEDFA1E72D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
 		CEE0D05B2CE08B50008671FD /* GameDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */; };
@@ -336,7 +337,6 @@
 		CEE63FCB2D0689DA00275C7F /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CEE63FCA2D0689DA00275C7F /* KakaoSDK */; };
 		CEE906002CAEB2DE00C69077 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE905FF2CAEB2D900C69077 /* Date+Extension.swift */; };
 		CEE906022CAEB35E00C69077 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE906012CAEB35B00C69077 /* Int+Extension.swift */; };
-		CEEA9CF02D3D196B0067FBB8 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEF7E4092AAC6F5100E133F6 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF7E4082AAC6F5100E133F6 /* Splash.storyboard */; };
 		CEFF45FA2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
 		CEFF45FB2DA0ED1B002CEF00 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFF45F92DA0ED1B002CEF00 /* SettingViewModel.swift */; };
@@ -364,13 +364,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEEA9CF12D3D196B0067FBB8 /* Embed Frameworks */ = {
+		CEDCF2BA2E87C388003AB996 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEEA9CF02D3D196B0067FBB8 /* UnityFramework.framework in Embed Frameworks */,
+				CEDCF2B92E87C388003AB996 /* UnityFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +456,7 @@
 		CEA4AEBF2DE1447400641A82 /* GameInfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoAlertView.swift; sourceTree = "<group>"; };
 		CEA4AEC22DEC33BB00641A82 /* GameNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNetworkModel.swift; sourceTree = "<group>"; };
 		CEA64F702CE6D19D00FD5627 /* HomeNetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkModel.swift; sourceTree = "<group>"; };
+		CEA696472E71A79900078C98 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA9D9F62CCE697900AA1DC2 /* CharacterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
 		CEAAF7FE2CD76F0D00EFBDA9 /* ThemeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeItem.swift; sourceTree = "<group>"; };
 		CEAAF8012CD7746800EFBDA9 /* RoomThemeEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomThemeEnums.swift; sourceTree = "<group>"; };
@@ -545,6 +546,7 @@
 		CEC6D7E52C7D5A9100FFEC9F /* DiarySummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySummaryModel.swift; sourceTree = "<group>"; };
 		CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cafe24Ssurround.ttf; sourceTree = "<group>"; };
 		CECCDAC32C40EADF0000DE72 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CEDCF2B42E87C042003AB996 /* UnityFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UnityFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		CEE0D05A2CE08B4A008671FD /* GameDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataViewModel.swift; sourceTree = "<group>"; };
 		CEE0E9AB2E2CD944007B0626 /* TokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInterceptor.swift; sourceTree = "<group>"; };
@@ -798,6 +800,8 @@
 		CE979DDB2C7990A700D0ED53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEDCF2B42E87C042003AB996 /* UnityFramework.framework */,
+				CEA696472E71A79900078C98 /* UnityFramework.framework */,
 				CEEA9CEE2D3D196B0067FBB8 /* UnityFramework.framework */,
 				CE979DEA2C7996E800D0ED53 /* UnityFramework.framework */,
 				CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */,
@@ -1101,7 +1105,7 @@
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
 				E47E20E4CA9C18C1784DD8DD /* [CP] Embed Pods Frameworks */,
-				CEEA9CF12D3D196B0067FBB8 /* Embed Frameworks */,
+				CEDCF2BA2E87C388003AB996 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
