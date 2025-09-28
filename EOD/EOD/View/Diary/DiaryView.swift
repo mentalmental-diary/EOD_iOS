@@ -64,7 +64,6 @@ struct DiaryView: View {
                     DiaryBackgroundSelectView(viewModel: viewModel, showModalView: $viewModel.showDiaryBackgroundSelectView, height: $viewModel.keyboardHeight, onDismiss: restoreKeyboardFocus)
                 }
                 
-                ToastView(toastManager: viewModel.toastManager)
             }
             .onAppear {
                 addKeyboardObservers()

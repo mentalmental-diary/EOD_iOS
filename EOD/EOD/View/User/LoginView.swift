@@ -40,7 +40,6 @@ struct LoginView: View {
                     .edgesIgnoringSafeArea(.bottom)
                     .background(UIColor.CommonBackground.background.color)
                     
-                    ToastView(toastManager: viewModel.toastManager)
                     
                 }
             }

@@ -108,7 +108,6 @@ struct LockSettingView: View {
             }
             .background(UIColor.CommonBackground.background.color)
             
-            ToastView(toastManager: viewModel.toastManager)
         }
     }
 }

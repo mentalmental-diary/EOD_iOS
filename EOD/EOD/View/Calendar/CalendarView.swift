@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
-    @StateObject private var toastManager = ToastManager.shared
     
     var body: some View {
         ZStack {
@@ -71,7 +70,6 @@ struct CalendarView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(UIColor.CommonBackground.background.color)
             
-            ToastView(toastManager: viewModel.toastManager)
         }
     }
 }

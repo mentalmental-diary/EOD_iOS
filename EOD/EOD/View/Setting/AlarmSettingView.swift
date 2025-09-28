@@ -133,7 +133,6 @@ struct AlarmSettingView: View {
                 )
             }
             
-            ToastView(toastManager: viewModel.toastManager)
         }
     }
 }
