@@ -80,7 +80,8 @@ extension HouseViewModel {
                 debugLog("보유아이템 테마 리스트 호출 API 성공. 리스트 목록 : \(list)")
                 self?.themeList = list
             case .failure(let error):
-                errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
+                errorLog("보유아이템 테마 리스트 호출 API 실패. error: \(error)")
+                self?.toastManager.showToast(message: "테마 목록을 불러오는데 실패했습니다.")
             }
         }
     }
@@ -95,7 +96,8 @@ extension HouseViewModel {
                 debugLog("상점 테마 리스트 호출 API 성공. 리스트 목록 : \(list)")
                 self?.themeList = list
             case .failure(let error):
-                errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
+                errorLog("상점 테마 리스트 호출 API 실패. error: \(error)")
+                self?.toastManager.showToast(message: "상점 테마 목록을 불러오는데 실패했습니다.")
             }
         }
     }
@@ -109,7 +111,8 @@ extension HouseViewModel {
                 debugLog("테마 아이템 리스트 호출 API 성공. 리스트 목록 : \(list)")
                 self?.themeItemList = list
             case .failure(let error):
-                errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
+                errorLog("테마 아이템 리스트 호출 API 실패. error: \(error)")
+                self?.toastManager.showToast(message: "테마 아이템을 불러오는데 실패했습니다.")
             }
         })
     }
@@ -124,7 +127,8 @@ extension HouseViewModel {
                 self?.themeShopItemList = list
                 self?.selectThemeItemList = list
             case .failure(let error):
-                errorLog("임시로 일단 에러 확인용 error: \(error)") // TODO: 향후 토스트 메시지로 변경 예정 일단 테스트용
+                errorLog("테마 상점 아이템 리스트 호출 API 실패. error: \(error)")
+                self?.toastManager.showToast(message: "상점 아이템을 불러오는데 실패했습니다.")
             }
         })
     }

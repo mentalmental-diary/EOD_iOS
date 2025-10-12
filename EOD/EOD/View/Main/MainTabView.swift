@@ -67,7 +67,7 @@ struct MainTabView: View {
                 
                 NavigationLink("", isActive: $calendarViewModel.showDiaryView) {
                     LazyView(
-                        DiaryView(viewModel: calendarViewModel) // TODO: 등록 진입인지 수정 진입인진 이때 결정
+                        DiaryView(viewModel: calendarViewModel)
                             .background(Color.white)
                             .navigationBarHidden(true)
                     )
