@@ -67,7 +67,7 @@ class UserNetworkModel {
     func fetchSignUp(email: String, password: String, completion: @escaping ((Result<Void, Error>) -> Void)) {
         let api = "api-external/auth/sign-up"
         
-        debugLog("이떄 들어온 값 확인 email: \(email), password: \(password)")
+        debugLog("회원가입 API 호출")
         
         let param = [
             "email": email,
@@ -113,7 +113,7 @@ class UserNetworkModel {
             return nil
         }
         
-        debugLog("accessToken확인 : \(accessToken), refreshToken: \(refreshToken)") // TODO: 나중에 삭제
+        debugLog("로그인 토큰 획득 성공")
         
         return (accessToken, refreshToken)
     }

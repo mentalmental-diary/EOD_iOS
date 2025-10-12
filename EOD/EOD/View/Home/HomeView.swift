@@ -62,15 +62,6 @@ extension HomeView {
            
             Spacer()
             
-            Button {
-                viewModel.testAddGold()
-            } label: {
-                Text("임시 골드 1000 충전")
-                    .font(size: 5)
-            }
-
-            Spacer()
-            
             HStack(spacing: 12) {
                 Button {
                     self.showCharacterView = true
@@ -129,8 +120,8 @@ extension HomeView {
                     }
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: min(geometry.size.width, 120), height: min(geometry.size.height, 120)) // TODO: 사이즈 확인
-                    .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 40) // TODO: 좌표 확인
+                    .frame(width: min(geometry.size.width, 120), height: min(geometry.size.height, 120))
+                    .position(x: geometry.size.width / 2, y: (geometry.size.height / 2) + 40)
             }
         }
     }

@@ -31,7 +31,7 @@ public enum RoomThemeItemType: String, CaseIterable, Decodable {
     public var frameSize: CGSize? {
         switch self {
         case .wallpaper: return CGSize(width: 252, height: 230)
-        case .flooring: return CGSize(width: 269, height: 113) // TODO: 여기 사이즈값을 고정으로 가도되는지 나중에 확인좀 해보기
+        case .flooring: return CGSize(width: 269, height: 113)
         case .parts1: return CGSize(width: 90, height: 68)
         case .parts2: return CGSize(width: 90, height: 68)
         case .parts3: return CGSize(width: 90, height: 90)

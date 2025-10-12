@@ -24,9 +24,6 @@ class MainViewModel: ObservableObject {
     
     @Published var showStartAlert: Bool = false // 닉네임 설정 후 최초 진입시에만 노출
     
-    var presentLoginView: Bool = false // 로그인뷰가 노출되어있는지 확인 -> 회원가입뷰에서 왔다갔다 하기 위해 // TODO: 삭제 예정
-    var presentSignUpView: Bool = false // 회원가입뷰가 노출되어있는지 확인 -> 로그인뷰와 왔다갔다 하기 위해 // TODO: 삭제 예정
-    
     @Published var naverLoginError: Error? = nil
     
     var currentUserNickname: String = ""
@@ -134,20 +131,6 @@ extension MainViewModel {
             }
             self.toastManager.showToast(message: "애플 로그인 연동 실패했습니다.")
             errorLog("🔴 애플 연동 후 서버 연동 실패: \(error.localizedDescription)")
-        })
-    }
-    
-    func testLogin() {
-        let randomId = UUID().uuidString
-        networkModel.fetchSignUp(email: randomId, password: "1234", completion: { [weak self] result in
-            guard let error = result.error else {
-                self?.presentLoginView = false // 로그인 성공시
-                self?.presentSignUpView = false // 로그인 성공시
-                self?.checkNicknameAndAccessLogin()
-                return
-            }
-            
-            errorLog("테스트용 로그인 실패 error: \(error)")
         })
     }
     

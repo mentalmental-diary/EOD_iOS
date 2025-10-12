@@ -83,7 +83,7 @@ extension DiaryView {
         ZStack {
             VStack(alignment: .leading, spacing: 8) {
                 /// 감정 노출 영역
-                HStack { // TODO: 아직 미리보기엔 반영되지 않기 때문에 일단 임시로 하드코딩 진행
+                HStack {
                     Image(viewModel.diary.emotion?.imageName ?? "icon_basic")
                     
                     Text(viewModel.diary.emotion?.description ?? "감정을 선택해주세요.")

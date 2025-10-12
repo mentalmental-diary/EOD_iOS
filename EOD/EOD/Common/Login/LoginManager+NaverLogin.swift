@@ -63,7 +63,7 @@ private extension LoginManager {
             return
         }
         
-        debugLog("정보가 제대로 넘어왔는지 확인 token: \(tokenType), accessToken: \(accessToken)") // TODO: 해당 로그 삭제 예정
+        debugLog("네이버 로그인 토큰 획득 성공")
         
         DispatchQueue.main.async {
             self.naverLoginResult = .success(accessToken)

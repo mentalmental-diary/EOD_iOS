@@ -61,8 +61,6 @@
 		CE77A9A42ACA8C9A00D9C58B /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */; };
 		CE77A9A62ACA929D00D9C58B /* LoginBootModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */; };
 		CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A82ACA950500D9C58B /* TokenManager.swift */; };
-		CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AD2ACA99E700D9C58B /* LoginView.swift */; };
-		CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */; };
 		CE77A9B22ACAD42D00D9C58B /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B12ACAD42D00D9C58B /* IntroView.swift */; };
 		CE77A9B62ACAD50D00D9C58B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9B52ACAD50D00D9C58B /* HomeView.swift */; };
 		CE77A9BD2ACD269B00D9C58B /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */; };
@@ -229,7 +227,6 @@
 		CEE63F4C2CFC4F5D00275C7F /* ProcessNameLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0572AAC61D4001C99EA /* ProcessNameLogFormatter.swift */; };
 		CEE63F4D2CFC4F5D00275C7F /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9A82ACA950500D9C58B /* TokenManager.swift */; };
 		CEE63F4E2CFC4F5D00275C7F /* CalendarNetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE979DCE2C797DCA00D0ED53 /* CalendarNetworkModel.swift */; };
-		CEE63F4F2CFC4F5D00275C7F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */; };
 		CEE63F502CFC4F5D00275C7F /* LogFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05A2AAC61D4001C99EA /* LogFilter.swift */; };
 		CEE63F512CFC4F5D00275C7F /* KeyedDecodingContainer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAAF8072CD792DF00EFBDA9 /* KeyedDecodingContainer+Extension.swift */; };
 		CEE63F522CFC4F5D00275C7F /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA423012BE50D4800725E6B /* CalendarViewModel.swift */; };
@@ -244,7 +241,6 @@
 		CEE63F5B2CFC4F5D00275C7F /* SwifterSwift+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6D7DF2C7C513F00FFEC9F /* SwifterSwift+Date.swift */; };
 		CEE63F5C2CFC4F5D00275C7F /* LiteralLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05F2AAC61D4001C99EA /* LiteralLogFormatter.swift */; };
 		CEE63F5D2CFC4F5D00275C7F /* ColorSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA422F52BE4FF4900725E6B /* ColorSet.swift */; };
-		CEE63F5E2CFC4F5D00275C7F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE77A9AD2ACA99E700D9C58B /* LoginView.swift */; };
 		CEE63F5F2CFC4F5D00275C7F /* OSLogMimicFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F0442AAC61D4001C99EA /* OSLogMimicFormatter.swift */; };
 		CEE63F602CFC4F5D00275C7F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8AD1A42C54D05000B3D9F9 /* SettingView.swift */; };
 		CEE63F612CFC4F5D00275C7F /* ProcessIDLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7F05E2AAC61D4001C99EA /* ProcessIDLogFormatter.swift */; };
@@ -426,8 +422,6 @@
 		CE77A9A32ACA8C9A00D9C58B /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		CE77A9A52ACA929D00D9C58B /* LoginBootModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBootModule.swift; sourceTree = "<group>"; };
 		CE77A9A82ACA950500D9C58B /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
-		CE77A9AD2ACA99E700D9C58B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		CE77A9B12ACAD42D00D9C58B /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		CE77A9B52ACAD50D00D9C58B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CE77A9BC2ACD269B00D9C58B /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
@@ -742,8 +736,6 @@
 			isa = PBXGroup;
 			children = (
 				CE5516292D21485900786BDF /* UserInfoSetView.swift */,
-				CE77A9AD2ACA99E700D9C58B /* LoginView.swift */,
-				CE77A9AF2ACA99F200D9C58B /* SignUpView.swift */,
 				CE8AD1A22C5395A700B3D9F9 /* UserNetworkModel.swift */,
 			);
 			path = User;
@@ -1482,7 +1474,6 @@
 				CEB7F0852AAC61D5001C99EA /* ProcessNameLogFormatter.swift in Sources */,
 				CE77A9A92ACA950500D9C58B /* TokenManager.swift in Sources */,
 				CE979DCF2C797DCA00D0ED53 /* CalendarNetworkModel.swift in Sources */,
-				CE77A9B02ACA99F200D9C58B /* SignUpView.swift in Sources */,
 				CEB7F0882AAC61D5001C99EA /* LogFilter.swift in Sources */,
 				CEE63FC62D0595A200275C7F /* BuyCompleteView.swift in Sources */,
 				CEAAF8082CD792E000EFBDA9 /* KeyedDecodingContainer+Extension.swift in Sources */,
@@ -1500,7 +1491,6 @@
 				CEC6D7E02C7C513F00FFEC9F /* SwifterSwift+Date.swift in Sources */,
 				CEB7F08D2AAC61D5001C99EA /* LiteralLogFormatter.swift in Sources */,
 				CEA422F62BE4FF4900725E6B /* ColorSet.swift in Sources */,
-				CE77A9AE2ACA99E700D9C58B /* LoginView.swift in Sources */,
 				CEB7F0722AAC61D4001C99EA /* OSLogMimicFormatter.swift in Sources */,
 				CE8AD1A52C54D05000B3D9F9 /* SettingView.swift in Sources */,
 				CEB7F08C2AAC61D5001C99EA /* ProcessIDLogFormatter.swift in Sources */,
@@ -1648,7 +1638,6 @@
 				CEE63F4C2CFC4F5D00275C7F /* ProcessNameLogFormatter.swift in Sources */,
 				CEE63F4D2CFC4F5D00275C7F /* TokenManager.swift in Sources */,
 				CEE63F4E2CFC4F5D00275C7F /* CalendarNetworkModel.swift in Sources */,
-				CEE63F4F2CFC4F5D00275C7F /* SignUpView.swift in Sources */,
 				CEE63F502CFC4F5D00275C7F /* LogFilter.swift in Sources */,
 				CEE63FC72D0595A200275C7F /* BuyCompleteView.swift in Sources */,
 				CEE63F512CFC4F5D00275C7F /* KeyedDecodingContainer+Extension.swift in Sources */,
@@ -1666,7 +1655,6 @@
 				CEE63F5B2CFC4F5D00275C7F /* SwifterSwift+Date.swift in Sources */,
 				CEE63F5C2CFC4F5D00275C7F /* LiteralLogFormatter.swift in Sources */,
 				CEE63F5D2CFC4F5D00275C7F /* ColorSet.swift in Sources */,
-				CEE63F5E2CFC4F5D00275C7F /* LoginView.swift in Sources */,
 				CEE63F5F2CFC4F5D00275C7F /* OSLogMimicFormatter.swift in Sources */,
 				CEE63F602CFC4F5D00275C7F /* SettingView.swift in Sources */,
 				CEE63F612CFC4F5D00275C7F /* ProcessIDLogFormatter.swift in Sources */,

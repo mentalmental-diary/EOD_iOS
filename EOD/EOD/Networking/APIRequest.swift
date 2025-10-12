@@ -217,7 +217,7 @@ extension APIRequest {
         
         if let accessToken = UserDefaults.standard.string(forKey: "accessToken") { // 좀 다르게 접근하는 방법을 찾아보자.
             // User AcessToken
-            debugLog("현재 저장되있는 accessToken은 다음과 같습니다. -> \(accessToken)")
+            debugLog("accessToken을 헤더에 추가합니다.")
             headers[userAccessToken] = accessToken
         }
         

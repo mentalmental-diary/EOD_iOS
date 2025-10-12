@@ -108,12 +108,6 @@ extension IntroView {
         VStack(spacing: 0.0) {
             
             VStack(spacing: 0) {
-                Button {
-                    viewModel.testLogin()
-                } label: {
-                    Text("테스트 로그인")
-                }
-
                 Spacer()
                 
                 Image("icon_onBoarding")
@@ -168,7 +162,7 @@ extension IntroView {
         }
     }
     
-    private func socialLoginView() -> some View { // TODO: 나중에 소셜로그인 추가되면 그때 작업하기
+    private func socialLoginView() -> some View {
         VStack(spacing: 16) {
             Button {
                 viewModel.kakaoLoginAction()
@@ -237,7 +231,7 @@ extension IntroView {
                             if let appleIDCredential = auth.credential as? ASAuthorizationAppleIDCredential {
                                 if let identityToken = appleIDCredential.authorizationCode,
                                    let identityTokenString = String(data: identityToken, encoding: .utf8) {
-                                    debugLog("로그인 토큰값 : \(identityTokenString)")
+                                    debugLog("Apple 로그인 성공")
                                     
                                     viewModel.appleLoginAction(token: identityTokenString)
                                 }

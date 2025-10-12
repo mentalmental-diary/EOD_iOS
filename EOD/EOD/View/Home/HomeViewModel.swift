@@ -117,21 +117,6 @@ extension HomeViewModel {
         fetchUserInfo()
         fetchUserGold()
     }
-    
-    /// 테스트용 골드 1000 충전 (개발용)
-    func testAddGold() {
-        networkModel.addGold(completion: { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    debugLog("테스트 골드 충전 성공")
-                    self?.fetchUserGold()
-                case .failure(let error):
-                    errorLog("테스트 골드 충전 실패. error: \(error)")
-                }
-            }
-        })
-    }
 }
 
 public enum GoldInfoType {

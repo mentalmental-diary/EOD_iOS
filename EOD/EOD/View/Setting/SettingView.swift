@@ -13,6 +13,14 @@ struct SettingView: View {
     @ObservedObject var mainViewModel: MainViewModel
     @State private var isShowingSafari = false
     
+    /// 앱 버전 정보를 Bundle에서 가져오기
+    private var appVersion: String {
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return "1.0.0"
+        }
+        return version
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
@@ -174,7 +182,7 @@ extension SettingView {
                     
                     Spacer()
                     
-                    Text("v1.0.0") // TODO: 앱 버전 받는 방법이랑 어떻게 노출시킬지 확인해보기
+                    Text("v\(appVersion)")
                         .font(type: .omyu, size: 18)
                         .foregroundColor(UIColor.Gray.gray500.color)
                 }

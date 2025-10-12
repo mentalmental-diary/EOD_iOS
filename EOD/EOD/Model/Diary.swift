@@ -12,7 +12,7 @@ public struct Diary: Decodable {
     var userNo: Int?
     var writeDate: Date?
     var seq: Int?
-    var isCustomEmotion: Bool? = false // TODO: 나중에 바뀔 수 있는 변수
+    var isCustomEmotion: Bool? = false
     var emotion: EmotionType?
     var diary_background: diaryBackgroundType? = .white
     var content: String? = "" // 일기 내용 (최대 2000자)

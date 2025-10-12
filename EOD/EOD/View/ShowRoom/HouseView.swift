@@ -427,7 +427,7 @@ extension HouseView {
                 startPoint: .bottom,
                 endPoint: .top
             )
-            .frame(height: 50) // TODO: 명확한 높이값 나중에 확인해보기
+            .frame(height: 50)
             
             HStack(spacing: 16) {
                 Button {

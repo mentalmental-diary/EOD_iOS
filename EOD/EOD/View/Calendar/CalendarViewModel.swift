@@ -30,7 +30,7 @@ class CalendarViewModel: ObservableObject {
     
     var original: Diary? // 수정진입 최초 일기 정보
     
-    var diaryList: [Diary]? // TODO: 캘린더 데이터 구조를 어떻게 만들지 결정
+    var diaryList: [Diary]?
     
     @Published var diarySummaryList: [Int: DiarySummary?] = [:]
     
@@ -106,7 +106,7 @@ extension CalendarViewModel {
         self.showDiaryBackgroundSelectView = false
     }
     
-    func groupEntriesByDay(diarySummaryList: [DiarySummary]) -> [Int: DiarySummary?] { // TODO: 네이밍 변경, 기능 확인
+    func groupEntriesByDay(diarySummaryList: [DiarySummary]) -> [Int: DiarySummary?] {
         var groupedEntries = [Int: DiarySummary?]()
         
         // 해당 월의 총 일수 계산

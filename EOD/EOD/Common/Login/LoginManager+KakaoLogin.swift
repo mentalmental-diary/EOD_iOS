@@ -19,7 +19,7 @@ extension LoginManager {
                 }
                 if let oauthToken = oauthToken {
                     completion(.success(oauthToken.accessToken))
-                    debugLog("카카오 로그인 토큰 : \(oauthToken)")
+                    debugLog("카카오 로그인 성공")
                 }
             }
         } else {
@@ -28,8 +28,7 @@ extension LoginManager {
                     errorLog(error.localizedDescription)
                 }
                 if let oauthToken = oauthToken {
-                    debugLog("kakao success")
-                    debugLog("카카오 로그인 토큰 : \(oauthToken)")
+                    debugLog("카카오 로그인 성공")
                     completion(.success(oauthToken.accessToken))
                 }
             }
