@@ -29,8 +29,13 @@ public class LoginManager: NSObject, ObservableObject {
         NaverThirdPartyLoginConnection.getSharedInstance().isNaverAppOauthEnable = true
         
         NaverThirdPartyLoginConnection.getSharedInstance().serviceUrlScheme = "eodnaverlogin"
+        
+        // ⚠️ 보안 주의: OAuth 키가 코드에 노출되어 있습니다.
+        // 공개 저장소에 올라간 경우 키 재발급을 권장합니다.
+        // TODO: 향후 .xcconfig 파일이나 환경변수로 관리 필요
         NaverThirdPartyLoginConnection.getSharedInstance().consumerKey = "tzhZWFvwHUtzpFf9furT"
         NaverThirdPartyLoginConnection.getSharedInstance().consumerSecret = "m5nGe3alMH"
+        
         NaverThirdPartyLoginConnection.getSharedInstance().appName = "노른자의 하루"
         NaverThirdPartyLoginConnection.getSharedInstance().delegate = LoginManager.shared
     }

@@ -11,3 +11,10 @@ build/
 Pods/
 
 **/.DS_Store
+
+## Security - API Keys and Secrets
+# 향후 민감한 정보를 별도 파일로 분리할 경우 여기에 추가
+Config.xcconfig
+Secrets.plist
+**/APIKeys.swift
+**/Secrets.swift
