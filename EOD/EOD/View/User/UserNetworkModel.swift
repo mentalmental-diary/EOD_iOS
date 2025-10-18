@@ -119,9 +119,9 @@ class UserNetworkModel {
     }
     
     private func setUserInfo(accessToken: String, refreshToken: String) {
-        UserDefaults.standard.set(accessToken, forKey: "accessToken")
-        UserDefaults.standard.set(refreshToken, forKey: "refreshToken")
-        UserDefaults.standard.set(true, forKey: "isLogin")
+        UserDefaultsManager.shared.accessToken = accessToken
+        UserDefaultsManager.shared.refreshToken = refreshToken
+        UserDefaultsManager.shared.isLogin = true
     }
     
     func getUserNickname(completion: @escaping ((Result<String?, Error>) -> Void)) {
@@ -145,7 +145,36 @@ class UserNetworkModel {
             completion(result.voidMap())
         })
     }
+    
+    func postLogout(completion: @escaping ((Result<Void, Error>) -> Void)) {
+        let api = "/api-external/auth/logout"
+        
+        APIRequest.requestData(api: api, method: .post, completion: { result in
+            completion(result.voidMap())
+        })
+    }
+    
+    /// 사용자 번호(userNo) 조회
+    /// - 골드 거래내역 API를 통해 userNo 추출
+    func fetchUserNo(completion: @escaping ((Result<Int, Error>) -> Void)) {
+        let api = "/api-external/user/rewards/gold/transaction"
+        
+        APIRequest.requestDecodable(api: api) { (result: Result<[GoldInfoModel], Error>) in
+            switch result {
+            case .success(let transactions):
+                if let firstTransaction = transactions.first {
+                    completion(.success(firstTransaction.userNo))
+                } else {
+                    // 거래내역이 없는 경우 - 골드 정보 API로 대체 시도
+                    completion(.failure(CommonError.failedToFetch))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
+
 
 public enum LoginType: String {
     case `self` = "SELF"

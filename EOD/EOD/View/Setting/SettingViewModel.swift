@@ -23,8 +23,9 @@ class SettingViewModel: ObservableObject {
     @Published var diaryNotificationEnabled: Bool = false { // 일기 쓰기 알림 설정 여부
         didSet {
             guard oldValue != diaryNotificationEnabled, checkInit == true else { return }
+            guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
             
-            UserDefaults.standard.set(diaryNotificationEnabled, forKey: "diaryNotificationEnabled")
+            UserDefaultsManager.shared.setDiaryNotificationEnabled(diaryNotificationEnabled, userNo: userNo)
             
             self.toastManager.showToast(message: "알림 설정을 저장했어요.")
             
@@ -35,8 +36,9 @@ class SettingViewModel: ObservableObject {
     @Published var gameNotificationEnabled: Bool = false { // 게임 알림 설정 여부
         didSet {
             guard oldValue != gameNotificationEnabled, checkInit == true else { return }
+            guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
             
-            UserDefaults.standard.set(gameNotificationEnabled, forKey: "gameNotificationEnabled")
+            UserDefaultsManager.shared.setGameNotificationEnabled(gameNotificationEnabled, userNo: userNo)
             
             self.toastManager.showToast(message: "알림 설정을 저장했어요.")
             
@@ -47,8 +49,9 @@ class SettingViewModel: ObservableObject {
     @Published var marketingNotificationEnabled: Bool = false { // 마케팅 알림 설정 여부
         didSet {
             guard oldValue != marketingNotificationEnabled, checkInit == true else { return }
+            guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
             
-            UserDefaults.standard.set(marketingNotificationEnabled, forKey: "marketingNotificationEnabled")
+            UserDefaultsManager.shared.setMarketingNotificationEnabled(marketingNotificationEnabled, userNo: userNo)
             
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy.MM.dd"
@@ -65,8 +68,9 @@ class SettingViewModel: ObservableObject {
     @Published var diaryNotificationTime: Date? {
         didSet {
             guard oldValue != diaryNotificationTime else { return }
+            guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
             
-            UserDefaults.standard.set(diaryNotificationTime, forKey: "diaryNotificationTime")
+            UserDefaultsManager.shared.setDiaryNotificationTime(diaryNotificationTime, userNo: userNo)
             
             scheduleNotificationIfNeeded()
         }
@@ -75,8 +79,9 @@ class SettingViewModel: ObservableObject {
     @Published var gameNotificationTime: Date? {
         didSet {
             guard oldValue != gameNotificationTime else { return }
+            guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
             
-            UserDefaults.standard.set(gameNotificationTime, forKey: "gameNotificationTime")
+            UserDefaultsManager.shared.setGameNotificationTime(gameNotificationTime, userNo: userNo)
             
             scheduleNotificationIfNeeded()
         }
@@ -85,8 +90,9 @@ class SettingViewModel: ObservableObject {
     @Published var lockEnable: Bool = false { // 앱 잠금 여부
         didSet {
             guard oldValue != lockEnable, checkInit == true else { return }
+            guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
             
-            UserDefaults.standard.set(lockEnable, forKey: "lockEnable")
+            UserDefaultsManager.shared.setLockEnabled(lockEnable, userNo: userNo)
             
             if lockEnable {
                 visiblePwSettingView = true
@@ -116,23 +122,34 @@ class SettingViewModel: ObservableObject {
     private var lastScheduledGameTime: DateComponents?
     
     init() {
-        diaryNotificationEnabled = UserDefaults.standard.bool(forKey: "diaryNotificationEnabled")
-        gameNotificationEnabled = UserDefaults.standard.bool(forKey: "gameNotificationEnabled")
-        marketingNotificationEnabled = UserDefaults.standard.bool(forKey: "marketingNotificationEnabled")
-        
-        if let diaryNotificationTime = UserDefaults.standard.object(forKey: "diaryNotificationTime") as? Date {
-            self.diaryNotificationTime = diaryNotificationTime
+        // UserDefaultsManager를 통해 현재 유저의 설정 로드
+        if let userNo = UserDefaultsManager.shared.currentUserNo {
+            diaryNotificationEnabled = UserDefaultsManager.shared.getDiaryNotificationEnabled(userNo: userNo)
+            gameNotificationEnabled = UserDefaultsManager.shared.getGameNotificationEnabled(userNo: userNo)
+            marketingNotificationEnabled = UserDefaultsManager.shared.getMarketingNotificationEnabled(userNo: userNo)
+            
+            if let diaryTime = UserDefaultsManager.shared.getDiaryNotificationTime(userNo: userNo) {
+                self.diaryNotificationTime = diaryTime
+            } else {
+                self.diaryNotificationTime = Calendar.current.date(from: DateComponents(hour: 22, minute: 0))
+            }
+            
+            if let gameTime = UserDefaultsManager.shared.getGameNotificationTime(userNo: userNo) {
+                self.gameNotificationTime = gameTime
+            } else {
+                self.gameNotificationTime = Calendar.current.date(from: DateComponents(hour: 24, minute: 0))
+            }
+            
+            lockEnable = UserDefaultsManager.shared.getLockEnabled(userNo: userNo)
         } else {
+            // userNo가 없는 경우 기본값
+            diaryNotificationEnabled = false
+            gameNotificationEnabled = false
+            marketingNotificationEnabled = false
             self.diaryNotificationTime = Calendar.current.date(from: DateComponents(hour: 22, minute: 0))
-        }
-        
-        if let gameNotificationTime = UserDefaults.standard.object(forKey: "gameNotificationTime") as? Date {
-            self.gameNotificationTime = gameNotificationTime
-        } else {
             self.gameNotificationTime = Calendar.current.date(from: DateComponents(hour: 24, minute: 0))
+            lockEnable = false
         }
-        
-        lockEnable = UserDefaults.standard.bool(forKey: "lockEnable")
         
         checkInit = true
         self.inputViewTitle = PasswordMessages.initial
@@ -254,17 +271,22 @@ extension SettingViewModel {
     }
         
     private func clearStoredPassword() {
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
         resetPasswordInput()
-        UserDefaults.standard.removeObject(forKey: "appPassword")
+        UserDefaultsManager.shared.setAppPassword(nil, userNo: userNo)
     }
     
     private func savePassword(_ password: [Int]) {
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else { return }
         let passwordString = password.map { String($0) }.joined()
-        UserDefaults.standard.set(passwordString, forKey: "appPassword")
+        UserDefaultsManager.shared.setAppPassword(passwordString, userNo: userNo)
     }
     
     private func loadStoredPassword() -> [Int]? {
-        guard let pwString = UserDefaults.standard.string(forKey: "appPassword") else { return nil }
+        guard let userNo = UserDefaultsManager.shared.currentUserNo,
+              let pwString = UserDefaultsManager.shared.getAppPassword(userNo: userNo) else { 
+            return nil 
+        }
         return pwString.compactMap { Int(String($0)) }
     }
     

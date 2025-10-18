@@ -85,8 +85,8 @@ final class TokenInterceptor: RequestInterceptor {
         isRefreshing = true
 
         guard
-            let accessToken = UserDefaults.standard.string(forKey: "accessToken"),
-            let refreshToken = UserDefaults.standard.string(forKey: "refreshToken")
+            let accessToken = UserDefaultsManager.shared.accessToken,
+            let refreshToken = UserDefaultsManager.shared.refreshToken
         else {
             triggerLogout()
             completeAll(with: .doNotRetry)
@@ -115,8 +115,8 @@ final class TokenInterceptor: RequestInterceptor {
                     return
                 }
 
-                UserDefaults.standard.set(response.accessToken, forKey: "accessToken")
-                UserDefaults.standard.set(response.refreshToken, forKey: "refreshToken")
+                UserDefaultsManager.shared.accessToken = response.accessToken
+                UserDefaultsManager.shared.refreshToken = response.refreshToken
                 debugLog("🔁 토큰 재발급 성공: \(response.accessToken)")
                 debugLog("✅ \(self.retryQueue.count)개의 대기 중인 요청들을 재시도합니다")
                 self.completeAll(with: .retry)

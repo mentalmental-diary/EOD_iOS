@@ -21,7 +21,7 @@ public class LoginManager: NSObject, ObservableObject {
     override init() {
         super.init()
         
-        self.isLogin = UserDefaults.standard.bool(forKey: "isLogin") == true
+        self.isLogin = UserDefaultsManager.shared.isLogin
     }
 #if !PREVIEW
     static func naverConfigure() {

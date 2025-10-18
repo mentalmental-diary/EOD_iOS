@@ -12,7 +12,6 @@ import Combine
 class MainViewModel: ObservableObject {
     @Published var isLogin: Bool = false
     @Published var currentTab: Tab = .Home
-    @Published var confirmEmail: Bool = false
     @Published var confirmTerms: Bool = false
     @Published var inputNickname: String = ""
     
@@ -65,18 +64,40 @@ extension MainViewModel {
             .store(in: &cancellables)
     }
     
-    func logoutAction() { // TODO: 로그아웃 로직 수정 -> API연결 필요
-        UserDefaults.standard.removeObject(forKey: "isLogin")
-        UserDefaults.standard.removeObject(forKey: "accessToken")
-        UserDefaults.standard.removeObject(forKey: "diaryNotificationEnabled")
-        UserDefaults.standard.removeObject(forKey: "gameNotificationEnabled")
-        UserDefaults.standard.removeObject(forKey: "marketingNotificationEnabled")
-        UserDefaults.standard.removeObject(forKey: "diaryNotificationTime")
-        UserDefaults.standard.removeObject(forKey: "gameNotificationTime")
+    func logoutAction() {
+        networkModel.postLogout { [weak self] result in
+            // API 성공/실패 여부와 관계없이 로컬 데이터는 처리
+            DispatchQueue.main.async {
+                // ✅ 세션 데이터만 삭제 (유저 데이터는 유지)
+                UserDefaultsManager.shared.clearSessionData()
+                
+                // ViewModel 상태 초기화
+                self?.resetViewModelState()
+                
+                // 예약된 알림은 유지 (유저가 다시 로그인하면 복구)
+                
+                switch result {
+                case .success:
+                    debugLog("✅ 로그아웃 성공 - 세션만 삭제, 유저 데이터는 유지")
+                case .failure(let error):
+                    errorLog("🔴 로그아웃 API 실패: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+    /// 로그아웃 시 ViewModel 상태 초기화
+    private func resetViewModelState() {
         self.isLogin = false
         self.currentTab = .Home
         self.inputNickname = ""
         self.currentUserNickname = ""
+        self.confirmTerms = false
+        self.showUserInfoSetView = false
+        self.showStartAlert = false
+        self.naverLoginError = nil
+        
+        debugLog("✅ 로그아웃: ViewModel 상태 초기화 완료")
     }
     
     func kakaoLoginAction() {
@@ -135,8 +156,8 @@ extension MainViewModel {
     }
     
     private func setUserInfo(accessToken: String) {
-        UserDefaults.standard.set(accessToken, forKey: "accessToken")
-        UserDefaults.standard.set(true, forKey: "isLogin")
+        UserDefaultsManager.shared.accessToken = accessToken
+        UserDefaultsManager.shared.isLogin = true
     }
 }
 
@@ -154,19 +175,52 @@ extension MainViewModel {
 extension MainViewModel {
     /// 현재 유저가 닉네임이 설정되있는지 확인 후 닉네임 화면 진입 또는 메인화면 진입
     func checkNicknameAndAccessLogin() {
-        networkModel.checkUserNickname(completion: { [weak self] result in
-            switch result {
-            case .success(let check):
-                if check { // 이미 닉네임이 설정되있으면 홈화면으로 진입 -> 로그인 성공
-                    self?.isLogin = true
-                } else {
-                    self?.showUserInfoSetView = true
-                }
+        // 1. 먼저 userNo 조회
+        networkModel.fetchUserNo { [weak self] userNoResult in
+            guard let self = self else { return }
+            
+            switch userNoResult {
+            case .success(let userNo):
+                // userNo 저장
+                UserDefaultsManager.shared.currentUserNo = userNo
+                debugLog("✅ userNo 저장 완료: \(userNo)")
+                
+                // 기존 데이터 마이그레이션 (기존 사용자 대응)
+                UserDefaultsManager.shared.migrateOldDataIfNeeded(userNo: userNo)
+                
+                // 2. 닉네임 체크
+                self.networkModel.checkUserNickname(completion: { [weak self] result in
+                    switch result {
+                    case .success(let check):
+                        if check { // 이미 닉네임이 설정되있으면 홈화면으로 진입 -> 로그인 성공
+                            self?.isLogin = true
+                        } else {
+                            self?.showUserInfoSetView = true
+                        }
+                    case .failure(let error):
+                        self?.toastManager.showToast(message: "닉네임 여부 판단 실패")
+                        errorLog("🔴 닉네임 존재 여부 판단 API 실패: \(error.localizedDescription)")
+                    }
+                })
+                
             case .failure(let error):
-                self?.toastManager.showToast(message: "닉네임 여부 판단 실패")
-                errorLog("🔴 닉네임 존재 여부 판단 API 실패: \(error.localizedDescription)")
+                errorLog("🔴 userNo 조회 실패: \(error.localizedDescription)")
+                // userNo 조회 실패해도 로그인은 진행 (임시 방편)
+                self.networkModel.checkUserNickname(completion: { [weak self] result in
+                    switch result {
+                    case .success(let check):
+                        if check {
+                            self?.isLogin = true
+                        } else {
+                            self?.showUserInfoSetView = true
+                        }
+                    case .failure(let error):
+                        self?.toastManager.showToast(message: "닉네임 여부 판단 실패")
+                        errorLog("🔴 닉네임 존재 여부 판단 API 실패: \(error.localizedDescription)")
+                    }
+                })
             }
-        })
+        }
     }
     
     /// 닉네임 설정
@@ -211,13 +265,37 @@ extension MainViewModel {
 // MARK: - 회원탈퇴
 extension MainViewModel {
     func userLeaveAction() {
+        // 탈퇴할 유저의 userNo 보관
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else {
+            toastManager.showToast(message: "사용자 정보를 찾을 수 없습니다")
+            errorLog("🔴 회원 탈퇴 실패: userNo가 없음")
+            return
+        }
+        
         networkModel.postLeaveUser { [weak self] result in
-            switch result {
-            case .success:
-                self?.logoutAction()
-            case .failure(let error):
-                self?.toastManager.showToast(message: "회원 탈퇴 실패")
-                errorLog("🔴 회원 탈퇴 API 실패: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    debugLog("✅ 회원 탈퇴 API 성공")
+                    
+                    // 1. 해당 유저의 모든 데이터 삭제
+                    UserDefaultsManager.shared.clearUserData(userNo: userNo)
+                    
+                    // 2. 세션 데이터 삭제
+                    UserDefaultsManager.shared.clearSessionData()
+                    
+                    // 3. 예약된 알림 삭제 (탈퇴한 유저이므로)
+                    NotificationManager.shared.removeAllLocalNotifications()
+                    
+                    // 4. ViewModel 상태 초기화
+                    self?.resetViewModelState()
+                    
+                    debugLog("✅ 회원 탈퇴 완료: userNo=\(userNo)의 모든 데이터 삭제")
+                    
+                case .failure(let error):
+                    self?.toastManager.showToast(message: "회원 탈퇴 실패")
+                    errorLog("🔴 회원 탈퇴 API 실패: \(error.localizedDescription)")
+                }
             }
         }
     }
