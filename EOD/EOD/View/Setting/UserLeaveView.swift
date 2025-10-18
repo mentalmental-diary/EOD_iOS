@@ -72,7 +72,7 @@ extension UserLeaveView {
             HStack {
                 Spacer()
                 Text("회원 탈퇴")
-                    .font(type: .omyu, size: 28)
+                    .font(type: .omyu, size: 22)
                     .foregroundColor(.black)
                 Spacer()
             }
@@ -101,11 +101,11 @@ extension UserLeaveView {
                     .font(type: .omyu, size: 16)
                     .foregroundColor(UIColor.Gray.gray800.color)
             }
-            
-            Spacer()
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 12)
+        .padding(.top, 12)
+        .padding(.leading, 15)
+        .padding(.trailing, 11)
+        .padding(.bottom, 11)
         .background(Color(red: 239/255, green: 239/255, blue: 228/255))
         .cornerRadius(11)
         .padding(.horizontal, 20)

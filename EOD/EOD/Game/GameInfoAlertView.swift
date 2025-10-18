@@ -35,16 +35,6 @@ struct GameInfoAlertView: View {
                     
                     Spacer().frame(height: 16)
                     
-                    Text("제한시간 \(limitTime)초")
-                        .font(type: .omyu, size: 16)
-                        .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
-                        .padding(.vertical, 12)
-                        .padding(.horizontal, 14)
-                        .background(Color(red: 239/255, green: 239/255, blue: 228/255))
-                        .clipShape(Capsule())
-                    
-                    Spacer().frame(height: 16)
-                    
                     Text(gameDescription)
                         .font(type: .omyu, size: 18)
                         .foregroundColor(UIColor.Gray.gray900.color)

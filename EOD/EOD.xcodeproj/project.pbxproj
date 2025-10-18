@@ -45,6 +45,9 @@
 		CE2A46CD2D44A6CD00A516C6 /* CustomStartAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */; };
 		CE2A46CF2D44AC9000A516C6 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */; };
 		CE2A46D02D44AC9000A516C6 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */; };
+		CE38A9AB2EA3947A0077957C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38A9AA2EA394780077957C /* UserDefaultsManager.swift */; };
+		CE38A9AC2EA3947A0077957C /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38A9AA2EA394780077957C /* UserDefaultsManager.swift */; };
+		CE38A9AF2EA396C00077957C /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CE4318142BEBBF5500880898 /* omyu pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE4318132BEBBF5500880898 /* omyu pretty.ttf */; };
 		CE4318172BEBC2CC00880898 /* Text+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318162BEBC2CC00880898 /* Text+Extension.swift */; };
 		CE43181A2BECC82500880898 /* MonthSelectModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4318192BECC82500880898 /* MonthSelectModalView.swift */; };
@@ -190,7 +193,6 @@
 		CECC14412D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECC143F2D6AEAEB00C0FA25 /* Cafe24Ssurround.ttf */; };
 		CECCDAC42C40EADF0000DE72 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCDAC32C40EADF0000DE72 /* LoadingView.swift */; };
 		CECCDAC72C40EE7F0000DE72 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CECCDAC62C40EE7F0000DE72 /* Lottie */; };
-		CEDCF2B92E87C388003AB996 /* UnityFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE979DDC2C7990A700D0ED53 /* UnityFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CEDCF2C02E87C54B003AB996 /* UserLeaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCF2BF2E87C54B003AB996 /* UserLeaveView.swift */; };
 		CEDCF2C12E87C54B003AB996 /* UserLeaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCF2BF2E87C54B003AB996 /* UserLeaveView.swift */; };
 		CEDFA1E62D90219800BD3309 /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFA1E52D90219800BD3309 /* AlarmSettingView.swift */; };
@@ -362,13 +364,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CEDCF2BA2E87C388003AB996 /* Embed Frameworks */ = {
+		CE38A9B02EA396C00077957C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CEDCF2B92E87C388003AB996 /* UnityFramework.framework in Embed Frameworks */,
+				CE38A9AF2EA396C00077957C /* UnityFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +408,7 @@
 		CE1A10F12DF455DC009B5F3B /* GoldInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldInfoView.swift; sourceTree = "<group>"; };
 		CE2A46CB2D44A6CD00A516C6 /* CustomStartAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStartAlert.swift; sourceTree = "<group>"; };
 		CE2A46CE2D44AC8C00A516C6 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
+		CE38A9AA2EA394780077957C /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		CE4318132BEBBF5500880898 /* omyu pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu pretty.ttf"; sourceTree = "<group>"; };
 		CE4318152BEBBFAD00880898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CE4318162BEBC2CC00880898 /* Text+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Extension.swift"; sourceTree = "<group>"; };
@@ -948,6 +951,7 @@
 		CEB7F02E2AAC5585001C99EA /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CE38A9AA2EA394780077957C /* UserDefaultsManager.swift */,
 				CEB056B22D61D58300DB007F /* Notification */,
 				CEAAF8092CD792FD00EFBDA9 /* OptionalObject.swift */,
 				CEC6D7DC2C7C511300FFEC9F /* SwifterSwift */,
@@ -1101,7 +1105,7 @@
 				CEB7EFF22AAC5025001C99EA /* Frameworks */,
 				CEB7EFF32AAC5025001C99EA /* Resources */,
 				E47E20E4CA9C18C1784DD8DD /* [CP] Embed Pods Frameworks */,
-				CEDCF2BA2E87C388003AB996 /* Embed Frameworks */,
+				CE38A9B02EA396C00077957C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1569,6 +1573,7 @@
 				CEB7F0972AAC61FD001C99EA /* ErrorCode.swift in Sources */,
 				CEBF2B6E2DFEDF5300300404 /* GoldInfoModel.swift in Sources */,
 				CE77A9BF2ACD31F700D9C58B /* PageControlView.swift in Sources */,
+				CE38A9AB2EA3947A0077957C /* UserDefaultsManager.swift in Sources */,
 				CEB7F09F2AAC6336001C99EA /* EODLogRecorder.swift in Sources */,
 				CEB7F07D2AAC61D5001C99EA /* OSLogRecorder.swift in Sources */,
 				CE06C3982CC5E9CD0075A9C0 /* HomeViewModel.swift in Sources */,
@@ -1733,6 +1738,7 @@
 				CEE63F9E2CFC4F5D00275C7F /* ErrorCode.swift in Sources */,
 				CEBF2B6D2DFEDF5300300404 /* GoldInfoModel.swift in Sources */,
 				CEE63F9F2CFC4F5D00275C7F /* PageControlView.swift in Sources */,
+				CE38A9AC2EA3947A0077957C /* UserDefaultsManager.swift in Sources */,
 				CEE63FA02CFC4F5D00275C7F /* EODLogRecorder.swift in Sources */,
 				CEE63FA12CFC4F5D00275C7F /* OSLogRecorder.swift in Sources */,
 				CEE63FA22CFC4F5D00275C7F /* HomeViewModel.swift in Sources */,

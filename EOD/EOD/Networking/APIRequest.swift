@@ -215,7 +215,7 @@ extension APIRequest {
     private class func createHeaders(with initialHeaders: HTTPHeaders?) -> HTTPHeaders {
         var headers: HTTPHeaders = initialHeaders ?? [:]
         
-        if let accessToken = UserDefaults.standard.string(forKey: "accessToken") { // 좀 다르게 접근하는 방법을 찾아보자.
+        if let accessToken = UserDefaultsManager.shared.accessToken {
             // User AcessToken
             debugLog("accessToken을 헤더에 추가합니다.")
             headers[userAccessToken] = accessToken

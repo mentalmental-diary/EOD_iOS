@@ -60,9 +60,14 @@ class GameDataViewModel: ObservableObject {
     
     
     func updateScore(for game: GameType, score: Int) {
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else {
+            errorLog("🔴 updateScore 실패: userNo가 없음")
+            return
+        }
+        
         if let index = games.firstIndex(where: { $0.game == game }) {
             var newGameData = games[index]
-            newGameData.updateScore(score) // ✅ UserDefaults에 저장 포함
+            newGameData.updateScore(score, userNo: userNo) // ✅ UserDefaultsManager 사용
             games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
             
             // ✅ gameDataList도 갱신
@@ -71,9 +76,14 @@ class GameDataViewModel: ObservableObject {
     }
     
     func updateCoinCount(for game: GameType, coinCount: Int) {
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else {
+            errorLog("🔴 updateCoinCount 실패: userNo가 없음")
+            return
+        }
+        
         if let index = games.firstIndex(where: { $0.game == game }) {
             var newGameData = games[index]
-            newGameData.updateCoinCount(coinCount) // ✅ UserDefaults에 저장 포함
+            newGameData.updateCoinCount(coinCount, userNo: userNo) // ✅ UserDefaultsManager 사용
             games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
         }
     }
@@ -193,12 +203,15 @@ extension GameDataViewModel {
     }
     
     static func getDailyAccessData(for game: GameType) -> GameDailyAccessData {
-        let key = game.dailyAccessKey
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else {
+            let today = Self.currentDateString()
+            return GameDailyAccessData(date: today, accessCount: 0, earnedCoins: 0)
+        }
+        
         let today = Self.currentDateString()
-        if let data = UserDefaults.standard.data(forKey: key),
-           let decoded = try? JSONDecoder().decode(GameDailyAccessData.self, from: data),
-           decoded.date == today {
-            return decoded
+        if let data = UserDefaultsManager.shared.getGameDailyAccess(for: game, userNo: userNo),
+           data.date == today {
+            return data
         } else {
             return GameDailyAccessData(date: today, accessCount: 0, earnedCoins: 0)
         }
@@ -211,6 +224,11 @@ extension GameDataViewModel {
     }
     
     func incrementAccessCount(for game: GameType) {
+        guard let userNo = UserDefaultsManager.shared.currentUserNo else {
+            errorLog("🔴 incrementAccessCount 실패: userNo가 없음")
+            return
+        }
+        
         var data = Self.getDailyAccessData(for: game)
         let today = Self.currentDateString()
 
@@ -220,14 +238,12 @@ extension GameDataViewModel {
         }
 
         data.accessCount += 1
-        save(data, for: game)
+        save(data, for: game, userNo: userNo)
         refreshAll()
     }
 
-    private func save(_ data: GameDailyAccessData, for game: GameType) {
-        if let encoded = try? JSONEncoder().encode(data) {
-            UserDefaults.standard.set(encoded, forKey: game.dailyAccessKey)
-        }
+    private func save(_ data: GameDailyAccessData, for game: GameType, userNo: Int) {
+        UserDefaultsManager.shared.setGameDailyAccess(data, for: game, userNo: userNo)
     }
 }
 
@@ -309,30 +325,37 @@ struct GameData: Identifiable {
     
     init(game: GameType) {
         self.game = game
-        self.score = UserDefaults.standard.integer(forKey: game.scoreKey)
-        self.coinCount = UserDefaults.standard.integer(forKey: game.coinKey)
+        
+        // UserDefaultsManager를 통해 현재 유저의 데이터 로드
+        if let userNo = UserDefaultsManager.shared.currentUserNo {
+            self.score = UserDefaultsManager.shared.getGameScore(for: game, userNo: userNo)
+            self.coinCount = UserDefaultsManager.shared.getGameCoin(for: game, userNo: userNo)
+        } else {
+            self.score = 0
+            self.coinCount = 0
+        }
     }
     
     // ✅ 점수 저장
-    mutating func updateScore(_ newScore: Int) {
+    mutating func updateScore(_ newScore: Int, userNo: Int) {
         self.score = newScore
-        saveScore()
+        saveScore(userNo: userNo)
     }
     
     // ✅ 코인 저장
-    mutating func updateCoinCount(_ newCoinCount: Int) {
+    mutating func updateCoinCount(_ newCoinCount: Int, userNo: Int) {
         self.coinCount = newCoinCount
-        saveCoinCount()
+        saveCoinCount(userNo: userNo)
     }
     
-    // ✅ UserDefaults에 점수 저장
-    private func saveScore() {
-        UserDefaults.standard.set(score, forKey: game.scoreKey)
+    // ✅ UserDefaultsManager에 점수 저장
+    private func saveScore(userNo: Int) {
+        UserDefaultsManager.shared.setGameScore(score, for: game, userNo: userNo)
     }
     
-    // ✅ UserDefaults에 코인 저장
-    private func saveCoinCount() {
-        UserDefaults.standard.set(coinCount, forKey: game.coinKey)
+    // ✅ UserDefaultsManager에 코인 저장
+    private func saveCoinCount(userNo: Int) {
+        UserDefaultsManager.shared.setGameCoin(coinCount, for: game, userNo: userNo)
     }
 }
 
