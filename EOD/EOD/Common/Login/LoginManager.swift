@@ -25,8 +25,10 @@ public class LoginManager: NSObject, ObservableObject {
     }
 #if !PREVIEW
     static func naverConfigure() {
+        // Safari View Controller를 통한 웹 기반 로그인 활성화
         NaverThirdPartyLoginConnection.getSharedInstance().isInAppOauthEnable = true
-        NaverThirdPartyLoginConnection.getSharedInstance().isNaverAppOauthEnable = true
+        // 네이버 앱 설치 강제 방지 (앱스토어 가이드라인 4.2.3 준수)
+        NaverThirdPartyLoginConnection.getSharedInstance().isNaverAppOauthEnable = false
         
         NaverThirdPartyLoginConnection.getSharedInstance().serviceUrlScheme = "eodnaverlogin"
         

@@ -15,13 +15,10 @@ extension LoginManager {
             retreiveInfo()
             return
         }
-        if isInstalledNaver {
-            debugLog("🟢 네이버 앱 설치됨. 앱으로 로그인 진행.")
-            NaverThirdPartyLoginConnection.getSharedInstance().requestThirdPartyLogin()
-        } else {
-            debugLog("🔴 네이버 앱이 설치되지 않음. 앱스토어로 이동.")
-            NaverThirdPartyLoginConnection.getSharedInstance().openAppStoreForNaverApp()
-        }
+        // Safari View Controller를 통한 웹 기반 로그인 사용 (네이버 앱 설치 여부와 무관)
+        // 앱스토어 가이드라인 4.2.3을 준수하기 위해 앱 설치를 강제하지 않음
+        debugLog("🟢 웹 기반 네이버 로그인 진행.")
+        NaverThirdPartyLoginConnection.getSharedInstance().requestThirdPartyLogin()
     }
     
     func logout() {
