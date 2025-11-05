@@ -28,6 +28,10 @@
 	<string>0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen-iPhone</string>
 	<key>UILaunchStoryboardName~ipad</key>

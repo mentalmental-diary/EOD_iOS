@@ -4,6 +4,12 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>노른자의 하루</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
