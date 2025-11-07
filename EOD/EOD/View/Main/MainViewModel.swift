@@ -50,6 +50,11 @@ class MainViewModel: ObservableObject {
         // LoginManager의 loginResult를 구독하여 처리
         self.naverLoginAction()
         self.bindDetectToken()
+        
+        // 앱 시작 시 로그인 상태이면 닉네임 검증
+        if isLogin {
+            self.verifyLoginStateOnAppStart()
+        }
     }
     
 }
@@ -173,6 +178,37 @@ extension MainViewModel {
 
 // MARK: - Nickname (User Info)
 extension MainViewModel {
+    /// 앱 시작/재실행 시 로그인 상태 검증 (닉네임 미설정 시 로그아웃)
+    private func verifyLoginStateOnAppStart() {
+        debugLog("🔍 앱 재실행: 로그인 상태 검증 시작")
+        
+        // 닉네임 설정 여부 확인
+        networkModel.checkUserNickname { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let hasNickname):
+                    if hasNickname {
+                        debugLog("✅ 닉네임 설정 확인 완료")
+                    } else {
+                        // 앱 재실행 시 닉네임 없으면 로그아웃
+                        debugLog("⚠️ 앱 재실행: 닉네임 미설정 감지 → 로그아웃")
+                        self.toastManager.showToast(message: "회원가입을 완료해주세요")
+                        self.logoutAction()
+                    }
+                    
+                case .failure(let error):
+                    // API 실패 시 로그아웃 처리 (토큰 만료 가능성)
+                    errorLog("🔴 닉네임 확인 실패: \(error.localizedDescription)")
+                    errorLog("🚪 로그아웃 처리")
+                    self.toastManager.showToast(message: "로그인 정보를 확인할 수 없습니다")
+                    self.logoutAction()
+                }
+            }
+        }
+    }
+    
     /// 현재 유저가 닉네임이 설정되있는지 확인 후 닉네임 화면 진입 또는 메인화면 진입
     func checkNicknameAndAccessLogin() {
         // 1. 먼저 userNo 조회
