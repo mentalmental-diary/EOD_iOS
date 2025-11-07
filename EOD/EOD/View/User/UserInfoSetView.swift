@@ -28,6 +28,7 @@ struct UserInfoSetView: View {
                         }
                     }
                 
+                // VStack 구조로 통일 (ScrollView 제거)
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         if viewModel.isLogin {
@@ -73,11 +74,11 @@ struct UserInfoSetView: View {
                                 }
                                 .padding(.horizontal, 8)
                             }
-
                         }
                     }
                     
-                    Spacer().frame(height: 56)
+                    // 화면 높이에 따라 유동적으로 조정
+                    Spacer().frame(height: proxy.size.height * 0.08)
                     
                     Text("노른자의 하루에서 사용할")
                         .font(size: 22)
@@ -101,21 +102,22 @@ struct UserInfoSetView: View {
                             }
                         )
                     
-                    Spacer().frame(height: 137)
+                    Spacer().frame(height: proxy.size.height * 0.08)
                     
                     nicknameView()
                     
+                    Spacer()
+                    
                     if !viewModel.isLogin {
-                        Spacer().frame(height: 250)
-                        
                         bottonView()
-                    } else {
-                        Spacer()
                     }
+                    
+                    Spacer().frame(height: 20)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 20)
                 .padding(.bottom, 12)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 ToastView(toastManager: viewModel.toastManager)
                 
@@ -204,12 +206,22 @@ extension UserInfoSetView {
                             viewModel.inputNickname = oldValue
                         }
                     })
+                    .placeholder(when: viewModel.inputNickname.isEmpty) {
+                        Text("닉네임을 입력해주세요.")
+                            .font(.custom("Pretendard-Medium", size: 16))
+                            .foregroundColor(UIColor.Gray.gray500.color)
+                    }
             } else {
                 TextField("닉네임을 입력해주세요.", text: $viewModel.inputNickname)
                     .font(.custom("Pretendard-Medium", size: 16))
                     .foregroundColor(.black)
                     .focused($nicknameFieldFocused)
                     .submitLabel(.done)
+                    .placeholder(when: viewModel.inputNickname.isEmpty) {
+                        Text("닉네임을 입력해주세요.")
+                            .font(.custom("Pretendard-Medium", size: 16))
+                            .foregroundColor(UIColor.Gray.gray500.color)
+                    }
             }
             
             Spacer().frame(height: 16)

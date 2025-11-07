@@ -24,6 +24,7 @@ struct MainTabView: View {
                         TabView()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
+                        // 탭바 고정 (iPad 조건 제거)
                         HStack(spacing: 0) {
                             TabButton(tab: .Home, currentTab: $viewModel.currentTab)
                             TabButton(tab: .Calender, currentTab: $viewModel.currentTab)

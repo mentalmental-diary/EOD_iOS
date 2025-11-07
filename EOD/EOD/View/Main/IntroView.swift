@@ -38,18 +38,25 @@ struct IntroView: View {
 extension IntroView {
     @ViewBuilder func tutorialView(geometry: GeometryProxy) -> some View {
         VStack(spacing: 0) {
-            if showSkipButton {
-                Button {
-                    viewModel.initScreen = false
-                } label: {
-                    Text("Skip")
-                        .font(size: 22)
-                        .foregroundColor(UIColor.Gray.gray800.color)
+            // Skip 버튼 영역 (항상 공간 확보)
+            Group {
+                if showSkipButton {
+                    Button {
+                        viewModel.initScreen = false
+                    } label: {
+                        Text("Skip")
+                            .font(size: 22)
+                            .foregroundColor(UIColor.Gray.gray800.color)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .transition(.opacity)
+                } else {
+                    Color.clear
+                        .frame(height: 0)
                 }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .padding(.top, 20)
-                .transition(.opacity) // 사라질 때 애니메이션 효과 적용
             }
+            .frame(height: 44)
+            .padding(.top, 20)
             
             TabView(selection: $currentPage) {
                 ForEach(Array(viewModel.onboardingItems.enumerated()), id: \.element.id) { index, item in
@@ -105,37 +112,74 @@ extension IntroView {
     }
     
     @ViewBuilder func onBoardingView(geometry: GeometryProxy) -> some View {
-        VStack(spacing: 0.0) {
-            
-            VStack(spacing: 0) {
-                Spacer()
-                
-                Image("icon_onBoarding")
-                
-                Spacer().frame(height: 37)
-                
-                Text("노른자의 하루")
-                    .font(type: .cafe24Ssurround, size: 32)
-                    .foregroundColor(UIColor.Yellow.yellow500.color)
-                    .lineSpacing(6)
-                
-                Spacer().frame(height: 20)
-                
-                Text("노른자와 함께 일상을 꾸며볼까요?")
-                    .font(size: 22)
-                    .foregroundColor(UIColor.Gray.gray500.color)
-                    .lineSpacing(2)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad: ScrollView로 감싸기
+            ScrollView {
+                VStack(spacing: 0.0) {
+                    VStack(spacing: 0) {
+                        Spacer().frame(height: max(60, geometry.size.height * 0.1))
+                        
+                        Image("icon_onBoarding")
+                        
+                        Spacer().frame(height: 37)
+                        
+                        Text("노른자의 하루")
+                            .font(type: .cafe24Ssurround, size: 32)
+                            .foregroundColor(UIColor.Yellow.yellow500.color)
+                            .lineSpacing(6)
+                        
+                        Spacer().frame(height: 20)
+                        
+                        Text("노른자와 함께 일상을 꾸며볼까요?")
+                            .font(size: 22)
+                            .foregroundColor(UIColor.Gray.gray500.color)
+                            .lineSpacing(2)
+                    }
+                    
+                    Spacer().frame(height: max(60, min(140, geometry.size.height * 0.15)))
+                    
+                    socialLoginView()
+                    
+                    Spacer().frame(height: 60)
+                }
+                .frame(minHeight: geometry.size.height)
             }
-            
-            Spacer().frame(height: 140)
-            
-            socialLoginView()
-            
-            Spacer()
+            .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
+            .background(UIColor.CommonBackground.background.color)
+            .edgesIgnoringSafeArea(.bottom)
+        } else {
+            // iPhone: 원래대로
+            VStack(spacing: 0.0) {
+                VStack(spacing: 0) {
+                    Spacer()
+                    
+                    Image("icon_onBoarding")
+                    
+                    Spacer().frame(height: 37)
+                    
+                    Text("노른자의 하루")
+                        .font(type: .cafe24Ssurround, size: 32)
+                        .foregroundColor(UIColor.Yellow.yellow500.color)
+                        .lineSpacing(6)
+                    
+                    Spacer().frame(height: 20)
+                    
+                    Text("노른자와 함께 일상을 꾸며볼까요?")
+                        .font(size: 22)
+                        .foregroundColor(UIColor.Gray.gray500.color)
+                        .lineSpacing(2)
+                }
+                
+                Spacer().frame(height: 140)
+                
+                socialLoginView()
+                
+                Spacer()
+            }
+            .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
+            .background(UIColor.CommonBackground.background.color)
+            .edgesIgnoringSafeArea(.bottom)
         }
-        .padding(.bottom, 34 + geometry.safeAreaInsets.bottom)
-        .background(UIColor.CommonBackground.background.color)
-        .edgesIgnoringSafeArea(.bottom)
     }
     
     private func onBoadingDetailView(item: OnboardingItem) -> some View {

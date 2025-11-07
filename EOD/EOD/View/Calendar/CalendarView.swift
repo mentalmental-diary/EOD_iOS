@@ -11,65 +11,70 @@ struct CalendarView: View {
     @ObservedObject var viewModel: CalendarViewModel
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        viewModel.showMonthSelectModalView = true
-                    }, label: {
-                        HStack(spacing: 4) {
-                            Text(monthYearString(from: viewModel.date))
-                                .font(size: 26)
-                                .foregroundColor(Color.black)
-                            Image("polygon")
-                        }
-                    })
-                    Spacer()
-                }
-                
-                let daysInMonth = days(for: viewModel.date)
-                let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
-                
-                Spacer().frame(height: 21)
-                
-                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
-                    // 요일 헤더
-                    ForEach(daysOfWeek, id: \.self) { day in
-                        Text(day)
-                            .font(size: 16)
-                            .foregroundColor(Color.black)
+        GeometryReader { geometry in
+            ZStack {
+                VStack(spacing: 0) {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            viewModel.showMonthSelectModalView = true
+                        }, label: {
+                            HStack(spacing: 4) {
+                                Text(monthYearString(from: viewModel.date))
+                                    .font(size: 26)
+                                    .foregroundColor(Color.black)
+                                Image("polygon")
+                            }
+                        })
+                        Spacer()
                     }
-                }
-                
-                Spacer().frame(height: 12)
-                
-                LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 8 : 12) {
                     
-                    // 날짜 그리드
-                    ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
-                        CalendarCellView(day: day, calendarDate: $viewModel.date, diaryInfo: viewModel.diarySummaryList[day] ?? nil, selectDay: viewModel.selectDate)
-                            .onTapGesture {
-                                if day != 0 {
-                                    if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
-                                        viewModel.selectDate = date
+                    let daysInMonth = days(for: viewModel.date)
+                    let daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"]
+                    
+                    Spacer().frame(height: 21)
+                    
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: 10) {
+                        // 요일 헤더
+                        ForEach(daysOfWeek, id: \.self) { day in
+                            Text(day)
+                                .font(size: 16)
+                                .foregroundColor(Color.black)
+                        }
+                    }
+                    
+                    Spacer().frame(height: 12)
+                    
+                    LazyVGrid(columns: Array(repeating: GridItem(), count: 7), spacing: daysInMonth.count > 35 ? 8 : 12) {
+                        
+                        // 날짜 그리드
+                        ForEach(Array(daysInMonth.enumerated()), id: \.offset) { index, day in
+                            CalendarCellView(day: day, calendarDate: $viewModel.date, diaryInfo: viewModel.diarySummaryList[day] ?? nil, selectDay: viewModel.selectDate)
+                                .onTapGesture {
+                                    if day != 0 {
+                                        if let date = getDateForCell(day: day, month: viewModel.date.month, year: viewModel.date.year) {
+                                            viewModel.selectDate = date
+                                        }
                                     }
                                 }
-                            }
+                        }
                     }
+                    
+                    Spacer().frame(height: 24)
+                    
+                    // diaryView - 기존 디자인 가이드 유지: 남은 공간 전체 사용
+                    let calendarHeight = calculateCalendarHeight(daysCount: daysInMonth.count)
+                    diaryView()
+                        .frame(height: geometry.size.height - calendarHeight)
+                        .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
                 }
+                .padding(.horizontal, 20)
+                .padding(.top, 44)
+                .padding(.bottom, 12)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .background(UIColor.CommonBackground.background.color)
                 
-                Spacer().frame(height: 44)
-                
-                diaryView()
-                    .shadow(color: Color(red: 242/255, green: 242/255, blue: 229/255), radius: 17, x: 0, y: 0)
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 44)
-            .padding(.bottom, 12)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .background(UIColor.CommonBackground.background.color)
-            
         }
     }
 }
@@ -144,43 +149,46 @@ extension CalendarView {
                 Spacer()
             } else {
                 ZStack {
-                    VStack(spacing: 0) {
-                        HStack(spacing: 0) {
-                            Image(viewModel.selectedDiaryInfo?.emotion.imageName ?? "")
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 0) {
+                            HStack(spacing: 0) {
+                                Image(viewModel.selectedDiaryInfo?.emotion.imageName ?? "")
+                                
+                                Spacer().frame(width: 14)
+                                
+                                Text(viewModel.selectedDiaryInfo?.emotion.description ?? "")
+                                    .font(size: 20)
+                                    .foregroundColor(Color.black)
+                                    .padding(EdgeInsets.init())
+                                    .background(
+                                        GeometryReader { geometry in
+                                            UIColor.Yellow.yellow200.color
+                                                .frame(width: geometry.size.width, height: 8)
+                                                .offset(x: 0, y: geometry.size.height - 8)
+                                        }
+                                    )
+                                
+                                Spacer()
+                            }
                             
-                            Spacer().frame(width: 14)
+                            Spacer().frame(height: 12)
                             
-                            Text(viewModel.selectedDiaryInfo?.emotion.description ?? "")
-                                .font(size: 20)
+                            Text(viewModel.selectedDiaryInfo?.content ?? "")
+                                .font(size: 18)
                                 .foregroundColor(Color.black)
-                                .padding(EdgeInsets.init())
-                                .background(
-                                    GeometryReader { geometry in
-                                        UIColor.Yellow.yellow200.color
-                                            .frame(width: geometry.size.width, height: 8)
-                                            .offset(x: 0, y: geometry.size.height - 8)
-                                    }
-                                )
-                            
-                            Spacer()
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
-                        
-                        Spacer().frame(height: 12)
-                        
-                        Text(viewModel.selectedDiaryInfo?.content ?? "")
-                            .font(size: 18)
-                            .foregroundColor(Color.black)
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 8)
+                        .padding(.bottom, 16)
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 8)
-                    .padding(.bottom, 16)
                     
                     Image(viewModel.selectedDiaryInfo?.diary_background?.imageName ?? diaryBackgroundType.white.imageName)
                         .resizable()
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                         .zIndex(-1)
+                        .allowsHitTesting(false)
                 }
             }
         }
@@ -215,6 +223,34 @@ extension CalendarView {
 
 // MARK: - Function
 extension CalendarView {
+    /// 캘린더 영역의 전체 높이를 계산 (기존 디자인 가이드 유지)
+    private func calculateCalendarHeight(daysCount: Int) -> CGFloat {
+        // 년월 버튼 영역
+        let headerHeight: CGFloat = 30
+        
+        // Spacer 높이들
+        let spacer1: CGFloat = 21
+        let spacer2: CGFloat = 12
+        let spacer3: CGFloat = 24
+        
+        // 요일 헤더 높이
+        let weekdayHeaderHeight: CGFloat = 20
+        
+        // 날짜 그리드 높이 계산
+        let rows = CGFloat(ceil(Double(daysCount) / 7.0))
+        let cellSpacing: CGFloat = daysCount > 35 ? 8 : 12
+        // 각 셀의 대략적인 높이 (화면 너비의 1/7 정도)
+        let cellHeight: CGFloat = 48
+        let calendarGridHeight = (cellHeight * rows) + (cellSpacing * (rows - 1))
+        
+        // 패딩
+        let topPadding: CGFloat = 44
+        let bottomPadding: CGFloat = 12
+        
+        // 전체 높이
+        return topPadding + headerHeight + spacer1 + weekdayHeaderHeight + spacer2 + calendarGridHeight + spacer3 + bottomPadding
+    }
+    
     func days(for date: Date) -> [Int] {
         var days: [Int] = []
         let range = viewModel.calendar.range(of: .day, in: .month, for: date)

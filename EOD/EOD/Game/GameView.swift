@@ -14,64 +14,71 @@ struct GameView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-                HStack(spacing: 0) {
-                    Spacer()
-                    
-                    HStack(spacing: 5) {
-                        Image("icon_egg")
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+                    HStack(spacing: 0) {
+                        Spacer()
                         
-                        Text(gameDataViewModel.userGold?.formattedDecimal() ?? "0")
-                            .font(size: 20)
-                            .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .background(Color(red: 239/255, green: 239/255, blue: 228/255))
-                    .clipShape(Capsule())
-                }
-                
-                Spacer().frame(height: 16)
-                
-                TabView(selection: $gameDataViewModel.selectedIndex) {
-                    ForEach(gameDataViewModel.gameDataList.indices, id: \.self) { index in
-                        GamePageView(gameData: gameDataViewModel.gameDataList[index])
-                            .tag(index)
-                    }
-                }
-                .frame(height: 220)
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
-                Spacer().frame(height: 16)
-                
-                PageControlView(currentPage: $gameDataViewModel.selectedIndex, pages: gameDataViewModel.gameDataList.count)
-                
-                Spacer().frame(height: 16)
-                
-                HStack(spacing: 2) {
-                    Text(gameDataViewModel.selectedGame.game.title)
-                        .font(size: 28)
-                        .foregroundColor(.black)
-                        .underlinedBackground()
-                    
-                    Button {
-                        showInfoAlert = true
-                    } label: {
-                        Image("icon_question")
+                        HStack(spacing: 5) {
+                            Image("icon_egg")
+                            
+                            Text(gameDataViewModel.userGold?.formattedDecimal() ?? "0")
+                                .font(size: 20)
+                                .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
+                        }
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 10)
+                        .background(Color(red: 239/255, green: 239/255, blue: 228/255))
+                        .clipShape(Capsule())
                     }
                     
+                    Spacer().frame(height: 16)
+                    
+                    TabView(selection: $gameDataViewModel.selectedIndex) {
+                        ForEach(gameDataViewModel.gameDataList.indices, id: \.self) { index in
+                            GamePageView(gameData: gameDataViewModel.gameDataList[index])
+                                .tag(index)
+                        }
+                    }
+                    .frame(height: 220)
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    
+                    Spacer().frame(height: 16)
+                    
+                    PageControlView(currentPage: $gameDataViewModel.selectedIndex, pages: gameDataViewModel.gameDataList.count)
+                    
+                    Spacer().frame(height: 16)
+                    
+                    HStack(spacing: 2) {
+                        Text(gameDataViewModel.selectedGame.game.title)
+                            .font(size: 28)
+                            .foregroundColor(.black)
+                            .underlinedBackground()
+                        
+                        Button {
+                            showInfoAlert = true
+                        } label: {
+                            Image("icon_question")
+                        }
+                        
+                    }
+                    
+                    Spacer().frame(height: 14)
+                    
+                    GameDescriptionView(gameData: gameDataViewModel.selectedGame)
+                    
+                    Spacer().frame(height: 20)
                 }
-                
-                Spacer().frame(height: 14)
-                
-                GameDescriptionView(gameData: gameDataViewModel.selectedGame)
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
             }
-            .padding(.horizontal, 20)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             if showInfoAlert {
                 GameInfoAlertView(isShow: $showInfoAlert, imageName: gameDataViewModel.selectedGame.game.infoImageName, limitTime: gameDataViewModel.selectedGame.game.limitTime, gameDescription: gameDataViewModel.selectedGame.game.infoDescription)
             }
         }
+        .background(UIColor.CommonBackground.background.color)
     }
 }
 

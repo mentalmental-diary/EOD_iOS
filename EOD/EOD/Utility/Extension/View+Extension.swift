@@ -24,6 +24,15 @@ extension View {
     ) -> some View {
         self.modifier(UnderlinedBackground(color: color, height: height, offsetY: offsetY))
     }
+    
+    /// 조건부 modifier 적용
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }
 
 /// ViewBuilder
@@ -84,6 +93,18 @@ extension View {
     
     func onFirstAppear(_ action: @escaping (() -> Void)) -> some View {
         modifier(FirstAppear(action: action))
+    }
+    
+    /// TextField placeholder with custom styling
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content
+    ) -> some View {
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
     }
 }
 

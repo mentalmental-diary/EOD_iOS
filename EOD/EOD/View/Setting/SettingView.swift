@@ -22,42 +22,44 @@ struct SettingView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Spacer()
+        // ScrollView로 통일하여 모든 기기에서 스크롤 가능하도록
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack {
+                    Spacer()
+                    
+                    Text("설정")
+                        .font(type: .omyu, size: 22)
+                        .foregroundColor(.black)
+                    
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity)
+                .background(.clear)
                 
-                Text("설정")
-                    .font(type: .omyu, size: 22)
-                    .foregroundColor(.black)
+                Spacer().frame(height: 35)
                 
-                Spacer()
+                accountSettingView()
+                
+                Spacer().frame(height: 22)
+                
+                alarmSettingView()
+                
+                Spacer().frame(height: 22)
+                
+                securitySettingView()
+                
+                Spacer().frame(height: 22)
+                
+                etcSettingView()
+                
+                Spacer().frame(height: 40)
             }
-            .frame(maxWidth: .infinity)
-            .background(.clear)
-            
-            Spacer().frame(height: 35)
-            
-            accountSettingView()
-            
-            Spacer().frame(height: 22)
-            
-            alarmSettingView()
-            
-            Spacer().frame(height: 22)
-            
-            securitySettingView()
-            
-            Spacer().frame(height: 22)
-            
-            etcSettingView()
-            
-            Spacer()
+            .padding(.top, 15)
+            .padding(.horizontal, 20)
         }
-        .padding(.top, 15)
-        .padding(.horizontal, 20)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(UIColor.CommonBackground.background.color)
-        
     }
 }
 
