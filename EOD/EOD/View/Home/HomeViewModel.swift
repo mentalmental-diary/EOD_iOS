@@ -136,7 +136,8 @@ public enum GoldInfoType {
 extension GoldInfoModel.TransactionType {
     var displayTitle: String {
         switch self {
-        case .gameCharge, .diaryCharge: return "일기 작성"
+        case .gameCharge: return "게임 플레이"
+        case .diaryCharge: return "일기 작성"
         case .purchaseItem: return "아이템 구매"
         }
     }
