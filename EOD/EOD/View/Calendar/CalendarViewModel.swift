@@ -43,7 +43,15 @@ class CalendarViewModel: ObservableObject {
 
 /// Var
 extension CalendarViewModel {
-    var emptyDiaryText: String { return selectDate == nil ? "날짜를 선택해주세요" : "작성한 일기가 없어요" }
+    var emptyDiaryText: String { 
+        if selectDate == nil {
+            return "날짜를 선택해주세요"
+        } else if isFutureDate {
+            return "미래의 일기는 작성할 수 없어요!"
+        } else {
+            return "작성한 일기가 없어요"
+        }
+    }
     
     var visibleDiaryIcon: Bool {
         let selectDay = selectDate?.day ?? 0
