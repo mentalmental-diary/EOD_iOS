@@ -133,7 +133,7 @@ extension CalendarView {
                 EmptyDiaryText(text: viewModel.emptyDiaryText)
                     .foregroundColor(Color.black)
                 
-                if viewModel.selectDate != nil {
+                if viewModel.canShowWriteDiaryButton {
                     Button(action: {
                         viewModel.showDiaryViewAction()
                     }, label: {

@@ -67,11 +67,17 @@ class GameDataViewModel: ObservableObject {
         
         if let index = games.firstIndex(where: { $0.game == game }) {
             var newGameData = games[index]
-            newGameData.updateScore(score, userNo: userNo) // ✅ UserDefaultsManager 사용
-            games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
-            
-            // ✅ gameDataList도 갱신
-            gameDataList = games
+            // 새 점수가 기존 최고 점수보다 높을 때만 업데이트
+            if score > newGameData.score {
+                newGameData.updateScore(score, userNo: userNo) // ✅ UserDefaultsManager 사용
+                games[index] = newGameData // ✅ SwiftUI가 감지할 수 있도록 배열 요소 교체
+                
+                // ✅ gameDataList도 갱신
+                gameDataList = games
+                debugLog("✅ 최고 점수 갱신: \(game.rawValue) - \(score)점")
+            } else {
+                debugLog("ℹ️ 기존 최고 점수(\(newGameData.score))보다 낮아 업데이트하지 않음: \(score)점")
+            }
         }
     }
     
