@@ -43,7 +43,15 @@ class CalendarViewModel: ObservableObject {
 
 /// Var
 extension CalendarViewModel {
-    var emptyDiaryText: String { return selectDate == nil ? "날짜를 선택해주세요" : "작성한 일기가 없어요" }
+    var emptyDiaryText: String { 
+        if selectDate == nil {
+            return "날짜를 선택해주세요"
+        } else if isFutureDate {
+            return "미래의 일기는 작성할 수 없어요!"
+        } else {
+            return "작성한 일기가 없어요"
+        }
+    }
     
     var visibleDiaryIcon: Bool {
         let selectDay = selectDate?.day ?? 0
@@ -52,6 +60,22 @@ extension CalendarViewModel {
         } else {
             return false
         }
+    }
+    
+    /// 선택된 날짜가 미래 날짜인지 확인
+    var isFutureDate: Bool {
+        guard let selectDate = selectDate else { return false }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let selectedDay = calendar.startOfDay(for: selectDate)
+        
+        return selectedDay > today
+    }
+    
+    /// 일기쓰기 버튼 노출 여부
+    var canShowWriteDiaryButton: Bool {
+        return selectDate != nil && !isFutureDate
     }
     
     var isModify: Bool { return original != nil }
@@ -93,6 +117,12 @@ extension CalendarViewModel {
     }
     
     func showDiaryViewAction() {
+        // 미래 날짜 체크
+        if isFutureDate {
+            self.toastManager.showToast(message: "미래 일기는 미리 쓸 수 없어요!")
+            return
+        }
+        
         self.showDiaryView = true
         self.showEmotionSelectView = self.diary.emotion == nil
         if self.diary.writeDate == nil {
@@ -182,7 +212,9 @@ extension CalendarViewModel {
                 return
             }
             
-            self?.toastManager.showToast(message: "일기 저장시 오류가 발생했습니다. error: \(error)")
+            // 서버에서 내려온 에러 메시지를 그대로 표시
+            let errorMessage = error.localizedDescription
+            self?.toastManager.showToast(message: errorMessage)
         })
         
     }
@@ -198,7 +230,9 @@ extension CalendarViewModel {
                 return
             }
             
-            self?.toastManager.showToast(message: "일기 저장시 오류가 발생했습니다. error: \(error)")
+            // 서버에서 내려온 에러 메시지를 그대로 표시
+            let errorMessage = error.localizedDescription
+            self?.toastManager.showToast(message: errorMessage)
         })
     }
     
